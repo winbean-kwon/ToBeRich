@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+__MACOSX/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# 대용량 데이터 (Google Drive에서 관리)
+data/stocks/
+data/*.parquet
+data/*.h5
+data/*.npy
+
+# IDE / Claude
+.claude/
+
+# 문서 원본
+*.pdf
