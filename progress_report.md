@@ -1,7 +1,7 @@
 # 졸업 프로젝트 진행 현황 보고서
 **멀티모달 LLM 기반 주가 예측: 뉴스 텍스트와 금융 시계열 데이터의 결합**
 
-> 작성일: 2026-05-08 | 담당: 권승빈 (시계열 파트)
+> 작성일: 2026-05-15 | 담당: 권승빈 (시계열 파트)
 
 ---
 
@@ -224,6 +224,7 @@ DTW 클러스터링은 실제 가격 패턴이 비슷한 종목들을 묶어, **
 |------|------|----------|
 | **StockMixer** | MLP(다층 퍼셉트론) 기반 경량 모델. 시간축과 피처축을 교차 혼합 | 우리 데이터로 처음부터 학습 |
 | **PatchTST** | 시계열을 5일 단위 패치로 나눠 Transformer에 입력. "A Time Series is Worth 64 Words" 논문 방법론 | 우리 데이터로 처음부터 학습 |
+| **iTransformer** | Inverted Transformer — 시간 스텝 대신 **피처 축**을 토큰화. 각 기술적 지표(RSI, MACD 등) 전체 60일 시계열이 하나의 variate 토큰이 되어, Attention이 피처 간 상관관계를 학습 | 우리 데이터로 처음부터 학습 |
 | **Chronos** | Amazon이 공개한 대규모 시계열 사전학습 모델. T5 언어 모델 백본 사용 | **사전학습 모델 그대로 사용(zero-shot)** — 우리 데이터로 추가 학습 없음 |
 
 #### 실험 설정
@@ -246,32 +247,88 @@ DTW 클러스터링은 실제 가격 패턴이 비슷한 종목들을 묶어, **
 
 | 모델 | Dir Acc | Spearman | MAE | RMSE |
 |------|---------|----------|-----|------|
-| StockMixer | 0.5024 | 0.0064 | 0.0447 | 0.1115 |
-| PatchTST | 0.4961 | 0.0201 | 0.0438 | 0.1118 |
-| **Chronos (zero-shot)** | **0.5103** | 0.0196 | ※무효 | ※무효 |
+| StockMixer | 0.5033 | 0.0072 | 0.04515 | 0.11202 |
+| PatchTST | 0.4960 | 0.0096 | 0.04392 | 0.11191 |
+| **iTransformer** | 0.5057 | 0.0056 | **0.04330** | **0.11101** |
+| **Chronos (zero-shot)** | **0.5096** | **0.0192** | ※무효 | ※무효 |
 | 랜덤 베이스라인 | 0.5000 | 0 | — | — |
 
-> ※ Chronos의 MAE/RMSE(각 627.8, 135342)는 측정 불가: Chronos는 RevIN 정규화된 가격 공간에서 값을 예측하므로 실제 수익률 단위와 스케일이 달라 의미 없는 수치. 방향성 지표만 유효.
+> ※ Chronos의 MAE/RMSE(각 529.1, 95546)는 측정 불가: Chronos는 RevIN 정규화된 가격 공간에서 값을 예측하므로 실제 수익률 단위와 스케일이 달라 의미 없는 수치. 방향성 지표만 유효.
 
 #### 결과 해석
 
-**1. Chronos(zero-shot)가 학습 없이도 1위**
+**1. Chronos(zero-shot)가 학습 없이도 방향성 1위**
 
-우리 데이터로 단 한 번도 학습하지 않은 Chronos가 방향성 정확도 51.03%로 가장 높습니다. 이는 Amazon이 수백만 개의 다양한 시계열로 사전학습한 Chronos 모델이 금융 시계열의 일반적인 패턴을 이미 내재하고 있음을 보여줍니다. **LoRA 파인튜닝(10월)으로 추가 학습 시 성능이 더 오를 것으로 기대됩니다.**
+우리 데이터로 단 한 번도 학습하지 않은 Chronos가 방향성 정확도 50.96%로 가장 높습니다. 이는 Amazon이 수백만 개의 다양한 시계열로 사전학습한 Chronos 모델이 금융 시계열의 일반적인 패턴을 이미 내재하고 있음을 보여줍니다. **LoRA 파인튜닝(10월)으로 추가 학습 시 성능이 더 오를 것으로 기대됩니다.**
 
-**2. PatchTST가 랜덤 이하(49.61%)**
+**2. iTransformer가 MAE/RMSE 1위**
+
+학습 기반 모델 중에서는 iTransformer가 MAE 0.04330, RMSE 0.11101로 가장 낮은 오차를 기록했습니다. 피처 간 상관관계를 어텐션으로 직접 포착하는 inverted 구조가 금융 기술적 지표(RSI-MACD 상호작용 등) 처리에 효과적임을 확인. iTransformer의 어텐션 맵을 분석하면 어떤 지표 쌍이 실제로 co-attend 되는지 해석 가능.
+
+**3. PatchTST가 랜덤 이하(49.60%)**
 
 처음부터 학습한 PatchTST가 오히려 랜덤보다 나쁜 결과를 보였습니다. 10 에폭이라는 짧은 학습 시간과 100만 개 데이터 중 10만 개만 사용한 점이 원인일 수 있습니다. 그러나 이 실험의 목적은 정밀 튜닝이 아닌 백본 선정이므로 결론 도출에 충분합니다.
 
-**3. StockMixer는 간신히 랜덤 이상(50.24%)**
+**4. StockMixer는 간신히 랜덤 이상(50.33%)**
 
 단순한 MLP 구조의 한계를 보여줍니다. 사전학습 없이 구조만으로는 시계열 패턴 학습에 한계가 있음을 확인.
 
-**4. 전반적으로 낮은 Spearman Correlation**
+**5. 전반적으로 낮은 Spearman Correlation**
 
-모든 모델에서 0.006~0.020 수준으로 매우 낮습니다. 이는 주가 예측 자체의 어려움을 반영하며, 6월 LightGBM 실험(AUC 0.525)과 일관된 결과입니다. 멀티모달 접근(뉴스 + 시계열)으로 이를 개선하는 것이 9월 이후 과제입니다.
+모든 모델에서 0.005~0.019 수준으로 매우 낮습니다. 이는 주가 예측 자체의 어려움을 반영하며, 6월 LightGBM 실험(AUC 0.525)과 일관된 결과입니다. 멀티모달 접근(뉴스 + 시계열)으로 이를 개선하는 것이 9월 이후 과제입니다.
 
-#### 결론: 시계열 백본으로 **Chronos** 선정
+#### 결론: 시계열 백본으로 **Chronos** 선정 (방향성 기준), iTransformer는 어텐션 해석 도구로 활용
+
+---
+
+### 2-7. iTransformer 클러스터별 어텐션 패턴 분석 (8월 완료)
+
+#### 분석 목적
+
+iTransformer의 variate 어텐션 맵(피처 × 피처 행렬)을 DTW 클러스터별로 분리해, 클러스터 유형에 따라 어떤 기술적 지표 간 상호작용이 강하게 나타나는지 해석합니다. 단순한 예측 성능 비교를 넘어 **"모델이 무엇을 보고 예측하는가"**를 시각화하는 XAI(설명 가능 AI) 분석입니다.
+
+#### 분석 방법
+
+1. `cluster_assignments.csv`로 5개 클러스터 각각에 속하는 종목 코드 추출
+2. `kospi_valid.parquet`에서 테스트 기간(2025-01-01 이후) 데이터만 필터링
+3. 클러스터별 시퀀스 추출 → Instance Normalization → iTransformer 배치 추론
+4. `get_attn_maps()` 메서드로 레이어별 어텐션 가중치(20×20) 수집 후 평균
+
+#### 실험 결과: 피처 중요도 (어텐션 수신량 기준)
+
+클러스터 전반에서 일관되게 높은 어텐션을 받는 피처 (상위 6위):
+
+| 순위 | 피처 | 평균 어텐션 | 해석 |
+|------|------|------------|------|
+| 1 | **MACD_hist** | 0.0558 | 단기 모멘텀 변화율. 추세 전환 신호 |
+| 2 | **RSI_14** | 0.0538 | 과매수/과매도 수준. 역추세 신호 |
+| 3 | **Return_5d** | 0.0537 | 단기 수익률 모멘텀 |
+| 4 | **Volume_ratio** | 0.0534 | 거래량 급증 = 수급 변화 신호 |
+| 5 | **Return_1d** | 0.0536 | 당일 가격 충격 |
+| 6 | **BB_width** | 0.0526 | 변동성 확대/수축 여부 |
+
+반대로 OHLC 가격 원본 피처(Open, High, Low, Adj_Close)는 어텐션이 낮음(~0.046). 모델이 절대 가격보다 **파생 지표(모멘텀, 변동성, 거래량)**를 더 중요하게 학습했음을 확인.
+
+#### 클러스터 간 차이
+
+| 클러스터 | 특징적 피처 |
+|---------|------------|
+| C0 부동산/금융 (108종목) | SMA_60 (장기 이동평균) 상대적으로 높음 — 느린 추세 추종 패턴 |
+| C1 중공업/철강 (112종목) | High, Low 가격 범위 피처 상대적으로 높음 — 일중 변동성 민감 |
+| C2 자동차부품/제약 (118종목) | Volume, Volume_ratio 높음 — 수급 변화가 핵심 신호 |
+| C3 혼합 대형 (299종목) | MACD_hist 가장 높음 — 시장 평균 추세 추종 |
+| C4 금융/화학/보험 (120종목) | MACD, MACD_signal, Volatility_20d 높음 — 추세+변동성 복합 |
+
+> 클러스터 간 차이는 미묘하지만(0.001~0.003 수준), 패턴은 일관됨. 업종 특성과 어텐션 패턴이 부분적으로 대응되는 것을 확인.
+
+#### 생성 파일
+
+| 파일 | 내용 |
+|------|------|
+| `cluster_attn_heatmap.png` | 5클러스터 × 20×20 피처 어텐션 히트맵 비교 |
+| `cluster_feature_importance.png` | 클러스터별 피처 중요도 그룹 막대 차트 |
+| `cluster_feature_importance.csv` | 수치 데이터 (20피처 × 5클러스터) |
+| `layer_depth_attn.png` | C3 클러스터 레이어별 어텐션 깊이 분석 |
 
 ---
 
@@ -297,7 +354,18 @@ DTW 클러스터링은 실제 가격 패턴이 비슷한 종목들을 묶어, **
 ├── preprocess_sequences_colab.ipynb # RevIN + 패치 시퀀스 생성 (Colab)
 ├── freq_features_colab.ipynb        # FFT/DWT 특징 추출 (Colab)
 ├── dtw_clustering_colab.ipynb       # DTW 클러스터링 (Colab)
-└── backbone_comparison_colab.ipynb  # 백본 비교 실험 (Colab, GPU)
+├── backbone_comparison_colab.ipynb  # 백본 비교 실험 + iTransformer (Colab, GPU)
+└── cluster_attn_colab.ipynb         # 클러스터별 iTransformer 어텐션 분석 (Colab)
+```
+
+### 로컬 결과 파일 (`졸업프로젝트/`)
+
+```
+├── backbone_results.csv             # 4개 모델 비교 결과 (dir_acc/spearman/mae/rmse)
+├── cluster_attn_heatmap.png         # 5클러스터 × 20×20 어텐션 히트맵
+├── cluster_feature_importance.png   # 클러스터별 피처 중요도 막대 차트
+├── cluster_feature_importance.csv   # 피처 중요도 수치 (20×5)
+└── layer_depth_attn.png             # C3 클러스터 레이어별 어텐션 분석
 ```
 
 ### Google Drive (`grad_project/data/`)
@@ -307,8 +375,9 @@ sequences/
 ├── sequences.h5        # RevIN 정규화 + 패치 시퀀스 (~수 GB)
 └── freq_features.h5    # FFT + DWT 주파수 피처
 models/
-├── stockmixer_best.pt  # StockMixer 학습 가중치
-└── patchtst_best.pt    # PatchTST 학습 가중치
+├── stockmixer_best.pt      # StockMixer 학습 가중치
+├── patchtst_best.pt        # PatchTST 학습 가중치
+└── itransformer_best.pt    # iTransformer 학습 가중치
 cluster_assignments.csv
 cluster_centroids.npy
 adj_matrix.npy
@@ -371,9 +440,10 @@ backbone_results.csv
 |------|------|----------|
 | 6월 주파수 특징 | FFT + DWT → LightGBM | AUC 0.525 (랜덤 0.5 대비 +0.025) |
 | 7월 클러스터링 | Soft-DTW K-Means | KOSPI를 5개 패턴 그룹으로 분류 성공 |
-| 8월 백본 비교 | StockMixer / PatchTST / Chronos | Chronos zero-shot 51.03% 방향성 정확도로 1위 → **백본 선정** |
+| 8월 백본 비교 | StockMixer / PatchTST / iTransformer / Chronos | Chronos zero-shot 50.96% 방향성 1위 → **백본 선정**; iTransformer MAE 0.0433 최저 |
+| 8월 어텐션 분석 | iTransformer get_attn_maps() × DTW 5클러스터 | MACD_hist, RSI_14, Return_5d가 상위 피처; 클러스터별 미세 차이 확인 |
 
-**일관된 패턴**: 모든 단계에서 단순 통계 피처 / 처음부터 학습한 모델보다 **사전학습된 대형 모델(Chronos)**이 우세. 멀티모달 결합 + LoRA 파인튜닝으로 추가 성능 향상이 기대되는 방향.
+**일관된 패턴**: 모든 단계에서 단순 통계 피처 / 처음부터 학습한 모델보다 **사전학습된 대형 모델(Chronos)**이 우세. 멀티모달 결합 + LoRA 파인튜닝으로 추가 성능 향상이 기대되는 방향. iTransformer의 어텐션 해석 결과는 9월 멀티모달 결합 시 어떤 피처와 뉴스 임베딩을 cross-attend할지 결정하는 근거로 활용 예정.
 
 ---
 
