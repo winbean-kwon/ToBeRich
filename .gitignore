@@ -18,6 +18,8 @@ data/stocks/
 data/*.parquet
 data/*.h5
 data/*.npy
+data/sequences/
+data/collect.log
 
 # IDE / Claude
 .claude/
