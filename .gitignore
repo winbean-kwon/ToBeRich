@@ -21,6 +21,10 @@ data/*.npy
 data/sequences/
 data/collect.log
 
+# 암호화폐 분봉 원시 데이터 (용량 큼, 로컬/Drive에서만 관리)
+crypto/data/minute_ohlcv_raw/*.parquet
+crypto/data/features_5m/*.parquet
+
 # IDE / Claude
 .claude/
 
