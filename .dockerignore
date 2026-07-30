@@ -1,0 +1,27 @@
+# crypto/live_trading_loop_binance.py 배포 빌드에 불필요한 것 전부 제외 —
+# 저장소 루트에 KOSPI 트랙/논문/노트북 등 크립토 실거래와 무관한 대용량 파일이 많다.
+*
+!crypto/
+!Dockerfile
+
+# crypto/ 안에서도 실거래 루프 실행에 불필요한 것 제외
+crypto/notebooks/
+crypto/data/minute_ohlcv_raw/
+crypto/data/features_5m/
+crypto/data/features_5m_summary.csv
+crypto/*.png
+crypto/*.csv
+crypto/*.ipynb
+crypto/live_trading.log
+crypto/.env
+crypto/.env.testnet.bak
+crypto/PROGRESS.md
+
+# crypto/models/ 도 배포에 쓰는 파일만 남기고 제외 (.gitignore와 동일 화이트리스트)
+crypto/models/*
+!crypto/models/__init__.py
+!crypto/models/hybrid_model.py
+!crypto/models/crypto_hybrid_best.pt
+!crypto/models/crypto_hrl_pool_v4/
+crypto/models/crypto_hrl_pool_v4/*
+!crypto/models/crypto_hrl_pool_v4/agent_beta_-30.zip

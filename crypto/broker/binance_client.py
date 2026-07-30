@@ -92,8 +92,12 @@ class BinanceBrokerClient(BrokerClient):
             symbol = f"{asset}/{QUOTE_CCY}"
             try:
                 price = self.get_current_price(symbol)
-            except ccxt.BadSymbol:
-                continue  # USDT로 직거래 안 되는 자산(더스트 등)은 스킵
+            except (ccxt.BadSymbol, ccxt.ExchangeError, TypeError, KeyError):
+                # USDT로 직거래 안 되거나(BadSymbol) 시세가 없는(테스트넷 더스트/가짜 토큰 등
+                # ticker['last']가 None인 경우 TypeError) 자산은 스킵
+                continue
+            if price is None:
+                continue
             positions.append(
                 Position(
                     symbol=symbol,

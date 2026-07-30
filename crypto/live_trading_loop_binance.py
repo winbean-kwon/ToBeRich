@@ -4,8 +4,9 @@
 live_trading_loop.py(KIS/KOSPI)와의 차이:
   - 코인 시장은 24/7이므로 장 시간 게이트가 없다.
   - 주문 수량이 float(소수점 단위 매매 가능).
-  - PolicyAdapter는 아직 EqualWeightPolicy만 있다 — 분봉 피처/임베딩 파이프라인이
-    코인 유니버스로 재구축되기 전까지는 브로커 연동 자체만 검증하는 용도.
+  - 기본 정책은 crypto/inference/policy_v4.py의 V4PolicyAdapter(β=30 PPO 풀 에이전트 단독 +
+    추론 스무딩 — DQN 라우터는 §15 검증에서 상수함수로 확인돼 제거함). 브로커 연동만 검증하고
+    싶으면 --policy equal로 EqualWeightPolicy를 쓴다.
 
 ⚠️ 기본값은 --dry-run(주문 미실행, 로그만 출력)이다. 실제 주문을 내려면 --live
    플래그를 명시해야 하고, 그때도 BINANCE_LIVE_MODE가 "real"이 아니면 테스트넷
@@ -15,14 +16,16 @@ live_trading_loop.py(KIS/KOSPI)와의 차이:
 from __future__ import annotations
 
 import argparse
+import json
 import logging
 import time
-from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from datetime import datetime
+from pathlib import Path
 
 from crypto.broker.base import BrokerClient, OrderSide
 from crypto.broker.binance_client import BinanceBrokerClient
+from crypto.policy_base import EqualWeightPolicy, PolicyAdapter
 
 logging.basicConfig(
     level=logging.INFO,
@@ -30,11 +33,24 @@ logging.basicConfig(
 )
 log = logging.getLogger("live_trading_loop_binance")
 
+FROZEN_UNIVERSE_PATH = Path(__file__).resolve().parent / "data" / "live_universe.json"
+
+
+def load_frozen_universe() -> list[str]:
+    """v4 정책이 학습된 고정 44종목 유니버스를 반환한다.
+
+    universe.py의 get_top_usdt_symbols()는 호출 시점마다 실시간 거래대금으로
+    재랭킹하므로 학습 유니버스(features_5m/*.parquet 44종목)와 어긋날 수 있다 —
+    라이브 정책 실행에는 반드시 이 고정 리스트를 써야 한다.
+    """
+    return json.loads(FROZEN_UNIVERSE_PATH.read_text())
+
 
 @dataclass
 class RiskConfig:
     max_weight_per_symbol: float = 0.3
     daily_loss_limit_pct: float = 0.03  # 이 이상 손실 시 당일 거래 중단
+    max_capital_usdt: float | None = None  # 계좌 실제 잔고가 더 크더라도 이 금액까지만 운용
 
 
 @dataclass
@@ -43,22 +59,6 @@ class LoopConfig:
     decision_interval_sec: int = 1800  # 30분
     dry_run: bool = True
     risk: RiskConfig = field(default_factory=RiskConfig)
-
-
-class PolicyAdapter(ABC):
-    """목표 비중 산출 정책 인터페이스."""
-
-    @abstractmethod
-    def target_weights(self, symbols: list[str], broker: BrokerClient) -> dict[str, float]:
-        """심볼별 목표 비중 (합계 1.0 이하) 반환."""
-
-
-class EqualWeightPolicy(PolicyAdapter):
-    """브로커 연동 자체를 검증하기 위한 더미 정책 — 등가중 배분."""
-
-    def target_weights(self, symbols: list[str], broker: BrokerClient) -> dict[str, float]:
-        w = 1.0 / len(symbols)
-        return {s: w for s in symbols}
 
 
 class CircuitBreaker:
@@ -73,7 +73,9 @@ class CircuitBreaker:
         equity = broker.get_cash_balance() + sum(
             p.quantity * p.current_price for p in broker.get_positions()
         )
-        if self.day_start_equity is None:
+        if self.day_start_equity is None or self.day_start_equity <= 0:
+            # 잔고 0(자금 미입금/전량 인출 상태)이면 손실률 자체가 정의되지 않으므로
+            # 갱신만 하고 통과시킨다 — 이후 입금돼 equity > 0이 되는 시점부터 추적 시작.
             self.day_start_equity = equity
             return True
         drawdown = (equity - self.day_start_equity) / self.day_start_equity
@@ -108,10 +110,20 @@ def rebalance_step(
     equity = broker.get_cash_balance() + sum(
         p.quantity * p.current_price for p in broker.get_positions()
     )
+    if config.risk.max_capital_usdt is not None and equity > config.risk.max_capital_usdt:
+        log.info(
+            "실제 잔고 %.2f USDT 중 %.2f USDT만 운용 (--max-capital 제한)",
+            equity, config.risk.max_capital_usdt,
+        )
+        equity = config.risk.max_capital_usdt
     positions = {p.symbol: p for p in broker.get_positions()}
 
     for symbol, target_w in targets.items():
-        price = broker.get_current_price(symbol)
+        try:
+            price = broker.get_current_price(symbol)
+        except Exception:
+            log.warning("심볼 %s 시세 조회 실패 — 이번 사이클 리밸런싱 스킵(상장폐지/거래정지 가능성)", symbol)
+            continue
         target_value = equity * target_w
         current_qty = positions.get(symbol).quantity if symbol in positions else 0.0
         target_qty = target_value / price
@@ -169,14 +181,39 @@ def main():
     parser.add_argument("--live", action="store_true", help="실제 주문 실행 (기본은 dry-run)")
     parser.add_argument("--interval", type=int, default=1800, help="리밸런싱 간격(초)")
     parser.add_argument(
-        "--symbols", nargs="+", required=True, help="대상 심볼 목록 (예: BTC/USDT ETH/USDT, 테스트 시 소수만 지정 권장)"
+        "--symbols", nargs="+", default=None,
+        help="대상 심볼 목록 (예: BTC/USDT ETH/USDT). 생략하면 v4 학습에 쓰인 고정 44종목 유니버스를 사용",
     )
+    parser.add_argument(
+        "--policy", choices=["v4", "equal"], default="v4",
+        help="v4=실제 HRL 정책(기본), equal=브로커 연동만 검증하는 더미 등가중 정책",
+    )
+    parser.add_argument(
+        "--model-dir", default=str(Path(__file__).resolve().parent / "models"),
+        help="crypto_hybrid_best.pt / crypto_hrl_pool_v4 / crypto_hrl_router_v4.zip이 있는 디렉터리",
+    )
+    parser.add_argument(
+        "--max-capital", type=float, default=None,
+        help="계좌 실제 잔고가 더 크더라도 이 금액(USDT)까지만 운용 (소액 검증용 안전장치)",
+    )
+    parser.add_argument("--daily-loss-limit", type=float, default=0.03, help="서킷브레이커 발동 일일 손실률")
     args = parser.parse_args()
 
+    symbols = args.symbols or load_frozen_universe()
+
     broker = BinanceBrokerClient()
-    policy = EqualWeightPolicy()  # TODO: 코인 유니버스용 분봉 피처/임베딩/PPO 파이프라인 완료 후 교체
+    if args.policy == "equal":
+        policy: PolicyAdapter = EqualWeightPolicy()
+    else:
+        from crypto.inference.policy_v4 import V4PolicyAdapter
+
+        policy = V4PolicyAdapter(model_dir=args.model_dir, symbols=symbols)
+
     config = LoopConfig(
-        symbols=args.symbols, decision_interval_sec=args.interval, dry_run=not args.live
+        symbols=symbols,
+        decision_interval_sec=args.interval,
+        dry_run=not args.live,
+        risk=RiskConfig(daily_loss_limit_pct=args.daily_loss_limit, max_capital_usdt=args.max_capital),
     )
     run(config, broker, policy)
 

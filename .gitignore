@@ -25,6 +25,19 @@ data/collect.log
 crypto/data/minute_ohlcv_raw/*.parquet
 crypto/data/features_5m/*.parquet
 
+# 실계좌 키 백업 / 실거래 로그 (민감정보·용량, 로컬에서만 관리)
+crypto/.env.testnet.bak
+crypto/live_trading.log
+
+# 크립토 모델 가중치 — 배포(Railway)에 필요한 것만 화이트리스트로 커밋하고 나머지는 로컬 전용
+crypto/models/*
+!crypto/models/__init__.py
+!crypto/models/hybrid_model.py
+!crypto/models/crypto_hybrid_best.pt
+!crypto/models/crypto_hrl_pool_v4/
+crypto/models/crypto_hrl_pool_v4/*
+!crypto/models/crypto_hrl_pool_v4/agent_beta_-30.zip
+
 # IDE / Claude
 .claude/
 
