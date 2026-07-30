@@ -4,9 +4,9 @@
 live_trading_loop.py(KIS/KOSPI)와의 차이:
   - 코인 시장은 24/7이므로 장 시간 게이트가 없다.
   - 주문 수량이 float(소수점 단위 매매 가능).
-  - 기본 정책은 crypto/inference/policy_v4.py의 V4PolicyAdapter(β=30 PPO 풀 에이전트 단독 +
-    추론 스무딩 — DQN 라우터는 §15 검증에서 상수함수로 확인돼 제거함). 브로커 연동만 검증하고
-    싶으면 --policy equal로 EqualWeightPolicy를 쓴다.
+  - 기본 정책은 crypto/inference/policy_v4.py의 V4PolicyAdapter(β=-30 PPO 풀 에이전트 단독 +
+    추론 스무딩 — DQN 라우터는 §15 검증에서 상수함수로 확인돼 제거함, §16에서 β=30→β=-30으로
+    교체). 브로커 연동만 검증하고 싶으면 --policy equal로 EqualWeightPolicy를 쓴다.
 
 ⚠️ 기본값은 --dry-run(주문 미실행, 로그만 출력)이다. 실제 주문을 내려면 --live
    플래그를 명시해야 하고, 그때도 BINANCE_LIVE_MODE가 "real"이 아니면 테스트넷
