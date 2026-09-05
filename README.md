@@ -16,14 +16,13 @@ EarnHFT(Qin et al., AAAI'24)류 **계층적 강화학습(HRL)을 단일자산·�
 
 ---
 
-## 2. 프로젝트 구조 (트랙 3개 + 논문)
+## 2. 프로젝트 구조 (트랙 2개 + 논문)
 
 | 트랙 | 위치 | 상태 | 요약 |
 |---|---|---|---|
 | **① KOSPI 시계열 백본 트랙** | 저장소 루트 (`*.ipynb`, `*.py`, `data/`) | 완료 (2026-04 ~ 06) | 781종목 일봉 수집 → RevIN 패치 시퀀스 → FFT/DWT 주파수 피처 → DTW 클러스터링(K=5) → 백본 7종 비교 → **Chronos + MTGNN 하이브리드** 확정 → 일봉 PPO(실패, 등가중 대비 +0.28% vs +34.33%) |
 | **② 크립토 HRL 트랙 (메인)** | `crypto/` | 완료·실계좌 배포 (2026-07 ~ 08) | Binance 44종목 5분봉 백필 → 하이브리드 백본 이식 → 단일 PPO 실패(−75.68%) → **EarnHFT 계층 구조 v1~v4 캐스케이드** → 라우터 붕괴 진단 → β=-30 단독 배포 + 강건성 검증 총망라 |
-| **③ GAPS ETF 대회 트랙** | `GAPS_대회/` | 별도 산출물 (2026-05) | 제12회 GAPS ETF 대회. Chronos+MTGNN 방향성 예측 → PPO 카테고리 배분 → Black-Litterman 융합 → MVO. RL 팀원·인간 운용역과 협업 (졸업 논문 본 트랙과 무관) |
-| **④ 논문화** | `paper/` | 초고 완성·10라운드 외부 비평 반영 (2026-07-29 ~ 08-19) | `DRAFT.md`(영문) / `DRAFT_KR.md`(국문) 초록~결론 1차 완성, 그림 2개, ablation 표, 관련연구 서지 확정 |
+| **③ 논문화** | `paper/` | 초고 완성·10라운드 외부 비평 반영 (2026-07-29 ~ 08-19) | `DRAFT.md`(영문) / `DRAFT_KR.md`(국문) 초록~결론 1차 완성, 그림 2개, ablation 표, 관련연구 서지 확정 |
 
 ---
 
@@ -197,9 +196,6 @@ EarnHFT(Qin et al., AAAI'24)류 **계층적 강화학습(HRL)을 단일자산·�
 │   ├── RELATED_WORK.md                서지 (EarnHFT/FreQuant/DeepClair/EIIE/LSRE-CAAN/DSR/CAPS 등 확인 완료)
 │   ├── MULTI_MARKET.md                KOSPI·크립토 공통 실패 패턴
 │   └── figures/                       fig1 캐스케이드, fig2 valid/test 일관성 산점도 (+ generate_fig2.py)
-│
-│  ── GAPS ETF 대회 (별도 트랙) ──
-├── GAPS_대회/                         README.md, BL 파이프라인, 노트북, handoff CSV
 │
 ├── Dockerfile / .dockerignore         Railway Worker 배포용 (crypto 실거래 루프)
 └── .env.example                       KIS 인증정보 템플릿 (KOSPI 트랙 잔재)
