@@ -149,7 +149,7 @@ iTransformer의 variate 어텐션 맵(20×20 피처×피처)을 DTW 클러스터
 | BiGRU (Mamba 대체) | 0.4987 | 0.0001 | 0.043912 | |
 | PatchTST | 0.4960 | 0.0096 | 0.043922 | |
 
-**MTGNN이 전 지표에서 1위**: 방향성 51.45%, Spearman 0.0356으로 이전 1위 모델들을 모두 앞섰다. KOSPI 종목 간 그래프 관계(DTW 클러스터 기반 인접 행렬)를 Adaptive Graph Learner로 자동 학습하는 구조가 효과적이었다.
+**MTGNN이 방향성·Spearman·MAE에서 1위**(RMSE는 iTransformer가 근소하게 낮음): 방향성 51.45%, Spearman 0.0356. 한 종목의 20개 기술지표를 노드로 두고, Adaptive Graph Learner가 지표 간 인접 행렬(무작위 초기화)을 학습하는 구조다. 다만 모든 모델의 방향성 정확도가 테스트셋 상승 비율(50.5%) 근처이고 단일 실행 결과라, 순위 차이는 약한 신호로 봐야 한다.
 
 **주요 시행착오 2건**:
 
@@ -173,13 +173,13 @@ iTransformer의 variate 어텐션 맵(20×20 피처×피처)을 DTW 클러스터
 
 ### 2-9. 하이브리드 모델 구현 (9월)
 
-백본 비교 결과를 반영해 최종 하이브리드 아키텍처를 **Chronos T5 인코더(temporal 패턴) + MTGNN(그래프 기반 cross-stock 관계)** 으로 확정했다.
+백본 비교 결과를 반영해 최종 하이브리드 아키텍처를 **Chronos T5 인코더(temporal 패턴) + MTGNN(지표 간 그래프 관계)** 으로 확정했다.
 
 ```
 입력: (B, 12패치, 5일/패치, 20피처)
         ↓
 [Chronos T5 인코더]  — 시간 축 패턴 (추세, 주기성)
-[MTGNN]             — 종목 간 그래프 관계 (Adaptive Graph Learner)
+[MTGNN]             — 지표 간 그래프 관계 (Adaptive Graph Learner, 종목 간 관계는 모델링하지 않음)
         ↓ Fusion Layer
 64-dim 임베딩 (종목 × 날짜)
         ↓
@@ -253,7 +253,7 @@ rl_embeddings.h5 → PPO 강화학습
 ## 5. 핵심 교훈
 
 **잘 된 것**:
-- MTGNN의 그래프 기반 종목 간 관계 모델링이 순수 시계열 모델보다 효과적
+- MTGNN의 지표 간 그래프 관계 모델링이 순수 시계열 모델보다 근소하게 우수(단일 실행, 차이 작음)
 - DWT 주파수 피처가 FFT보다 금융 데이터에 적합함을 실험으로 검증
 - DTW 클러스터링으로 업종과 무관한 시장 내 실제 움직임 그룹 발견
 - iTransformer 어텐션 분석으로 모델 해석 가능성(XAI) 확보
