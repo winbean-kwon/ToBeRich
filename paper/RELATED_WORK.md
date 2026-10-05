@@ -96,6 +96,29 @@ DRAFT.md/DRAFT_KR.md §2.1에 이미 반영 완료.
 기록하고 검증/테스트 일관성 진단으로 검증한 사례는 없다 — 이것이 §1.4의 좁혀진 기여 주장이 실제로
 방어 가능한 지점이다.
 
+
+### ✅ 전문가 풀 + 라우터 + 노출 조절 선행 연구 — MoEDRLPM, DeepTrader (2026-10-04 Crossref로 서지 확인, 본문 미대조)
+
+외부 비평(2026-10)에서 "기여 #2가 다자산 Expert+Router 이식의 최초처럼 읽힌다"는 지적에 따라 추가.
+DRAFT.md/DRAFT_KR.md §2.1(MoEDRLPM), §2.2(DeepTrader), §2.6 표(‡ 행), 기여 #2에 반영 완료.
+
+- Wei, Z., Chen, D., Zhang, Y., Wen, D., Nie, X., & Xie, L. (2025). **Deep reinforcement learning
+  portfolio model based on mixture of experts** (MoEDRLPM). *Applied Intelligence*, 55(5), 347.
+  DOI 10.1007/s10489-025-06242-6
+  — 시공간 적응 임베딩 + 시간·공간 셀프 어텐션, 라우터가 혼합 전문가 풀에서 최적 전문가를 동적 선택해
+  결정을 집계, 시장 지수로 시장 리스크를 모델링해 투자 자본 비율 결정, DRL로 최적화. SSE50/CSI300.
+  **본 논문 v4와 구조적으로 가장 가까움.** 초록 기준 라우터 ablation·검증/테스트 일관성 진단 없음.
+- Wang, Z., Huang, B., Tu, S., Zhang, K., & Xu, L. (2021). **DeepTrader: A Deep Reinforcement Learning
+  Approach for Risk-Return Balanced Portfolio Management with Market Conditions Embedding**.
+  *AAAI 2021*, 35(1), 643–650. DOI 10.1609/aaai.v35i1.16144
+  — 자산 점수 유닛(가격 상승률 보상, 인과 구조 그래프) + 시장 상황 임베딩으로 롱/숏 자금 비율을 조절하는
+  시장 유닛(음의 MDD 보상). 본 논문의 top-K + 리스크게이트 ρ와 기능적으로 같은 계열(우리는 롱/현금만).
+
+**이 프로젝트와의 관계**: "다자산 전문가 풀 + 라우터 + 총 노출 조절" 조합은 새롭지 않다. 방어 가능한
+지점은 (1) Q-teacher 없는 EarnHFT 이식의 실패 연쇄 기록, (2) 같은 형태의 라우터가 상수함수로 퇴화함을
+ablation으로 보인 것, (3) 검증/테스트 일관성 진단. **TODO**: 두 논문 본문을 확보하면 §2.6 표의
+"본문 미대조" 칸(거래비용·다중시드·일관성 진단)을 채울 것.
+
 ---
 
 ## 2. 백본/피처 관련 (✅ 전부 확인됨 — `progress_report_final.md` §4에서 그대로 재사용 가능)
@@ -230,7 +253,7 @@ IC 진단은 이 학습된 근사가 실제로는 자산의 미래 수익률 순
 아키텍처에서 재현된 균등가중 수렴**. β=-30(배포) Sharpe 1.156으로 약 3.5배 압도. "2017년 방법과만
 비교했다"는 지적을 방어하는 데 더해, 다양성 붕괴가 아키텍처 일반의 속성이라는 6.6절 주장을 한층
 강화하는 세 번째 독립 증거를 확보. 상세: `paper/GAP_ANALYSIS.md` §2.4, `paper/FINDINGS_LOG.md`
-§19. **아직 6.6절 본문에는 미반영** — 다음 작업.
+§19. ✅ 6.6절 본문에 반영 확인됨(2026-09-18 재확인 — 이미 작성돼 있었음).
 
 ---
 
@@ -283,7 +306,9 @@ CAPS의 메커니즘을 이식하지는 않았다. 오히려 4.2절의 두 번�
 5. ✅ §6(CAPS, action smoothing 대조 문헌) 검색·확인 완료(2026-08-17) — 외부 검토에서 4.2절의
    추론시점 스무딩 발견이 기존 action-smoothing 문헌(CAPS)과 어떻게 다른지 명시되지 않았다는
    지적을 받아 추가. `DRAFT.md`/`DRAFT_KR.md` §2.2·§4.2에 반영 완료.
-6. ⬜ 서지정보 확정되는 대로 `paper/`에 `references.bib` 추가.
+6. ✅ `paper/references.bib` 초안 작성 완료(2026-09-18) — 이 문서의 항목 전부를 raw BibTeX으로
+   옮김. venue별 인용 스타일(natbib/biblatex 등) 변환과 원문 대조(특히 "⚠️ 확인 필요" 표시 항목의
+   공저자·페이지)는 투고 venue 확정 후 남은 작업.
 7. ✅ 다자산 HRL 선행연구 지형(HRPM, IJCNN'22, MetaTrader, MDPI HRP/HERC, MacroHFT, HARLF) 검색·
    확인 완료(2026-08-26) — §1(위 신규 절) 및 `DRAFT.md`/`DRAFT_KR.md` §2.1 모두 반영 완료.
    외부 검토에서 "다자산 포트폴리오에 계층 구조를 적용한 시도 자체가 전혀 없다"는 절대적 표현이
