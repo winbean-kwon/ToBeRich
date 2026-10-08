@@ -162,7 +162,42 @@ rob = [md(f"""# [재학습 · 2026-10-06] β=30 강건성 검증 (B 묶음)
  code(f"# 1. 추가 시드 15개 + 앙상블 + DSR (β=30)\nrun_cells('{ROB}', {ROB_IDS}, patch_after=3, extra={ROB_EXTRA!r})\n"),
  code(f"# 2. 클린 재학습 (β=30, seed=42, 2025년 1~9월만 학습)\nrun_cells('{CLEAN}', {CLEAN_IDS}, patch_after=3, extra={CLEAN_EXTRA!r})\n"),
  code(f"# 3. top-K 스윕 (β=30)\nMAIN_PATH = '{MAIN}'\nrun_cells(MAIN_PATH, {TOPK_SETUP}, patch_after=2, extra={TOPK_EXTRA!r})\nrun_cells(MAIN_PATH, [90, 91], patch_after=None, subs={TOPK_SUBS!r})\nprint('\\n전부 완료')\n")]
+
+EVAL2 = 'crypto/notebooks/rerun_fix1004/crypto_eval2_rerun_fix1004.ipynb'
+DDQN_NB = 'crypto/notebooks/rerun_fix1004/crypto_ddqn_retrain_fix1004.ipynb'
+LOAD_MATCHED = """# §13-I-A 매칭 라우터 — 연쇄 재학습(crypto_cascade_retrain_rt1006)에서 학습한 것을 그대로 불러온다
+router_v4_matched = DQN.load(str(MODEL_DIR / 'crypto_hrl_router_v4_matched.zip'))
+print('[v4] 매칭 라우터(DQN) 로드 완료')
+"""
+EVAL_SUBS = {
+    16: [('ALPHA_DEPLOY, BETA_DEPLOY = 0.01, -30', 'ALPHA_DEPLOY, BETA_DEPLOY = 0.01, 30')],
+    21: [("(' (배포)' if beta == -30 else '')", "(' (배포)' if beta == 30 else '')")],
+}
+TC_SUBS = {94: [('(-30, ALPHA_DEPLOY', '(30, ALPHA_DEPLOY'), ('β=-30, α=0.01, valid/test', 'β=30, α=0.01, valid/test')]}
+DDQN_SUBS = {
+    12: [("'crypto_hrl_router_v4_ddqn_fix1004.zip'", "'crypto_hrl_router_v4_ddqn.zip'")],
+    13: [("'crypto_hrl_v4_dqn_ddqn_router_fix1004.csv'", "'crypto_hrl_v4_dqn_ddqn_router.csv'")],
+}
+ev = [md(f"""# [재학습 · 2026-10-08] β=30 기준 평가 + DDQN 라우터
+
+재학습한 모델(`models/rt1006/`)로 학습 없이 평가만 다시 하고, 마지막에 DDQN 라우터만 새로 학습한다(GitHub 커밋 `{SHA[:7]}`의 코드, 배포 β만 −30 → 30으로 치환).
+1. §23 v4 다양성 진단(4.4절) — ρ 분포, β별 평균 ρ, top-10 순환 종목 수
+2. §24 노출 맞춤 벤치마크(6.11절)
+3. §18 거래비용 스윕(6.9절) — 5/10/15/20bp
+4. §25 저턴오버 아티팩트 진단(4.4절)
+5. §19 블록 순열검정(6.10절)
+6. §22 DDQN 매칭 라우터(8장 한계#3) — DQN 매칭 라우터는 연쇄 재학습에서 만든 것을 불러오고, DDQN만 20k 스텝 학습
+
+- **`런타임 > 모두 실행`만 누르면 된다.** 끊기면 다시 `모두 실행` — DDQN 학습은 캐시에서 불러온다. CPU로 충분, 약 1~2시간.
+- 드라이브 연결 창에서 **ksbdaniel7@gmail.com** 계정을 고른다.
+- 결과 CSV는 원본과 같은 이름으로 `data/crypto/rt1006/`에 저장된다(DDQN 쪽만 `_fix1004` 꼬리를 뺀 이름).
+"""), code(MOUNT), code(RUNNER),
+ code(f"# 준비: 데이터·환경·v4 풀·원본 라우터 로드 (학습 없음)\nrun_cells('{EVAL2}', {list(range(2, 13))}, patch_after=2)\n"),
+ code(f"# 1. §23 다양성 진단 / 2. §24 노출 맞춤 벤치마크 (β=30)\nrun_cells('{EVAL2}', [14, 16], patch_after=None, subs={EVAL_SUBS!r})\n"),
+ code(f"# 3. §18 거래비용 스윕 (β=30, α=0.01)\nrun_cells('{MAIN}', [94], patch_after=None, subs={TC_SUBS!r})\n"),
+ code(f"# 4. §25 저턴오버 진단 / 5. §19 블록 순열검정\nrun_cells('{EVAL2}', [19, 21], patch_after=None, subs={EVAL_SUBS!r})\n"),
+ code(f"# 6. §22 DDQN 매칭 라우터 — valid 구간·풀 로드 → 매칭 라우터 로드 → DDQN 학습 → 비교\nrun_cells('{DDQN_NB}', [9], patch_after=None)\n_ip.run_cell({LOAD_MATCHED!r})\nrun_cells('{DDQN_NB}', [11, 12, 13], patch_after=None, subs={DDQN_SUBS!r})\nprint('\\n전부 완료')\n")]
 meta={'kernelspec':{'display_name':'Python 3','language':'python','name':'python3'},'language_info':{'name':'python'},'colab':{'provenance':[]}}
-for name, cells in [('crypto_cascade_retrain_rt1006.ipynb', cas), ('crypto_baselines_retrain_rt1006.ipynb', bas), ('crypto_v2v3_resume_rt1006.ipynb', rem), ('crypto_beta30_robustness_rt1006.ipynb', rob)]:
+for name, cells in [('crypto_cascade_retrain_rt1006.ipynb', cas), ('crypto_baselines_retrain_rt1006.ipynb', bas), ('crypto_v2v3_resume_rt1006.ipynb', rem), ('crypto_beta30_robustness_rt1006.ipynb', rob), ('crypto_eval_beta30_ddqn_rt1006.ipynb', ev)]:
     json.dump({'cells':cells,'metadata':meta,'nbformat':4,'nbformat_minor':5}, open(OUT+name,'w'), ensure_ascii=False, indent=1)
 print('built')
