@@ -1,5 +1,5 @@
 """
-v4 정책(β=-30 PPO 풀 에이전트 단독 + 추론 스무딩)을 실계좌 라이브 루프에 연동하는 어댑터.
+v4 정책(β=30 PPO 풀 에이전트 단독 + 추론 스무딩)을 실계좌 라이브 루프에 연동하는 어댑터.
 
 crypto_hrl_earnhft_colab.ipynb §13 로직을 이식했다:
   - SparseGatedCryptoPortfolioEnv.action_to_weights (셀 44): top-K 희소선택 + 리스크게이트
@@ -15,6 +15,14 @@ crypto_hrl_earnhft_colab.ipynb §13 로직을 이식했다:
 패턴)이었던 반면 **β=-30은 valid Sharpe 1.314·test Sharpe 1.156으로 두 구간 모두 견조하고 일관됨**
 (valid +4.54%/test +5.66%, β=30 대비 test 총수익은 낮지만 훨씬 강건). 이에 따라 배포 에이전트를
 β=30 → **β=-30으로 교체**했다.
+
+2026-10-08 (회계 수정 후 재학습, paper/RETRAIN_1006.md): 위 §16 비교는 재조정 비용이 빠진 보상으로
+학습한 풀의 결과였다. 수정된 보상으로 풀을 처음부터 다시 학습하자 판정이 뒤집혀 β=30이 valid
+Sharpe 0.653·test 2.602로 네 β 중 valid 최고가 됐고, β=-30은 valid에서 손실(−7.39%, Sharpe −1.155)을
+냈다. 이에 따라 배포 에이전트를 **β=30(재학습 모델)으로 다시 교체**했다. 모델은 재학습 전 파일과
+섞이지 않도록 `models/rt1006/crypto_hrl_pool_v4/`에서 불러온다(Drive `models/rt1006/crypto_hrl_pool_v4/`
+에서 받아 둘 것). 이 정책은 평균 위험자산 노출이 10~20%(나머지 현금)인 매우 보수적인 정책이다.
+아래 "알려진 한계" 1·3은 재학습 후 β=30 기준으로 해소됐다(저턴오버 진단·1~9월 클린 재학습 수행).
 
 ⚠️ 알려진 한계 (실계좌 투입 전 반드시 인지할 것, 2026-07-29 §16 갱신):
   1. §13-F 보조진단은 β=30 기준으로 수행됐던 것 — β=-30에 대한 정적 포지션 아티팩트 재진단은
@@ -47,7 +55,8 @@ from crypto.policy_base import PolicyAdapter
 
 log = logging.getLogger("policy_v4")
 
-BETA = -30  # §16: valid·test 둘 다 견조(Sharpe 1.314/1.156)한 가장 강건한 풀 에이전트
+BETA = 30  # 재학습 후 valid Sharpe 최고(0.653, test 2.602) — paper/RETRAIN_1006.md
+POOL_SUBDIR = Path("rt1006") / "crypto_hrl_pool_v4"  # 수정된 보상으로 재학습한 풀(재학습 전 파일과 분리)
 TOP_K = 10
 ALPHA = 0.01  # §13-F BEST_ALPHA_V4 (비용 후 최고 성과 관측치)
 EMB_DIM = 64
@@ -93,7 +102,12 @@ class V4PolicyAdapter(PolicyAdapter):
         self.n_bars = n_bars
 
         log.info("[v4] 풀 에이전트(β=%d) 로드 중...", beta)
-        self.model = PPO.load(str(model_dir / "crypto_hrl_pool_v4" / f"agent_beta_{beta}.zip"))
+        agent_path = model_dir / POOL_SUBDIR / f"agent_beta_{beta}.zip"
+        if not agent_path.exists():
+            raise FileNotFoundError(
+                f"재학습 모델 없음: {agent_path} — Drive models/rt1006/crypto_hrl_pool_v4/에서 받아 두세요"
+            )
+        self.model = PPO.load(str(agent_path))
 
         log.info("[v4] 하이브리드 백본(ChronosMTGNN) 로드 중...")
         self.hybrid_model = load_hybrid_model(model_dir / "crypto_hybrid_best.pt", device=device)
