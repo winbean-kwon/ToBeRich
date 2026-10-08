@@ -17,7 +17,7 @@ TEXT_DARK = "#1a1a1a"
 TEXT_GRAY = "#5a5a58"
 
 # Policies retrained with the corrected reward (2026-10-06~08, crypto/notebooks/retrain1006/,
-# paper/RETRAIN_1006.md). The clean retrain is excluded: its validation Sharpe was not saved.
+# paper/RETRAIN_1006.md).
 # ---- labeled (highlighted) points: (valid, test, label, color, marker, label_offset) ----
 labeled = [
     (0.653, 2.602, "β=30 (deployed)", BLUE, "o", (0.14, 0.24)),
@@ -40,6 +40,7 @@ others = [
     (-0.111, 0.743, "β=-90"),
     (-1.322, 0.106, "K=5"), (-1.122, 0.672, "K=7"), (-0.916, 0.760, "K=15"),
     (-0.548, 1.054, "6-seed ensemble"),
+    (0.939, 1.907, "clean retrain"),
     (-0.797, 1.165, "5-seed ensemble (no seed 11)"),
     (0.601, 0.383, "seed=11"), (0.732, 1.916, "seed=22"), (-1.313, 1.205, "seed=33"),
     (-0.788, -0.187, "seed=44"), (-1.365, 1.465, "seed=55"), (-1.067, -0.349, "seed=66"),
@@ -93,8 +94,8 @@ ax.set_ylabel("Test-period Sharpe", fontsize=16, color=TEXT_DARK, labelpad=12)
 fig.suptitle("Validation vs. test Sharpe (retrained policies)",
              x=0.02, y=0.975, ha="left", fontsize=14, fontweight="bold", color=TEXT_DARK)
 fig.text(0.02, 0.928,
-          "Most lose in validation and gain in test; only β=30 seeds 42, 11, 22 are positive in both",
-          fontsize=9.5, color=TEXT_GRAY, ha="left")
+          "Most lose in validation, gain in test; only β=30 seeds 42, 11, 22 and its clean retrain are positive in both",
+          fontsize=8.6, color=TEXT_GRAY, ha="left")
 
 leg = ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.14), frameon=False,
                  fontsize=13, markerscale=1.0, handletextpad=0.6)
