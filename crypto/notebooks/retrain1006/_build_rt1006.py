@@ -197,7 +197,44 @@ ev = [md(f"""# [재학습 · 2026-10-08] β=30 기준 평가 + DDQN 라우터
  code(f"# 3. §18 거래비용 스윕 (β=30, α=0.01)\nrun_cells('{MAIN}', [94], patch_after=None, subs={TC_SUBS!r})\n"),
  code(f"# 4. §25 저턴오버 진단 / 5. §19 블록 순열검정\nrun_cells('{EVAL2}', [19, 21], patch_after=None, subs={EVAL_SUBS!r})\n"),
  code(f"# 6. §22 DDQN 매칭 라우터 — valid 구간·풀 로드 → 매칭 라우터 로드 → DDQN 학습 → 비교\nrun_cells('{DDQN_NB}', [9], patch_after=None)\n_ip.run_cell({LOAD_MATCHED!r})\nrun_cells('{DDQN_NB}', [11, 12, 13], patch_after=None, subs={DDQN_SUBS!r})\nprint('\\n전부 완료')\n")]
+
+ENS16 = """# 배포 시드 42 + 기존 5개 + 신규 10개 모델 로드 (학습 없음)
+deployed_model = PPO.load(str(DEPLOYED_AGENT_PATH))
+SEEDS_EXTRA = [66, 77, 88, 99, 110, 121, 132, 143, 154, 165]
+seed_models_extra = {s: PPO.load(str(POOL_DIR_ROBUST / f'agent_beta{BETA}_seed{s}.zip')) for s in SEEDS_EXTRA}
+print('로드 완료: 42 +', list(seed_models.keys()), '+', list(seed_models_extra.keys()))
+"""
+ENS16_RUN = """%%time
+# 16시드 비중평균 앙상블 — run_ensemble_smoothed(원본 §6.4 셀)를 그대로 쓰고 모델 집합만 넓힌다
+ALL16 = {42: deployed_model, **seed_models, **seed_models_extra}
+NO42 = {k: v for k, v in ALL16.items() if k != 42}
+rows = {}
+for name, models in [('앙상블(16개 전부)', ALL16), ('앙상블(배포 시드 제외 15개)', NO42)]:
+    for split, bk in [('valid', valid_buckets), ('test', test_buckets)]:
+        print(f'{name} {split} 실행 중...')
+        vals, turns = run_ensemble_smoothed(models, ALPHA, bk)
+        rows[(name, split)] = perf_row(vals, turns)
+ens16 = pd.DataFrame(rows).T
+print(); print(ens16.to_string(float_format=lambda x: f'{x:.4f}'))
+for name in ['앙상블(16개 전부)', '앙상블(배포 시드 제외 15개)']:
+    v, t = ens16.loc[(name, 'valid'), 'Sharpe'], ens16.loc[(name, 'test'), 'Sharpe']
+    print(f'{name}: valid Sharpe {v:.3f} | test Sharpe {t:.3f} | 격차 {abs(t - v):.3f}')
+ens16.to_csv(CRYPTO_DIR / 'crypto_beta_ensemble16.csv', encoding='utf-8-sig')
+print('\\n저장 완료: crypto_beta_ensemble16.csv')
+"""
+e16 = [md(f"""# [재학습 · 2026-10-08] β=30 시드 16개 비중평균 앙상블 (6.4절)
+
+이미 학습한 β=30 모델 16개(배포 시드 42 + 기존 5개 + 신규 10개)를 불러와 비중평균 앙상블을 검증·테스트 구간에서 평가한다. **학습 없음.** 원본 `crypto_beta_robustness_colab`(커밋 `{SHA[:7]}`)의 준비 셀과 앙상블 함수를 그대로 쓰고 모델 집합만 넓혔다.
+
+- **`런타임 > 모두 실행`만 누르면 된다.** CPU로 충분, 약 20~40분.
+- 드라이브 연결 창에서 **ksbdaniel7@gmail.com** 계정을 고른다.
+- 결과: `data/crypto/rt1006/crypto_beta_ensemble16.csv` (16개 전부 / 배포 시드 제외 15개 × valid·test).
+"""), code(MOUNT), code(RUNNER),
+ code(f"# 준비: 데이터·환경·평가 함수 (β=30으로 치환) + 기존 시드 5개 로드\nrun_cells('{ROB}', [3, 5, 6, 8, 10, 12, 13, 15, 17, 20], patch_after=3, extra={ROB_EXTRA!r})\n"),
+ code(ENS16),
+ code(f"# 원본 §6.4의 run_ensemble_smoothed 정의 셀\nrun_cells('{ROB}', [29], patch_after=None)\n"),
+ code(ENS16_RUN)]
 meta={'kernelspec':{'display_name':'Python 3','language':'python','name':'python3'},'language_info':{'name':'python'},'colab':{'provenance':[]}}
-for name, cells in [('crypto_cascade_retrain_rt1006.ipynb', cas), ('crypto_baselines_retrain_rt1006.ipynb', bas), ('crypto_v2v3_resume_rt1006.ipynb', rem), ('crypto_beta30_robustness_rt1006.ipynb', rob), ('crypto_eval_beta30_ddqn_rt1006.ipynb', ev)]:
+for name, cells in [('crypto_cascade_retrain_rt1006.ipynb', cas), ('crypto_baselines_retrain_rt1006.ipynb', bas), ('crypto_v2v3_resume_rt1006.ipynb', rem), ('crypto_beta30_robustness_rt1006.ipynb', rob), ('crypto_eval_beta30_ddqn_rt1006.ipynb', ev), ('crypto_ensemble16_rt1006.ipynb', e16)]:
     json.dump({'cells':cells,'metadata':meta,'nbformat':4,'nbformat_minor':5}, open(OUT+name,'w'), ensure_ascii=False, indent=1)
 print('built')
