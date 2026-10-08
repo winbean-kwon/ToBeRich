@@ -1,7 +1,7 @@
 """Figure 1 — Table 1 (Section 5) as a bar chart.
 
-Values are the post-accounting-correction test-period net returns (2026-10-04 rerun,
-crypto/notebooks/rerun_fix1004/results/). Row 6 is pre-cost, as in Table 1.
+Values are the test-period net returns of the policies retrained with the corrected reward
+(2026-10-06~07, crypto/notebooks/retrain1006/, paper/RETRAIN_1006.md). Row 6 is pre-cost, as in Table 1.
 """
 import matplotlib
 matplotlib.use("Agg")
@@ -20,15 +20,15 @@ FLOOR = -40.0  # axis floor; bars below are truncated
 
 rows = [
     ("Equal-\nweight", -0.81),
-    ("Single\nPPO", -75.84),
-    ("v1: direct\nport", -25.53),
-    ("v1 +\nsmoothing", 11.14),
-    ("v2: baked-in\nsmoothing", -2.11),
-    ("v3: paper-\nfaithful", -0.02),
-    ("v4 raw\n(pre-cost)", -0.62),
-    ("v4 +\nsmoothing", 9.37),
-    ("v4 matched\nrouter", 8.03),
-    ("β=-30 solo\n(deployed)", 6.66),
+    ("Single\nPPO", -79.68),
+    ("v1: direct\nport", -32.88),
+    ("v1 +\nsmoothing", 3.76),
+    ("v2: baked-in\nsmoothing", -8.02),
+    ("v3: paper-\nfaithful", -5.23),
+    ("v4 raw\n(pre-cost)", -0.81),
+    ("v4 +\nsmoothing", 5.97),
+    ("v4 matched\nrouter", 8.73),
+    ("β=30 solo\n(deployed)", 8.73),
 ]
 DEPLOYED = 9
 
@@ -70,8 +70,8 @@ ax.set_ylabel("Test-period net return", fontsize=15, color=TEXT_DARK)
 
 fig.suptitle("The architecture cascade: net test-period return by configuration",
              x=0.01, y=0.97, ha="left", fontsize=17, fontweight="bold", color=TEXT_DARK)
-fig.text(0.085, 0.80, "Bar 1 (single PPO, −75.84%) is truncated for scale — see break marks. "
-         "Bar 6 is pre-cost. Accounting: drifted holdings, rebalancing costs included.",
+fig.text(0.085, 0.80, "Bar 1 (single PPO, −79.68%) is truncated for scale — see break marks. "
+         "Bar 6 is pre-cost. Retrained with the corrected reward; rebalancing costs included.",
          fontsize=11.5, color=TEXT_GRAY, ha="left")
 
 handles = [Patch(facecolor=BLUE, edgecolor=TEXT_DARK, label="Net positive"),
