@@ -18,7 +18,7 @@ PowerShell에서:
 
 ```powershell
 cd C:\
-git clone https://github.com/winbean-kwon/ToBeRich.git
+git clone -b audit-fix-1004 https://github.com/winbean-kwon/ToBeRich.git
 cd ToBeRich
 python -m venv venv
 .\venv\Scripts\Activate.ps1
@@ -28,6 +28,28 @@ pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cp
 
 (`--extra-index-url ...cpu`는 CPU 전용 torch를 설치해 용량과 설치 시간을 줄인다 — 이 봇은 GPU가
 필요 없다.)
+
+⚠️ 실계좌 정책(β=30 재학습)은 아직 `main`에 병합되지 않았으므로 반드시 `-b audit-fix-1004`로
+클론한다. `main`을 받으면 예전 β=-30 정책 코드가 돈다. 이미 클론해 둔 경우:
+`git fetch origin; git checkout audit-fix-1004; git pull`.
+
+## 2.5 재학습 모델 파일 받기 (git에 없음)
+
+라이브 정책은 `crypto\models\rt1006\crypto_hrl_pool_v4\agent_beta_30.zip`(약 38.5MB)을 불러온다.
+이 파일은 git에 올라가 있지 않으므로 Google Drive에서 직접 받아 둔다.
+
+1. Drive `models/rt1006/crypto_hrl_pool_v4/agent_beta_30.zip` 다운로드
+   (같은 이름의 파일이 `asset_scaling/N1~N20`, `crypto_hrl_pool_v4_topk_sweep`에도 있으니 헷갈리지 말 것 —
+   폴더가 `rt1006/crypto_hrl_pool_v4`인 것, 크기 38,538,412바이트인 것이 맞다)
+2. 압축을 **풀지 말고** zip 그대로 아래 경로에 둔다:
+
+```powershell
+mkdir crypto\models\rt1006\crypto_hrl_pool_v4 -Force
+move $HOME\Downloads\agent_beta_30.zip crypto\models\rt1006\crypto_hrl_pool_v4\
+```
+
+백본 `crypto\models\crypto_hybrid_best.pt`는 git에 포함돼 있어 따로 받을 필요 없다. 첫 실행 때
+Chronos 사전학습 가중치를 HuggingFace에서 내려받으므로 인터넷 연결이 필요하다.
 
 ## 3. `.env` 파일 배치
 
@@ -55,7 +77,10 @@ python -m crypto.live_trading_loop_binance --model-dir crypto\models
 ```
 
 로그에 `[v4] 초기화 완료`, `실거래 루프 시작 | ... dry_run=True`가 뜨고 에러 없이 한 사이클이
-돌면 정상이다. `Ctrl+C`로 종료.
+돌면 정상이다. `Ctrl+C`로 종료. `재학습 모델 없음: ...` 에러가 나면 2.5절의 모델 경로를 확인한다.
+
+처음 실계좌로 켤 때는 `--max-capital 100`처럼 운용 금액 상한을 걸어 소액으로 며칠 지켜보는 것을
+권장한다(계좌 잔고가 더 커도 그 금액까지만 운용).
 
 ## 5. 상시 구동 설정 (재부팅/로그아웃에도 계속 돌게)
 
@@ -68,7 +93,7 @@ python -m crypto.live_trading_loop_binance --model-dir crypto\models
 cd /d C:\ToBeRich
 :loop
 call venv\Scripts\activate.bat
-python -m crypto.live_trading_loop_binance --model-dir crypto\models --live
+python -m crypto.live_trading_loop_binance --model-dir crypto\models --live >> crypto\live_trading.log 2>&1
 echo [%date% %time%] 프로세스 종료됨 — 10초 후 재시작 >> crypto\live_trading_supervisor.log
 timeout /t 10 /nobreak
 goto loop
@@ -89,10 +114,68 @@ goto loop
 저장 후 컴퓨터를 재부팅해서 실제로 잘 뜨는지 확인. 로그는 `crypto\live_trading.log`와
 `crypto\live_trading_supervisor.log`에서 확인.
 
+(루프 코드는 로그를 화면에만 찍으므로, 위처럼 `>> crypto\live_trading.log 2>&1`로 파일에
+남겨야 작업 스케줄러로 백그라운드 실행할 때 기록을 볼 수 있다. 실시간으로 보려면
+`Get-Content crypto\live_trading.log -Wait -Tail 50`.)
+
+### 5.3 코드 업데이트할 때
+
+```powershell
+cd C:\ToBeRich
+schtasks /End /TN crypto-live-trading
+git pull
+schtasks /Run /TN crypto-live-trading
+```
+
 ## 6. 확인 체크리스트
 
 - [ ] `.env`가 새 컴퓨터에만 있고 git에는 안 올라갔는지 (`git status`에 안 보여야 정상)
+- [ ] `audit-fix-1004` 브랜치로 클론했는지 (`git branch`로 확인)
+- [ ] `crypto\models\rt1006\crypto_hrl_pool_v4\agent_beta_30.zip`이 있는지
 - [ ] dry-run 한 번 통과했는지
 - [ ] Task Scheduler 트리거로 재부팅 후에도 자동 시작되는지
 - [ ] **기존 컴퓨터의 프로세스는 반드시 종료했는지** — 두 컴퓨터에서 동시에 돌리면 같은 실계좌에
       중복 리밸런싱/중복 주문이 나간다. 새 컴퓨터에서 정상 확인된 뒤에만 기존 쪽을 끌 것.
+
+## 부록: 서버가 Linux(Ubuntu 등)인 경우
+
+```bash
+git clone -b audit-fix-1004 https://github.com/winbean-kwon/ToBeRich.git ~/ToBeRich
+cd ~/ToBeRich
+python3 -m venv venv && source venv/bin/activate
+pip install --upgrade pip
+pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cpu -r crypto/requirements.txt
+mkdir -p crypto/models/rt1006/crypto_hrl_pool_v4   # 여기에 agent_beta_30.zip 복사 (2.5절)
+# crypto/.env 복사 (3절)
+python -m crypto.live_trading_loop_binance --model-dir crypto/models   # dry-run 확인
+```
+
+상시 구동은 systemd 서비스로 등록한다. `/etc/systemd/system/crypto-live.service`
+(`<user>`는 서버 계정명으로 바꿀 것):
+
+```ini
+[Unit]
+Description=crypto live trading
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=<user>
+WorkingDirectory=/home/<user>/ToBeRich
+ExecStart=/home/<user>/ToBeRich/venv/bin/python -m crypto.live_trading_loop_binance --model-dir crypto/models --live
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable --now crypto-live     # 시작 + 부팅 시 자동 시작
+journalctl -u crypto-live -f                # 로그 실시간 확인
+sudo systemctl restart crypto-live          # git pull 후 재시작
+```
+
+systemd는 한 서비스를 한 프로세스로만 띄우므로 중복 실행 걱정은 없다(다른 컴퓨터에서 도는 것은 별개 —
+6절 마지막 항목 참고).
