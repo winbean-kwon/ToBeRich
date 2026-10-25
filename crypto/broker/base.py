@@ -36,6 +36,20 @@ class OrderResult:
     order_id: str
     accepted: bool
     message: str = ""
+    filled: float | None = None  # 실제 체결 수량 (IOC 지정가는 일부만 체결될 수 있음)
+
+
+@dataclass
+class Quote:
+    last: float
+    bid: float
+    ask: float
+
+    @property
+    def spread(self) -> float:
+        """(ask - bid) / mid. 호가가 비어 있으면 inf."""
+        mid = (self.ask + self.bid) / 2
+        return (self.ask - self.bid) / mid if self.bid > 0 and self.ask > 0 else float("inf")
 
 
 class BrokerClient(ABC):
@@ -58,8 +72,11 @@ class BrokerClient(ABC):
         """주문 가능 현금(기준통화, USDT) 조회."""
 
     @abstractmethod
-    def place_order(self, symbol: str, side: OrderSide, quantity: float) -> OrderResult:
-        """시장가 주문 실행. quantity는 항상 양수."""
+    def place_order(
+        self, symbol: str, side: OrderSide, quantity: float, limit_price: float | None = None
+    ) -> OrderResult:
+        """주문 실행. quantity는 항상 양수. limit_price가 없으면 시장가, 있으면 그 가격을 넘겨 체결되지
+        않는 즉시체결-잔량취소(IOC) 지정가 — 얇은 호가에서 시장가가 호가를 훑고 올라가는 것을 막는다."""
 
     @abstractmethod
     def get_min_notional(self, symbol: str) -> float:
@@ -73,6 +90,19 @@ class BrokerClient(ABC):
     def is_tradable(self, symbol: str) -> bool:
         """현재 주문 가능한 심볼인지 (거래정지/상장폐지면 False)."""
         return True
+
+    def get_quote(self, symbol: str) -> Quote:
+        """현재가 + 최우선 매수/매도 호가. 호가를 모르는 브로커는 현재가로 채운다."""
+        last = self.get_current_price(symbol)
+        return Quote(last=last, bid=last, ask=last)
+
+    def get_net_transfers(self, since_ms: int, prices: dict[str, float]) -> float:
+        """since_ms 이후 입금 - 출금 순액(기준통화 환산). 서킷브레이커가 입출금을 손익으로 착각하지 않게 쓴다."""
+        return 0.0
+
+    def find_other_bot_orders(self, symbols: list[str], since_ms: int) -> list[str]:
+        """since_ms 이후 이 프로세스가 아닌 다른 봇(API)이 낸 주문 설명 목록 — 다른 컴퓨터 중복 실행 감지용."""
+        return []
 
 
 def managed_equity(

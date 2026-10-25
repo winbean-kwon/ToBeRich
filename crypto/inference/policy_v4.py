@@ -67,23 +67,36 @@ ALPHA = 0.01  # §13-F BEST_ALPHA_V4 (비용 후 최고 성과 관측치)
 EMB_DIM = 64
 
 
-def action_to_weights(action: np.ndarray, top_k: int) -> tuple[np.ndarray, float, np.ndarray]:
+def action_to_weights(
+    action: np.ndarray, top_k: int, tradable: np.ndarray | None = None
+) -> tuple[np.ndarray, float, np.ndarray]:
     """§13-A SparseGatedCryptoPortfolioEnv.action_to_weights 이식.
 
     action: (n_assets+1,) — 앞 n_assets개는 종목별 confidence logit, 마지막 1개는
     리스크자산 총 노출 게이트 로짓. top-K개만 골라 그 안에서 softmax 후 sigmoid(게이트)를 곱한다.
+
+    tradable: (n_assets,) bool — 학습 이후 거래정지/상장폐지된 종목을 top-K 후보에서 뺀다(라이브 전용,
+    학습 때는 전부 True). 빼지 않으면 그 종목 몫의 비중이 주문되지 못하고 현금으로 남아, 게이트 ρ가 정한
+    위험자산 노출보다 실제 노출이 체계적으로 낮아진다. 종목 선택만 바뀌고 ρ는 그대로다.
     """
     action = np.asarray(action, dtype=np.float64)
-    asset_logits, gate_logit = action[:-1], action[-1]
+    asset_logits, gate_logit = action[:-1].copy(), action[-1]
     n_assets = len(asset_logits)
-    k = min(top_k, n_assets)
+    if tradable is not None:
+        asset_logits[~tradable] = -np.inf
+        n_candidates = int(tradable.sum())
+    else:
+        n_candidates = n_assets
+    k = min(top_k, n_candidates)
+    rho = float(1.0 / (1.0 + np.exp(-gate_logit)))
+    if k == 0:
+        return np.zeros(n_assets, dtype=np.float32), rho, np.array([], dtype=int)
     top_idx = np.argpartition(asset_logits, -k)[-k:]
     sel = asset_logits[top_idx]
     sel = np.exp(sel - sel.max())
     sel = sel / sel.sum()
     risky_w = np.zeros(n_assets, dtype=np.float32)
     risky_w[top_idx] = sel
-    rho = float(1.0 / (1.0 + np.exp(-gate_logit)))
     return (rho * risky_w).astype(np.float32), rho, top_idx
 
 
@@ -121,6 +134,7 @@ class V4PolicyAdapter(PolicyAdapter):
                 "topk_sweep/재학습 전 풀)의 파일일 가능성. Drive models/rt1006/crypto_hrl_pool_v4/에서 다시 받으세요"
             )
         sha = hashlib.sha256(agent_path.read_bytes()).hexdigest()[:12]
+        self.model_info = f"{agent_path.name} (β={beta}) | {size:,}바이트 | sha256 {sha}"  # 대시보드 표시용
         log.info("[v4] 모델 파일 %s | %s바이트 | sha256 %s", agent_path, f"{size:,}", sha)
         self.model = PPO.load(str(agent_path))
 
@@ -130,6 +144,7 @@ class V4PolicyAdapter(PolicyAdapter):
 
         self.prev_weights: np.ndarray | None = None  # 첫 target_weights 호출 시 실계좌 포지션으로 초기화
         self.last_top_symbols: list[str] = []  # 가장 최근 호출의 진짜 top-K 선택(스무딩 이전, 진단용)
+        self.last_rho: float | None = None
 
         log.info("[v4] 초기화 완료 — 심볼 %d개, β=%d, α=%.3f, top_k=%d", self.n_assets, beta, alpha, top_k)
 
@@ -184,7 +199,9 @@ class V4PolicyAdapter(PolicyAdapter):
         obs = np.concatenate([embeddings.flatten(), self.prev_weights]).astype(np.float32)
 
         action, _ = self.model.predict(obs, deterministic=True)
-        target_w, rho, top_idx = action_to_weights(action, self.top_k)
+        tradable = np.array([broker.is_tradable(s) for s in self.symbols])
+        target_w, rho, top_idx = action_to_weights(action, self.top_k, tradable)
+        self.last_rho = rho
         self.last_top_symbols = [self.symbols[i] for i in top_idx]  # 더스트 청산 등 진단용
 
         w = (1 - self.alpha) * self.prev_weights + self.alpha * target_w

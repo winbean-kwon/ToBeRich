@@ -17,17 +17,26 @@ Binance REST 클라이언트 (ccxt 래퍼).
 
 from __future__ import annotations
 
+import hashlib
 import os
+import socket
+import uuid
 from pathlib import Path
 
 import ccxt
 from dotenv import load_dotenv
 
-from crypto.broker.base import BrokerClient, OrderResult, OrderSide, Position
+from crypto.broker.base import BrokerClient, OrderResult, OrderSide, Position, Quote
 
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
 QUOTE_CCY = "USDT"
+BOT_ORDER_PREFIX = "hrl"
+# 이 봇이 낸 주문의 clientOrderId 앞부분. 컴퓨터(호스트명)마다 다르고 재시작해도 같다 — 계좌에 다른 태그의
+# 봇 주문이 보이면 다른 컴퓨터에서 같은 봇이 돌고 있다는 뜻이다.
+INSTANCE_TAG = BOT_ORDER_PREFIX + hashlib.sha1(socket.gethostname().encode()).hexdigest()[:6]
+# 바이낸스 앱/웹에서 사람이 직접 낸 주문의 clientOrderId 접두어 — 봇 중복 실행으로 보지 않는다
+MANUAL_ORDER_PREFIXES = ("web_", "ios_", "and_", "electron_")
 
 
 class BinanceBrokerClient(BrokerClient):
@@ -108,6 +117,11 @@ class BinanceBrokerClient(BrokerClient):
         ticker = self._exchange.fetch_ticker(symbol)
         return float(ticker["last"])
 
+    def get_quote(self, symbol: str) -> Quote:
+        t = self._exchange.fetch_ticker(symbol)
+        last = float(t["last"])
+        return Quote(last=last, bid=float(t.get("bid") or 0.0), ask=float(t.get("ask") or 0.0))
+
     def get_minute_bars(self, symbol: str, n_bars: int = 30) -> list[dict]:
         ohlcv = self._exchange.fetch_ohlcv(symbol, timeframe="5m", limit=n_bars)
         return [
@@ -156,6 +170,46 @@ class BinanceBrokerClient(BrokerClient):
         balance = self._signed_call(self._exchange.fetch_balance)
         return float(balance.get("free", {}).get(QUOTE_CCY, 0.0))
 
+    def get_net_transfers(self, since_ms: int, prices: dict[str, float]) -> float:
+        """since_ms 이후 현물 지갑 입금 - 출금 순액(USDT 환산).
+
+        USDT와 prices에 시세가 있는 코인(=유니버스 보유분)만 환산한다 — managed_equity가 세는 범위와 같다.
+        출금은 요청 즉시 잔고에서 빠지므로 처리 중(pending)인 것도 포함하고 수수료까지 더한다.
+        테스트넷에는 입출금 내역 API가 없어 0을 반환한다. 지갑 간 이체(현물↔펀딩/Earn)는 잡지 못한다.
+        """
+        if not self._live:
+            return 0.0
+
+        def value(tx) -> float:
+            code = tx.get("currency")
+            px = 1.0 if code == QUOTE_CCY else prices.get(f"{code}/{QUOTE_CCY}")
+            return float(tx.get("amount") or 0.0) * px if px else 0.0
+
+        deposits = self._signed_call(self._exchange.fetch_deposits, None, since_ms)
+        withdrawals = self._signed_call(self._exchange.fetch_withdrawals, None, since_ms)
+        net = sum(value(tx) for tx in deposits if tx.get("status") == "ok")
+        for tx in withdrawals:
+            if tx.get("status") in ("ok", "pending"):
+                fee = float((tx.get("fee") or {}).get("cost") or 0.0)
+                net -= value({**tx, "amount": float(tx.get("amount") or 0.0) + fee})
+        return net
+
+    def find_other_bot_orders(self, symbols: list[str], since_ms: int) -> list[str]:
+        """since_ms 이후 symbols에서 이 컴퓨터가 아닌 API 주문(다른 태그의 이 봇, 또는 태그 없는 예전 버전 봇)을 찾는다.
+
+        같은 계좌에 봇이 두 대 돌면 둘 다 같은 리밸런싱 주문을 내서 노출이 두 배가 된다. 파일 잠금은 같은
+        컴퓨터 안에서만 막으므로, 거래소의 주문 내역을 공유 기록으로 써서 다른 컴퓨터의 봇을 감지한다.
+        사람이 앱/웹에서 낸 주문은 제외한다.
+        """
+        found = []
+        for symbol in symbols:
+            for o in self._signed_call(self._exchange.fetch_orders, symbol, since_ms, 50):
+                cid = o.get("clientOrderId") or ""
+                if cid.startswith(INSTANCE_TAG) or cid.startswith(MANUAL_ORDER_PREFIXES):
+                    continue
+                found.append(f"{symbol} {o.get('datetime')} {o.get('side')} clientOrderId={cid}")
+        return found
+
     # ── 마켓 제약 ─────────────────────────────────────────────────────
 
     def is_tradable(self, symbol: str) -> bool:
@@ -173,22 +227,34 @@ class BinanceBrokerClient(BrokerClient):
 
     # ── 주문 ─────────────────────────────────────────────────────────
 
-    def place_order(self, symbol: str, side: OrderSide, quantity: float) -> OrderResult:
+    def place_order(
+        self, symbol: str, side: OrderSide, quantity: float, limit_price: float | None = None
+    ) -> OrderResult:
         if quantity <= 0:
             raise ValueError("quantity는 양수여야 합니다")
 
         amount = quantity
+        # 같은 clientOrderId를 재시도에도 그대로 쓴다 — 첫 요청이 실제로 접수됐다면 거래소가 중복으로 거부한다
+        params = {"newClientOrderId": f"{INSTANCE_TAG}-{uuid.uuid4().hex[:20]}"}
         try:
             # stepSize 미만이면 InvalidOrder를 던지므로 try 안에서 보정해야 한 심볼의 실패가
             # 사이클 전체(나머지 심볼 주문)를 중단시키지 않는다
             amount = float(self._exchange.amount_to_precision(symbol, quantity))
+            if limit_price is None:
+                order_type, price = "market", None
+            else:
+                order_type, price = "limit", float(self._exchange.price_to_precision(symbol, limit_price))
+                params["timeInForce"] = "IOC"
             order = self._signed_call(
                 self._exchange.create_order,
                 symbol=symbol,
-                type="market",
+                type=order_type,
                 side=side.value,
                 amount=amount,
+                price=price,
+                params=params,
             )
+            filled = order.get("filled")
             return OrderResult(
                 symbol=symbol,
                 side=side,
@@ -196,6 +262,7 @@ class BinanceBrokerClient(BrokerClient):
                 order_id=str(order.get("id", "")),
                 accepted=True,
                 message=order.get("status", ""),
+                filled=float(filled) if filled is not None else None,
             )
         except ccxt.BaseError as e:
             return OrderResult(

@@ -50,3 +50,5 @@ crypto/models/crypto_hrl_pool_v4/*
 crypto/live_state.json
 crypto/live_trading.lock
 crypto/live_trading_supervisor.log
+crypto/live_ledger.csv
+crypto/live_events.jsonl

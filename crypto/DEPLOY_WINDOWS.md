@@ -18,7 +18,7 @@ PowerShell에서:
 
 ```powershell
 cd C:\
-git clone -b audit-fix-1004 https://github.com/winbean-kwon/ToBeRich.git
+git clone https://github.com/winbean-kwon/ToBeRich.git
 cd ToBeRich
 python -m venv venv
 .\venv\Scripts\Activate.ps1
@@ -29,9 +29,9 @@ pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cp
 (`--extra-index-url ...cpu`는 CPU 전용 torch를 설치해 용량과 설치 시간을 줄인다 — 이 봇은 GPU가
 필요 없다.)
 
-⚠️ 실계좌 정책(β=30 재학습)은 아직 `main`에 병합되지 않았으므로 반드시 `-b audit-fix-1004`로
-클론한다. `main`을 받으면 예전 β=-30 정책 코드가 돈다. 이미 클론해 둔 경우:
-`git fetch origin; git checkout audit-fix-1004; git pull`.
+실계좌 정책(β=30 재학습)과 실거래 안전장치는 2026-10-25에 `main`에 병합됐다 — `main`을 그대로 쓰면 된다.
+그 이전에 받아 둔 코드라면 `git checkout main; git pull`. 시작 로그의 `[v4] 풀 에이전트(β=30)`로 확인한다
+(β=-30이 보이면 옛 코드다).
 
 ## 2.5 재학습 모델 파일 받기 (git에 없음)
 
@@ -80,18 +80,53 @@ python -m crypto.live_trading_loop_binance --model-dir crypto\models
 돌면 정상이다. `Ctrl+C`로 종료. `재학습 모델 없음: ...` 에러가 나면 2.5절의 모델 경로를 확인한다.
 
 시작 로그에서 다음 세 줄을 반드시 확인한다:
-- `코드 버전 | 브랜치 audit-fix-1004 | 커밋 ...` — `main`이면 예전 β=-30 정책이 돈다(2026-10-25 실제로 서버가
-  `main`에서 돌고 있었음). 브랜치를 바꾸거나 `audit-fix-1004`를 `main`에 병합한 뒤 다시 켠다.
+- `코드 버전 | 브랜치 main | 커밋 ...` — 커밋이 GitHub의 최신 커밋과 같은지 본다(2026-10-25까지 서버가
+  병합 전 `main`에서 예전 β=-30 정책을 돌리고 있었음).
 - `[v4] 모델 파일 ...rt1006...agent_beta_30.zip | 38,538,412바이트` — 크기가 다르면 시작 단계에서 오류로 멈춘다.
 - `⚠️ API 키 점검: ...` 경고가 없어야 한다(출금 권한 꺼짐, IP 제한 켜짐, 선물/마진 꺼짐).
 
-처음 실계좌로 켤 때는 `--max-capital 500`처럼 운용 금액 상한을 걸어 소액으로 며칠 지켜보는 것을
-권장한다(계좌 잔고가 더 커도 그 금액까지만 운용).
+### 4.1 운용금 규모 — 작으면 정책이 실행되지 않는다
 
-⚠️ 상한을 너무 작게 잡으면 주문이 거의 나가지 않는다. 바이낸스는 대부분 심볼에서 **주문당 최소 5 USDT**를
-요구하는데, 이 정책은 위험자산 노출이 10~20%이고 그것을 10종목에 나눈다 — 종목당 비중이 운용금의 1~2%다.
-`--max-capital 100`이면 종목당 1~2 USDT라 루프가 전부 최소금액 미달로 거른다. 종목당 5 USDT를 넘기려면
-최소 250~500 USDT는 필요하다. 거래정지 종목(2026-10 기준 TON·UTK·VANRY)은 루프가 자동으로 주문에서 뺀다.
+바이낸스는 대부분 심볼에서 **주문당 최소 5 USDT**를 요구한다. 이 정책은 위험자산 노출이 10~20%이고 그것을
+10종목에 나누므로 종목당 비중이 운용금의 1~2%이며, 스무딩(α=0.01) 때문에 사이클당 비중 변화는 그보다 훨씬
+작다. 최소금액에 못 미치는 변화는 주문되지 못하고 쌓였다가 5 USDT를 넘을 때만 한꺼번에 나간다 — 즉 운용금이
+작을수록 백테스트와 다른 전략이 된다.
+
+- 실측(2026-10-25): 계좌 333 USDT(위험자산 약 88 USDT)에서 **2026-08-03 이후 12주간 체결된 주문이 0건**이었다.
+- 기준: 종목당 목표금액이 최소금액의 3배(15 USDT) 이상이어야 정책을 대체로 따라간다 →
+  운용금 ≈ 15 × 10종목 ÷ 노출 0.15 ≈ **1,000 USDT 이상** 권장. `--max-capital`도 이보다 작게 걸지 말 것.
+- 대시보드의 "목표-실제 괴리"와 "종목당 목표금액" 경고가 이 상태를 매 사이클 측정해 보여준다.
+
+거래정지 종목(2026-10 기준 TON·UTK·VANRY)은 정책의 종목 선택과 주문 대상에서 자동으로 빠진다. 이미 들고
+있는 거래정지 종목(예: VANRY)은 거래가 재개되기 전까지 팔 수 없다.
+
+### 4.2 상태 대시보드
+
+봇은 실행 중 `http://localhost:8787`에 상태 페이지를 띄운다(15초마다 자동 갱신). 건강 상태(정상/주의/위험/멈춤),
+코드 브랜치·커밋·모델 파일, 운용자산 추이, 목표 vs 실제 위험자산 비중, 서킷브레이커, 경고·오류 로그,
+사이클별 기록을 보여준다. 기록은 `crypto\live_ledger.csv`, 경고는 `crypto\live_events.jsonl`에 남아
+재시작해도 유지된다(`--live`일 때만 저장).
+
+- 서버 컴퓨터에서: 브라우저로 `http://localhost:8787`
+- 다른 기기(노트북·폰)에서:
+  - 권장 — SSH 터널: `ssh -L 8787:localhost:8787 <서버계정>@<서버IP>` 후 `http://localhost:8787`
+  - 또는 같은 공유기 안에서: `.env`에 `DASHBOARD_TOKEN=<긴 임의 문자열>`을 넣고
+    `--dashboard-host 0.0.0.0`으로 실행한 뒤 `http://<서버 내부IP>:8787/?token=<토큰>`.
+    토큰 없이 외부 주소에 여는 것은 거부된다(잔고·주문 내역이 노출되므로). 공유기 포트포워딩으로 인터넷에
+    직접 여는 것은 권장하지 않는다(HTTPS가 아님).
+- 끄려면 `--no-dashboard`, 포트를 바꾸려면 `--dashboard-port`.
+
+### 4.3 주문 방식과 안전장치
+
+- 주문은 시장가가 아니라 **최우선호가 ±0.5% 지정가 IOC**(즉시 체결, 남은 수량 취소)로 낸다. 얇은 호가에서
+  가격이 크게 미끄러지지 않고, 못 채운 수량은 다음 사이클에 다시 시도된다. 호가 스프레드가 1%를 넘는 종목은
+  그 사이클에 거래하지 않는다.
+- 주문마다 컴퓨터별 태그(`hrl…`)를 붙인다. 최근 45분 안에 **다른 컴퓨터의 봇 주문**(다른 태그, 또는 태그가
+  없는 예전 버전 봇의 API 주문)이 계좌에 보이면 그 사이클 주문을 멈추고 대시보드에 "위험"으로 표시한다.
+  바이낸스 앱/웹에서 직접 낸 주문은 해당되지 않는다. 업데이트 직후 첫 사이클은 예전 버전이 낸 주문 때문에
+  한 번 멈출 수 있다(45분이 지나면 풀린다).
+- 서킷브레이커는 당일 **입출금을 빼고** 손실률을 계산한다(출금이 손실로 잡혀 발동하지 않음). 현물↔펀딩/Earn
+  지갑 간 이체는 잡지 못하므로, 운용 중에는 지갑 간 이체를 피한다.
 
 ## 5. 상시 구동 설정 (재부팅/로그아웃에도 계속 돌게)
 
@@ -145,7 +180,8 @@ schtasks /Run /TN crypto-live-trading
 ## 6. 확인 체크리스트
 
 - [ ] `.env`가 새 컴퓨터에만 있고 git에는 안 올라갔는지 (`git status`에 안 보여야 정상)
-- [ ] `audit-fix-1004` 브랜치로 클론했는지 (`git branch`로 확인)
+- [ ] 시작 로그의 `코드 버전 | 브랜치 main | 커밋 ...`이 GitHub 최신 커밋과 같은지
+- [ ] 대시보드(`http://localhost:8787`)가 뜨고 상태가 "위험"이 아닌지
 - [ ] `crypto\models\rt1006\crypto_hrl_pool_v4\agent_beta_30.zip`이 있는지
 - [ ] dry-run 한 번 통과했는지
 - [ ] Task Scheduler 트리거로 재부팅 후에도 자동 시작되는지
@@ -155,7 +191,7 @@ schtasks /Run /TN crypto-live-trading
 ## 부록: 서버가 Linux(Ubuntu 등)인 경우
 
 ```bash
-git clone -b audit-fix-1004 https://github.com/winbean-kwon/ToBeRich.git ~/ToBeRich
+git clone https://github.com/winbean-kwon/ToBeRich.git ~/ToBeRich
 cd ~/ToBeRich
 python3 -m venv venv && source venv/bin/activate
 pip install --upgrade pip
