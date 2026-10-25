@@ -41,13 +41,14 @@ Sharpe 0.653·test 2.602로 네 β 중 valid 최고가 됐고, β=-30은 valid�
 
 from __future__ import annotations
 
+import hashlib
 import logging
 from pathlib import Path
 
 import numpy as np
 from stable_baselines3 import PPO
 
-from crypto.broker.base import BrokerClient
+from crypto.broker.base import BrokerClient, managed_equity
 from crypto.inference.embeddings import build_embedding
 from crypto.inference.features import build_live_window
 from crypto.models.hybrid_model import load_chronos_pipeline, load_hybrid_model
@@ -57,6 +58,10 @@ log = logging.getLogger("policy_v4")
 
 BETA = 30  # 재학습 후 valid Sharpe 최고(0.653, test 2.602) — paper/RETRAIN_1006.md
 POOL_SUBDIR = Path("rt1006") / "crypto_hrl_pool_v4"  # 수정된 보상으로 재학습한 풀(재학습 전 파일과 분리)
+# Drive의 rt1006 β=30 파일 크기(DEPLOY_WINDOWS.md 2.5절). 같은 이름의 파일이 asset_scaling/topk_sweep
+# 폴더와 재학습 전 풀(38,537,656바이트)에도 있어 잘못 받기 쉽다 — 다르면 엉뚱한 정책이 실계좌에서
+# 돌게 되므로 시작 단계에서 막는다.
+EXPECTED_AGENT_BYTES = 38_538_412
 TOP_K = 10
 ALPHA = 0.01  # §13-F BEST_ALPHA_V4 (비용 후 최고 성과 관측치)
 EMB_DIM = 64
@@ -92,6 +97,7 @@ class V4PolicyAdapter(PolicyAdapter):
         top_k: int = TOP_K,
         beta: int = BETA,
         n_bars: int = 150,  # SMA_60 워밍업(59봉 소모) 후에도 SEQ_LEN(60)행이 남도록 여유있게 요청
+        max_capital: float | None = None,  # 루프의 --max-capital과 같은 값이어야 비중 기준이 일치
     ):
         model_dir = Path(model_dir)
         self.symbols = list(symbols)
@@ -100,6 +106,7 @@ class V4PolicyAdapter(PolicyAdapter):
         self.alpha = alpha
         self.top_k = top_k
         self.n_bars = n_bars
+        self.max_capital = max_capital
 
         log.info("[v4] 풀 에이전트(β=%d) 로드 중...", beta)
         agent_path = model_dir / POOL_SUBDIR / f"agent_beta_{beta}.zip"
@@ -107,6 +114,14 @@ class V4PolicyAdapter(PolicyAdapter):
             raise FileNotFoundError(
                 f"재학습 모델 없음: {agent_path} — Drive models/rt1006/crypto_hrl_pool_v4/에서 받아 두세요"
             )
+        size = agent_path.stat().st_size
+        if beta == BETA and size != EXPECTED_AGENT_BYTES:
+            raise ValueError(
+                f"{agent_path} 크기 {size:,}바이트 ≠ 기대값 {EXPECTED_AGENT_BYTES:,} — 다른 폴더(asset_scaling/"
+                "topk_sweep/재학습 전 풀)의 파일일 가능성. Drive models/rt1006/crypto_hrl_pool_v4/에서 다시 받으세요"
+            )
+        sha = hashlib.sha256(agent_path.read_bytes()).hexdigest()[:12]
+        log.info("[v4] 모델 파일 %s | %s바이트 | sha256 %s", agent_path, f"{size:,}", sha)
         self.model = PPO.load(str(agent_path))
 
         log.info("[v4] 하이브리드 백본(ChronosMTGNN) 로드 중...")
@@ -126,9 +141,13 @@ class V4PolicyAdapter(PolicyAdapter):
         의도한 대로 10종목에 집중되지 못하고 나머지 종목에도 등가중 잔여 비중이 매우 느리게만
         빠지는 문제가 있었다 — 실제 보유 포지션에서 역산하면 재시작 여부와 무관하게 항상
         "지금 실제로 들고 있는 상태"에서 스무딩이 이어진다.
+
+        분모는 루프가 주문 수량을 계산할 때 쓰는 것과 같은 managed_equity(유니버스 밖 코인 제외,
+        --max-capital 상한)다 — 전체 잔고로 나누면 --max-capital 운용 시 비중이 과소평가돼
+        재시작 직후 이미 들고 있는 종목을 또 사게 된다.
         """
         positions = {p.symbol: p for p in broker.get_positions()}
-        equity = broker.get_cash_balance() + sum(p.quantity * p.current_price for p in positions.values())
+        equity = managed_equity(broker.get_cash_balance(), positions, self.symbols, self.max_capital)
         w = np.zeros(self.n_assets, dtype=np.float32)
         if equity > 0:
             for i, sym in enumerate(self.symbols):

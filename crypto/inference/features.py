@@ -8,6 +8,8 @@ crypto/preprocess_features.py 의 add_features()를 그대로 재사용한다 �
 
 from __future__ import annotations
 
+import time
+
 import pandas as pd
 
 from crypto.broker.base import BrokerClient
@@ -15,6 +17,8 @@ from crypto.preprocess_features import FEATURE_COLS, add_features
 
 SEQ_LEN = 60  # 하이브리드 모델 입력 윈도우 길이 (노트북 SEQ_LEN과 동일)
 BAR = "5min"
+BAR_MS = 5 * 60 * 1000
+STALE_AFTER_MS = 6 * BAR_MS  # 마지막 완성봉이 30분 넘게 묵었으면 거래정지/상장폐지로 본다
 
 
 def _regularize(bars: list[dict]) -> pd.DataFrame:
@@ -36,12 +40,19 @@ def _regularize(bars: list[dict]) -> pd.DataFrame:
 def build_live_window(broker: BrokerClient, symbol: str, n_bars: int = 150) -> pd.DataFrame | None:
     """최근 n_bars개 5분봉으로 피처를 계산해 마지막 SEQ_LEN(60)행을 반환한다.
 
-    데이터가 부족하거나(SMA_60 워밍업 미달) 조회 결과가 비정상이면 None을 반환한다 —
-    호출부는 이 경우 해당 심볼을 0-vector 임베딩으로 대체해야 한다(학습 시 상장 전
-    자산 처리와 동일).
+    데이터가 부족하거나(SMA_60 워밍업 미달) 최근 봉이 없거나(거래정지) 조회 결과가 비정상이면
+    None을 반환한다 — 호출부는 이 경우 해당 심볼을 0-vector 임베딩으로 대체해야 한다
+    (학습 시 상장 전 자산 처리와 동일).
     """
-    bars = broker.get_minute_bars(symbol, n_bars=n_bars)
+    now_ms = int(time.time() * 1000)
+    bars = broker.get_minute_bars(symbol, n_bars=n_bars + 1)
+    # 거래소가 돌려주는 마지막 봉은 아직 진행 중인 봉이다(close·volume이 미완성) — 학습 피처는
+    # 완성봉으로만 만들었으므로 닫히지 않은 봉은 버린다.
+    bars = [b for b in bars if b["time"] + BAR_MS <= now_ms]
     if len(bars) < SEQ_LEN:
+        return None
+    if now_ms - (bars[-1]["time"] + BAR_MS) > STALE_AFTER_MS:
+        # 거래정지(BREAK) 심볼은 과거 봉만 돌려주므로, 묵은 데이터로 임베딩하지 않고 0-vector 처리
         return None
 
     df = _regularize(bars)

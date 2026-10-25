@@ -18,12 +18,14 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import os
+import subprocess
 import time
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 
-from crypto.broker.base import BrokerClient, OrderSide
+from crypto.broker.base import BrokerClient, OrderSide, managed_equity
 from crypto.broker.binance_client import BinanceBrokerClient
 from crypto.policy_base import EqualWeightPolicy, PolicyAdapter
 
@@ -33,7 +35,10 @@ logging.basicConfig(
 )
 log = logging.getLogger("live_trading_loop_binance")
 
-FROZEN_UNIVERSE_PATH = Path(__file__).resolve().parent / "data" / "live_universe.json"
+CRYPTO_DIR = Path(__file__).resolve().parent
+FROZEN_UNIVERSE_PATH = CRYPTO_DIR / "data" / "live_universe.json"
+STATE_PATH = CRYPTO_DIR / "live_state.json"  # 서킷브레이커 당일 기준점 (재시작해도 유지되도록)
+LOCK_PATH = CRYPTO_DIR / "live_trading.lock"
 
 
 def load_frozen_universe() -> list[str]:
@@ -61,24 +66,68 @@ class LoopConfig:
     risk: RiskConfig = field(default_factory=RiskConfig)
 
 
+MIN_REBALANCE_USDT = 1.0  # 거래소 최소 명목가보다 작더라도 이 미만 리밸런싱은 스킵 (수수료 대비 무의미)
+# 거래소 NOTIONAL 필터는 직전 5분 평균가로 판정하고 수량은 stepSize로 절사되므로, 최소금액에 딱 맞춘
+# 주문은 last 가격 기준으로 통과해 보여도 거부될 수 있다 — 최소금액보다 이만큼 여유를 둔다.
+NOTIONAL_MARGIN = 1.05
+MAX_CONSECUTIVE_FAILURES = 3  # 연속 실패가 이만큼 쌓이면 CRITICAL로 남긴다 (키 만료·IP 차단 등 스스로 안 풀리는 장애)
+BUY_CASH_BUFFER = 0.995  # 시장가 매수 시 체결가 미끄러짐·수수료로 잔고 부족이 나지 않도록 남겨두는 여유
+CANDLE_CLOSE_DELAY_SEC = 15  # 정각 경계 직후 거래소에 직전 5분봉이 확정 반영될 때까지 기다리는 시간
+
+_warned_untradable: set[str] = set()
+
+
 class CircuitBreaker:
     """일일 손실 한도 도달 시 신규 주문을 막는다."""
 
-    def __init__(self, limit_pct: float):
+    def __init__(self, limit_pct: float, state_path: Path | None = None):
         self.limit_pct = limit_pct
+        self.state_path = state_path  # None이면 상태를 저장하지 않음(dry-run이 실계좌 상태를 덮어쓰지 않도록)
+        self.day: str | None = None
         self.day_start_equity: float | None = None
         self.tripped = False
 
-    def check(self, broker: BrokerClient) -> bool:
-        equity = broker.get_cash_balance() + sum(
-            p.quantity * p.current_price for p in broker.get_positions()
-        )
+    def start_day(self, day: str) -> None:
+        """날짜가 바뀌면 기준점을 리셋한다. 같은 날 재시작이면 저장된 기준점·발동 상태를 복원한다.
+
+        메모리에만 두면 손실 후 크래시→재시작(감시 배치/systemd가 10초 만에 다시 띄움)될 때마다
+        기준점이 손실 후 잔고로 다시 잡혀 일일 손실 한도가 사실상 무력화된다.
+        """
+        if self.day == day:
+            return
+        self.day, self.day_start_equity, self.tripped = day, None, False
+        if self.state_path is not None and self.state_path.exists():
+            try:
+                state = json.loads(self.state_path.read_text())
+            except (OSError, ValueError):
+                log.warning("서킷브레이커 상태 파일을 읽지 못함 — 새로 시작")
+                return
+            if state.get("day") == day:
+                self.day_start_equity = state.get("day_start_equity")
+                self.tripped = bool(state.get("tripped"))
+                log.info("서킷브레이커 상태 복원 | 기준 %.2f USDT | 발동=%s", self.day_start_equity or 0.0, self.tripped)
+
+    def _save(self) -> None:
+        if self.state_path is None:
+            return
+        tmp = self.state_path.with_suffix(".tmp")
+        tmp.write_text(json.dumps({"day": self.day, "day_start_equity": self.day_start_equity, "tripped": self.tripped}))
+        os.replace(tmp, self.state_path)
+
+    def check(self, equity: float, max_capital: float | None = None) -> bool:
         if self.day_start_equity is None or self.day_start_equity <= 0:
             # 잔고 0(자금 미입금/전량 인출 상태)이면 손실률 자체가 정의되지 않으므로
             # 갱신만 하고 통과시킨다 — 이후 입금돼 equity > 0이 되는 시점부터 추적 시작.
             self.day_start_equity = equity
+            self._save()
             return True
-        drawdown = (equity - self.day_start_equity) / self.day_start_equity
+        if self.tripped:
+            # 당일 한 번 발동하면 손실이 일부 회복돼도 그날은 계속 중단한다(재시작 후에도 동일)
+            return False
+        # --max-capital로 일부만 운용 중이면 손실률의 분모도 실제 운용 금액이어야 한다 —
+        # 전체 잔고로 나누면 운용분이 한도의 몇 배를 잃어도 서킷브레이커가 안 걸린다.
+        base = self.day_start_equity if max_capital is None else min(self.day_start_equity, max_capital)
+        drawdown = (equity - self.day_start_equity) / base
         if drawdown <= -self.limit_pct:
             if not self.tripped:
                 log.error(
@@ -87,18 +136,33 @@ class CircuitBreaker:
                     self.limit_pct * 100,
                 )
             self.tripped = True
+            self._save()
             return False
         return True
 
-    def reset_for_new_day(self):
-        self.day_start_equity = None
-        self.tripped = False
+
+def _place(broker: BrokerClient, symbol: str, side: OrderSide, qty: float, current_qty: float, target_qty: float, dry_run: bool) -> None:
+    if dry_run:
+        log.info("[DRY-RUN] %s %s %.6f (현재 %.6f → 목표 %.6f)", side.value, symbol, qty, current_qty, target_qty)
+        return
+    result = broker.place_order(symbol, side, qty)
+    (log.info if result.accepted else log.warning)(
+        "주문 %s: %s %s %.6f → %s (%s)",
+        "성공" if result.accepted else "실패",
+        symbol,
+        side.value,
+        qty,
+        result.order_id,
+        result.message,
+    )
 
 
 def rebalance_step(
     broker: BrokerClient, policy: PolicyAdapter, config: LoopConfig, breaker: CircuitBreaker
 ) -> None:
-    if not breaker.check(broker):
+    positions = {p.symbol: p for p in broker.get_positions()}
+    cash = broker.get_cash_balance()
+    if not breaker.check(managed_equity(cash, positions, config.symbols), config.risk.max_capital_usdt):
         return
 
     targets = policy.target_weights(config.symbols, broker)
@@ -107,48 +171,107 @@ def rebalance_step(
             log.warning("심볼 %s 목표비중 %.2f%% → 상한 %.2f%%로 제한", symbol, w * 100, config.risk.max_weight_per_symbol * 100)
             targets[symbol] = config.risk.max_weight_per_symbol
 
-    equity = broker.get_cash_balance() + sum(
-        p.quantity * p.current_price for p in broker.get_positions()
-    )
-    if config.risk.max_capital_usdt is not None and equity > config.risk.max_capital_usdt:
-        log.info(
-            "실제 잔고 %.2f USDT 중 %.2f USDT만 운용 (--max-capital 제한)",
-            equity, config.risk.max_capital_usdt,
-        )
-        equity = config.risk.max_capital_usdt
-    positions = {p.symbol: p for p in broker.get_positions()}
+    equity = managed_equity(cash, positions, config.symbols, config.risk.max_capital_usdt)
+    if config.risk.max_capital_usdt is not None and equity >= config.risk.max_capital_usdt:
+        log.info("%.2f USDT만 운용 (--max-capital 제한)", equity)
 
+    sells, buys = [], []
     for symbol, target_w in targets.items():
+        if not broker.is_tradable(symbol):
+            # 거래정지/상장폐지 심볼 — 정책 obs 차원은 유지하되 주문은 내지 않는다
+            if symbol not in _warned_untradable:
+                log.warning("심볼 %s 거래 불가 상태(거래정지/상장폐지) — 주문 대상에서 제외", symbol)
+                _warned_untradable.add(symbol)
+            continue
         try:
             price = broker.get_current_price(symbol)
         except Exception:
             log.warning("심볼 %s 시세 조회 실패 — 이번 사이클 리밸런싱 스킵(상장폐지/거래정지 가능성)", symbol)
             continue
+        current_qty = positions[symbol].quantity if symbol in positions else 0.0
         target_value = equity * target_w
-        current_qty = positions.get(symbol).quantity if symbol in positions else 0.0
-        target_qty = target_value / price
-        diff = target_qty - current_qty
-
-        if abs(diff) * price < 1.0:  # 명목가 1 USDT 미만 리밸런싱은 스킵 (수수료 대비 무의미)
+        diff_value = target_value - current_qty * price
+        # 거래소 최소 명목가(대부분 5 USDT) 미만 주문은 어차피 거부되므로 미리 거른다 —
+        # 안 거르면 소액 운용 시 매 사이클 거의 모든 주문이 거부 로그만 남긴다.
+        min_value = max(MIN_REBALANCE_USDT, broker.get_min_notional(symbol) * NOTIONAL_MARGIN)
+        if abs(diff_value) < min_value:
             continue
+        if diff_value < 0:
+            qty = -diff_value / price
+            if target_value < min_value:
+                # 목표가 사실상 0이면 남은 잔량이 최소 명목가 미만 더스트가 돼 다시는 팔 수 없게 되므로 전량 매도
+                qty = current_qty
+            sells.append((symbol, qty, price, current_qty, target_value / price))
+        else:
+            buys.append((symbol, diff_value, price, current_qty, target_value / price, min_value))
 
-        side = OrderSide.BUY if diff > 0 else OrderSide.SELL
-        qty = abs(diff)
-
+    # 매도를 먼저 내서 현금을 확보한 뒤 매수한다 — 심볼 순서대로 섞어 내면 매도 대금이 들어오기 전에
+    # 매수가 잔고 부족으로 거부될 수 있다.
+    for symbol, qty, price, current_qty, target_qty in sells:
+        _place(broker, symbol, OrderSide.SELL, qty, current_qty, target_qty, config.dry_run)
         if config.dry_run:
-            log.info("[DRY-RUN] %s %s %.6f (현재 %.6f → 목표 %.6f)", side.value, symbol, qty, current_qty, target_qty)
-            continue
+            cash += qty * price
 
-        result = broker.place_order(symbol, side, qty)
-        log.info(
-            "주문 %s: %s %s %.6f → %s (%s)",
-            "성공" if result.accepted else "실패",
-            symbol,
-            side.value,
-            qty,
-            result.order_id,
-            result.message,
-        )
+    available = cash if config.dry_run or not sells else broker.get_cash_balance()
+    available *= BUY_CASH_BUFFER
+    for symbol, needed, price, current_qty, target_qty, min_value in buys:
+        value = min(needed, available)
+        if value < min_value:
+            log.info("심볼 %s 매수 스킵 — 가용 현금 부족 (필요 %.2f, 가용 %.2f USDT)", symbol, needed, available)
+            continue
+        _place(broker, symbol, OrderSide.BUY, value / price, current_qty, target_qty, config.dry_run)
+        available -= value
+
+    log.info(
+        "사이클 완료 | 운용자산 %.2f USDT | 목표 위험자산 비중 %.1f%% | 매도 %d건 · 매수 %d건 시도",
+        equity, sum(targets.values()) * 100, len(sells), len(buys),
+    )
+
+
+def seconds_until_next_slot(interval_sec: int, offset_sec: float = CANDLE_CLOSE_DELAY_SEC) -> float:
+    """다음 interval 경계(UTC 기준 정각/30분 등) + offset까지 남은 초.
+
+    단순히 sleep(interval)을 하면 매 사이클 추론 시간(수십 초)만큼 결정 시점이 계속 밀려 학습 때의
+    30분봉 경계와 어긋난다 — 벽시계 경계에 맞춰 깨어나도록 한다.
+    """
+    now = time.time()
+    return (now // interval_sec + 1) * interval_sec + offset_sec - now
+
+
+def acquire_single_instance_lock(path: Path = LOCK_PATH):
+    """같은 컴퓨터에서 실거래 프로세스가 둘 이상 뜨지 않게 OS 파일 잠금을 건다.
+
+    둘이 동시에 돌면 같은 계좌에 같은 리밸런싱 주문이 두 번 나간다. 반환된 파일 객체를 프로세스가
+    끝날 때까지 들고 있어야 잠금이 유지된다(프로세스가 죽으면 OS가 자동 해제). 다른 컴퓨터에서
+    도는 프로세스는 막지 못한다.
+    """
+    f = open(path, "a+")
+    try:
+        if os.name == "nt":
+            import msvcrt
+
+            f.seek(0)
+            msvcrt.locking(f.fileno(), msvcrt.LK_NBLCK, 1)
+        else:
+            import fcntl
+
+            fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        f.close()
+        raise SystemExit(f"이미 다른 실거래 프로세스가 실행 중입니다({path}) — 중복 주문 방지를 위해 종료")
+    return f
+
+
+def log_code_version() -> None:
+    """어떤 브랜치·커밋의 코드가 도는지 로그에 남긴다 — 배포 서버가 엉뚱한 브랜치(예: 옛 정책이 남은
+    main)를 돌리고 있어도 로그만 보고 알아챌 수 있도록."""
+    try:
+        def git(*a):
+            return subprocess.run(["git", *a], cwd=CRYPTO_DIR, capture_output=True, text=True, timeout=5).stdout.strip()
+        dirty = " (커밋 안 된 수정 있음)" if git("status", "--porcelain", "--untracked-files=no") else ""
+        log.info("코드 버전 | 브랜치 %s | 커밋 %s%s", git("rev-parse", "--abbrev-ref", "HEAD"), git("rev-parse", "--short", "HEAD"), dirty)
+    except (OSError, subprocess.SubprocessError):
+        log.info("코드 버전 확인 불가(git 없음)")
 
 
 def run(config: LoopConfig, broker: BrokerClient, policy: PolicyAdapter) -> None:
@@ -159,21 +282,25 @@ def run(config: LoopConfig, broker: BrokerClient, policy: PolicyAdapter) -> None
         config.decision_interval_sec,
         len(config.symbols),
     )
-    breaker = CircuitBreaker(config.risk.daily_loss_limit_pct)
-    last_date = None
+    breaker = CircuitBreaker(config.risk.daily_loss_limit_pct, state_path=None if config.dry_run else STATE_PATH)
+    failures = 0
 
     while True:
-        now = datetime.now()
-        if last_date != now.date():
-            breaker.reset_for_new_day()
-            last_date = now.date()
+        breaker.start_day(datetime.now().date().isoformat())
 
         try:
             rebalance_step(broker, policy, config, breaker)
+            failures = 0
         except Exception:
-            log.exception("리밸런싱 스텝 중 오류 발생 — 다음 스텝까지 대기")
+            failures += 1
+            log.exception("리밸런싱 스텝 중 오류 발생 (연속 %d회) — 다음 스텝까지 대기", failures)
+            if failures >= MAX_CONSECUTIVE_FAILURES:
+                log.critical(
+                    "🚨 %d사이클 연속 실패 — API 키 만료/IP 변경(-2015), 네트워크, 모델 파일 문제 등 저절로 "
+                    "안 풀리는 장애일 가능성이 높음. 로그 확인 필요", failures,
+                )
 
-        time.sleep(config.decision_interval_sec)
+        time.sleep(seconds_until_next_slot(config.decision_interval_sec))
 
 
 def main():
@@ -201,13 +328,18 @@ def main():
 
     symbols = args.symbols or load_frozen_universe()
 
+    lock = acquire_single_instance_lock() if args.live else None  # noqa: F841 — 프로세스 수명 동안 잠금 유지
+    log_code_version()
+
     broker = BinanceBrokerClient()
+    for w in broker.check_api_key_safety():
+        log.warning("⚠️ API 키 점검: %s", w)
     if args.policy == "equal":
         policy: PolicyAdapter = EqualWeightPolicy()
     else:
         from crypto.inference.policy_v4 import V4PolicyAdapter
 
-        policy = V4PolicyAdapter(model_dir=args.model_dir, symbols=symbols)
+        policy = V4PolicyAdapter(model_dir=args.model_dir, symbols=symbols, max_capital=args.max_capital)
 
     config = LoopConfig(
         symbols=symbols,
