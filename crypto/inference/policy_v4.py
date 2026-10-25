@@ -175,6 +175,10 @@ class V4PolicyAdapter(PolicyAdapter):
     def _build_embeddings(self, broker: BrokerClient) -> np.ndarray:
         embeddings = np.zeros((self.n_assets, EMB_DIM), dtype=np.float32)
         for i, sym in enumerate(self.symbols):
+            if not broker.is_tradable(sym):
+                # 거래정지 종목은 봉 조회 없이 0-vector(학습 시 상장 전 자산과 동일). 경고는 루프가 한 번만 남긴다 —
+                # 여기서 매 사이클 경고하면 대시보드가 항상 "주의"가 되고 진짜 경고가 묻힌다.
+                continue
             try:
                 window = build_live_window(broker, sym, n_bars=self.n_bars)
                 if window is None:
