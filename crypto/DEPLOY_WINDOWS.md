@@ -108,8 +108,15 @@ python -m crypto.live_trading_loop_binance --model-dir crypto\models
 재시작해도 유지된다(`--live`일 때만 저장).
 
 - 서버 컴퓨터에서: 브라우저로 `http://localhost:8787`
-- 다른 기기(노트북·폰)에서:
-  - 권장 — SSH 터널: `ssh -L 8787:localhost:8787 <서버계정>@<서버IP>` 후 `http://localhost:8787`
+- 다른 기기(노트북·폰)에서 — **권장: Tailscale**(내 계정에 로그인한 기기에서만 열림, 인터넷 비공개, 무료):
+  1. 서버 PowerShell(관리자)에서 한 번만:
+     `powershell -ExecutionPolicy Bypass -File crypto\setup_remote_dashboard.ps1`
+     (Tailscale 설치 → 브라우저 로그인 → 8787 공유 → 접속 주소 출력. 처음이면 출력된 링크에서 HTTPS/Serve
+     허용 후 한 번 더 실행.) Linux 서버는 `curl -fsSL https://tailscale.com/install.sh | sh`,
+     `sudo tailscale up`, `sudo tailscale serve --bg 8787`.
+  2. 휴대폰/노트북에 Tailscale 앱 설치 → 같은 계정 로그인 → `https://<서버이름>.<tailnet>.ts.net/` 접속
+     (휴대폰은 홈 화면에 추가해 두면 앱처럼 쓸 수 있다). 봇 실행 명령은 바꿀 필요 없다.
+  - 또는 SSH 터널: `ssh -L 8787:localhost:8787 <서버계정>@<서버IP>` 후 `http://localhost:8787`
   - 또는 같은 공유기 안에서: `.env`에 `DASHBOARD_TOKEN=<긴 임의 문자열>`을 넣고
     `--dashboard-host 0.0.0.0`으로 실행한 뒤 `http://<서버 내부IP>:8787/?token=<토큰>`.
     토큰 없이 외부 주소에 여는 것은 거부된다(잔고·주문 내역이 노출되므로). 공유기 포트포워딩으로 인터넷에
