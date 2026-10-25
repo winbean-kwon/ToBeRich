@@ -42,7 +42,10 @@ Sharpe 0.653·test 2.602로 네 β 중 valid 최고가 됐고, β=-30은 valid�
 from __future__ import annotations
 
 import hashlib
+import json
 import logging
+import os
+import time
 from pathlib import Path
 
 import numpy as np
@@ -62,6 +65,7 @@ POOL_SUBDIR = Path("rt1006") / "crypto_hrl_pool_v4"  # 수정된 보상으로 �
 # 폴더와 재학습 전 풀(38,537,656바이트)에도 있어 잘못 받기 쉽다 — 다르면 엉뚱한 정책이 실계좌에서
 # 돌게 되므로 시작 단계에서 막는다.
 EXPECTED_AGENT_BYTES = 38_538_412
+STATE_MAX_AGE_SEC = 24 * 3600  # 저장된 스무딩 상태를 재시작 시 이어 쓰는 최대 경과 시간
 TOP_K = 10
 ALPHA = 0.01  # §13-F BEST_ALPHA_V4 (비용 후 최고 성과 관측치)
 EMB_DIM = 64
@@ -111,6 +115,7 @@ class V4PolicyAdapter(PolicyAdapter):
         beta: int = BETA,
         n_bars: int = 150,  # SMA_60 워밍업(59봉 소모) 후에도 SEQ_LEN(60)행이 남도록 여유있게 요청
         max_capital: float | None = None,  # 루프의 --max-capital과 같은 값이어야 비중 기준이 일치
+        state_path: str | Path | None = None,  # 스무딩 상태(prev_weights) 저장 위치. None이면 저장 안 함(dry-run)
     ):
         model_dir = Path(model_dir)
         self.symbols = list(symbols)
@@ -120,6 +125,7 @@ class V4PolicyAdapter(PolicyAdapter):
         self.top_k = top_k
         self.n_bars = n_bars
         self.max_capital = max_capital
+        self.state_path = Path(state_path) if state_path is not None else None
 
         log.info("[v4] 풀 에이전트(β=%d) 로드 중...", beta)
         agent_path = model_dir / POOL_SUBDIR / f"agent_beta_{beta}.zip"
@@ -172,6 +178,37 @@ class V4PolicyAdapter(PolicyAdapter):
         log.info("[v4] prev_weights를 실계좌 포지션에서 초기화 — 비중 합=%.4f (equity=%.2f USDT)", float(w.sum()), equity)
         return w
 
+    def _load_state(self) -> np.ndarray | None:
+        """저장된 스무딩 상태를 불러온다. 없거나 심볼 구성이 다르거나 너무 오래됐으면 None.
+
+        재시작 때마다 실계좌 포지션에서 다시 역산하면, 최소주문금액 때문에 실제 포지션이 거의 안 움직이는
+        소액 계좌에서는 스무딩 진행분이 매번 지워진다 — 2026-10-25 서버 실측: 재시작 직전 목표 노출 23.0%가
+        재시작 직후 25.5%(=실제 보유 비중)로 되돌아감. 정책의 내부 상태를 이어 써야 백테스트와 같은 궤적이 된다.
+        """
+        if self.state_path is None or not self.state_path.exists():
+            return None
+        try:
+            state = json.loads(self.state_path.read_text())
+        except (OSError, ValueError):
+            log.warning("[v4] 스무딩 상태 파일을 읽지 못함 — 실계좌 포지션에서 초기화")
+            return None
+        age = time.time() - state.get("saved_at", 0)
+        if state.get("symbols") != self.symbols or age > STATE_MAX_AGE_SEC:
+            log.info("[v4] 저장된 스무딩 상태 무시(심볼 구성 변경 또는 %.1f시간 경과) — 실계좌 포지션에서 초기화", age / 3600)
+            return None
+        w = np.asarray(state["prev_weights"], dtype=np.float32)
+        log.info("[v4] 저장된 스무딩 상태 복원 — 비중 합=%.4f (%.0f분 전 저장)", float(w.sum()), age / 60)
+        return w
+
+    def _save_state(self) -> None:
+        if self.state_path is None:
+            return
+        tmp = self.state_path.with_suffix(".tmp")
+        tmp.write_text(json.dumps({
+            "symbols": self.symbols, "prev_weights": [float(x) for x in self.prev_weights], "saved_at": time.time(),
+        }))
+        os.replace(tmp, self.state_path)
+
     def _build_embeddings(self, broker: BrokerClient) -> np.ndarray:
         embeddings = np.zeros((self.n_assets, EMB_DIM), dtype=np.float32)
         for i, sym in enumerate(self.symbols):
@@ -197,6 +234,8 @@ class V4PolicyAdapter(PolicyAdapter):
             )
 
         if self.prev_weights is None:
+            self.prev_weights = self._load_state()
+        if self.prev_weights is None:
             self.prev_weights = self._init_prev_weights_from_broker(broker)
 
         embeddings = self._build_embeddings(broker)
@@ -210,6 +249,7 @@ class V4PolicyAdapter(PolicyAdapter):
 
         w = (1 - self.alpha) * self.prev_weights + self.alpha * target_w
         self.prev_weights = w
+        self._save_state()
 
         log.info(
             "[v4] ρ=%.3f | top-%d 종목(%s) | 스무딩 후 비중 합=%.4f",

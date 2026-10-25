@@ -41,6 +41,7 @@ FROZEN_UNIVERSE_PATH = CRYPTO_DIR / "data" / "live_universe.json"
 STATE_PATH = CRYPTO_DIR / "live_state.json"  # 서킷브레이커 당일 기준점 (재시작해도 유지되도록)
 LOCK_PATH = CRYPTO_DIR / "live_trading.lock"
 LEDGER_PATH = CRYPTO_DIR / "live_ledger.csv"  # 사이클별 기록 (대시보드·사후 분석용)
+POLICY_STATE_PATH = CRYPTO_DIR / "policy_state.json"  # 정책 스무딩 상태 (재시작해도 이어지도록)
 EVENTS_PATH = CRYPTO_DIR / "live_events.jsonl"  # WARNING 이상 로그 (재시작해도 대시보드에 남도록)
 
 
@@ -461,7 +462,10 @@ def main():
     else:
         from crypto.inference.policy_v4 import V4PolicyAdapter
 
-        policy = V4PolicyAdapter(model_dir=args.model_dir, symbols=symbols, max_capital=args.max_capital)
+        policy = V4PolicyAdapter(
+            model_dir=args.model_dir, symbols=symbols, max_capital=args.max_capital,
+            state_path=POLICY_STATE_PATH if args.live else None,  # dry-run이 실계좌 스무딩 상태를 덮어쓰지 않도록
+        )
 
     if monitor is not None:
         monitor.update(

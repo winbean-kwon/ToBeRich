@@ -52,3 +52,4 @@ crypto/live_trading.lock
 crypto/live_trading_supervisor.log
 crypto/live_ledger.csv
 crypto/live_events.jsonl
+crypto/policy_state.json
