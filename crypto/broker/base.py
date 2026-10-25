@@ -59,6 +59,10 @@ class BrokerClient(ABC):
     def place_order(self, symbol: str, side: OrderSide, quantity: float) -> OrderResult:
         """시장가 주문 실행. quantity는 항상 양수."""
 
+    @abstractmethod
+    def get_min_notional(self, symbol: str) -> float:
+        """심볼별 최소 주문 금액(기준통화). 이 미만 주문은 거래소가 거부한다."""
+
     @property
     @abstractmethod
     def is_live(self) -> bool:

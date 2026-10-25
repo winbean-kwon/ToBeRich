@@ -129,7 +129,8 @@ def rebalance_step(
         target_qty = target_value / price
         diff = target_qty - current_qty
 
-        if abs(diff) * price < 1.0:  # 명목가 1 USDT 미만 리밸런싱은 스킵 (수수료 대비 무의미)
+        min_notional = broker.get_min_notional(symbol)
+        if abs(diff) * price < min_notional:  # 거래소 최소 주문 금액 미만은 시도해봐야 거부당함
             continue
 
         side = OrderSide.BUY if diff > 0 else OrderSide.SELL

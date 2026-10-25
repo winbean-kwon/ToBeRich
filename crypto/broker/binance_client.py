@@ -46,7 +46,11 @@ class BinanceBrokerClient(BrokerClient):
                 "apiKey": api_key or os.environ.get("BINANCE_API_KEY", ""),
                 "secret": api_secret or os.environ.get("BINANCE_API_SECRET", ""),
                 "enableRateLimit": True,
-                "options": {"defaultType": "spot"},
+                "options": {
+                    "defaultType": "spot",
+                    "adjustForTimeDifference": True,
+                    "recvWindow": 60000,
+                },
             }
         )
         if not self._live:
@@ -56,10 +60,27 @@ class BinanceBrokerClient(BrokerClient):
             print(
                 "[BinanceBrokerClient] ⚠️ 실계좌 모드로 초기화됨 — 실제 주문이 실계좌에 반영됩니다."
             )
+        self._exchange.load_markets()
 
     @property
     def is_live(self) -> bool:
         return self._live
+
+    def _signed_call(self, fn, *args, **kwargs):
+        """서명 필요한 호출 공통 래퍼.
+
+        adjustForTimeDifference는 프로세스 시작 시 딱 한 번만 서버-로컬 시간차를 측정해
+        캐싱한다 — 이 봇처럼 프로세스가 재시작 없이 몇 시간씩 떠 있으면 그 사이 로컬 시계가
+        드리프트해 캐시된 오프셋이 틀어지고 -1021(InvalidNonce)이 반복 발생할 수 있다.
+        (2026-07-31: recvWindow=60000을 걸어도 여전히 실패 — Binance는 recvWindow가
+        "너무 늦은" 요청만 봐주고 "미래" 타임스탬프는 recvWindow와 무관하게 거부하기 때문.)
+        InvalidNonce가 나면 시간차를 재측정해 한 번 재시도한다.
+        """
+        try:
+            return fn(*args, **kwargs)
+        except ccxt.InvalidNonce:
+            self._exchange.load_time_difference()
+            return fn(*args, **kwargs)
 
     # ── 시세 조회 ─────────────────────────────────────────────────────
 
@@ -84,7 +105,7 @@ class BinanceBrokerClient(BrokerClient):
     # ── 잔고/포지션 ───────────────────────────────────────────────────
 
     def get_positions(self) -> list[Position]:
-        balance = self._exchange.fetch_balance()
+        balance = self._signed_call(self._exchange.fetch_balance)
         positions = []
         for asset, amounts in balance.get("total", {}).items():
             if asset == QUOTE_CCY or not amounts:
@@ -109,8 +130,15 @@ class BinanceBrokerClient(BrokerClient):
         return positions
 
     def get_cash_balance(self) -> float:
-        balance = self._exchange.fetch_balance()
+        balance = self._signed_call(self._exchange.fetch_balance)
         return float(balance.get("free", {}).get(QUOTE_CCY, 0.0))
+
+    # ── 주문 제약 ─────────────────────────────────────────────────────
+
+    def get_min_notional(self, symbol: str) -> float:
+        """심볼별 최소 주문 금액(USDT). 이 미만 주문은 거래소가 NOTIONAL 필터로 거부한다."""
+        min_cost = self._exchange.market(symbol)["limits"]["cost"]["min"]
+        return float(min_cost) if min_cost is not None else 5.0
 
     # ── 주문 ─────────────────────────────────────────────────────────
 
@@ -120,7 +148,8 @@ class BinanceBrokerClient(BrokerClient):
 
         amount = float(self._exchange.amount_to_precision(symbol, quantity))
         try:
-            order = self._exchange.create_order(
+            order = self._signed_call(
+                self._exchange.create_order,
                 symbol=symbol,
                 type="market",
                 side=side.value,
