@@ -44,11 +44,12 @@ def basket_weights(R: np.ndarray, tradable: np.ndarray, exposure: np.ndarray) ->
 
 
 def attribute(W_reported: np.ndarray, W_warm: np.ndarray, R: np.ndarray, tradable: np.ndarray, tc: float,
-              init_reported: np.ndarray | None = None, executed_log_growth: float | None = None,
+              init_reported: np.ndarray | None = None, init_warm: np.ndarray | None = None,
+              executed_log_growth: float | None = None,
               pit_log_growth: float | None = None) -> pd.DataFrame:
     """보고 수익을 층별로 분해한 표(로그 성장률과 근사 % 기여)."""
     rep_net, _ = portfolio_log_growth(W_reported, R, tc, init_reported)
-    warm_net, warm_gross = portfolio_log_growth(W_warm, R, tc)
+    warm_net, warm_gross = portfolio_log_growth(W_warm, R, tc, init_warm)
     x = W_warm.sum(axis=1)
     _, static = portfolio_log_growth(basket_weights(R, tradable, np.full(len(x), x.mean())), R, 0.0)
     _, path = portfolio_log_growth(basket_weights(R, tradable, x), R, 0.0)
