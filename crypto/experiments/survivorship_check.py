@@ -58,6 +58,8 @@ def weekly_backtest(px: pd.DataFrame, momentum: bool) -> pd.Series:
             pick = mom.nlargest(k).index
         else:
             pick = live[live].index
+            if len(pick) == 0:
+                continue
         w = pd.Series(0.0, index=px.columns)
         w[pick] = 1.0 / len(pick)
         cost = TC * float((w - w_prev).abs().sum())
