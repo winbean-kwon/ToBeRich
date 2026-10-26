@@ -264,6 +264,8 @@ const LABEL = { ok: "정상", warn: "주의", critical: "위험", stale: "멈춤
 const fmtT = (ts) => new Date(ts * 1000).toLocaleString("ko-KR", { hour12: false });
 const pct = (x) => (x === "" || x == null || isNaN(+x)) ? "–" : (+x * 100).toFixed(1) + "%";
 const num = (x, d = 2) => (x === "" || x == null || isNaN(+x)) ? "–" : (+x).toLocaleString("ko-KR", { maximumFractionDigits: d, minimumFractionDigits: d });
+// 사이클 기록의 time_utc("YYYY-MM-DD HH:MM", UTC)를 보는 사람의 현지 시각으로 바꿔 표시한다
+const fmtUtc = (s) => { const d = new Date(String(s).replace(' ', 'T') + ':00Z'); return isNaN(d) ? String(s) : d.toLocaleString('ko-KR', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false }); };
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 function tile(k, v, s = "") { return `<div class="tile"><div class="k">${k}</div><div class="v">${v}</div><div class="s">${s}</div></div>`; }
@@ -307,8 +309,8 @@ function render(d) {
 
   const rows = d.cycles.slice(-50).reverse();
   document.getElementById("cycles").innerHTML =
-    `<tr><th>시각(UTC)</th><th>운용자산</th><th>목표 노출</th><th>실제 노출</th><th>괴리</th><th>보류 USDT</th><th>주문</th><th>ρ</th><th style="text-align:left">비고</th></tr>`
-    + rows.map((c) => `<tr><td>${esc(c.time_utc)}</td><td>${num(c.equity)}</td><td>${pct(c.target_exposure)}</td><td>${pct(c.actual_exposure)}</td>`
+    `<tr><th>시각</th><th>운용자산</th><th>목표 노출</th><th>실제 노출</th><th>괴리</th><th>보류 USDT</th><th>주문</th><th>ρ</th><th style="text-align:left">비고</th></tr>`
+    + rows.map((c) => `<tr><td>${esc(fmtUtc(c.time_utc))}</td><td>${num(c.equity)}</td><td>${pct(c.target_exposure)}</td><td>${pct(c.actual_exposure)}</td>`
       + `<td>${pct(c.tracking_gap)}</td><td>${num(c.skipped_usdt)}</td><td>${c.filled_orders}/${c.orders}</td><td>${num(c.rho, 3)}</td><td class="l">${esc(c.note || "")}</td></tr>`).join("");
 }
 
