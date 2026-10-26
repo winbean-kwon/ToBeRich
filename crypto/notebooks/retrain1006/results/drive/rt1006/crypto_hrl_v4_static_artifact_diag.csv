@@ -1,0 +1,2 @@
+﻿alpha,total_return,turnover_mean,turnover_first10,turnover_last10,last10_zero_turnover_frac,first_half_return,second_half_return,first_q_assets,last_q_assets,jaccard
+0.01,0.059655697215141634,0.0006940952102480296,0.0012908830691947878,0.0012160720987078883,0.0,0.05361930824700756,0.005729193571990754,16,29,0.25
