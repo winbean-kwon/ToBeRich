@@ -1,0 +1,19 @@
+﻿정책,원래 시작,구간,시작,log 성장
+EIIE,cash,valid,cash,-0.4088562569991192
+EIIE,cash,valid,ew,-0.4081501447743666
+EIIE,cash,valid,warmup,-0.40787754726903
+EIIE,cash,test,cash,-0.03529451675447611
+EIIE,cash,test,ew,-0.03458029992395305
+EIIE,cash,test,warmup,-0.03430988540672371
+LSRE-CAAN,cash,valid,cash,-0.40512109740959035
+LSRE-CAAN,cash,valid,ew,-0.40432439565325246
+LSRE-CAAN,cash,valid,warmup,-0.40415064446436694
+LSRE-CAAN,cash,test,cash,-0.023066314228347054
+LSRE-CAAN,cash,test,ew,-0.022265100006878355
+LSRE-CAAN,cash,test,warmup,-0.0220908807443571
+단일 PPO,ew,valid,cash,-1.0456448443222277
+단일 PPO,ew,valid,ew,-1.045503671376614
+단일 PPO,ew,valid,warmup,-1.0447918367452664
+단일 PPO,ew,test,cash,-1.5941005594598883
+단일 PPO,ew,test,ew,-1.5937526908849704
+단일 PPO,ew,test,warmup,-1.5932247367802925
