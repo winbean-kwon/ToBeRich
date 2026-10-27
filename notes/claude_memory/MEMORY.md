@@ -1,4 +1,5 @@
-- [Project state 2026-10-27](project-state-2026-10-26.md) — methodology reframe; D2 cost-audit decision pending; read HANDOFF_2026-10-27.md + CLAUDE.md first
+- [Project state 2026-10-27](project-state-2026-10-26.md) — 점검 3가지+공식 코드 적용으로 축소; prereg v2 미커밋; read HANDOFF_2026-10-27.md §2.5·§3 first
+- [마감·목표](thesis-deadline-goal.md) — 12월 중순 마감, 퀄리티 되면 2027 본 트랙/TMLR까지
 - [Pre-registration rule](pre-registration-rule.md) — fix criteria before running; no cherry-picking; don't edit paper/ directly
 - [Live bot setup](live-bot-setup.md) — server/dashboard/Tailscale details, Mac IP not whitelisted
 - [논문에 과정 기록 금지](paper-no-process-logs.md) — 커밋·실행 횟수·감사 경위는 논문 문장에 넣지 않음
