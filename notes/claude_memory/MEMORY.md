@@ -1,0 +1,5 @@
+- [Project state 2026-10-27](project-state-2026-10-26.md) — methodology reframe; D2 cost-audit decision pending; read HANDOFF_2026-10-27.md + CLAUDE.md first
+- [Pre-registration rule](pre-registration-rule.md) — fix criteria before running; no cherry-picking; don't edit paper/ directly
+- [Live bot setup](live-bot-setup.md) — server/dashboard/Tailscale details, Mac IP not whitelisted
+- [논문에 과정 기록 금지](paper-no-process-logs.md) — 커밋·실행 횟수·감사 경위는 논문 문장에 넣지 않음
+- [부풀리지 말 것·독립 검토](no-inflation-independent-review.md) — 주장·계획은 보고 전 반박 에이전트로 검증
