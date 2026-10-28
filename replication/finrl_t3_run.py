@@ -240,12 +240,18 @@ def cmd_train(algo, seed, win='W0', cond='a'):
     res.insert(0, 'daily_return', acc['daily_return'].values)
     res.index.name = 'date'
     out.parent.mkdir(parents=True, exist_ok=True)
-    res.to_csv(out, float_format='%.10g')
-    meta = out.parent / 'train_minutes.json'
-    m = json.loads(meta.read_text()) if meta.exists() else {}
-    m[out.stem if out.parent.name == 'o2' else f'{algo}_s{seed}'] = round(mins, 2)
-    meta.write_text(json.dumps(m, indent=1, sort_keys=True))
-    print(f'{algo} {win} {cond} seed {seed}: 학습 {mins:.1f}분, 저장 {out.name}')
+    # 끊겨도 재개되게: 임시 파일에 쓴 뒤 이름을 바꾼다(결과 CSV가 있으면 끝난 실행으로 보고 건너뛴다)
+    tmp = out.with_suffix('.tmp')
+    res.to_csv(tmp, float_format='%.10g'); os.replace(tmp, out)
+    if out.parent.name == 'o2':   # 병렬 실행이 한 파일을 동시에 고치지 않게 실행마다 따로 기록
+        (out.parent / 'minutes').mkdir(exist_ok=True)
+        (out.parent / 'minutes' / f'{out.stem}.txt').write_text(f'{mins:.2f}\n')
+    else:
+        meta = out.parent / 'train_minutes.json'
+        m = json.loads(meta.read_text()) if meta.exists() else {}
+        m[f'{algo}_s{seed}'] = round(mins, 2)
+        meta.write_text(json.dumps(m, indent=1, sort_keys=True))
+    print(f'{algo} {win} {cond} seed {seed}: 학습 {mins:.1f}분, 저장 {out.name}', flush=True)
 
 
 def cmd_baselines():
