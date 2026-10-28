@@ -209,16 +209,13 @@ def out_path(algo, seed, win, cond):
     return D / 'o2' / f'{algo}_{win}_{cond}_s{seed}.csv'
 
 
-def cmd_train(algo, seed, win='W0', cond='a'):
-    import numpy as np, pandas as pd, torch, random, contextlib, io
+def _train(algo, seed, win, cond):
+    import torch, contextlib, io
     torch.set_num_threads(2)
     from meta import config
     from agents.stablebaselines3_models import DRLAgent
     for d in [config.DATA_SAVE_DIR, config.TRAINED_MODEL_DIR, config.TENSORBOARD_LOG_DIR, config.RESULTS_DIR]:
         os.makedirs(d, exist_ok=True)
-    out = out_path(algo, seed, win, cond)
-    if out.exists():
-        print('이미 있음', out); return
     df = load_data(); SPE = make_spe()
     TrainEnv = SPE if COND_COST[cond] is None else make_spe_u1(COND_COST[cond])
     train, trade = split(df, TRAIN[0], WINDOWS[win][0]), split(df, *WINDOWS[win])
@@ -231,18 +228,40 @@ def cmd_train(algo, seed, win='W0', cond='a'):
         model = agent.get_model(algo, model_kwargs=dict(p), seed=seed, verbose=0)
     t0 = time.time()
     model = agent.train_model(model=model, tb_log_name=f'{algo}_s{seed}', total_timesteps=steps)
-    mins = (time.time() - t0) / 60
+    return model, trade, kw, SPE, (time.time() - t0) / 60
+
+
+def _predict(model, trade, kw, SPE, seed, deterministic=False):
+    # deterministic=False는 공식 DRL_prediction 그대로(model.predict 기본값). True는 O6 변형으로, 같은 루프에서
+    # predict 기본 인자만 바꾼다.
+    import numpy as np, torch, random, contextlib, io, functools
+    from agents.stablebaselines3_models import DRLAgent
     random.seed(seed); np.random.seed(seed); torch.manual_seed(seed)
+    m = model
+    if deterministic:
+        m = types.SimpleNamespace(predict=functools.partial(model.predict, deterministic=True))
     with contextlib.redirect_stdout(io.StringIO()):
-        acc, acts = DRLAgent.DRL_prediction(model=model, environment=SPE(df=trade.copy(), **kw))
+        acc, acts = DRLAgent.DRL_prediction(model=m, environment=SPE(df=trade.copy(), **kw))
     assert len(acc) == trade.index.nunique() == len(acts)
     res = acts.copy(); res.columns = [f'w_{c}' for c in res.columns]
     res.insert(0, 'daily_return', acc['daily_return'].values)
     res.index.name = 'date'
-    out.parent.mkdir(parents=True, exist_ok=True)
+    return res
+
+
+def _write(res, out):
     # 끊겨도 재개되게: 임시 파일에 쓴 뒤 이름을 바꾼다(결과 CSV가 있으면 끝난 실행으로 보고 건너뛴다)
+    out.parent.mkdir(parents=True, exist_ok=True)
     tmp = out.with_suffix('.tmp')
     res.to_csv(tmp, float_format='%.10g'); os.replace(tmp, out)
+
+
+def cmd_train(algo, seed, win='W0', cond='a'):
+    out = out_path(algo, seed, win, cond)
+    if out.exists():
+        print('이미 있음', out); return
+    model, trade, kw, SPE, mins = _train(algo, seed, win, cond)
+    _write(_predict(model, trade, kw, SPE, seed), out)
     if out.parent.name == 'o2':   # 병렬 실행이 한 파일을 동시에 고치지 않게 실행마다 따로 기록
         (out.parent / 'minutes').mkdir(exist_ok=True)
         (out.parent / 'minutes' / f'{out.stem}.txt').write_text(f'{mins:.2f}\n')
@@ -252,6 +271,25 @@ def cmd_train(algo, seed, win='W0', cond='a'):
         m[f'{algo}_s{seed}'] = round(mins, 2)
         meta.write_text(json.dumps(m, indent=1, sort_keys=True))
     print(f'{algo} {win} {cond} seed {seed}: 학습 {mins:.1f}분, 저장 {out.name}', flush=True)
+
+
+def o6_path(algo, seed, win, cond, mode):
+    return D / 'o6' / f'{algo}_{win}_{cond}_s{seed}_{mode}.csv'
+
+
+def cmd_det(algo, seed, win, cond):
+    # O6(notes/finrl_t3_o6_prereg.md): O2와 같은 시드로 다시 학습하고 공식 예측(sto)과 결정적 예측(det)을 모두 저장.
+    # det 파일을 나중에 쓰므로 det가 있으면 끝난 실행이다.
+    if o6_path(algo, seed, win, cond, 'det').exists():
+        print('이미 있음', algo, seed, win, cond); return
+    model, trade, kw, SPE, mins = _train(algo, seed, win, cond)
+    mdir = HERE.parent / '.t3env' / 'models'; mdir.mkdir(parents=True, exist_ok=True)
+    model.save(mdir / f'{algo}_{win}_{cond}_s{seed}.zip')
+    _write(_predict(model, trade, kw, SPE, seed), o6_path(algo, seed, win, cond, 'sto'))
+    _write(_predict(model, trade, kw, SPE, seed, deterministic=True), o6_path(algo, seed, win, cond, 'det'))
+    (D / 'o6' / 'minutes').mkdir(exist_ok=True)
+    (D / 'o6' / 'minutes' / f'{algo}_{win}_{cond}_s{seed}.txt').write_text(f'{mins:.2f}\n')
+    print(f'{algo} {win} {cond} seed {seed}: 학습 {mins:.1f}분, 저장 sto·det', flush=True)
 
 
 def cmd_baselines():
@@ -415,6 +453,19 @@ def sharpe_diff_p(r1, r2):
     return float(2 * (1 - norm.cdf(abs(d) / se)))
 
 
+def classify(deltas):
+    pos, neg = sum(x > 0 for x in deltas), sum(x < 0 for x in deltas)
+    return '우위' if pos >= 4 else ('열위' if neg >= 4 else '불확정')
+
+
+def target_class(cls):
+    if cls['W0'] == '우위' and sum(v == '우위' for v in cls.values()) >= 2:
+        return '유지'
+    if cls['W0'] == '열위' or sum(v == '열위' for v in cls.values()) >= 2:
+        return '소실'
+    return '불확정'
+
+
 def cmd_judge2():
     import numpy as np, pandas as pd
     from scipy.stats import t as tdist
@@ -432,17 +483,6 @@ def cmd_judge2():
         assert list(r.index) == list(RW[w].index)
         Wm = r[[f'w_{t}' for t in tics]].to_numpy()
         return r, Wm
-
-    def classify(deltas):
-        pos, neg = sum(x > 0 for x in deltas), sum(x < 0 for x in deltas)
-        return '우위' if pos >= 4 else ('열위' if neg >= 4 else '불확정')
-
-    def target_class(cls):
-        if cls['W0'] == '우위' and sum(v == '우위' for v in cls.values()) >= 2:
-            return '유지'
-        if cls['W0'] == '열위' or sum(v == '열위' for v in cls.values()) >= 2:
-            return '소실'
-        return '불확정'
 
     mult = (tdist.ppf(0.975, 4) + tdist.ppf(0.8, 4)) / np.sqrt(5)
     res = {'주 판정(조건 b, c=0.001, 매일 등가중)': {}, '2차': {}}
@@ -491,12 +531,71 @@ def cmd_judge2():
                      ensure_ascii=False, indent=1))
 
 
+def cmd_judge6():
+    # O6 판정(notes/finrl_t3_o6_prereg.md 3장). 계산은 judge2와 같은 u1_returns·기준선·분류 함수를 쓴다.
+    import numpy as np, pandas as pd
+    RW = {w: window_returns(w) for w in WINDOWS}
+    tics = list(RW['W0'].columns)
+    ew = {(w, c): u1_returns(baseline_weights(R.to_numpy(), 'daily'), R.to_numpy(), c)[0]
+          for w, R in RW.items() for c in (0.0, C_PAPER)}
+
+    def wm(path, w):
+        r = pd.read_csv(path, index_col='date')
+        assert list(r.index) == list(RW[w].index)
+        return r[[f'w_{t}' for t in tics]].to_numpy()
+
+    res = {'E1 재학습 동일성': {}, 'E2 PPO 미학습': {}, 'E3 결정적 예측 판정(조건 b, c=0.001)': {}, '2차': {}}
+    fails = []
+    for algo in ('a2c', 'ppo'):
+        for cond in ('a', 'b'):
+            for w in WINDOWS:
+                for s in SEEDS:
+                    d = np.abs(wm(o6_path(algo, s, w, cond, 'sto'), w) - wm(out_path(algo, s, w, cond), w)).max()
+                    if d > 1e-8:
+                        fails.append(f'{algo}_{w}_{cond}_s{s}: {d:.3g}')
+    res['E1 재학습 동일성'] = {'실패 수': len(fails), '실패': fails, '판정': '통과' if not fails else '실패 있음'}
+
+    flat = []
+    for w in WINDOWS:
+        for s in SEEDS:
+            Wm = wm(o6_path('ppo', s, w, 'b', 'det'), w)[1:]
+            flat.append(float(np.abs(Wm - 1 / 28).max()))
+    k = sum(x < 0.001 for x in flat)
+    res['E2 PPO 미학습'] = {'max|w−1/28| (창×시드)': [round(x, 6) for x in flat], '<0.001 실행 수': k,
+                          '판정': '지지' if k >= 12 else ('지지 안 됨' if k <= 3 else '판정 불가')}
+
+    for algo in ('a2c', 'ppo'):
+        for cond in ('a', 'b'):
+            per = {}
+            for w in WINDOWS:
+                Rn = RW[w].to_numpy(); ds, d0, tv = [], [], []
+                for s in SEEDS:
+                    Wm = wm(o6_path(algo, s, w, cond, 'det'), w)
+                    net, taus = u1_returns(Wm, Rn, C_PAPER)
+                    ds.append((ann_log(net) - ann_log(ew[(w, C_PAPER)])) * 100)
+                    d0.append((ann_log(u1_returns(Wm, Rn, 0.0)[0]) - ann_log(ew[(w, 0.0)])) * 100)
+                    tv.append(round(float(taus[2:].mean()), 4))
+                per[w] = {'Δ(%p/년)': [round(x, 3) for x in ds], '분류': classify(ds),
+                          '시드 중앙값': round(float(np.median(ds)), 3),
+                          'c=0 Δ 시드 중앙값': round(float(np.median(d0)), 3), '평균 회전율': tv}
+            cls = {w: per[w]['분류'] for w in WINDOWS}
+            out = {'창별': per, '판정': target_class(cls), '차이 작음': all(abs(per[w]['시드 중앙값']) < 2 for w in WINDOWS)}
+            if cond == 'a':   # W0 조건 (a) det의 O1식 연수익(원래 env 일간 수익, 2차)
+                ar = [ann_return(pd.read_csv(o6_path(algo, s, 'W0', 'a', 'det'), index_col='date').daily_return.values) * 100
+                      for s in SEEDS]
+                out['W0 원래env 연수익(%)'] = [round(x, 2) for x in ar]
+            (res['E3 결정적 예측 판정(조건 b, c=0.001)'] if cond == 'b' else res['2차'])[algo if cond == 'b' else f'{algo} 조건 a'] = out
+    (D / 'o6' / 'judge_o6.json').write_text(json.dumps(res, ensure_ascii=False, indent=1))
+    print(json.dumps(res, ensure_ascii=False, indent=1))
+
+
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('--fm')
     ap.add_argument('cmd'); ap.add_argument('args', nargs='*')
     a = ap.parse_args()
-    if a.cmd not in ('judge', 'judge2'):
+    if a.cmd not in ('judge', 'judge2', 'judge6'):
         setup_fm(a.fm)
     {'train': lambda: cmd_train(a.args[0], int(a.args[1]), *a.args[2:4]), 'baselines': cmd_baselines,
-     'returns': cmd_prepare_returns, 'o5': cmd_o5, 'judge': cmd_judge, 'judge2': cmd_judge2}[a.cmd]()
+     'returns': cmd_prepare_returns, 'o5': cmd_o5, 'judge': cmd_judge, 'judge2': cmd_judge2,
+     'det': lambda: cmd_det(a.args[0], int(a.args[1]), *a.args[2:4]), 'judge6': cmd_judge6}[a.cmd]()
