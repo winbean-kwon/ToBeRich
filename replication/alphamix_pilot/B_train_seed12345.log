@@ -1,0 +1,1954 @@
+No personal conf_private.py found.
+doodad not detected
+2026-10-27 14:42:05.859431 UTC | Variant:
+2026-10-27 14:42:05.859721 UTC | {
+  "algorithm": "SAC",
+  "version": "normal",
+  "layer_size": 128,
+  "buffer_size": 10000,
+  "algorithm_kwargs": {
+    "num_epochs": 10,
+    "num_eval_steps_per_epoch": 1500,
+    "num_trains_per_train_loop": 2000,
+    "num_expl_steps_per_train_loop": 2000,
+    "min_num_steps_before_training": 70000,
+    "max_path_length": 5000,
+    "batch_size": 256,
+    "save_frequency": 0
+  },
+  "trainer_kwargs": {
+    "discount": 0.99,
+    "soft_target_tau": 0.005,
+    "target_update_period": 1,
+    "policy_lr": 0.0007,
+    "qf_lr": 0.0007,
+    "reward_scale": 1,
+    "use_automatic_entropy_tuning": true
+  },
+  "num_ensemble": 3,
+  "num_layer": 2,
+  "dataset": "dj30",
+  "seed": 12345,
+  "ber_mean": 0.5,
+  "env": "portfolio_management",
+  "inference_type": 0.0,
+  "temperature": 20.0,
+  "log_dir": "",
+  "uncertainty": 0.5
+}
+Shape of DataFrame:  (71180, 9)
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2927492.3424789533
+Sharpe:  1.1559537807963158
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:3097440.854389466
+Sharpe:  1.2085540944141542
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2956646.74436227
+Sharpe:  1.1638948622723013
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:3160299.679950772
+Sharpe:  1.230350386992586
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:3250362.996522772
+Sharpe:  1.2568421106212242
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2946864.61853593
+Sharpe:  1.161849004173637
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2951111.5374720045
+Sharpe:  1.1706397234490884
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2811666.278410412
+Sharpe:  1.1129861240804337
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2932053.0056906873
+Sharpe:  1.1608471139711953
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:3011651.0119659095
+Sharpe:  1.1841099211953678
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:3153380.1089206687
+Sharpe:  1.2306345210634442
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:3088776.1738079404
+Sharpe:  1.2126978428507194
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:3003607.351665484
+Sharpe:  1.1804391464091697
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2979149.367153765
+Sharpe:  1.170247399027339
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2832536.0721189887
+Sharpe:  1.1308741255790142
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:3356361.564608594
+Sharpe:  1.2923736561011139
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:3135266.567121443
+Sharpe:  1.22447301940265
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2767142.1820177687
+Sharpe:  1.092353619038182
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2854669.651313402
+Sharpe:  1.131358167868616
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2853474.188332159
+Sharpe:  1.1354863613105104
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:3159389.892902718
+Sharpe:  1.2391464716415697
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2903375.464034003
+Sharpe:  1.1465713101351944
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2913470.3773653484
+Sharpe:  1.150642167663585
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2902848.9428079934
+Sharpe:  1.1482459193942816
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:3185778.620980531
+Sharpe:  1.2460003178841916
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:3193450.854756517
+Sharpe:  1.2470791314416982
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:3062275.3119503506
+Sharpe:  1.198669587627087
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2895884.93794845
+Sharpe:  1.1496279327425518
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:3140539.496217955
+Sharpe:  1.2296087472328205
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2903665.9531250577
+Sharpe:  1.1441191090329752
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:3039512.125575212
+Sharpe:  1.1896443686154046
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2841817.326255554
+Sharpe:  1.1279325800042788
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2845307.2886983287
+Sharpe:  1.1246948687108147
+=================================
+=================================
+begin_total_asset:1000000.0
+end_total_asset:2767819.702001054
+Sharpe:  1.0995468156839723
+=================================
+Epoch:0
+eval!!!!!!!!!!!!!!
+5000
+1500
+=================================
+begin_total_asset:1000000
+end_total_asset:1107517.8589233
+Sharpe:  0.4681750939516728
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1107517.8589233
+Sharpe:  0.4681750939516728
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1107517.8589233
+Sharpe:  0.4681750939516728
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1107517.8589233
+Sharpe:  0.4681750939516728
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1107517.8589233
+Sharpe:  0.4681750939516728
+=================================
+test!!!!!
+=================================
+begin_total_asset:1000000
+end_total_asset:1180150.225338426
+Sharpe:  1.4980419863611074
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1180150.225338426
+Sharpe:  1.4980419863611074
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1180150.225338426
+Sharpe:  1.4980419863611074
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1180150.225338426
+Sharpe:  1.4980419863611074
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1180150.225338426
+Sharpe:  1.4980419863611074
+=================================
+Epoch:1
+eval!!!!!!!!!!!!!!
+5000
+1500
+=================================
+begin_total_asset:1000000
+end_total_asset:1118669.5506335944
+Sharpe:  0.4947613030282872
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1118669.5506335944
+Sharpe:  0.4947613030282872
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1118669.5506335944
+Sharpe:  0.4947613030282872
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1118669.5506335944
+Sharpe:  0.4947613030282872
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1118669.5506335944
+Sharpe:  0.4947613030282872
+=================================
+test!!!!!
+=================================
+begin_total_asset:1000000
+end_total_asset:1181281.5552605898
+Sharpe:  1.51114889048927
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1181281.5552605898
+Sharpe:  1.51114889048927
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1181281.5552605898
+Sharpe:  1.51114889048927
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1181281.5552605898
+Sharpe:  1.51114889048927
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1181281.5552605898
+Sharpe:  1.51114889048927
+=================================
+Epoch:2
+eval!!!!!!!!!!!!!!
+5000
+1500
+=================================
+begin_total_asset:1000000
+end_total_asset:1124378.0873601835
+Sharpe:  0.5130292423126042
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1124378.0873601835
+Sharpe:  0.5130292423126042
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1124378.0873601835
+Sharpe:  0.5130292423126042
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1124378.0873601835
+Sharpe:  0.5130292423126042
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1124378.0873601835
+Sharpe:  0.5130292423126042
+=================================
+test!!!!!
+=================================
+begin_total_asset:1000000
+end_total_asset:1224715.2826792633
+Sharpe:  1.8825562651000878
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1224715.2826792633
+Sharpe:  1.8825562651000878
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1224715.2826792633
+Sharpe:  1.8825562651000878
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1224715.2826792633
+Sharpe:  1.8825562651000878
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1224715.2826792633
+Sharpe:  1.8825562651000878
+=================================
+Epoch:3
+eval!!!!!!!!!!!!!!
+5000
+1500
+=================================
+begin_total_asset:1000000
+end_total_asset:1105903.6405700778
+Sharpe:  0.46031903672991586
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1105903.6405700778
+Sharpe:  0.46031903672991586
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1105903.6405700778
+Sharpe:  0.46031903672991586
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1105903.6405700778
+Sharpe:  0.46031903672991586
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1105903.6405700778
+Sharpe:  0.46031903672991586
+=================================
+test!!!!!
+=================================
+begin_total_asset:1000000
+end_total_asset:1204263.0931022204
+Sharpe:  1.6453496233136349
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1204263.0931022204
+Sharpe:  1.6453496233136349
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1204263.0931022204
+Sharpe:  1.6453496233136349
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1204263.0931022204
+Sharpe:  1.6453496233136349
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1204263.0931022204
+Sharpe:  1.6453496233136349
+=================================
+Epoch:4
+eval!!!!!!!!!!!!!!
+5000
+1500
+=================================
+begin_total_asset:1000000
+end_total_asset:1094432.8615428202
+Sharpe:  0.43375156326363845
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1094432.8615428202
+Sharpe:  0.43375156326363845
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1094432.8615428202
+Sharpe:  0.43375156326363845
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1094432.8615428202
+Sharpe:  0.43375156326363845
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1094432.8615428202
+Sharpe:  0.43375156326363845
+=================================
+test!!!!!
+=================================
+begin_total_asset:1000000
+end_total_asset:1200996.4804746893
+Sharpe:  1.711883968540687
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1200996.4804746893
+Sharpe:  1.711883968540687
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1200996.4804746893
+Sharpe:  1.711883968540687
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1200996.4804746893
+Sharpe:  1.711883968540687
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1200996.4804746893
+Sharpe:  1.711883968540687
+=================================
+Epoch:5
+eval!!!!!!!!!!!!!!
+5000
+1500
+=================================
+begin_total_asset:1000000
+end_total_asset:1116796.701170201
+Sharpe:  0.4938282165328472
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1116796.701170201
+Sharpe:  0.4938282165328472
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1116796.701170201
+Sharpe:  0.4938282165328472
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1116796.701170201
+Sharpe:  0.4938282165328472
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1116796.701170201
+Sharpe:  0.4938282165328472
+=================================
+test!!!!!
+=================================
+begin_total_asset:1000000
+end_total_asset:1184319.6031842665
+Sharpe:  1.56899709034524
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1184319.6031842665
+Sharpe:  1.56899709034524
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1184319.6031842665
+Sharpe:  1.56899709034524
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1184319.6031842665
+Sharpe:  1.56899709034524
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1184319.6031842665
+Sharpe:  1.56899709034524
+=================================
+Epoch:6
+eval!!!!!!!!!!!!!!
+5000
+1500
+=================================
+begin_total_asset:1000000
+end_total_asset:1099277.7187769914
+Sharpe:  0.4392701453453457
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1099277.7187769914
+Sharpe:  0.4392701453453457
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1099277.7187769914
+Sharpe:  0.4392701453453457
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1099277.7187769914
+Sharpe:  0.4392701453453457
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1099277.7187769914
+Sharpe:  0.4392701453453457
+=================================
+test!!!!!
+=================================
+begin_total_asset:1000000
+end_total_asset:1158022.4627794533
+Sharpe:  1.2261019012363232
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1158022.4627794533
+Sharpe:  1.2261019012363232
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1158022.4627794533
+Sharpe:  1.2261019012363232
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1158022.4627794533
+Sharpe:  1.2261019012363232
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1158022.4627794533
+Sharpe:  1.2261019012363232
+=================================
+Epoch:7
+eval!!!!!!!!!!!!!!
+5000
+1500
+=================================
+begin_total_asset:1000000
+end_total_asset:1087547.9501996117
+Sharpe:  0.41175907120274036
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1087547.9501996117
+Sharpe:  0.41175907120274036
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1087547.9501996117
+Sharpe:  0.41175907120274036
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1087547.9501996117
+Sharpe:  0.41175907120274036
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1087547.9501996117
+Sharpe:  0.41175907120274036
+=================================
+test!!!!!
+=================================
+begin_total_asset:1000000
+end_total_asset:1161182.588988162
+Sharpe:  1.2610499249308826
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1161182.588988162
+Sharpe:  1.2610499249308826
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1161182.588988162
+Sharpe:  1.2610499249308826
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1161182.588988162
+Sharpe:  1.2610499249308826
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1161182.588988162
+Sharpe:  1.2610499249308826
+=================================
+Epoch:8
+eval!!!!!!!!!!!!!!
+5000
+1500
+=================================
+begin_total_asset:1000000
+end_total_asset:1081498.6772987877
+Sharpe:  0.39638968728040874
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1081498.6772987877
+Sharpe:  0.39638968728040874
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1081498.6772987877
+Sharpe:  0.39638968728040874
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1081498.6772987877
+Sharpe:  0.39638968728040874
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1081498.6772987877
+Sharpe:  0.39638968728040874
+=================================
+test!!!!!
+=================================
+begin_total_asset:1000000
+end_total_asset:1165492.505250436
+Sharpe:  1.2911648700146334
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1165492.505250436
+Sharpe:  1.2911648700146334
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1165492.505250436
+Sharpe:  1.2911648700146334
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1165492.505250436
+Sharpe:  1.2911648700146334
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1165492.505250436
+Sharpe:  1.2911648700146334
+=================================
+Epoch:9
+eval!!!!!!!!!!!!!!
+5000
+1500
+=================================
+begin_total_asset:1000000
+end_total_asset:1107517.044769869
+Sharpe:  0.46680114716560484
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1107517.044769869
+Sharpe:  0.46680114716560484
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1107517.044769869
+Sharpe:  0.46680114716560484
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1107517.044769869
+Sharpe:  0.46680114716560484
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1107517.044769869
+Sharpe:  0.46680114716560484
+=================================
+test!!!!!
+=================================
+begin_total_asset:1000000
+end_total_asset:1195482.518392396
+Sharpe:  1.6077097733039818
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1195482.518392396
+Sharpe:  1.6077097733039818
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1195482.518392396
+Sharpe:  1.6077097733039818
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1195482.518392396
+Sharpe:  1.6077097733039818
+=================================
+=================================
+begin_total_asset:1000000
+end_total_asset:1195482.518392396
+Sharpe:  1.6077097733039818
+=================================
+eval sharpe:[np.float64(0.4681750939516728), np.float64(0.4947613030282872), np.float64(0.5130292423126042), np.float64(0.46031903672991586), np.float64(0.43375156326363845), np.float64(0.4938282165328472), np.float64(0.4392701453453457), np.float64(0.41175907120274036), np.float64(0.39638968728040874), np.float64(0.46680114716560484)]
+test sharpe:[np.float64(1.4980419863611074), np.float64(1.51114889048927), np.float64(1.8825562651000878), np.float64(1.6453496233136349), np.float64(1.711883968540687), np.float64(1.56899709034524), np.float64(1.2261019012363232), np.float64(1.2610499249308826), np.float64(1.2911648700146334), np.float64(1.6077097733039818)]
+__LOGDIR__ /content/PRUDEX/AlphaMix+/PM/rlkit/../data/portfolio_management/AlphaMix+/dj30/en_3_batch_256_plr_0.0007_qlr_0.0007_layer_128_2_buffer_10000_discount_0.99_tem_20_bm_0.5_uncertain_0.5/seed_12345
+__ELAPSED__ 1238.3
+__GPU__ True
+
+--- stderr ---
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: WBA"}}}
+
+1 Failed download:
+['WBA']: YFTzMissingError('possibly delisted; no timezone found')
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:379: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zclose"] = (temp_indicator.close / (
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:381: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_5"] = (temp_indicator.adjcp.rolling(5).sum() / 5) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:382: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_10"] = (temp_indicator.adjcp.rolling(10).sum() / 10) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:383: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_15"] = (temp_indicator.adjcp.rolling(15).sum() / 15) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:384: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_20"] = (temp_indicator.adjcp.rolling(20).sum() / 20) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:385: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_25"] = (temp_indicator.adjcp.rolling(25).sum() / 25) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:386: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  temp_indicator["zd_30"] = (temp_indicator.adjcp.rolling(30).sum() / 30) / temp_indicator.adjcp - 1
+/content/PRUDEX/AlphaMix+/PM/rl_env/portfolio_management.py:388: FutureWarning: DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  df_indicator = df_indicator.fillna(method="ffill").fillna(method="bfill")
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/loss.py:44: UserWarning: size_average and reduce args will be deprecated, please use reduction='none' instead.
+  self.reduction: str = _Reduction.legacy_get_string(size_average, reduce)

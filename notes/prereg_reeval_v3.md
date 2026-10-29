@@ -19,7 +19,7 @@
 | ID | 방법 | 공식 코드·데이터 | 계보·그룹 | 상태 |
 |---|---|---|---|---|
 | T1 | DeepAries (CIKM 2025) | dmis-lab/DeepAries @634f559. 저장소 포함 `data/dj30/dj30_general_data.csv`(2000-01-03~2025-02-07)를 그대로 쓰고 재다운로드하지 않음 | dmis-lab(고려대) | 파일럿 통과 |
-| T2 | AlphaMix+ (PRUDEX-Compass, TMLR 2023), US 주식 | TradeMaster-NTU/PRUDEX-Compass @2b62831 `AlphaMix+/PM`. 데이터는 코드가 Yahoo에서 받음(2012–2022) → 파일럿 때 받은 스냅샷을 Drive에 저장해 고정 | NTU(EarnMore·TradeMaster와 같은 그룹) | **파일럿 중** |
+| T2 | AlphaMix+ (PRUDEX-Compass, TMLR 2023), US 주식 | TradeMaster-NTU/PRUDEX-Compass @2b62831 `AlphaMix+/PM`. 데이터는 코드가 Yahoo에서 받음(2012–2022) → 파일럿 때 받은 스냅샷을 Drive에 저장해 고정 | NTU(EarnMore·TradeMaster와 같은 그룹) | 파일럿 통과(2026-10-29 기입, notes/alphamix_pilot_result.md) |
 | T3 | FinRL 포트폴리오 배분 (Liu et al., ICAIF 2021) A2C·PPO·DDPG·TD3 | FinRL-Meta `env_portfolio_yahoofinance.StockPortfolioEnv` @286fef6 + FinRL 튜토리얼 하이퍼파라미터. 데이터 스냅샷 고정 | AI4Finance | 시간 측정 필요 |
 
 ### 1.1 T2 확정과 대체
@@ -29,6 +29,7 @@
 - **대체 순서(고정):** ① EarnMore(WWW 2024) ② DeepClair ③ LSRE-CAAN.
   - 대체 대상은 v2 1장의 공식층 기준(논문 본문 또는 저자 저장소가 구현이라고 명시)을 통과해야 한다.
   - 대체 대상은 그 대상의 성과를 보기 전에 확정·커밋한다. 모두 실패하면 대상 2개로 보고한다.
+- **(2026-10-29 기입) T2 확정:** AlphaMix+가 허용 수정(shim 4개)만으로 실행됨(학습 1회 약 20.6분, T4). 대체 없음.
 
 ## 2. 공통 규칙
 ### 2.1 대상별 집계량
@@ -146,6 +147,7 @@ O1에서 재현 또는 부분 재현인 대상(T3는 알고리즘별)만 판정�
 ## 9. 계산 예산(커밋 전 채움)
 - T1: 학습 1회 약 20분(CPU). W0 3조건 × 10 = 10시간, 롤링 3창 × 2조건((a)·(b)) × 5 = 약 10시간.
 - T2: 파일럿 후 기입(GPU 필요 예상, 논문은 RTX 3090에서 1회 약 60분).
+  - (2026-10-29 기입) Colab T4 GPU에서 1회(10 epoch) 약 20.6분. O1 = 시드 5 × 3단계 15회 ≈ 5.2시간, O2 조건 (b)(c) 30회 ≈ 10.3시간, 합계 약 15.5시간(GPU). 축소 불필요로 시작하고, Colab 사용 한도로 막히면 축소 순서를 따른다.
 - T3: 측정 후 기입. 4알고리즘 × 5시드 × 3창 × 3조건 = 180회.
   - (2026-10-28 기입) 맥 CPU, 4개 병렬(torch 스레드 2): 1회 A2C 약 6.5분, PPO 약 10분, DDPG 약 25분, TD3 약 13.5분. 20회(1창 × 1조건) 벽시계 약 1시간 → 남은 160회 약 8시간. 축소 불필요. Colab CPU는 시드 1개(4알고리즘)에 106분으로 약 6.5배 느려 쓰지 않는다.
 - **축소 순서(고정):**
