@@ -1,0 +1,11 @@
+{
+ "stage": "S2019",
+ "dataset": "dj30_rolling2",
+ "seed": 51234,
+ "seconds": 1170.6,
+ "gpu": true,
+ "device": "Tesla T4",
+ "torch": "2.11.0+cu130",
+ "snapshot_sha256": "dc8cb413f236c9300974b5a9a4f8fde367143f2b0678d323d0145cd17e088331",
+ "finished": "2026-10-29 11:48:09 UTC"
+}

@@ -1,0 +1,11 @@
+{
+ "stage": "S2021",
+ "dataset": "dj30",
+ "seed": 23451,
+ "seconds": 1270.3,
+ "gpu": true,
+ "device": "Tesla T4",
+ "torch": "2.11.0+cu130",
+ "snapshot_sha256": "dc8cb413f236c9300974b5a9a4f8fde367143f2b0678d323d0145cd17e088331",
+ "finished": "2026-10-29 07:21:58 UTC"
+}
