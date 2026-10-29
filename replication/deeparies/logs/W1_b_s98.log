@@ -1,0 +1,10 @@
+2026-10-29 09:07:38,479 - INFO - Dataset root path: ./data/dj30/
+2026-10-29 09:07:38,480 - INFO - Dataset file: dj30_data.csv
+2026-10-29 09:07:38,505 - INFO - Auto-found pretrained checkpoint: iTransformer_DeepAries_dj30_general_num_stocks(20)_sl(20)_pl(20)_pretrained
+2026-10-29 09:07:38,505 - INFO - Use CPU
+2026-10-29 09:07:38,584 - INFO - DeepAries Backtesting: iTransformer_DeepAries_dj30_general_num_stocks(20)_sl(20)_pl(20)
+2026-10-29 09:07:38,650 - INFO - Successfully loaded checkpoint from ./checkpoints/iTransformer_DeepAries_dj30_general_num_stocks(20)_sl(20)_pl(20)_pretrained/checkpoint.pth on device: cpu
+2026-10-29 09:08:27,471 - INFO - [BackTest] Final Portfolio Value = 1.3677
+2026-10-29 09:08:27,480 - INFO - Total Return: 36.77%
+2026-10-29 09:08:27,480 - INFO - Annualized Return: 18.72%
+2026-10-29 09:08:27,480 - INFO - Maximum Drawdown: -2.64%

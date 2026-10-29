@@ -1,0 +1,13 @@
+2026-10-29 17:49:52,473 - INFO - Dataset root path: ./data/dj30/
+2026-10-29 17:49:52,475 - INFO - Dataset file: dj30_data.csv
+2026-10-29 17:49:52,499 - INFO - Use CPU
+2026-10-29 17:49:56,326 - INFO - [Train] Epoch 1/1
+2026-10-29 21:35:00,785 - INFO - [Validation] Total Reward=0.2160, Total Loss=0.0098, Value Loss=0.0058, Pred Loss=0.0401
+2026-10-29 21:46:51,298 - INFO - [Validation] Total Reward=0.1689, Total Loss=0.0479, Value Loss=0.0305, Pred Loss=0.1741
+2026-10-29 21:46:51,303 - INFO - [Epoch 1] TrainLoss=30.8465, ValiLoss=0.0098, TestLoss=0.0479
+2026-10-29 21:46:51,604 - INFO - Training completed, best model loaded.
+2026-10-29 21:46:51,609 - INFO - DeepAries Backtesting: iTransformer_DeepAries_dj30_general_num_stocks(20)_sl(20)_pl(20)
+2026-10-29 21:50:46,701 - INFO - [BackTest] Final Portfolio Value = 1.1475
+2026-10-29 21:50:46,708 - INFO - Total Return: 14.75%
+2026-10-29 21:50:46,709 - INFO - Annualized Return: 4.85%
+2026-10-29 21:50:46,709 - INFO - Maximum Drawdown: -21.79%
