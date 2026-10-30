@@ -30,9 +30,11 @@ log = logging.getLogger("live_monitor")
 
 LEDGER_FIELDS = [
     "time_utc", "equity", "target_exposure", "actual_exposure", "tracking_gap",
-    "skipped_usdt", "orders", "filled_orders", "rho", "note",
+    "skipped_usdt", "orders", "filled_orders", "rho", "note", "exposure_gap", "n_hold",
 ]
-TRACKING_GAP_WARN = 0.05  # 목표-실제 비중 L1 괴리가 이보다 크면 백테스트 가정과 실거래가 벌어진 상태
+# 목표-실제 위험자산 비중(총 노출) 차이가 이보다 크면 실행 목표가 노출을 맞추지 못하는 상태 — 종목별 L1 괴리는
+# 소액 운용에서 상위 종목 집중(crypto/live_execution.py) 때문에 원리상 크게 남으므로 경고 기준으로 쓰지 않는다
+EXPOSURE_GAP_WARN = 0.03
 UNTRADABLE_WARN_RATIO = 0.10  # 유니버스 중 거래불가 비율이 이 이상이면 재학습 필요
 
 
@@ -52,7 +54,17 @@ class Monitor:
     def _load_history(self) -> None:
         if self.ledger_path is not None and self.ledger_path.exists():
             with self.ledger_path.open(newline="") as f:
-                self.cycles.extend(csv.DictReader(f))
+                reader = csv.DictReader(f)
+                self.cycles.extend(reader)
+                header = reader.fieldnames
+            if header != LEDGER_FIELDS:
+                # 열이 추가되기 전의 기록 파일 — 새 열 순서로 다시 써서 이후 행과 열이 어긋나지 않게 한다
+                tmp = self.ledger_path.with_suffix(".tmp")
+                with tmp.open("w", newline="") as f:
+                    w = csv.DictWriter(f, fieldnames=LEDGER_FIELDS, extrasaction="ignore")
+                    w.writeheader()
+                    w.writerows(self.cycles)
+                tmp.replace(self.ledger_path)
         if self.events_path is not None and self.events_path.exists():
             for line in self.events_path.read_text().splitlines()[-self.events.maxlen:]:
                 try:
@@ -106,10 +118,10 @@ class Monitor:
             reasons += s["api_key_warnings"]
         if s.get("untradable_ratio", 0) >= UNTRADABLE_WARN_RATIO:
             reasons.append(f"유니버스 {s['untradable_ratio']:.0%}가 거래불가 — 현재 시장 기준으로 재학습 필요")
-        if s.get("tracking_gap", 0) > TRACKING_GAP_WARN:
+        if s.get("exposure_gap", 0) > EXPOSURE_GAP_WARN:
             reasons.append(
-                f"목표-실제 비중 괴리 {s['tracking_gap']:.1%} — 주문하지 못한 비중(최소주문금액 미달·거래정지·"
-                "스프레드 보류·부분체결)이 커서 백테스트 가정과 다르게 운용 중"
+                f"목표-실제 위험자산 비중 차이 {s['exposure_gap']:.1%} — 주문하지 못한 비중(최소주문금액 미달·거래정지·"
+                "스프레드 보류·부분체결)이 커서 정책 목표 노출과 다르게 운용 중"
             )
         if s.get("small_capital_warning"):
             reasons.append(s["small_capital_warning"])
@@ -285,7 +297,7 @@ function render(d) {
   document.getElementById("tiles").innerHTML = [
     tile("운용자산", num(last.equity) + " <small>USDT</small>", st.max_capital ? `상한 ${num(st.max_capital, 0)}` : ""),
     tile("위험자산 비중", `${pct(last.actual_exposure)}`, `목표 ${pct(last.target_exposure)} · ρ ${num(last.rho, 3)}`),
-    tile("목표-실제 괴리", pct(last.tracking_gap), `주문 못 한 금액 ${num(last.skipped_usdt)} USDT`),
+    tile("노출 괴리", pct(last.exposure_gap), `보유 ${last.n_hold ?? "–"}종목 · 종목별 괴리 ${pct(last.tracking_gap)}`),
     tile("주문", `${last.filled_orders ?? "–"} / ${last.orders ?? "–"}`, "체결 / 시도 (직전 사이클)"),
     tile("서킷브레이커", st.breaker_tripped ? "발동" : "정상", st.day_pnl_pct != null ? `당일 ${pct(st.day_pnl_pct)} (입출금 제외)` : ""),
     tile("마지막 사이클", st.last_cycle_at ? new Date(st.last_cycle_at * 1000).toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit", hour12: false }) : "–", next != null ? `다음까지 약 ${next.toFixed(0)}분` : ""),
@@ -309,9 +321,9 @@ function render(d) {
 
   const rows = d.cycles.slice(-50).reverse();
   document.getElementById("cycles").innerHTML =
-    `<tr><th>시각</th><th>운용자산</th><th>목표 노출</th><th>실제 노출</th><th>괴리</th><th>보류 USDT</th><th>주문</th><th>ρ</th><th style="text-align:left">비고</th></tr>`
+    `<tr><th>시각</th><th>운용자산</th><th>목표 노출</th><th>실제 노출</th><th>노출 괴리</th><th>종목 괴리</th><th>보유</th><th>주문</th><th>ρ</th><th style="text-align:left">비고</th></tr>`
     + rows.map((c) => `<tr><td>${esc(fmtUtc(c.time_utc))}</td><td>${num(c.equity)}</td><td>${pct(c.target_exposure)}</td><td>${pct(c.actual_exposure)}</td>`
-      + `<td>${pct(c.tracking_gap)}</td><td>${num(c.skipped_usdt)}</td><td>${c.filled_orders}/${c.orders}</td><td>${num(c.rho, 3)}</td><td class="l">${esc(c.note || "")}</td></tr>`).join("");
+      + `<td>${pct(c.exposure_gap)}</td><td>${pct(c.tracking_gap)}</td><td>${c.n_hold || "–"}</td><td>${c.filled_orders}/${c.orders}</td><td>${num(c.rho, 3)}</td><td class="l">${esc(c.note || "")}</td></tr>`).join("");
 }
 
 async function refresh() {

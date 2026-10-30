@@ -27,6 +27,7 @@ from pathlib import Path
 
 from crypto.broker.base import BrokerClient, OrderSide, managed_equity
 from crypto.broker.binance_client import BinanceBrokerClient
+from crypto.live_execution import ExecutionState, executable_targets
 from crypto.live_monitor import Monitor, MonitorLogHandler, serve_dashboard
 from crypto.policy_base import EqualWeightPolicy, PolicyAdapter
 
@@ -43,6 +44,7 @@ LOCK_PATH = CRYPTO_DIR / "live_trading.lock"
 LEDGER_PATH = CRYPTO_DIR / "live_ledger.csv"  # 사이클별 기록 (대시보드·사후 분석용)
 POLICY_STATE_PATH = CRYPTO_DIR / "policy_state.json"  # 정책 스무딩 상태 (재시작해도 이어지도록)
 EVENTS_PATH = CRYPTO_DIR / "live_events.jsonl"  # WARNING 이상 로그 (재시작해도 대시보드에 남도록)
+EXEC_STATE_PATH = CRYPTO_DIR / "live_exec_state.json"  # 실행 목표의 선택 종목·종목 수 (히스테리시스가 재시작 후에도 이어지도록)
 
 
 def load_frozen_universe() -> list[str]:
@@ -180,9 +182,11 @@ def _place(
 
 def rebalance_step(
     broker: BrokerClient, policy: PolicyAdapter, config: LoopConfig, breaker: CircuitBreaker,
-    monitor=None,
+    monitor=None, exec_state: ExecutionState | None = None,
 ) -> dict:
     """한 사이클을 실행하고 사이클 기록(ledger 행)을 반환한다."""
+    if exec_state is None:
+        exec_state = ExecutionState(None)
     positions = {p.symbol: p for p in broker.get_positions()}
     cash = broker.get_cash_balance()
     prices = {s: p.current_price for s, p in positions.items()}
@@ -239,9 +243,10 @@ def rebalance_step(
 
     # 사이클 끝의 종목별 보유 평가액 — 주문이 체결된 만큼만 갱신해 목표와의 괴리(백테스트와의 차이)를 잰다
     final_value = {s: positions[s].quantity * positions[s].current_price if s in positions else 0.0 for s in config.symbols}
-    sells, buys = [], []
-    min_notional = 5.0
-    for symbol, target_w in targets.items():
+    # 시세·스프레드를 먼저 확인해 이번 사이클에 주문 가능한 종목만 실행 목표의 후보로 삼는다 —
+    # 고른 뒤에 못 사게 되면 그 몫이 현금으로 남아 노출이 목표보다 낮아진다.
+    quotes, min_notional = {}, {}
+    for symbol in targets:
         if symbol in untradable:
             continue
         try:
@@ -249,26 +254,37 @@ def rebalance_step(
         except Exception:
             log.warning("심볼 %s 시세 조회 실패 — 이번 사이클 리밸런싱 스킵(상장폐지/거래정지 가능성)", symbol)
             continue
+        current_qty = positions[symbol].quantity if symbol in positions else 0.0
+        final_value[symbol] = current_qty * quote.last
+        if quote.spread > MAX_SPREAD:
+            if final_value[symbol] > 0 or targets[symbol] * equity >= MIN_REBALANCE_USDT:
+                log.warning("심볼 %s 호가 스프레드 %.2f%% > %.2f%% — 유동성 부족으로 이번 사이클 거래 보류", symbol, quote.spread * 100, MAX_SPREAD * 100)
+            continue
+        quotes[symbol] = quote
+        min_notional[symbol] = broker.get_min_notional(symbol)
+    # 거래소 최소 명목가(대부분 5 USDT) 미만 주문은 어차피 거부되므로 미리 거른다 —
+    # 안 거르면 소액 운용 시 매 사이클 거의 모든 주문이 거부 로그만 남긴다.
+    min_values = {s: max(MIN_REBALANCE_USDT, m * NOTIONAL_MARGIN) for s, m in min_notional.items()}
+    exec_values, selected, n_hold = executable_targets(
+        targets, equity, final_value, list(quotes), min_notional, config.risk.max_weight_per_symbol,
+        exec_state.selected, exec_state.n, min_values,
+    )
+    row["n_hold"] = n_hold
+    sells, buys = [], []
+    for symbol, target_value in exec_values.items():
+        quote = quotes[symbol]
         price = quote.last
         current_qty = positions[symbol].quantity if symbol in positions else 0.0
-        final_value[symbol] = current_qty * price
-        target_value = equity * target_w
         diff_value = target_value - current_qty * price
-        # 거래소 최소 명목가(대부분 5 USDT) 미만 주문은 어차피 거부되므로 미리 거른다 —
-        # 안 거르면 소액 운용 시 매 사이클 거의 모든 주문이 거부 로그만 남긴다.
-        min_notional = broker.get_min_notional(symbol)
-        min_value = max(MIN_REBALANCE_USDT, min_notional * NOTIONAL_MARGIN)
-        if abs(diff_value) < min_value:
+        min_value = min_values[symbol]
+        if target_value == 0 and current_qty * price >= min_value:
+            # 선택에서 빠진 종목은 차이가 작아도 전량 매도 — 일부만 팔면 남은 잔량이 최소 명목가 미만
+            # 더스트가 돼 다시는 팔 수 없다
+            sells.append((symbol, current_qty, quote.bid * (1 - MAX_SLIPPAGE), price, current_qty, 0.0))
+        elif abs(diff_value) < min_value:
             continue
-        if quote.spread > MAX_SPREAD:
-            log.warning("심볼 %s 호가 스프레드 %.2f%% > %.2f%% — 유동성 부족으로 이번 사이클 거래 보류", symbol, quote.spread * 100, MAX_SPREAD * 100)
-            continue
-        if diff_value < 0:
-            qty = -diff_value / price
-            if target_value < min_value:
-                # 목표가 사실상 0이면 남은 잔량이 최소 명목가 미만 더스트가 돼 다시는 팔 수 없게 되므로 전량 매도
-                qty = current_qty
-            sells.append((symbol, qty, quote.bid * (1 - MAX_SLIPPAGE), price, current_qty, target_value / price))
+        elif diff_value < 0:
+            sells.append((symbol, -diff_value / price, quote.bid * (1 - MAX_SLIPPAGE), price, current_qty, target_value / price))
         else:
             buys.append((symbol, diff_value, quote.ask * (1 + MAX_SLIPPAGE), price, current_qty, target_value / price, min_value))
 
@@ -297,26 +313,34 @@ def rebalance_step(
         final_value[symbol] += filled * price
         available -= filled * limit
 
+    exec_state.save(selected, n_hold)
     target_exposure = sum(targets.values())
     actual_exposure = sum(final_value.values()) / equity if equity > 0 else 0.0
+    exposure_gap = abs(target_exposure - actual_exposure)
     gap = sum(abs(targets.get(s, 0.0) * equity - v) for s, v in final_value.items()) if equity > 0 else 0.0
     tracking_gap = gap / equity if equity > 0 else 0.0
     top_values = sorted((w * equity for w in targets.values()), reverse=True)[: getattr(policy, "top_k", 10)]
     median_target = top_values[len(top_values) // 2] if top_values else 0.0
+    ref_notional = max(min_notional.values(), default=5.0)
     small = (
-        f"종목당 목표금액(상위 종목 중앙값) {median_target:.2f} USDT — 최소주문금액 {min_notional:.0f} USDT의 "
-        f"{SMALL_POSITION_MULTIPLE}배 미만이라 정책의 비중 변화 대부분이 주문되지 못함. 운용금을 늘릴 것"
-        if 0 < median_target < SMALL_POSITION_MULTIPLE * min_notional else ""
+        f"종목당 목표금액(상위 종목 중앙값) {median_target:.2f} USDT — 최소주문금액 {ref_notional:.0f} USDT의 "
+        f"{SMALL_POSITION_MULTIPLE}배 미만이라 정책 상위 {n_hold}종목에만 집중해 총 노출을 맞추는 중"
+        "(종목 구성은 백테스트와 다름). 정책대로 운용하려면 운용금을 늘릴 것"
+        if 0 < median_target < SMALL_POSITION_MULTIPLE * ref_notional else ""
     )
-    update(tracking_gap=tracking_gap, small_capital_warning=small)
+    update(tracking_gap=tracking_gap, exposure_gap=exposure_gap, n_hold=n_hold, held_symbols=selected,
+           small_capital_warning=small)
     log.info(
-        "사이클 완료 | 운용자산 %.2f USDT | 위험자산 비중 목표 %.1f%% · 실제 %.1f%% | 괴리 %.1f%% | 주문 %d건(체결 %d)",
-        equity, target_exposure * 100, actual_exposure * 100, tracking_gap * 100, n_orders, n_filled,
+        "사이클 완료 | 운용자산 %.2f USDT | 위험자산 비중 목표 %.1f%% · 실제 %.1f%% (노출 괴리 %.1f%%) | 종목 괴리 %.1f%% "
+        "| 보유 %d종목 | 주문 %d건(체결 %d)",
+        equity, target_exposure * 100, actual_exposure * 100, exposure_gap * 100, tracking_gap * 100, n_hold,
+        n_orders, n_filled,
     )
     return {
         **row,
         "target_exposure": round(target_exposure, 5),
         "actual_exposure": round(actual_exposure, 5),
+        "exposure_gap": round(exposure_gap, 5),
         "tracking_gap": round(tracking_gap, 5),
         "skipped_usdt": round(gap, 4),
         "orders": n_orders,
@@ -379,6 +403,7 @@ def run(config: LoopConfig, broker: BrokerClient, policy: PolicyAdapter, monitor
         len(config.symbols),
     )
     breaker = CircuitBreaker(config.risk.daily_loss_limit_pct, state_path=None if config.dry_run else STATE_PATH)
+    exec_state = ExecutionState(None if config.dry_run else EXEC_STATE_PATH)
     failures = 0
 
     while True:
@@ -387,7 +412,7 @@ def run(config: LoopConfig, broker: BrokerClient, policy: PolicyAdapter, monitor
             log_handler.cycle_warnings = 0
 
         try:
-            row = rebalance_step(broker, policy, config, breaker, monitor)
+            row = rebalance_step(broker, policy, config, breaker, monitor, exec_state)
             failures = 0
         except Exception:
             failures += 1
