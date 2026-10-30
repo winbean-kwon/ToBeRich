@@ -1,0 +1,1 @@
+{"python": "3.13.16", "torch": "2.11.0+cu130", "numpy": "2.1.3", "cpus": 2, "cuda": true, "gpu": "Tesla T4", "time": "2026-10-30 05:36"}

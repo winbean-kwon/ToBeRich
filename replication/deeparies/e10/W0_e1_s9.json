@@ -1,0 +1,20 @@
+{
+ "vali_loss": [
+  0.023953236093802843
+ ],
+ "first_date": "2021-12-31",
+ "printed": {
+  "cagr": 2.8,
+  "mdd": -19.58
+ },
+ "minutes": 1.57,
+ "torch": "2.11.0+cu130",
+ "numpy": "2.1.3",
+ "argv": [
+  "--seed",
+  "9",
+  "--train_epochs",
+  "1"
+ ],
+ "device": "Tesla T4"
+}
