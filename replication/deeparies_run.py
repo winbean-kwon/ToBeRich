@@ -45,16 +45,23 @@
 #   모든 창 시드 중앙값 |Δ| < 2%p/년이면 '차이 작음'.
 # - 2차: (a)@0.0001, (c)@0.001, (b)@0.001, 매월·buy-and-hold·최댓값 기준선, 블록 부트스트랩 CI·샤프 차이 p(T3와 같은
 #   함수), O4 = 원래 env 기록 가치의 연율 로그 성장 − U1 c=0.0001 값(조건 (a)), 평균 회전율.
+#
+# 고정 사항 — O1 변형 E(judge_e, notes/deeparies_e10_prereg.md, 실행 전 커밋):
+# - 조건 e1 = 원래 코드(train_epochs 1), e10 = 원래 코드 + --train_epochs 10(README 'Training with more epochs').
+#   나머지 인자·데이터·기록은 (a)와 같다. 창 W0, 시드 0–9, Colab에서 시드마다 e1 → e10 순으로 같은 런타임에서 실행.
+# - 경로: 환경변수 DA_CODE(공식 코드 위치), DA_RUNS(결과 폴더), DA_THREADS(torch 스레드, 기본 2)로 바꿀 수 있다.
 import sys, os, json, time, hashlib, pathlib, re, io, contextlib, types
 
 HERE = pathlib.Path(__file__).resolve().parent
 ROOT = HERE.parent
 D = HERE / 'deeparies'
-CODE = ROOT / '.t1env' / 'DeepAries'
+CODE = pathlib.Path(os.environ.get('DA_CODE', ROOT / '.t1env' / 'DeepAries'))
+RUNS = pathlib.Path(os.environ.get('DA_RUNS', D / 'runs'))
 GEN_MD5 = '1c3432510aa93980f6534d6906315041'
 WINDOWS = {'W0': ('2021-12-31', None, '2020-12-31'), 'W1': ('2015-12-31', '2017-12-31', '2014-12-31'),
            'W2': ('2017-12-31', '2019-12-31', '2016-12-31'), 'W3': ('2019-12-31', '2021-12-31', '2018-12-31')}
-COND_COST = {'a': None, 'b': 0.0001, 'c': 0.001}
+COND_COST = {'a': None, 'b': 0.0001, 'c': 0.001, 'e1': None, 'e10': None}
+COND_EPOCHS = {'e1': 1, 'e10': 10}
 C_PAPER = 0.0001
 REPORTED_CAGR, TOL_CAGR, REPORTED_MDD, TOL_MDD = 7.90, 0.87, 13.67, 5.0
 RUNS_O1 = [('W0', 'a', s) for s in range(10)]
@@ -62,7 +69,7 @@ RUNS_O2 = [('W0', c, s) for c in 'bc' for s in range(10)] + [(w, c, s) for w in 
 
 
 def run_path(w, c, s):
-    return D / 'runs' / f'{w}_{c}_s{s}.csv'
+    return RUNS / f'{w}_{c}_s{s}.csv'
 
 
 def window_csv(w):
@@ -71,7 +78,7 @@ def window_csv(w):
     end = WINDOWS[w][1]
     if end is None:
         return src
-    dst = ROOT / '.t1env' / 'data' / f'dj30_general_{w}.csv'
+    dst = CODE.parent / 'data' / f'dj30_general_{w}.csv'
     if not dst.exists():
         dst.parent.mkdir(parents=True, exist_ok=True)
         lines = src.read_text().splitlines(keepends=True)
@@ -87,7 +94,7 @@ def cmd_run(w, c, s):
     src = CODE / 'data' / 'dj30' / 'dj30_general_data.csv'
     assert hashlib.md5(src.read_bytes()).hexdigest() == GEN_MD5, '데이터 해시 불일치'
     # 실행마다 작업 디렉터리를 따로 둔다: 코드가 ./data/dj30/·./checkpoints/·./results/를 상대 경로로 쓴다.
-    wd = ROOT / '.t1env' / 'work' / f'{w}_{c}_s{s}'
+    wd = CODE.parent / 'work' / f'{w}_{c}_s{s}'
     import shutil
     shutil.rmtree(wd, ignore_errors=True); (wd / 'data' / 'dj30').mkdir(parents=True)
     for n in ('main.py', 'exp', 'models', 'layers', 'utils', 'data_provider', 'complete_dj30_tickers.csv'):
@@ -99,7 +106,7 @@ def cmd_run(w, c, s):
         (wd / 'checkpoints').symlink_to(CODE / 'checkpoints'); out = D / 'smoke' / out.name
     os.chdir(wd); sys.path.insert(0, str(wd))
     import numpy as np, torch
-    torch.set_num_threads(2)
+    torch.set_num_threads(int(os.environ.get('DA_THREADS', '2')))
     import exp.exp_DeepAries as E
     import main as M
     rec = {'steps': [], 'vali': []}
@@ -144,6 +151,9 @@ def cmd_run(w, c, s):
     E.Exp_DeepAries.vali = vali
 
     argv = ['main.py', '--seed', str(s)]
+    if c in COND_EPOCHS:
+        assert w == 'W0'
+        argv += ['--train_epochs', str(COND_EPOCHS[c])]
     if w != 'W0':
         argv += ['--test_year', WINDOWS[w][0], '--valid_year', WINDOWS[w][2]]
     if smoke:
@@ -159,9 +169,9 @@ def cmd_run(w, c, s):
                (('cagr', r'Annualized Return: ([-\d.]+)%'), ('mdd', r'Maximum Drawdown: ([-\d.]+)%'))}
     # 로그만 남기고 작업 디렉터리(체크포인트 포함)는 끝에 지운다
     logs = list((wd / 'results').glob('*/experiment.log'))
-    (D / 'logs').mkdir(parents=True, exist_ok=True)
+    (RUNS / 'logs').mkdir(parents=True, exist_ok=True)
     if logs:
-        shutil.copy(logs[0], D / 'logs' / f'{w}_{c}_s{s}.log')
+        shutil.copy(logs[0], RUNS / 'logs' / f'{w}_{c}_s{s}.log')
     import pandas as pd
     tics = sorted(pd.read_csv(window_csv(w), usecols=['tic']).tic.unique())   # 코드의 종목 순서(sort_index)
     st = rec['steps']
@@ -173,7 +183,8 @@ def cmd_run(w, c, s):
     out.parent.mkdir(parents=True, exist_ok=True)
     tmp = out.with_suffix('.tmp'); df.to_csv(tmp, index=False, float_format='%.10g')
     meta = {'vali_loss': rec['vali'], 'first_date': rec['first_date'], 'printed': printed, 'minutes': round(mins, 2),
-            'torch': torch.__version__, 'numpy': np.__version__}
+            'torch': torch.__version__, 'numpy': np.__version__, 'argv': argv[1:],
+            'device': torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'cpu'}
     out.with_suffix('.json').write_text(json.dumps(meta, indent=1))
     os.replace(tmp, out)
     os.chdir(ROOT); shutil.rmtree(wd, ignore_errors=True)
@@ -197,11 +208,11 @@ def code_metrics(df, meta):
     return cagr, mdd, dates[0], dates[-1]
 
 
-def cmd_judge1():
+def cmd_judge1(cond='a', out_name='judge_o1.json'):
     import numpy as np, pandas as pd
     dji = pd.read_csv(D / 'data' / 'dji.csv', index_col=0, parse_dates=True).Close
     rows = []
-    for w, c, s in RUNS_O1:
+    for w, c, s in [('W0', cond, s) for s in range(10)]:
         df, meta = load_run(w, c, s)
         cagr, mdd, d0, d1 = code_metrics(df, meta)
         assert abs(cagr - meta['printed']['cagr']) < 0.006 and abs(mdd - meta['printed']['mdd']) < 0.006, (s, cagr, mdd, meta['printed'])
@@ -209,7 +220,8 @@ def cmd_judge1():
         dcagr = ((p1 / p0) ** (365 / (d1 - d0).days) - 1) * 100
         rows.append({'시드': s, '검증 손실': min(meta['vali_loss']),
                      'CAGR(%)': round(cagr, 3), 'MDD(%)': round(mdd, 3), '^DJI CAGR(%)': round(dcagr, 3),
-                     '기간': f'{d0.date()}~{d1.date()}'})
+                     '기간': f'{d0.date()}~{d1.date()}', '검증 손실 기록': meta['vali_loss'],
+                     '장치': meta.get('device'), '분': meta['minutes']})
     sel = min(rows, key=lambda r: r['검증 손실'])
     r1 = abs(sel['CAGR(%)'] - REPORTED_CAGR) <= TOL_CAGR and abs(abs(sel['MDD(%)']) - REPORTED_MDD) <= TOL_MDD
     k = sum(r['CAGR(%)'] > r['^DJI CAGR(%)'] for r in rows)
@@ -219,7 +231,26 @@ def cmd_judge1():
                   '허용 폭': [TOL_CAGR, TOL_MDD], '통과': bool(r1)},
            'R2': {'^DJI 초과 시드 수': int(k), '기준': '≥7/10', '통과': bool(r2)},
            '등급': '재현' if r1 and r2 else ('부분 재현' if r1 or r2 else '미재현')}
-    (D / 'judge_o1.json').write_text(json.dumps(res, ensure_ascii=False, indent=1))
+    (RUNS / out_name).write_text(json.dumps(res, ensure_ascii=False, indent=1))
+    print(json.dumps({k: v for k, v in res.items() if k != '시드별'}, ensure_ascii=False, indent=1))
+    return res
+
+
+def cmd_judge_e():
+    # O1 변형 E: e10·e1 각각에 O1 기준을 그대로 적용하고, 시드별 짝 차이(e10 − e1)를 2차로 적는다.
+    import numpy as np
+    out = {}
+    for c in ('e1', 'e10'):
+        out[c] = cmd_judge1(c, f'judge_{c}.json')
+    a, b = out['e1']['시드별'], out['e10']['시드별']
+    d = [y['CAGR(%)'] - x['CAGR(%)'] for x, y in zip(a, b)]
+    same = [x['장치'] == y['장치'] for x, y in zip(a, b)]
+    res = {'등급': {c: out[c]['등급'] for c in out}, 'R1': {c: out[c]['R1'] for c in out}, 'R2': {c: out[c]['R2'] for c in out},
+           '2차: 시드별 CAGR 차이 e10−e1(%p)': [round(x, 3) for x in d], '중앙값': round(float(np.median(d)), 3),
+           '양수 시드 수': int(sum(x > 0 for x in d)), '같은 장치 짝 수': int(sum(same)),
+           '2차: e10 선택 epoch(검증 손실 최소 위치, 1부터)': [int(np.argmin(r['검증 손실 기록'])) + 1 for r in b],
+           '2차: e10 실행 epoch 수(조기 종료 포함)': [len(r['검증 손실 기록']) for r in b]}
+    (RUNS / 'judge_e.json').write_text(json.dumps(res, ensure_ascii=False, indent=1))
     print(json.dumps(res, ensure_ascii=False, indent=1))
 
 
@@ -320,4 +351,4 @@ def cmd_judge2():
 
 if __name__ == '__main__':
     cmd, *a = sys.argv[1:]
-    {'run': lambda: cmd_run(a[0], a[1], int(a[2])), 'judge1': cmd_judge1, 'judge2': cmd_judge2}[cmd]()
+    {'run': lambda: cmd_run(a[0], a[1], int(a[2])), 'judge1': cmd_judge1, 'judge2': cmd_judge2, 'judge_e': cmd_judge_e}[cmd]()

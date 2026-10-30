@@ -12,7 +12,7 @@
 
 Dear Dr. [교신저자],
 
-I am an undergraduate student at Hankuk University of Foreign Studies working on a graduation thesis that re-runs published RL portfolio methods with their official code. Thank you for releasing the DeepAries code (dmis-lab/DeepAries).
+I am an undergraduate student at Hanyang University working on a graduation thesis that re-runs published RL portfolio methods with their official code. Thank you for releasing the DeepAries code (dmis-lab/DeepAries).
 
 I ran the official repository (commit 634f559) with the default arguments on the DJ30 split in the demo, and I would like to make sure that my setup matches the one behind the reported results (Table 2, CAGR 7.90%, MDD 13.67%). Could you let me know:
 
@@ -25,7 +25,7 @@ Any pointer would help me report your method accurately. Thank you very much for
 
 Best regards,
 Seungbin Kwon
-Hankuk University of Foreign Studies
+Hanyang University
 
 ---
 
@@ -35,7 +35,7 @@ Hankuk University of Foreign Studies
 
 Dear Dr. [교신저자],
 
-I am an undergraduate student at Hankuk University of Foreign Studies working on a graduation thesis that re-runs published RL portfolio methods with their official code. Thank you for releasing PRUDEX-Compass.
+I am an undergraduate student at Hanyang University working on a graduation thesis that re-runs published RL portfolio methods with their official code. Thank you for releasing PRUDEX-Compass.
 
 I ran AlphaMix+ for portfolio management (`AlphaMix+/PM`, commit 2b62831) on the dj30 splits (test 2019/2020/2021) with 5 seeds and 10 epochs, and I would like to confirm a few details behind the reported US total returns (20.7 / 12.7 / 25.1%):
 
@@ -48,4 +48,4 @@ Thank you very much for your time.
 
 Best regards,
 Seungbin Kwon
-Hankuk University of Foreign Studies
+Hanyang University
