@@ -1,0 +1,44 @@
+{
+ "ref_ok": {
+  "C1": {
+   "verdict": "통과",
+   "reward_differs": true,
+   "value_differs": true
+  },
+  "S1": {
+   "ratio": 0.9999999999999943,
+   "timing": "일치",
+   "verdict": "정상"
+  },
+  "P1": {
+   "w_max_in_bounds": 1.0,
+   "ratio_in_bounds": 2.688117141816135e+43,
+   "w_max_out_of_bounds": 0.9995462067242036,
+   "env_clips": false
+  }
+ },
+ "ref_defect": {
+  "C1": {
+   "verdict": "부과 안 됨",
+   "reward_differs": false,
+   "value_differs": false
+  },
+  "S1": {
+   "ratio": 0.0,
+   "timing": "미반영",
+   "verdict": "미반영"
+  },
+  "P1": {
+   "w_max_in_bounds": 0.4249256576603398,
+   "ratio_in_bounds": 7.38905609893065,
+   "w_max_out_of_bounds": 0.4248812838747407,
+   "env_clips": false
+  }
+ },
+ "ref_lag": {
+  "ratio": 1.0000000000000284,
+  "timing": "1스텝 지연",
+  "verdict": "정상"
+ },
+ "controls_pass": true
+}
