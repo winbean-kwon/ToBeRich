@@ -52,9 +52,10 @@ def s1(make_env, c_test, actions, has_cash):
         prev = cur
     if np.max(np.abs(meas)) < EPS_DIFF:
         return {'ratio': 0.0, 'timing': '미반영', 'verdict': '미반영', 'meas': meas.tolist(), 'ref': ref.tolist()}
-    e0 = np.abs(meas - ref).sum()
-    e1 = np.abs(meas[1:] - ref[:-1]).sum()
-    lag = 0 if e0 <= e1 else 1
+    def resid(m, r):   # 크기를 맞춘 뒤의 상대 잔차(비율 ≠ 1일 때 L1 비교가 시차를 잘못 고르는 문제 수정, 2026-11-01 1차 실행 후)
+        k = (m @ r) / (r @ r) if r @ r > 0 else 0.0
+        return np.abs(m - k * r).sum() / (np.abs(m).sum() + 1e-300)
+    lag = 0 if resid(meas, ref) <= resid(meas[1:], ref[:-1]) else 1
     mref = ref[:len(ref) - lag]
     mm = meas[lag:]
     sel = mref > 0.05 * c_test
