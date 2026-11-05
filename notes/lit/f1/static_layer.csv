@@ -1,6 +1,6 @@
 order,sample,id,paper,venue_group,year,repo_MB,F2,F6,F3,F3_type,status,note
 —,S56,T1~T4,DeepAries·AlphaMix+·FinRL·MARS,—,—,—,pass,pass,pass,,선행 선택(별도 집계),1.5절
-1,S56,P24-01,EarnMore,main,2024,35.1,pass,pass(Table 2 DJ30 ARR 47.29 SR 1.454 MDD 21.65; 3분할×3시드=9회 평균),pass,번들(dj30 raw),F4 대기(1번),qlib 소스 설치·torch 1.13. S&P500 데이터는 미번들
+1,S56,P24-01,EarnMore,main,2024,35.1,pass,pass(Table 2 DJ30 ARR 47.29 SR 1.454 MDD 21.65; 3분할×3시드=9회 평균),pass,번들(dj30 raw),F4 대기(1번),qlib 소스 설치·torch 1.13. S&P500 데이터는 미번들. 전처리 tools/preprocess.py 있음. 관찰: 공개 tools/train.py의 test 환경이 주석 처리돼 있어 시험 구간 평가는 날짜 인자로 검증 경로를 써야 함(논문–코드 불일치 비고). 2000 에피소드
 2,S56,W22_PPN,PPN,main,2022,—,pass(저자 표기 '논문보다 앞선 버전'),pass(Table 8 S&P500 APV 167.84 20회; Table 3 Crypto),pass,공개 경로(Drive database.zip 열림),F4 대기(2번),Python 2.7·TF1. 논문 시험 구간 94스텝
 3,S56,xu2020rat,RAT,main,2020,0.2,pass(저자 표기 '논문보다 앞선 버전'),pass(Table 2 Crypto-A APV 156.53±14.25 5회),pass,공개 경로(Drive Crypto-A 열림),F4 대기(3번),PyTorch 0.4.1. Crypto-A만 제공
 4,S56,yang2020ensemble,Ensemble ICAIF 2020,main,2020,79.5,미확인(HEAD는 FinRL-X로 교체됨; 2020 커밋 필요),미확인,미확인,—,F2 재확인,출판 후 저장소 교체(old_repo 브랜치 흔적)
