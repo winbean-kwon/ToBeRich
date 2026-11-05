@@ -31,5 +31,7 @@
 
 **판정에 쓰지 않는 탐색적 기록:** 에피소드별 사이클 수·학습 초·검증 초, GPU 이용률, CPU 시간 비율, 분할 1·2의 환산, 모의 사이클(시드 42 기준 12, 9)과 실측의 일치 여부.
 
+**실행 전 실패 기록(규칙 4, 시간 측정 전):** 11-05 설치 단계 `importcheck`에서 실패. qlib 받기가 네트워크 시간 초과로 실패해 qlib→jupyter→ipython→matplotlib-inline 의존성이 빠졌고, Colab 커널의 `MPLBACKEND=module://matplotlib_inline.backend_inline`이 하위 프로세스로 넘어가 matplotlib import가 실패한 것으로 판단한다. 보강: `MPLBACKEND=agg`, pip 시간 초과 120초·재시도 5회. 공식 코드·설정·판정 규칙은 바꾸지 않았다. 공식 코드의 외부 import 17종을 점검했고, qlib 없이 빠지는 것은 없다고 판단한다. `hfai_env`는 `try`로 감싸여 있어 없어도 된다. 1회 측정 때는 qlib이 설치되어 있었으므로 이번에 qlib이 빠지면 환경 차이로 적는다.
+
 ## 3. 재측정 결과
 (실행 후 작성)
