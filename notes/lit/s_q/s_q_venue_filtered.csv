@@ -1,0 +1,24 @@
+venue,year,title,doi,arxiv,s2,in_S56
+AAAI,2020,Selecting Portfolios Directly Using Recurrent Reinforcement Learning (Student Abstract),10.1609/aaai.v34i10.7201,,089d63fb6b6d9d512feaa80c6e8f50c40702e911,False
+AAAI,2021,DeepTrader: A Deep Reinforcement Learning Approach for Risk-Return Balanced Portfolio Management with Market Conditions Embedding,10.1609/aaai.v35i1.16144,,0b26cb46675c0b00483c254488c9a14d89eec8e5,True
+AAAI,2025,MARS: A Meta-Adaptive Reinforcement Learning Framework for Risk-Aware Multi-Agent Portfolio Management,10.48550/arXiv.2508.01173,2508.01173,6929fc1d1c1c5cec0c0e20ff30c8deb4551e10cd,True
+AAAI,2025,Augmented Lagrangian Risk-constrained Reinforcement Learning for Portfolio Optimization (Student Abstract),10.1609/aaai.v39i28.35252,,dcedf74508cbc550b62fed408904c3a8510d0702,False
+AAMAS,2024,Developing A Multi-Agent and Self-Adaptive Framework with Deep Reinforcement Learning for Dynamic Portfolio Risk Management,10.48550/arXiv.2402.00515,2402.00515,6c44420f393062b69ffd947dfab513767d30b7da,True
+CIKM,2021,XPM: An Explainable Deep Reinforcement Learning Framework for Portfolio Management,10.1145/3459637.3482494,,5f47a6a02f3847d3f9a3b56018287854829618e7,False
+CIKM,2022,MetaTrader: An Reinforcement Learning Approach Integrating Diverse Policies for Portfolio Optimization,10.1145/3511808.3557363,2210.01774,91382df81f9de79824712f2739f3821fe4b74239,True
+CIKM,2024,Dynamic Graph-based Deep Reinforcement Learning with Long and Short-term Relation Modeling for Portfolio Optimization,10.1145/3627673.3680039,,213d60fc71fd957d5d8a415666acf97a98e5146c,False
+ICAIF,2021,Explainable deep reinforcement learning for portfolio management: an empirical approach,10.1145/3490354.3494415,2111.03995,467ff83987087e6abc1696720d03df9c75d6ea6e,True
+ICAIF,2021,An automated portfolio trading system with feature preprocessing and recurrent reinforcement learning,10.1145/3490354.3494376,2110.05299,555aa908d9d2fcc9309a599286e0ec2ebcf499f7,False
+ICAIF,2022,Objective Driven Portfolio Construction Using Reinforcement Learning,10.1145/3533271.3561764,,18936912b3d2595e20175ab734113099f363cd7e,False
+ICAIF,2022,Deep Hedging: Continuous Reinforcement Learning for Hedging of General Portfolios across Multiple Risk Aversions,10.1145/3533271.3561731,2207.07467,911a8b0fee5291112ba9cbd9ab144b40ae42e0aa,False
+ICAIF,2023,Margin Trader: A Reinforcement Learning Framework for Portfolio Management with Margin and Constraints,10.1145/3604237.3626906,,a2f3d6c64dd684eb1584fcd7bebbfa116e19c486,False
+ICAIF,2025,Regret-Optimized Portfolio Enhancement through Deep Reinforcement Learning and Future Looking Rewards,10.1145/3768292.3770340,2502.02619,048f734acf9f97c1c6392baf4ad1f5d12e101e6b,False
+ICML,2021,Online Optimal Investment Portfolio Model Based on Deep Reinforcement Learning,10.1145/3457682.3457685,,15c281b72295854fc6e60abeecf5a6c8f363c28c,False
+ICML,2022,Research on Portfolio Optimization Based on Deep Reinforcement Learning,10.1109/MLBDBI58171.2022.00081,,6905af6e4e2896d66632d639f2198cf7afcf0518,False
+ICML,2025,Navigating the Social Welfare Frontier: Portfolios for Multi-objective Reinforcement Learning,10.48550/arXiv.2502.09724,2502.09724,c167290e0bb97c6cc64bf90a199d25ab5b73c19f,False
+IJCAI,2020,MAPS: Multi-Agent reinforcement learning-based Portfolio management System,10.24963/ijcai.2020/623,2007.05402,5f485757243d69c61ef332c9ed5566e56a3ad88f,False
+IJCAI,2020,A Two-level Reinforcement Learning Algorithm for Ambiguous Mean-variance Portfolio Selection Problem,10.24963/ijcai.2020/624,,803a4f91fc53f5d75ff393f4d8c0e027bfd903f2,False
+IJCAI,2024,Enhancing Portfolio Optimization via Heuristic-Guided Inverse Reinforcement Learning with Multi-Objective Reward and Graph-based Policy Learning,10.24963/ijcai.2024/1054,,d69f37dc36b8b4068ce4f7fc937b276b06c7a73e,False
+KDD,2023,Constrained Portfolio Management Using Action Space Decomposition for Reinforcement Learning,10.1007/978-3-031-33377-4_29,,c657818b435fd291cdb9d54e0f7fff7d48aac0bd,False
+KDD,2026,Reinforcement Learning with Scenario-Context Rollout in Portfolio Management,10.1145/3770855.3817999,,6aa3c22f75520a5908aebf3c006b7c368ef373c3,False
+WWW,2023,Reinforcement Learning with Maskable Stock Representation for Portfolio Management in Customizable Stock Pools,10.1145/3589334.3645615,2311.10801,a2d7d118b74c94c02872291e4540cf54bec5934f,True
