@@ -1,0 +1,24 @@
+venue,year,title_short,in_S56,F0,reason
+AAAI,2020,DPS-RRL (Student Abstract),False,pass,방법 제안·수치 보고; 2쪽 학생 초록(비고)
+AAAI,2021,DeepTrader,True,S56,
+AAAI,2025,MARS,True,S56,(T4)
+AAAI,2025,Augmented Lagrangian Risk-constrained RL (Student Abstract),False,pass,방법 제안; 2쪽 학생 초록(비고)
+AAMAS,2024,MASA,True,S56,
+CIKM,2021,XPM,False,pass,
+CIKM,2022,MetaTrader,True,S56,
+CIKM,2024,DGDRL,False,pass,
+ICAIF,2021,Explainable DRL for PM (empirical),True,S56,
+ICAIF,2021,Automated portfolio trading system with RRL,False,pass,
+ICAIF,2022,Objective Driven Portfolio Construction,False,pass,
+ICAIF,2022,Deep Hedging across risk aversion,False,fail,헤지 정책(다자산 배분 방법 아님)
+ICAIF,2023,Margin Trader,False,pass,
+ICAIF,2025,Regret-Optimized Portfolio Enhancement,False,pass,60/40 주식·채권(자산 2개)
+ICML,2021,Online Optimal Investment Portfolio Model,False,fail,학회 불일치(ICMLC)
+ICML,2022,Research on Portfolio Optimization Based on DRL,False,fail,학회 불일치(MLBDBI)
+ICML,2025,Social Welfare Frontier,False,fail,금융 포트폴리오 아님
+IJCAI,2020,MAPS,False,pass,
+IJCAI,2020,Two-level RL Ambiguous Mean-variance,False,pending,원문 확인 필요(실데이터 표본 외 수치 여부)
+IJCAI,2024,SmartFolio (Heuristic-Guided IRL),False,pass,보충 표본과 중복(IJCAI 2025 표기)
+KDD,2023,Constrained PM Action Space Decomposition,False,fail,학회 불일치(PAKDD)
+KDD,2026,Scenario-Context Rollout,False,pass,
+WWW,2023,EarnMore,True,S56,
