@@ -1,4 +1,4 @@
-- [Project state 2026-11-03](project-state-2026-10-26.md) — 방향 A; 재현·감사 완료, CI·MDE 사전 등록 919be84는 반박 심사로 실행 보류 → v2 개정; read HANDOFF_2026-11-03.md first
+- [Project state 2026-11-05](project-state-2026-10-26.md) — MARS 본 실행 중(결과 열람 금지), 재현 깔때기 진행; read HANDOFF_2026-11-05.md first
 - [마감·목표](thesis-deadline-goal.md) — 12월 중순 마감, 퀄리티 되면 2027 본 트랙/TMLR까지
 - [Pre-registration rule](pre-registration-rule.md) — fix criteria before running; no cherry-picking; don't edit paper/ directly
 - [Live bot setup](live-bot-setup.md) — server/dashboard/Tailscale details, Mac IP not whitelisted

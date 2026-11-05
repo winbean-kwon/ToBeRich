@@ -1,6 +1,6 @@
 # 졸업프로젝트 — Claude 작업 지침
 
-새 대화를 시작하면 **`HANDOFF_2026-11-03.md`를 먼저 읽는다**(이전 맥락은 `HANDOFF_2026-10-27.md`, `HANDOFF_2026-10-26.md`, 전체 경과는 `notes/PROGRESS_SUMMARY_2026-11-01.md`). Claude 메모리 백업은 `notes/claude_memory/`에 있다.
+새 대화를 시작하면 **`HANDOFF_2026-11-05.md`를 먼저 읽는다**(이전 맥락은 `HANDOFF_2026-11-03.md`, `HANDOFF_2026-10-27.md`, `HANDOFF_2026-10-26.md`, 전체 경과는 `notes/PROGRESS_SUMMARY_2026-11-01.md`). Claude 메모리 백업은 `notes/claude_memory/`에 있다.
 
 사용자와는 한국어로 대화한다. 결과는 포장하지 말고 직설적으로 말한다.
 
@@ -17,4 +17,4 @@
 - 로컬 `main` 브랜치의 미푸시 커밋 `857461b`는 건드리지 않는다.
 
 ## 실계좌 봇
-Windows 서버 desktop-u6si9ta, `main`, β=30(rt1006) 정책, 약 330 USDT. 대시보드 `https://desktop-u6si9ta.tail1ae2f7.ts.net/`(Tailscale, JSON은 `/api/status`). 이 맥의 IP는 바이낸스 API 허용 목록에 없어 직접 조회 시 -2015 — 대시보드로 확인한다. ~2026-11-02 재확인 요청받음.
+Windows 서버 desktop-u6si9ta, `main`, β=30(rt1006) 정책, 약 330 USDT. 대시보드 `https://desktop-u6si9ta.tail1ae2f7.ts.net/`(Tailscale, JSON은 `/api/status`). 이 맥의 IP는 바이낸스 API 허용 목록에 없어 직접 조회 시 -2015 — 대시보드로 확인한다. 2026-11-05 확인, 정상.
