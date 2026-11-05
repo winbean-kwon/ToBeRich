@@ -22,6 +22,7 @@
 - 학회·학술지: AAAI, IJCAI, KDD, WWW, CIKM, NeurIPS, ICML, ICLR, AAMAS, ICAIF, TMLR.
 - 포함: 다자산 RL 방법을 제안하고 표본 외 수치를 보고. 1인 선별(LLM 보조는 명시).
 - 적용: F0~F3, F6. S56 포함률 k/n을 보고한다.
+- **이탈(2026-11-05, 검색 결과를 보기 전 기록):** OpenAlex는 익명 접근 제한(429, 이후 401)으로, DBLP는 봇 확인 페이지(HTTP 202)로 원 결과를 받지 못했다. 출처를 Semantic Scholar Graph API의 bulk search(`portfolio +"reinforcement learning"`, year 2017–2026)로 바꾼다. 이 검색은 제목·초록을 함께 찾으므로, 받은 뒤 제목에 "portfolio"와 "reinforcement learning"이 모두 있는 것만 남겨 원 조건(제목 검색)에 맞춘다. 학회 필터·포함 기준은 그대로다. 출처 변경으로 누락 범위가 달라질 수 있음을 한계에 적는다. API 키를 얻으면 OpenAlex로 같은 조건을 다시 돌려 차이를 보고한다.
 - 한계: S56을 안 뒤의 검색이고 체계적 문헌 고찰이 아니다. 제목에 'trading', 'asset allocation'만 있는 논문은 누락될 수 있다.
 
 ### 1.3 보충 표본(닫힌 목록)
