@@ -33,5 +33,7 @@
 
 **실행 전 실패 기록(규칙 4, 시간 측정 전):** 11-05 설치 단계 `importcheck`에서 실패. qlib 받기가 네트워크 시간 초과로 실패해 qlib→jupyter→ipython→matplotlib-inline 의존성이 빠졌고, Colab 커널의 `MPLBACKEND=module://matplotlib_inline.backend_inline`이 하위 프로세스로 넘어가 matplotlib import가 실패한 것으로 판단한다. 보강: `MPLBACKEND=agg`, pip 시간 초과 120초·재시도 5회. 공식 코드·설정·판정 규칙은 바꾸지 않았다. 공식 코드의 외부 import 17종을 점검했고, qlib 없이 빠지는 것은 없다고 판단한다. `hfai_env`는 `try`로 감싸여 있어 없어도 된다. 1회 측정 때는 qlib이 설치되어 있었으므로 이번에 qlib이 빠지면 환경 차이로 적는다.
 
+**실행 전 실패 기록 2(규칙 4, 시간 측정 전):** 11-05 22:41 KST 실행에서 `rc=1`, 14초, 에피소드 0(`torch113/f4_timing.json`). 환경 관문(torch 1.13.0+cu117, T4)은 통과했다. `smoke_err.log`(traceback만, 성과 지표 없음)로 원인 확인: 이번 재측정에서 새로 넣은 래퍼의 사이클 집계가 `tqdm.auto.tqdm`을 함수로 바꿔치웠고, 에이전트 생성 중 `timm`→`huggingface_hub`가 `class tqdm(old_tqdm)`로 이를 상속하다 `TypeError`. 공식 코드·환경 문제가 아니라 래퍼 결함이다. 보강: 래퍼의 `counted_tqdm`을 `tqdm` 서브클래스로 바꿈(집계 조건 동일). 공식 코드·설정·판정 규칙은 바꾸지 않았다. `smoke.log`는 열지 않았다.
+
 ## 3. 재측정 결과
 (실행 후 작성)
