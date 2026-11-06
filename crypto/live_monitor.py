@@ -143,6 +143,29 @@ class Monitor:
             }
 
 
+def _exc_summary(record: logging.LogRecord, limit: int = 600) -> str:
+    """log.exception 기록이면 예외 종류·메시지·마지막 발생 위치를 한 줄로 붙인다.
+
+    traceback은 서버 콘솔에만 찍혀 원격 대시보드로는 원인을 알 수 없었다. 요청 서명은 가린다.
+    """
+    if not record.exc_info or record.exc_info[1] is None:
+        return ""
+    import re
+    import traceback
+
+    _, exc, tb = record.exc_info
+    where = ""
+    frames = traceback.extract_tb(tb)
+    if frames:
+        f = frames[-1]
+        where = f" @ {Path(f.filename).name}:{f.lineno} {f.name}"
+    msg = re.sub(r"(signature=)[0-9a-fA-F]+", r"\1***", str(exc))
+    text = f"{type(exc).__name__}: {msg}{where}"
+    if len(text) > limit:
+        text = text[:limit] + "…"
+    return f" | {text}"
+
+
 class MonitorLogHandler(logging.Handler):
     """WARNING 이상 로그를 대시보드 이벤트로 보낸다."""
 
@@ -154,7 +177,7 @@ class MonitorLogHandler(logging.Handler):
     def emit(self, record: logging.LogRecord) -> None:
         try:
             self.cycle_warnings += 1
-            self.monitor.add_event(record.levelname, record.getMessage())
+            self.monitor.add_event(record.levelname, record.getMessage() + _exc_summary(record))
         except Exception:  # 로깅 핸들러가 루프를 죽이면 안 된다
             self.handleError(record)
 
