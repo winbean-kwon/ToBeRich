@@ -48,6 +48,12 @@ SLOTS = {"L": 2, "N": 1}
 STOP_DATE = "2026-11-24"  # 사전 등록 3장. 이날이 지나면 새 실행을 멈추고 끝난 시드로 판정한다
 MIN_FREE_GB = 1.0
 MAX_FAILS = 3
+SNAP_EVERY = 10  # 재개용 스냅숏 간격(에피소드). 사전 등록 3.2
+SNAP_MIN_FREE_GB = 3.0  # 이보다 여유가 적으면 스냅숏을 건너뛴다(직전 스냅숏 유지, 궤적 영향 없음)
+VERIFY = {"episodes": 12, "eval": 4, "snap": 6, "seed": 42, "py_random": 0}  # 재개 검증 설정(사전 등록 3.2)
+TRAIN_LOCALS = ("train_returns", "train_sharpe_ratios", "train_drawdowns", "validation_returns", "validation_sharpe_ratios",
+                "validation_drawdowns", "validation_composite_scores", "meta_controller_losses",
+                "best_composite_score", "patience_counter", "best_episode")
 
 
 def work():
@@ -170,6 +176,65 @@ class Ctx:
             return orig_save(s, path)
         MAS.save_models = save_models
 
+    def enable_snapshots(self, snap, every=SNAP_EVERY):
+        """공식 train_model의 소스에서 for 줄만 바꿔 에피소드 경계 저장·복원을 넣는다(사전 등록 3.2). 나머지 줄은 그대로 실행된다."""
+        import inspect, random
+        import numpy as np
+        M, torch, ctx = self.M, self.torch, self
+        snap = pathlib.Path(snap)
+        ctx.resumed_from = None
+        src = inspect.getsource(M.train_model)
+        head = "    for episode in range(config.EPISODES):\n"
+        if src.count(head) != 1:
+            sys.exit("train_model의 for 줄을 찾지 못함")
+        tup = ", ".join(TRAIN_LOCALS)
+        new = (f"    _mars_r = __mars_load(multi_agent)\n"
+               f"    _mars_ep0 = 0\n"
+               f"    if _mars_r is not None:\n"
+               f"        ({tup}), _mars_ep0 = _mars_r\n"
+               f"    for episode in range(_mars_ep0, config.EPISODES):\n"
+               f"        __mars_save(episode, _mars_ep0, multi_agent, ({tup}))\n")
+
+        def load(ma):
+            if not snap.exists():
+                return None
+            s = torch.load(snap, weights_only=False)
+            ma.__dict__.clear()
+            ma.__dict__.update(s["agent"].__dict__)
+            random.setstate(s["py"])
+            np.random.set_state(s["np"])
+            torch.set_rng_state(s["torch"])
+            ctx.ep_times[:] = s["ep_times"]
+            ctx.resumed_from = s["episode"]
+            return s["locals"], s["episode"]
+
+        def save(ep, ep0, ma, loc):
+            if ep == ep0 or ep % every:
+                return
+            log = snap.parent / "snap_log.jsonl"
+            if shutil.disk_usage(str(snap.parent)).free / 2 ** 30 < SNAP_MIN_FREE_GB:
+                with open(log, "a") as f:
+                    f.write(json.dumps({"episode": ep, "skipped": "disk"}) + "\n")
+                return
+            t = time.time()
+            tmp = snap.with_suffix(".tmp")
+            try:
+                with open(tmp, "wb") as f:
+                    torch.save({"episode": ep, "agent": ma, "locals": loc, "py": random.getstate(), "np": np.random.get_state(),
+                                "torch": torch.get_rng_state(), "ep_times": list(ctx.ep_times)}, f)
+                    f.flush()
+                    os.fsync(f.fileno())
+                os.replace(tmp, snap)  # 끊겨도 직전 스냅숏이 온전하다
+                with open(log, "a") as f:
+                    f.write(json.dumps({"episode": ep, "sec": time.time() - t, "bytes": snap.stat().st_size}) + "\n")
+            except OSError as e:  # 저장 실패는 학습을 멈추지 않는다
+                tmp.unlink(missing_ok=True)
+                with open(log, "a") as f:
+                    f.write(json.dumps({"episode": ep, "error": str(e)}) + "\n")
+
+        M.__dict__["__mars_load"], M.__dict__["__mars_save"] = load, save
+        exec(compile(src.replace(head, new), "train_model_resume", "exec"), M.__dict__)
+
     def main(self, *argv):
         sys.argv = ["main.py", *argv]
         self.M.main()
@@ -249,15 +314,21 @@ def run(cond, seed, device):
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     except OSError:
         sys.exit(BUSY)
-    with open(dst / "attempts.jsonl", "a") as f:
-        f.write(json.dumps({"start": time.strftime("%F %T %z"), **env_meta(device)}) + "\n")
     rd = work() / "runs" / cond / f"seed_{seed}"
-    shutil.rmtree(rd, ignore_errors=True)
-    rd.mkdir(parents=True)
+    snap = rd / "snapshot.pt"
+    resume_on = (out() / "resume_enabled.json").exists()  # 검증 통과 전에는 꺼져 있다(사전 등록 3.2)
+    resuming = resume_on and snap.exists()
+    with open(dst / "attempts.jsonl", "a") as f:
+        f.write(json.dumps({"start": time.strftime("%F %T %z"), "resume_on": resume_on, "resuming": resuming, **env_meta(device)}) + "\n")
+    if not resuming:
+        shutil.rmtree(rd, ignore_errors=True)
+        rd.mkdir(parents=True)
     t0 = time.time()
-    with open(rd / "stdout.log", "w") as f, contextlib.redirect_stdout(f):
+    with open(rd / "stdout.log", "a" if resuming else "w") as f, contextlib.redirect_stdout(f):
         c = Ctx(cond, seed, rd)
         _test_with_extras(c)
+        if resume_on:
+            c.enable_snapshots(snap)
         c.main("--mode", "both", "--device", device)
     if not (rd / "test_results_detailed.csv").exists():
         sys.exit(f"{cond} seed {seed}: 테스트 결과 없음. {rd}/stdout.log 확인")
@@ -269,9 +340,85 @@ def run(cond, seed, device):
     if (rd / "w240_cash" / "test_results_detailed.csv").exists():
         shutil.copy2(rd / "w240_cash" / "test_results_detailed.csv", dst / "w240_cash_detailed.csv")
     (dst / "done.json").write_text(json.dumps({"seconds": time.time() - t0, "cpu_seconds": time.process_time(), "episode_sec_mean": sum(c.ep_times) / max(len(c.ep_times), 1),
-                                               "episodes_run": len(c.ep_times), **env_meta(device)}, indent=1))
+                                               "episodes_run": len(c.ep_times), "resumed_from_episode": getattr(c, "resumed_from", None), **env_meta(device)}, indent=1))
+    if (rd / "snap_log.jsonl").exists():
+        shutil.copy2(rd / "snap_log.jsonl", dst / "snap_log.jsonl")
     shutil.rmtree(rd, ignore_errors=True)  # 체크포인트 삭제(사전 등록 2.2의 5번)
     print(f"{cond} seed {seed} 완료, {time.time() - t0:.0f}초")
+
+
+def _vchild(cond, rd, snapshots):
+    """재개 검증의 한 실행. 학습·검증 구간만 돈다(--mode train, 테스트 없음). 값은 파일로만 남기고 화면에 내지 않는다."""
+    import random
+    rd = pathlib.Path(rd)
+    with open(rd / "stdout.log", "a") as f, contextlib.redirect_stdout(f):
+        c = Ctx(cond, VERIFY["seed"], rd)
+        c.config.EPISODES, c.config.EVAL_FREQUENCY = VERIFY["episodes"], VERIFY["eval"]
+        random.seed(VERIFY["py_random"])  # 비교할 때만(사전 등록 2.2의 6번과 같음). N의 main은 다시 시드한다
+        c.M.plot_training_curves = lambda **k: (rd / "curves.json").write_text(json.dumps({a: [float(x) for x in b] for a, b in k.items()}))
+        if snapshots:
+            c.enable_snapshots(rd / "snapshot.pt", every=VERIFY["snap"])
+        c.main("--mode", "train", "--device", "cpu")
+
+
+def _flat(path):
+    import numpy as np, torch
+    r = {}
+    for p in sorted(pathlib.Path(path).iterdir()):
+        if p.suffix == ".npy":
+            r[p.name] = np.load(p).astype("float64")
+        else:
+            for k, v in torch.load(p, weights_only=False).items():
+                r[f"{p.name}:{k}"] = v.numpy().astype("float64")
+    return r
+
+
+def verify_resume(cond):
+    """끊김 없는 공식 경로(O)와 SIGKILL 뒤 재개(R)를 비교한다. 판정 기준은 사전 등록 3.2. 성과 값은 출력하지 않고 차이만 낸다."""
+    import csv, signal
+    import numpy as np
+    root = work() / "verify_resume" / cond
+    shutil.rmtree(root, ignore_errors=True)
+    O, R = root / "O", root / "R"
+    O.mkdir(parents=True)
+    R.mkdir()
+    me = str(pathlib.Path(__file__).resolve())
+    env = dict(os.environ, MARS_THREADS="1")
+    child = lambda d, s: subprocess.Popen([sys.executable, me, "_vchild", cond, str(d), str(int(s))], env=env)
+    po, pr = child(O, False), child(R, True)
+    while not (R / "snapshot.pt").exists():
+        if pr.poll() is not None:
+            sys.exit(f"R이 스냅숏 전에 끝남 rc={pr.returncode}")
+        time.sleep(2)
+    time.sleep(20)  # 스냅숏 직후가 아니라 다음 에피소드 도중에 끊는다
+    pr.send_signal(signal.SIGKILL)
+    pr.wait()
+    killed_rc = pr.returncode
+    if (R / "curves.json").exists():
+        sys.exit("끊기 전에 R이 끝남")
+    pr = child(R, True)
+    rc_o, rc_r = po.wait(), pr.wait()
+    if rc_o or rc_r:
+        sys.exit(f"실행 실패 O={rc_o} R={rc_r}")
+    res = {"cond": cond, **VERIFY, "killed_rc": killed_rc, "diff": {}}
+    for d in ("final_models", "best_models"):
+        a, b = _flat(O / d), _flat(R / d)
+        if set(a) != set(b):
+            sys.exit(f"{d} 파일·키가 다름")
+        res["diff"][d] = max(float(np.abs(a[k] - b[k]).max()) for k in a)
+        res[f"n_tensors_{d}"] = len(a)
+    ca, cb = json.loads((O / "curves.json").read_text()), json.loads((R / "curves.json").read_text())
+    res["series_len"] = {k: len(v) for k, v in ca.items()}
+    if any(len(ca[k]) != len(cb[k]) for k in ca):
+        sys.exit("곡선 길이가 다름")
+    res["diff"]["curves"] = max(float(np.abs(np.array(ca[k]) - np.array(cb[k])).max()) for k in ca if ca[k])
+    rows = lambda p: [[float(x) for x in r] for r in list(csv.reader(open(p)))[1:]]
+    res["diff"]["validation_stats"] = float(np.abs(np.array(rows(O / "training_validation_stats.csv")) - np.array(rows(R / "training_validation_stats.csv"))).max())
+    res["snap_log"] = [json.loads(x) for x in open(R / "snap_log.jsonl")]
+    res["pass"] = bool(killed_rc == -signal.SIGKILL and all(v <= 1e-6 for v in res["diff"].values()))
+    (out() / f"verify_resume_{cond}.json").write_text(json.dumps(res, indent=1))
+    shutil.rmtree(root, ignore_errors=True)
+    print(json.dumps(res))
 
 
 def smoke(cond, device):
@@ -528,6 +675,10 @@ if __name__ == "__main__":
         judge()
     elif a[0] == "smoke":
         smoke(a[1], a[2])
+    elif a[0] == "verify-resume":
+        verify_resume(a[1])
+    elif a[0] == "_vchild":
+        _vchild(a[1], a[2], a[3] == "1")
     elif a[0] == "queue":
         queue()
     elif a[0] == "status":
