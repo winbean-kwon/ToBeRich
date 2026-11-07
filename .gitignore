@@ -59,3 +59,6 @@ sysdiag.log
 # MARS T4 실행(코드 체크아웃, 결과)
 .marswork/
 data/mars_t4/
+
+# F4 측정 로컬 결과(서버 노트북 GTX 1650). smoke 로그 등 성과 파일이 섞이므로 커밋하지 않음
+data/funnel/
