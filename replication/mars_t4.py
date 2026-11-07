@@ -49,7 +49,7 @@ STOP_DATE = "2026-11-24"  # 사전 등록 3장. 이날이 지나면 새 실행�
 MIN_FREE_GB = 1.0
 MAX_FAILS = 3
 SNAP_EVERY = 10  # 재개용 스냅숏 간격(에피소드). 사전 등록 3.2
-SNAP_MIN_FREE_GB = 3.0  # 이보다 여유가 적으면 스냅숏을 건너뛴다(직전 스냅숏 유지, 궤적 영향 없음)
+SNAP_MIN_FREE_GB = 5.0  # 이보다 여유가 적으면 스냅숏을 건너뛴다(직전 스냅숏 유지, 궤적 영향 없음). 3.0에서 디스크 고갈, 사전 등록 3.2
 VERIFY = {"episodes": 12, "eval": 4, "snap": 6, "seed": 42, "py_random": 0}  # 재개 검증 설정(사전 등록 3.2)
 TRAIN_LOCALS = ("train_returns", "train_sharpe_ratios", "train_drawdowns", "validation_returns", "validation_sharpe_ratios",
                 "validation_drawdowns", "validation_composite_scores", "meta_controller_losses",
@@ -227,10 +227,11 @@ class Ctx:
                 os.replace(tmp, snap)  # 끊겨도 직전 스냅숏이 온전하다
                 with open(log, "a") as f:
                     f.write(json.dumps({"episode": ep, "sec": time.time() - t, "bytes": snap.stat().st_size}) + "\n")
-            except OSError as e:  # 저장 실패는 학습을 멈추지 않는다
+            except (OSError, RuntimeError) as e:  # 저장 실패는 학습을 멈추지 않는다. torch.save는 ENOSPC를 RuntimeError로 바꿔 던지기도 한다
                 tmp.unlink(missing_ok=True)
-                with open(log, "a") as f:
-                    f.write(json.dumps({"episode": ep, "error": str(e)}) + "\n")
+                with contextlib.suppress(OSError):  # 디스크가 찬 상태면 기록도 실패할 수 있다
+                    with open(log, "a") as f:
+                        f.write(json.dumps({"episode": ep, "error": str(e)}) + "\n")
 
         M.__dict__["__mars_load"], M.__dict__["__mars_save"] = load, save
         exec(compile(src.replace(head, new), "train_model_resume", "exec"), M.__dict__)
