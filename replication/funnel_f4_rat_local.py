@@ -126,7 +126,8 @@ assert src.count(CUTLINE) == 1, 'split marker'
 head, rest = src.split(CUTLINE)
 nl = head.count('\n') + 1
 tail = '\n' * nl + CUTLINE.lstrip('\n') + rest   # 줄 번호 보존
-g = {'__name__': '__main__', '__file__': os.path.abspath('main.py'), '__builtins__': __builtins__}
+g = sys.modules['__main__'].__dict__  # 실제 __main__에 정의해야 torch.save의 pickle이 클래스를 찾는다(__module__ 조회)
+g['__file__'] = os.path.abspath('main.py')
 mark('main_start', tz=list(time.tzname), argv=sys.argv[1:])
 try:
     exec(compile(head, 'main.py', 'exec'), g)
