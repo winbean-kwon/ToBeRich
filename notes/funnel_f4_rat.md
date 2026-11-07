@@ -73,6 +73,7 @@ A = (startup + 80 × [(block − e) + e × r_b] + [(tail − t_on) + t_on × r_o
 - 장치 판정: 관문의 CUDA 연산 시험이 GTX 1650에서 통과하면 GPU로 잰다. 통과하지 못하면 **이 노트북에서는 측정하지 않는다**(노트북 CPU 측정 없음). 그 경우 Colab 규칙(위 개정 기록)으로 돌아간다. cu92 휠이 Turing(sm_75)을 지원하는지는 확인하지 않았다.
 - 메모리 부족(OOM)은 설정을 바꾸지 않고 "장치 한계"로 적는다. F4 실패로 세지 않는다.
 - 장치 표기는 "GTX 1650(노트북)"이다. 채택 규칙(먼저 끝난 쪽을 판정에 씀)과 예산 합산은 PPN 개정 기록 5와 같다. 순서 규칙대로 PPN의 F5 결과가 나온 뒤에 시작한다.
+- **로컬 이식본(`replication/funnel_f4_rat_local.py`)과 노트북의 차이(측정 전 기록):** (1) 경로만 바뀜 — `/content` → `~/f4work`(저장소 밖), Drive `data/funnel/rat` → `~/ToBeRich/data/funnel/rat_gtx1650`(`.gitignore`의 `data/funnel/`에 포함). (2) 장치 판정만 바뀜 — `HAS_T4`('Tesla T4' in `nvidia-smi -L`) 대신 `HAS_GPU`('GTX 1650' in `nvidia-smi -L`); GPU가 없으면 즉시 멈춤; GPU 연산 시험이 실패하면 Colab 규칙(CPU로 재측정)과 달리 **이 노트북에서는 멈춘다**(위 2번 규칙, CPU 측정 없음). (3) `%%bash` 설치 칸은 `subprocess.run(['bash','-c', ...])`로, 관문 칸은 별도 `gate.py` 파일을 써서 실행하는 것으로 옮김(내용은 동일). (4) `gdown`을 Colab 기본 제공 대신 설치 단계에서 pip로 설치해 모듈로 호출. 설치 명령·버전 고정(Python 3.7, torch 0.4.1.post2 cu92, numpy 1.16.6, pandas 0.24.2)·`main.py` 해시 확인(d1cbe96)·데이터 해시 확인·측정 함수·상한(3시간)·환산식·재개(ckpt) 로직·판정 칸은 노트북과 동일하다.
 
 **개정 기록 3 — 채택 규칙 수정(반박 심사 반영, 2026-11-07, RAT 측정 전, 시간·성과 미확인):** PPN 개정 기록 6과 같은 반박 심사·같은 이유로 같은 안전장치를 적용한다. 판정 식·기준·상한은 그대로다.
 1. **동시 실행 금지:** 한 번에 한 장치에서만 S를 돌린다.
