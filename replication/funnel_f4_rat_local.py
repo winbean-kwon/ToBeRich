@@ -90,7 +90,7 @@ if not os.path.exists(z):
     if zd.exists():
         shutil.copy(zd, z)
     else:
-        subprocess.run([str(WORK / 'p37' / 'bin' / 'python'), '-m', 'gdown', '1KO4Pd6qgTdtU1remUyP0rrwA8PJBQyJm', '-O', z], check=True)
+        subprocess.run([str(WORK / 'p37' / 'bin' / 'gdown'), '1KO4Pd6qgTdtU1remUyP0rrwA8PJBQyJm', '-O', z], check=True)
         shutil.copy(z, zd)
 h = hashlib.sha256(open(z, 'rb').read()).hexdigest()
 first = OUT / 'data_sha_first.txt'
