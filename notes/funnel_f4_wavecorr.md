@@ -58,3 +58,5 @@ A = 10 × (startup + 3000×p) / 3600 시간, 단 `p = (T2−T1)/(E2−E1)`, `sta
 - 30종목 버전(초판 추정)과 50종목 버전(HEAD)의 시간 차이를 재지 않았다. HEAD(50종목) 기준으로만 잰다.
 - 종목 선택이 `os.listdir` 순서에 좌우돼 실행 환경(파일시스템)마다 다를 수 있다(1절 F2 비고, 시간 측정에는 영향 없음).
 - `minibatchSize=1`이 코드 주석상 "가장 효율적"이라 하지만 실제 그런지 확인하지 않았다(저자 주장 그대로 둔다).
+
+**실행 전 실패 기록 1(설치, 시간 측정 전, 2026-11-09, 성과 미확인):** 서버 노트북 시도 1에서 설치·해시 확인은 통과했지만 관문에서 `import tensorflow`가 Ensemble과 같은 `TypeError: Descriptors cannot not be created directly`로 실패했다(pip가 `tensorflow==1.14.0`과 함께 최신 `protobuf` 4.x를 설치, 2.6에 이미 예견한 범위). 설치 명령에 `pip install "protobuf<3.20"`을 추가해 고쳤다. main.py·판정 규칙과 무관, 측정값 없어 재시도 조건(2.4)에 해당.

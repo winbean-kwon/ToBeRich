@@ -33,6 +33,7 @@ step py37 ./bin/micromamba create -y -p "$W/p37" -c conda-forge python=3.7 pip
 P="$W/p37/bin/python -m pip --default-timeout=120 --retries 5"
 step pydeps $P install -q pandas==0.24.2 numpy==1.18.5 Keras==2.3.1
 step tf $P install -q tensorflow==1.14.0
+step protobuf $P install -q "protobuf<3.20"
 [ -d "$W/repo" ] || git clone -q https://github.com/saeedmarzban/waveCorr.git "$W/repo"
 cd "$W/repo" && git checkout -q 20ff832 && git log -1 --format='%h %ad' --date=short
 touch "$W/out/env_ok"
