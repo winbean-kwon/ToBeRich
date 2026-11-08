@@ -27,6 +27,7 @@ step py37 ./bin/micromamba create -y -p "$W/p37" -c conda-forge python=3.7 pip
 P="$W/p37/bin/python -m pip --default-timeout=120 --retries 5"
 step pydeps $P install -q numpy==1.16.4 pandas==1.0.3 scikit-learn==0.21.0 gym==0.15.3 joblib==0.15.1 matplotlib==3.2.1 stockstats
 step tf $P install -q tensorflow==1.15.2
+step protobuf $P install -q "protobuf<3.20"
 if $P install -q "stable-baselines[mpi]" > "$W/out/install_sb_mpi.log" 2>&1; then
   echo "stable-baselines[mpi] 설치 성공"; echo mpi > "$W/out/sb_variant.txt"
 else
