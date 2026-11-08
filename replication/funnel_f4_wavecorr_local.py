@@ -95,6 +95,7 @@ def mark(ev, **kw):
 def err():
     with open(ERR, 'a') as f: traceback.print_exc(file=f)
 
+os.makedirs('results', exist_ok=True)
 src = open('wavecorr_run.py', encoding='utf-8').read()
 CUTLINE = "\n# load the data from the assigned data set\n"
 assert src.count(CUTLINE) == 1, 'split marker'

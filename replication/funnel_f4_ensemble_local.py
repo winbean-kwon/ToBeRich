@@ -35,8 +35,8 @@ else
   step sb_plain $P install -q stable-baselines
   echo plain > "$W/out/sb_variant.txt"
 fi
-# stable-baselines[mpi]가 numpy/pandas/gym을 더 새 버전으로 끌어올릴 수 있어 고정 버전으로 되돌린다(허용 수정 아님, 설치 순서 보정)
-step repin $P install -q --force-reinstall --no-deps numpy==1.16.4 pandas==1.0.3 gym==0.15.3
+# stable-baselines[mpi]가 numpy/pandas/gym/matplotlib 등을 더 새 버전으로 끌어올릴 수 있어 고정 버전으로 되돌린다(허용 수정 아님, 설치 순서 보정)
+step repin $P install -q --force-reinstall --no-deps numpy==1.16.4 pandas==1.0.3 gym==0.15.3 matplotlib==3.2.1 scikit-learn==0.21.0 joblib==0.15.1
 [ -d "$W/repo" ] || git clone -q https://github.com/AI4Finance-LLC/Deep-Reinforcement-Learning-for-Automated-Stock-Trading-Ensemble-Strategy-ICAIF-2020.git "$W/repo"
 cd "$W/repo" && git checkout -q f02a762 && git log -1 --format='%h %ad' --date=short
 sha256sum run_DRL.py model/models.py | tee "$W/out/main_sha.txt"
