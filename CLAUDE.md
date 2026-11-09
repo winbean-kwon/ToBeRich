@@ -22,6 +22,7 @@
 Windows 서버 desktop-u6si9ta, `main`, β=30(rt1006) 정책, 약 330 USDT. 대시보드 `https://desktop-u6si9ta.tail1ae2f7.ts.net/`(Tailscale, JSON은 `/api/status`). 이 맥의 IP는 바이낸스 API 허용 목록에 없어 직접 조회 시 -2015 — 대시보드로 확인한다. 2026-11-05 확인, 정상.
 
 ## 서버 원격 조작(맥에서, 2026-11-09 설정)
+- **맥에서 처음이면** `bash tools/mac_remote_setup.sh`를 한 번 실행한다(사용자가 터미널에서 직접 실행. 서버 Windows 비밀번호를 한 번 묻는다). 키 생성, `~/.ssh/config`의 `Host tb`, 서버 administrators_authorized_keys 등록, 시험까지 한다. 비밀번호 입력이 필요하므로 Claude가 대신 실행하지 않는다.
 - 맥 `~/.ssh/config`의 호스트 `tb` = Tailscale `desktop-u6si9ta`, 사용자 `ksbda`, 키 인증. Windows OpenSSH이고 기본 셸은 PowerShell이다.
 - WSL 명령은 `ssh tb "wsl -e bash -lc '<명령>'"`으로 보낸다. 재현 작업은 WSL의 `~/ToBeRich`(별도 clone)와 `~/f4work`에서 한다. Windows 쪽 `C:\Users\ksbda\ToBeRich`는 봇 폴더이므로 건드리지 않는다.
 - RAT F7: tmux `rat_f7`. 상태는 `cat ~/ToBeRich/data/funnel/rat_f7_gtx1650/*/done.json`, 재부팅 후 재개는 `~/f4work/f7_resume.sh`로 한다. 성과 파일은 열지 않는다(런북 6절).
