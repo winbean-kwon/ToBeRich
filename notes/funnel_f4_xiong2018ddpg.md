@@ -1,0 +1,18 @@
+# F4·F5 Practical DRL 기록 (AI4Finance-Foundation/…NIPS-2018 @14598b3, 원 코드 2018-10-13 a395165)
+
+프로토콜 `notes/funnel_protocol.md`. 대상: Xiong, Liu, Zhong, Yang, Walid, "Practical Deep Reinforcement Learning Approach for Stock Trading", NeurIPS 2018 Workshop on AI in Finance(arXiv 1811.07522). 순서상 Adaptive DDPG 다음이다(3.3, `notes/lit/f1/static_layer.csv` 순서 7).
+
+## 1. 정적 확인 (2026-11-09, 실행 전) — 미완, li2019adaptive와 같은 지점에서 막혀 멈춤
+
+- **코드 계보:** 원 저장소(hust512/DQN_Stock_Trading류)는 2018-09-18 생성, 핵심 환경 파일(당시 이름 `gym/envs/zxstock/zxstock_env.py`)은 `8882a6e`(2018-10-10)에 추가, `a395165`(2018-10-13, "add two package")가 2018년의 마지막 커밋이다(arXiv 제출월 1811=2018-11보다 앞섬, 초판 직전으로 쓸 수 있는 가장 늦은 2018년 커밋). 이후 2019년 활동이 없다가 **2020-06-06**(`14598b3`·`e92f15b`)에 AI4Finance가 환경을 `zxstock`→`rlstock`로 이름을 바꾸고, 저장소 루트에 `run.py`(독자 실행 스크립트, 2018년에는 존재하지 않았다 — `git log --follow -- run.py` 확인)와 상세 README·정확한 실행 명령을 추가했다. HEAD(`e59b994`, 2024-03-15)는 LICENSE 파일만 바꾼 것이다.
+- **2018 버전(`a395165`, `zxstock_env.py`)과 2020 버전(HEAD, `rlstock_env.py`)의 코드 로직은 동일하다**(경로·이름만 다름, `git diff -b` 확인). money=10000, 종목 28개(거래일수 4711 종목 + NKE·KO), 행동 공간 `Box(-5,5,shape=(28,))`, 에피소드 종료 `day>=1761`. (참고: 순서상 다음 대상도 아닌 li2019adaptive의 `portfolio_env.py`가 이 환경을 money=100000·행동폭 ±20·종료일 3268로 확장한 후속판임을 1절에서 이미 확인했다 — 같은 연구팀의 계보.)
+- **데이터:** 번들(`Data/dow_jones_30_daily_price.csv`, `^DJI.csv`). `Data/`에는 입력 데이터와 함께 **성과로 보이는 파일(`ddpg.csv`, `history.csv`, `weights_table_*.xlsx`, `mean_variance_return.xlsx`, `return_final_quarterly.xlsx`, `calculate_return.ipynb`)이 섞여 있어 열지 않는다**(2.1 대응 필요 — 어떤 파일이 입력이고 어떤 게 결과인지 이름으로만 구분, 결과로 보이는 파일은 코드가 아니라 사람이 미리 저장해둔 것으로 추정).
+- **하드코딩 경로:** `zxstock_env.py`/`rlstock_env.py`가 저자 개인 머신 절대경로(`/Users/xiongzhuoran/anaconda3/...`, `/Users/hongyangyang/...`)로 데이터를 읽는다. README가 "import data path를 자기 경로로 바꿔라"고 명시 지시하므로 허용 수정(설치 절차)이다.
+- **실행 절차(README, 2020 버전 기준):** `python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=1e4`(학습), `--num_timesteps=2e4 --play`(거래/시험). 저장소 루트의 `run.py`가 공식 `baselines/run.py`를 대체한다(README Step 8).
+- **⚠ 같은 지점에서 막힘(li2019adaptive와 동일한 구조적 문제):** 이 저장소의 `run.py`(2020년 추가분)는 공식 baselines의 `run.py`를 거의 그대로 가져온 것이고, `get_learn_function_defaults(alg, env_type)`은 `baselines/<alg>/defaults.py`에 `env_type` 이름의 함수가 있을 때만 그 값을 쓴다(`ImportError`/`AttributeError`면 `{}`). 공식 baselines에는 `baselines/ddpg/defaults.py`가 없다(li2019adaptive 조사에서 이미 확인). 따라서 DDPG의 하드코딩 기본값(`nb_epoch_cycles=50`, `nb_rollout_steps=500`)이 그대로 적용되고, **README가 명시한 `--num_timesteps=1e4`(10,000)는 `nb_epochs = 10000 // (50×500=25000) = 0`이 되어 학습이 0 에폭 실행된다.** 즉 이 연구팀(Xiong·Liu·Zhong·Yang·Walid, 2018~2020 논문 계열)의 두 논문(xiong2018ddpg, li2019adaptive)이 공개한 README 명령이 **공식 baselines DDPG 기준으로는 둘 다 문자 그대로 돌리면 학습이 안 되는** 같은 결함을 공유한다(우연이 아니라 계보가 같아서로 보인다). 저자들이 실제로 쓴 값은 남아있지 않다.
+
+**다음 결정이 필요하다(사용자, li2019adaptive와 같은 질문):**
+1. 측정 단위를 어떻게 정할지(1에폭=25,000스텝 단위로 시간만 보고 vs 역산 방식 vs "미시험(정적 의심)" 분류) — li2019adaptive에서 내릴 결정을 그대로 따르는 것이 일관적일 것이다(같은 결함, 같은 코드 계보).
+2. `Data/` 안의 성과로 보이는 파일들을 무시하고 입력 데이터(`dow_jones_30_daily_price.csv`, `^DJI.csv`)만 쓰는 게 맞는지 확인(가능성 높음, 재확인 안 함).
+
+이 판단이 날 때까지 F4/F5 사전 등록(2절)·로컬 스크립트는 작성하지 않는다. li2019adaptive와 같은 사전 등록 원칙(핵심 실험 변수를 결과를 보지 않은 상태에서 임의로 정해 커밋하면 안 됨)을 적용한다.
