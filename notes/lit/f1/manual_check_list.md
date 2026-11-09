@@ -12,7 +12,7 @@
 
 | ID | 논문 | 무엇을 확인 | 결과 |
 |---|---|---|---|
-| Y25-02 | HARLF | 논문 3.4절의 Colab 노트북 링크가 열리는지, 학습·평가 코드인지 | (Claude 사전 확인 2026-11-10) 찾음(부분): 논문 3.4절 Colab 3개 중 1번(데이터·감성 추출, "all in one NLP")만 열림. 2번·3번(학습 포함) 링크는 PDF 추출 ID로 열리지 않음(줄바꿈 깨짐 가능) → **사용자가 PDF에서 직접 클릭 확인** |
+| Y25-02 | HARLF | 논문 3.4절의 Colab 노트북 링크가 열리는지, 학습·평가 코드인지 | 링크 사망(사용자 확인 2026-11-10): 3.4절 Colab 2번·3번(학습 포함)이 PDF에서 직접 눌러도 열리지 않음. 1번(데이터·감성 추출, "all in one NLP")만 열리나 학습·평가 코드가 아님 |
 | SQ-SCR | Scenario-Context Rollout (KDD 2026) | edrtfu531/rlscr1 이 이 논문 코드인지(README·논문 대조) | (Claude 사전 확인 2026-11-10) 찾음(유력): https://github.com/edrtfu531/rlscr1 — CITATION.cff가 논문 제목·저자(Bendatu, Lu)·KDD 2026 DOI 10.1145/3770855.3817999를 명시. 계정은 익명(2026-02 생성) → 논문 본문 링크 여부만 확인 |
 | SUP-CLRS | CLRS (IJCAI 2023) | BlackBoxOperator/FinTech-DPM 소유자가 저자(Lien, Li, Wang) 중 하나인지 | (Claude 사전 확인 2026-11-10) 찾음: https://github.com/BlackBoxOperator/FinTech-DPM — README가 "official implementations", 저자 Lien·Li·Wang, IJCAI 2023 인용 명시. README가 가리키는 1저자 원 저장소(sophialien/FinTech-DPM)는 현재 없음 |
 | P24-08 | DRL framework (Waterloo) | jackieli19 계정이 저자 본인인지 | (Claude 사전 확인 2026-11-10) 찾음: https://github.com/jackieli19/PGPortfolio/tree/Stock — 논문 부록 C가 이 저장소를 구현으로 명시. 저자 Jinyang Li, 커밋 작성자 JackieLi(2019-12). PGPortfolio 포크 |
