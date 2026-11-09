@@ -59,3 +59,10 @@
 5. **열지 않는 것:** `data/funnel/rat_f7_gtx1650/` 안의 `train_summary.csv`, `final_summary.csv`, `stdout.*.log`, 모델 파일. 진행 상황은 `done.json`, `attempts.jsonl`, `times.*.jsonl`만 보고 확인한다.
 6. **판정:** P 5회가 끝나면(또는 11-24에) **사용자에게 먼저 알리고**, 사용자가 승인하면 `python3 replication/funnel_f7_rat_judge.py ~/ToBeRich/data/funnel/rat_f7_gtx1650`을 한 번 돌린다. 결과는 사전 판정, 냉정한 해석, 한계 순으로 사전 등록 문서 아래에 적는다. 보고하기 전에 반박 에이전트로 검토한다. R은 끝나는 대로 병기한다.
 7. 동시 실행 금지: 이 실행이 도는 동안에는 이 GPU에서 다른 측정을 돌리지 않는다. Ensemble F7 같은 CPU 작업은 사용자와 정한 뒤에 돌린다.
+
+### 6.1 실행 기록(2026-11-09, 서버 세션)
+- 점검(--check) 통과(check_status ok, 누락 이벤트 없음, UCRP 입력 저장). 본 실행 시작.
+- P1 완료(시도 1, 16,395초 = 4.55시간).
+- P2 시도 1: Windows 업데이트 재시작(재부팅 대기 상태 발견)에 대비해 약 7000스텝(1,463초)에서 수동으로 멈췄다. 연결 끊김에 해당하는 사유다. `replication/funnel_f7_rat_resume.sh`가 attempts.jsonl에 중단으로 기록했다. P2는 시도 2부터 처음부터 다시 돈다. 성과는 보지 않았다.
+- 재개: Windows에서 `wsl -e bash -lc ~/f4work/f7_resume.sh`(= 저장소의 replication/funnel_f7_rat_resume.sh). 기록되지 않은 중단 시도를 먼저 attempts.jsonl에 남기고 tmux rat_f7을 띄운다. 사전 등록 실행 스크립트는 바꾸지 않았다.
+- 원격 접속: 맥에서 Tailscale로 `ssh ksbda@desktop-u6si9ta`(Windows OpenSSH, 기본 셸 PowerShell) → `wsl` → `tmux attach -t rat_f7`(빠져나올 때 Ctrl+b d, Ctrl+C 금지).
