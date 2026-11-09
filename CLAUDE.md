@@ -20,3 +20,9 @@
 
 ## 실계좌 봇
 Windows 서버 desktop-u6si9ta, `main`, β=30(rt1006) 정책, 약 330 USDT. 대시보드 `https://desktop-u6si9ta.tail1ae2f7.ts.net/`(Tailscale, JSON은 `/api/status`). 이 맥의 IP는 바이낸스 API 허용 목록에 없어 직접 조회 시 -2015 — 대시보드로 확인한다. 2026-11-05 확인, 정상.
+
+## 서버 원격 조작(맥에서, 2026-11-09 설정)
+- 맥 `~/.ssh/config`의 호스트 `tb` = Tailscale `desktop-u6si9ta`, 사용자 `ksbda`, 키 인증. Windows OpenSSH이고 기본 셸은 PowerShell이다.
+- WSL 명령은 `ssh tb "wsl -e bash -lc '<명령>'"`으로 보낸다. 재현 작업은 WSL의 `~/ToBeRich`(별도 clone)와 `~/f4work`에서 한다. Windows 쪽 `C:\Users\ksbda\ToBeRich`는 봇 폴더이므로 건드리지 않는다.
+- RAT F7: tmux `rat_f7`. 상태는 `cat ~/ToBeRich/data/funnel/rat_f7_gtx1650/*/done.json`, 재부팅 후 재개는 `~/f4work/f7_resume.sh`로 한다. 성과 파일은 열지 않는다(런북 6절).
+- tmux 화면을 직접 볼 때는 `ssh -t tb wsl tmux attach -t rat_f7`. 빠져나올 때는 Ctrl+b d를 쓴다. Ctrl+C를 누르면 실행이 죽는다.
