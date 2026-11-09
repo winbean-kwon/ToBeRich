@@ -49,3 +49,13 @@
 
 ## 5. 보고
 사용자에게는 짧게 쓴다. 사전 판정을 먼저 쓰고, 그다음 해석, 한계 순으로 쓴다. "핵심 증거" 같은 과장은 쓰지 않는다. 새 주장이나 다음 방향은 보고 전에 반박 에이전트로 검증하고, 그 반론을 함께 적는다.
+
+## 6. RAT F7 실행(2026-11-09 추가, 맥 세션 작성)
+사전 등록은 `notes/funnel_f7_rat_prereg.md`(확정)이다. 먼저 이 문서를 읽는다. 장치는 이 노트북의 GTX 1650이고, 사용자가 정했다.
+1. `git pull --rebase origin audit-fix-1004`.
+2. WSL 안에서 F4 환경(`~/f4work`)이 그대로 있는지 확인한다. 스크립트가 main.py와 Data.db의 해시를 검사한다.
+3. **점검:** `python3 replication/funnel_f7_rat_local.py --check`. 출력 JSON에서 `check_status: ok`, `missing_events: []`, `ucrp_input_saved: true`여야 한다. 실패하면 traceback만 보고하고 멈춘다. 고쳐야 하면 성과를 보기 전에 사전 등록 문서에 경위를 적고 커밋한다.
+4. **본 실행:** tmux 안에서 `python3 replication/funnel_f7_rat_local.py`. 순서는 P1→P5, 그다음 R1→R5다. P는 실행마다 약 4.5시간, R은 약 2.8시간 걸린다. 다시 시작하면 끝난 실행은 건너뛴다.
+5. **열지 않는 것:** `data/funnel/rat_f7_gtx1650/` 안의 `train_summary.csv`, `final_summary.csv`, `stdout.*.log`, 모델 파일. 진행 상황은 `done.json`, `attempts.jsonl`, `times.*.jsonl`만 보고 확인한다.
+6. **판정:** P 5회가 끝나면(또는 11-24에) **사용자에게 먼저 알리고**, 사용자가 승인하면 `python3 replication/funnel_f7_rat_judge.py ~/ToBeRich/data/funnel/rat_f7_gtx1650`을 한 번 돌린다. 결과는 사전 판정, 냉정한 해석, 한계 순으로 사전 등록 문서 아래에 적는다. 보고하기 전에 반박 에이전트로 검토한다. R은 끝나는 대로 병기한다.
+7. 동시 실행 금지: 이 실행이 도는 동안에는 이 GPU에서 다른 측정을 돌리지 않는다. Ensemble F7 같은 CPU 작업은 사용자와 정한 뒤에 돌린다.
