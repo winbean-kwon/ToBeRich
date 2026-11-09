@@ -42,3 +42,11 @@ ssh -o BatchMode=yes tb "echo ok"   # ok가 나오면 성공
 ```bash
 ssh tb "wsl -e bash -lc 'cat ~/ToBeRich/data/funnel/rat_f7_gtx1650/*/done.json; tmux ls'"
 ```
+
+## 남은 일: 재부팅 후 WSL 유휴 종료 (2026-11-09 기록)
+- 현재 WSL은 서버 데스크톱 세션의 `wslhost`가 붙잡고 있어 유지된다. 재부팅 후 데스크톱 로그인 없이 SSH로만 WSL·tmux를 띄우면 SSH 종료 뒤 유휴 종료될 수 있다(미검증).
+- 서버 `.wslconfig`는 없다. 예방 설정(다음 WSL 시작부터 적용, 실행 중 F7 무영향) — 맥에서 사용자 승인 후:
+  ```bash
+  ssh tb 'Set-Content -Path $env:USERPROFILE\.wslconfig -Encoding ascii -Value "[general]","instanceIdleTimeout=-1","","[wsl2]","vmIdleTimeout=-1"'
+  ```
+- 실제 시험은 RAT F7 10개 실행(P1~5, R1~5, 개당 약 4.5h)이 모두 끝난 뒤(약 2026-11-11 오전): `wsl --shutdown` → SSH로 tmux에 `sleep` 세션 생성 → SSH 종료 → 10분 뒤 재접속해 세션이 살아 있는지 확인.
