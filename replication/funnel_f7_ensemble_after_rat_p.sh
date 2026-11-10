@@ -9,13 +9,15 @@ RAT=~/ToBeRich/data/funnel/rat_f7_gtx1650
 ENS=~/ToBeRich/data/funnel/ensemble_f7
 LOG=~/f4work/ens_f7_orchestrator.log
 log(){ echo "$(date '+%F %T') $*" | tee -a "$LOG"; }
-alive(){ pgrep -af "[r]un_rat_f7.py|[f]unnel_f7_rat_local.py"; }
+# python 프로세스만 고른다. tmux 서버의 명령줄에도 스크립트 이름이 들어 있어 pkill -f는 tmux 서버(이 세션 포함)를 죽인다.
+ratpids(){ ps -eo pid=,comm=,args= | awk '$2 ~ /^python/ && /run_rat_f7\.py|funnel_f7_rat_local\.py/ {print $1}'; }
+alive(){ [ -n "$(ratpids)" ]; }
 RESUME=~/f4work/f7_resume.sh
 [ -x "$RESUME" ] || RESUME=~/ToBeRich/replication/funnel_f7_rat_resume.sh
 
 if [ -f "$ENS/ens_all_done" ]; then
   log "Ensemble 이미 끝남. RAT 재개만 시도"
-  alive >/dev/null || bash "$RESUME" 2>&1 | tee -a "$LOG"
+  alive || bash "$RESUME" 2>&1 | tee -a "$LOG"
   exit 0
 fi
 
@@ -23,8 +25,8 @@ log "대기 시작: $RAT/P5/done.json"
 while [ ! -f "$RAT/P5/done.json" ]; do sleep 5; done
 log "RAT P5 끝. rat_f7 세션과 RAT 프로세스 종료"
 tmux kill-session -t rat_f7 2>/dev/null
-pkill -f "[f]unnel_f7_rat_local.py"; pkill -f "[r]un_rat_f7.py"
-for k in 1 2 3 4 5 6; do alive >/dev/null || break; sleep 5; pkill -9 -f "[f]unnel_f7_rat_local.py|[r]un_rat_f7.py"; done
+p=$(ratpids); [ -n "$p" ] && kill $p
+for k in 1 2 3 4 5 6; do alive || break; sleep 5; p=$(ratpids); [ -n "$p" ] && kill -9 $p; done
 if alive; then log "RAT 프로세스가 남아 있음. Ensemble을 시작하지 않고 중단"; exit 1; fi
 log "R1 폴더 상태: $(ls $RAT/R1 2>/dev/null | tr '\n' ' ')"
 
