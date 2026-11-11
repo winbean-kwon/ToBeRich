@@ -41,7 +41,7 @@ S56,P24-08,DRL framework (Waterloo),pass_check,jackieli19/PGPortfolio(포크; �
 S56,P24-09,PM using DRL,not_found,,auto,2026-11-05
 S56,P24-10,DeepClair,pass,jkcost/Deepclair (README 논문 제목; 기존 CSV unspecified 정정),auto(신규),2026-11-05
 S56,Y25-01,DeepAries (T1),pass,dmis-lab/DeepAries,recorded,2026-11-05
-S56,Y25-02,HARLF,check,논문이 Colab 노트북을 언급(링크 미확인),recorded,2026-11-05
+S56,Y25-02,HARLF,link_dead,"논문 Colab 3개 중 학습 2·3 열리지 않음(사용자 확인 2026-11-10, 514e460)",recorded,2026-11-10
 S56,Y25-03,MARS (T4),pass,jiayiderekchen/MARS (기존 CSV none found 정정),auto,2026-11-05
 S56,Y25-04,RL crypto PM,not_found,,auto,2026-11-05
 S56,Y26-01,Regime-aware RAG LLM,not_found,,auto,2026-11-05
