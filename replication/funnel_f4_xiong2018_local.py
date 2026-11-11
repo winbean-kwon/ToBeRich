@@ -24,7 +24,8 @@ sha256sum run.py gym/envs/rlstock/rlstock_env.py gym/envs/rlstock/rlstock_testen
 grep -q '^b780bb890f499bc3f64b1a12b5e39af2028dcc6ac1f4ffa302ba72a43f4e5246  run.py' "$W/out/main_sha.txt"
 grep -q '^81f7436a8d7c71faccf29077bdab42d04423e1fb6ae2601e202298a47a80d5ec  gym/envs/rlstock/rlstock_env.py' "$W/out/main_sha.txt"
 grep -q '^3de1b4ae96b6c2585eeb48f4b02cd8a0f3938500d1497ec6fa66daff4f9020bb  gym/envs/rlstock/rlstock_testenv.py' "$W/out/main_sha.txt"
-git clone -q https://github.com/openai/baselines.git "$W/src/baselines" && git -C "$W/src/baselines" checkout -q 7bfbcf1
+curl -sL https://github.com/openai/baselines/archive/7bfbcf177eca8f46c0c0bfbb378e044539f5e061.tar.gz | tar -xz -C "$W/src" && mv "$W/src/baselines-7bfbcf177eca8f46c0c0bfbb378e044539f5e061" "$W/src/baselines"
+cd "$W"
 cp "$W/src/run.py" "$W/src/baselines/baselines/run.py"
 MM=$HOME/f4work/ensemble/bin/micromamba
 step py37 $MM create -y -p "$W/p37" -c conda-forge python=3.7 pip
