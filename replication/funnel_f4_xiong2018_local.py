@@ -34,7 +34,7 @@ step gym $P install -q gym==0.15.7
 step baselines $P install -q -e "$W/src/baselines"
 step repin $P install -q --force-reinstall --no-deps numpy==1.16.4 pandas==1.0.3 scipy==1.4.1 matplotlib==3.2.1
 # README Step 7·8: rlstock 폴더를 설치된 gym/envs로 복사하고 두 env를 등록한다
-GE=$("$W/p37/bin/python" -c "import gym,os;print(os.path.dirname(gym.__file__))")/envs
+GE=$(cd / && "$W/p37/bin/python" -c "import gym,os;print(os.path.dirname(gym.__file__))")/envs
 cp -r "$W/src/gym/envs/rlstock" "$GE/"
 grep -q "RLStock-v0" "$GE/__init__.py" || printf "\nregister(\n    id='RLStock-v0',\n    entry_point='gym.envs.rlstock:StockEnv',\n)\nregister(\n    id='RLTestStock-v0',\n    entry_point='gym.envs.rlstock:StockTestEnv',\n)\n" >> "$GE/__init__.py"
 PD="$GE/rlstock"
