@@ -15,7 +15,7 @@ S56,li2019adaptive,Optimistic Bull or Pessimistic Bear,pass,YinchuanLl/Reinforce
 S56,shi2019ei3,Multi-scale TFA CNN,original_missing,원문 미확보(초록만),—,2026-11-05
 S56,W21_DeepTrader,DeepTrader,pass,CMACH508/DeepTrader,recorded,2026-11-05
 S56,W21_HRPM,HRPM,not_found,,auto,2026-11-05
-S56,W22_PPN,PPN cost-sensitive,pass,kshre/PPN (README "original implementation"),auto(신규; 기존 CSV none found 정정),2026-11-05
+S56,W22_PPN,PPN cost-sensitive,pass,"kshre/PPN (README ""original implementation"")",auto(신규; 기존 CSV none found 정정),2026-11-05
 S56,W21_DeepPocket,DeepPocket,third_party_only,brunojerkovic/Deep-Pocket-for-Portfolio-Management,auto,2026-11-05
 S56,W21_FinRL,FinRL ICAIF 2021 (T3),pass,AI4Finance-Foundation/FinRL(-Meta),recorded,2026-11-05
 S56,W21_GuanLiu_XDRL,Explainable DRL for PM,pass_tutorial,FinRL 튜토리얼(저자 조직 저장소),recorded,2026-11-05
@@ -66,9 +66,9 @@ S-Q,SQ-Regret,Regret-Optimized (ICAIF 2025),not_found,,auto,2026-11-05
 S-Q,SQ-MAPS,MAPS (IJCAI 2020),not_found,,auto,2026-11-05
 S-Q,SQ-TwoLevel,Two-level RL ambiguous MV (IJCAI 2020; F0 보류),not_found,,auto,2026-11-05
 S-Q,SQ-SmartFolio,SmartFolio (IJCAI),pass,ChloeWenyiZhang/SmartFolio,known,2026-11-05
-S-Q,SQ-SCR,Scenario-Context Rollout (KDD 2026),check,edrtfu531/rlscr1 후보(2026-05 생성; 논문과의 연결 미확인),auto,2026-11-05
-보충,SUP-CLRS,CLRS (IJCAI 2023),link_dead_copy,논문 링크 sophialien/FinTech-DPM 404; BlackBoxOperator/FinTech-DPM이 "official implementations" README 사본(소유자 미확인),auto,2026-11-05
+S-Q,SQ-SCR,Scenario-Context Rollout (KDD 2026),pass_likely,edrtfu531/rlscr1 (CITATION.cff 제목·저자·DOI 일치; 소유자 미확인; arXiv 2602.24037 본문엔 링크 없음),auto,2026-11-11
+보충,SUP-CLRS,CLRS (IJCAI 2023),link_dead_copy,"논문 링크 sophialien/FinTech-DPM 404; BlackBoxOperator/FinTech-DPM이 ""official implementations"" README 사본(소유자 미확인)",auto,2026-11-11
 보충,SUP-ReCAP,ReCAP (KDD 2026),pass,Dumail/ReCAP(저자 명시 최소 구현),known,2026-11-05
 보충,SUP-LSRE,LSRE-CAAN (IP&M 2023),pass,jiahaoli57/LSRE-CAAN,known,2026-11-05
 보충,SUP-ADRL,ADRLwIntReward (ICAIF 2024),pass,cspun/ADRLwIntReward,known,2026-11-05
-보충,SUP-BRT,Bayesian Robust Trading (KDD 2026),pass,XiaHaochong98/Bayesian-Robust-...,auto,2026-11-05
+보충,SUP-BRT,Bayesian Robust Trading (KDD 2026),pass,XiaHaochong98/Bayesian-Robust-Financial-Trading-with-Adversarial-Synthetic-Market-Data,auto,2026-11-11
