@@ -32,7 +32,11 @@ step py37 $MM create -y -p "$W/p37" -c conda-forge python=3.7 pip
 P="$W/p37/bin/python -m pip --default-timeout=120 --retries 5"
 step core $P install -q numpy==1.16.4 pandas==1.0.3 scipy==1.4.1 matplotlib==3.2.1 tensorflow==1.14.0 "protobuf<3.20"
 step gym $P install -q gym==0.15.7
-step baselines $P install -q -e "$W/src/baselines"
+# 2018 baselines setup.py는 gym[mujoco,atari,robotics]·mpi4py를 요구한다. 이 대상과 무관한 gym 확장은 빼고
+# --no-deps로 설치한 뒤 나머지 의존성을 직접 깐다. DDPG가 mpi4py를 조건 없이 import하므로 conda-forge로 설치한다.
+step mpi $MM install -y -p "$W/p37" -c conda-forge mpi4py openmpi
+step baselines $P install -q --no-deps -e "$W/src/baselines"
+step bdeps $P install -q tqdm joblib dill progressbar2 cloudpickle click opencv-python==4.2.0.34
 step repin $P install -q --force-reinstall --no-deps numpy==1.16.4 pandas==1.0.3 scipy==1.4.1 matplotlib==3.2.1
 # README Step 7·8: rlstock 폴더를 설치된 gym/envs로 복사하고 두 env를 등록한다
 GE=$(cd / && "$W/p37/bin/python" -c "import gym,os;print(os.path.dirname(gym.__file__))")/envs
@@ -68,7 +72,7 @@ def main():
     py = str(WORK / 'p37' / 'bin' / 'python')
     (WORK / 'out' / 'gate.py').write_text(GATE)
     ok = WORK / 'out' / 'gate_ok'
-    sh(f'{py} {WORK}/out/gate.py {ok} > {WORK}/out/install_versions.log 2>&1')
+    sh(f'MPLBACKEND=Agg {py} {WORK}/out/gate.py {ok} > {WORK}/out/install_versions.log 2>&1')
     print((WORK / 'out' / 'install_versions.log').read_text()[-600:])
     if not ok.exists():
         raise SystemExit('관문 실패')
@@ -86,7 +90,7 @@ def main():
     t0 = time.time()
     with open(run / 'stdout.log', 'w') as fo, open(run / 'stderr.log', 'w') as fe:
         p = subprocess.Popen([py, '-m', 'baselines.run', '--alg=ddpg', '--env=RLStock-v0', '--network=mlp', '--num_timesteps=25000', '--seed=0', '--play'],
-                             cwd=str(run), stdout=fo, stderr=fe, env=dict(os.environ, OPENAI_LOGDIR=str(run / 'oailog')))
+                             cwd=str(run), stdout=fo, stderr=fe, env=dict(os.environ, OPENAI_LOGDIR=str(run / 'oailog'), MPLBACKEND='Agg'))
         try:
             rc = p.wait(timeout=CAP); capped = False
         except subprocess.TimeoutExpired:

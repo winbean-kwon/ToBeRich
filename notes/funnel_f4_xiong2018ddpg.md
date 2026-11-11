@@ -39,3 +39,5 @@
 - 실패·상한·재시도·예산 규칙은 li2019adaptive 2.3과 같다(상한 3시간, 최대 3회, stderr 마지막 40줄만 열람).
 
 스크립트: `replication/funnel_f4_xiong2018_local.py`(이 절과 같은 커밋).
+
+**설치 정정 기록(2026-11-12, 실행 전, 성과 미열람):** (1) `git clone`이 index-pack 오류로 반복 실패해 baselines `7bfbcf1`을 커밋 압축본으로 받는다. (2) 2018 baselines `setup.py`가 `gym[mujoco,atari,classic_control,robotics]`·`mpi4py`를 요구해 mujoco-py 빌드에서 실패했다. 이 대상과 무관한 gym 확장은 빼고 `--no-deps`로 설치한 뒤 나머지 의존성(tqdm, joblib, dill, progressbar2, cloudpickle, click, opencv-python)을 직접 깐다. DDPG(`ddpg.py`·`ddpg_learner.py`)가 `mpi4py`를 조건 없이 import하므로 conda-forge `mpi4py`·`openmpi`를 설치한다(2.1의 "mpi4py 설치 안 함"을 정정). (3) 관문·실행에 `MPLBACKEND=Agg`.

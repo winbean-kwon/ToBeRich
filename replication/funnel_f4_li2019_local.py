@@ -67,7 +67,7 @@ def main():
     py = str(WORK / 'p37' / 'bin' / 'python')
     (WORK / 'out' / 'gate.py').write_text(GATE)
     ok = WORK / 'out' / 'gate_ok'
-    sh(f'{py} {WORK}/out/gate.py {ok} > {WORK}/out/install_versions.log 2>&1')
+    sh(f'MPLBACKEND=Agg {py} {WORK}/out/gate.py {ok} > {WORK}/out/install_versions.log 2>&1')
     print((WORK / 'out' / 'install_versions.log').read_text()[-600:])
     if not ok.exists():
         raise SystemExit('관문 실패')
@@ -85,7 +85,7 @@ def main():
     t0 = time.time()
     with open(run / 'stdout.log', 'w') as fo, open(run / 'stderr.log', 'w') as fe:
         p = subprocess.Popen([py, '-m', 'baselines.run', '--num_timesteps=25000', '--seed=0', '--play'],
-                             cwd=str(run), stdout=fo, stderr=fe, env=dict(os.environ, OPENAI_LOGDIR=str(run / 'oailog')))
+                             cwd=str(run), stdout=fo, stderr=fe, env=dict(os.environ, OPENAI_LOGDIR=str(run / 'oailog'), MPLBACKEND='Agg'))
         try:
             rc = p.wait(timeout=CAP); capped = False
         except subprocess.TimeoutExpired:
