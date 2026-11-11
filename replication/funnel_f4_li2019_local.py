@@ -26,9 +26,13 @@ MM=$HOME/f4work/ensemble/bin/micromamba
 step py37 $MM create -y -p "$W/p37" -c conda-forge python=3.7 pip
 P="$W/p37/bin/python -m pip --default-timeout=120 --retries 5"
 step core $P install -q numpy==1.16.4 pandas==1.0.3 scipy==1.4.1 matplotlib==3.2.1 tensorflow==1.15.2 "protobuf<3.20"
-GYM=$(dirname $(find "$W/src" -name setup.py -path "*gym*" | head -1)); BL=$(dirname $(find "$W/src" -name setup.py -path "*baselines*" | head -1))
-echo "gym=$GYM baselines=$BL" > "$W/out/src_paths.txt"
-step gym $P install -q -e "$GYM"
+BL="$W/src/baselines"; echo "baselines=$BL gym=bundled package dir $W/src/gym" > "$W/out/src_paths.txt"
+# gym 사본은 site-packages의 패키지 폴더 자체(setup.py 없음, version 0.10.0)다. pip로 같은 버전을 깔아 의존성을 맞춘 뒤
+# 설치된 gym 폴더를 사본으로 바꾼다(저자 환경 = site-packages gym을 고친 것과 같은 상태).
+step gym $P install -q gym==0.10.0
+SP=$("$W/p37/bin/python" -c "import gym,os;print(os.path.dirname(os.path.dirname(gym.__file__)))")
+rm -rf "$SP/gym" && cp -r "$W/src/gym" "$SP/gym" && rm -rf "$SP/gym/__pycache__"
+GYM="$SP"
 step baselines $P install -q -e "$BL"
 step repin $P install -q --force-reinstall --no-deps numpy==1.16.4 pandas==1.0.3 scipy==1.4.1 matplotlib==3.2.1
 # 허용 수정 1: README가 지시한 경로 교체(접두어만)

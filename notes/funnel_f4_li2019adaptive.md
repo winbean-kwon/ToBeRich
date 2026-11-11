@@ -26,7 +26,7 @@
 순서: 프로토콜 3.3에 따라 S56의 다음 대상(EIIE 앞 순번, F7 자리 없음 → F4까지만). 실행 장치: 서버 노트북 WSL2 CPU. **RAT F7(R1~R5)이 끝난 뒤** 순서 스크립트가 실행한다(메모리 3.9GB, RAT 학습 2.5GB와 동시 실행 금지).
 
 ### 2.1 코드·환경
-- 저장소 HEAD `326640a`, `baselines.zip` sha256 `8481a9c8…c560`, `gym.zip` sha256 `d58a57f0…c4d0`(정적 확인 시 값). 두 zip을 풀어 각각 `pip install -e`로 설치한다(gym 0.10.0 사본, baselines 베이스 `5d8041d`).
+- 저장소 HEAD `326640a`, `baselines.zip` sha256 `8481a9c8…c560`, `gym.zip` sha256 `d58a57f0…c4d0`(정적 확인 시 값). 두 zip을 푼다. baselines(베이스 `5d8041d`)는 `pip install -e`로 설치한다. gym 사본은 site-packages의 패키지 폴더 자체(setup.py 없음, 0.10.0)라서 `pip install gym==0.10.0`으로 의존성을 맞춘 뒤 설치된 gym 폴더를 사본으로 바꾼다(저자가 site-packages gym을 고친 환경과 같은 상태). (설치 1차 시도에서 setup.py를 찾지 못해 실패한 뒤 정정, 실행 전)
 - Python 3.7, tensorflow 1.15.2, numpy 1.16.4, pandas 1.0.3, scipy·matplotlib는 TF1.15·py3.7과 맞는 고정 버전. baselines `install_requires`(scipy, tqdm, joblib, dill, progressbar2, cloudpickle, click, opencv-python)는 pip가 고르는 버전으로 설치하고 `install_versions.log`에 남긴다. mpi4py는 설치하지 않는다(코드가 `MPI is None` 분기를 가짐).
 
 ### 2.2 허용 수정(v3 2.3 범위)
