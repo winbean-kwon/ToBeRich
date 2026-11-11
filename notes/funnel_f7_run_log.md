@@ -9,3 +9,6 @@
 - Ensemble 성과 파일·RAT R1 stdout은 열지 않았다.
 - 13:51:30 WSL 가상머신이 유휴 종료됨(Windows 재부팅 아님, 부팅 11-09 19:40 유지). 원인: ssh로 띄운 뒤 연결이 끊겨 WSL 클라이언트가 없었고, 11-10에 넣은 `.wslconfig`(instanceIdleTimeout=-1, vmIdleTimeout=-1)는 VM 재시작 전이라 적용되지 않았음. 그 전 18시간은 서버 콘솔에서 연 WSL 창이 VM을 붙잡고 있었던 것으로 보임(13:05 tmux 서버 종료로 그 고리가 끊김 — 추정). Ensemble E1 시도 1은 약 2분에 중단(시작 기록으로 시도 수에 포함, 사전 등록 규칙대로).
 - 14:28 맥 ssh 접속으로 WSL 재시작(.wslconfig 적용). 14:29:26 순서 스크립트 재실행, E1 시도 2 시작.
+- 11-10 14:38:52 WSL이 다시 정상 종료(systemd poweroff, Windows 재부팅 아님). ssh 끊김 약 5분 뒤. `.wslconfig`의 유휴 설정으로는 막히지 않았음. E1 시도 2는 약 9분(PPO 학습 시작 직후)에 중단. 이후 11-11 18:38까지 서버 유휴.
+- 11-11 20:39 사용자가 Windows 예약 작업 `wsl_keepalive`(로그온 시 `wsl.exe -e sleep infinity`) 등록·실행. 무접속 11분 생존 확인 후 20:51:23 재실행, E1 시도 3(마지막) 시작.
+- 판정 영향: E1이 이번에 끝나지 않으면 사전 등록 규칙대로 failed_max_attempts. 일정: 5회 완료 예상 11-12 오전, 이후 RAT R.
