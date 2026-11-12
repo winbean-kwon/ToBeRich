@@ -66,7 +66,7 @@ S-Q,SQ-Regret,Regret-Optimized (ICAIF 2025),not_found,,auto,2026-11-05
 S-Q,SQ-MAPS,MAPS (IJCAI 2020),not_found,,auto,2026-11-05
 S-Q,SQ-TwoLevel,Two-level RL ambiguous MV (IJCAI 2020; F0 보류),not_found,,auto,2026-11-05
 S-Q,SQ-SmartFolio,SmartFolio (IJCAI),pass,ChloeWenyiZhang/SmartFolio,known,2026-11-05
-S-Q,SQ-SCR,Scenario-Context Rollout (KDD 2026),pass_likely,edrtfu531/rlscr1 (CITATION.cff 제목·저자·DOI 일치; 소유자 미확인; arXiv 2602.24037 본문엔 링크 없음),auto,2026-11-11
+S-Q,SQ-SCR,Scenario-Context Rollout (KDD 2026),pass,"edrtfu531/rlscr1 (KDD 2026 최종판 1쪽(논문집 쪽 번호 150) 왼쪽 단 아래 Resource Availability가 명시, Zenodo 10.5281/zenodo.20410374, ACM Artifacts Available 배지; arXiv 2602.24037v1 본문엔 링크 없음; 2026-11-12 저장소·Zenodo 열림)","paper(KDD 최종판, 사용자 제공 PDF)",2026-11-12
 보충,SUP-CLRS,CLRS (IJCAI 2023),link_dead_copy,"논문 링크 sophialien/FinTech-DPM 404; BlackBoxOperator/FinTech-DPM이 ""official implementations"" README 사본(소유자 미확인)",auto,2026-11-11
 보충,SUP-ReCAP,ReCAP (KDD 2026),pass,Dumail/ReCAP(저자 명시 최소 구현),known,2026-11-05
 보충,SUP-LSRE,LSRE-CAAN (IP&M 2023),pass,jiahaoli57/LSRE-CAAN,known,2026-11-05
