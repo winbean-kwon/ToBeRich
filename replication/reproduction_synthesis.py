@@ -8,6 +8,7 @@
     AlphaMix+  replication/alphamix_t2/judge_o1.json
     FinRL      replication/finrl_t3/o1/judge_W0.json
     MARS       data/mars_t4/judge_o1.json, data/mars_t4/aux_o1.json
+    Ensemble   replication/funnel_f7/ensemble_judge_result.json (깔때기 F7, 순서 규칙으로 선택)
 - 논문 보고값: judge JSON에 들어 있는 값을 쓰고, JSON에 없는 것만 아래 PAPER_ONLY에 둔다.
   보고값은 모두 논문 원문과 대조해야 한다(notes/claim_ledger.csv).
 
@@ -117,8 +118,21 @@ def mars_rows():
     return out
 
 
+def funnel_f7_rows():
+    """깔때기 F7(프로토콜 3.3 순서로 선택된 논문). T1~T4와 따로 집계한다."""
+    out = []
+    j = load("replication/funnel_f7/ensemble_judge_result.json")
+    seeds = [j["runs"][k]["main"]["sharpe"] for k in sorted(j["runs"]) if j["runs"][k]["status"] == "ok"]
+    assert abs(st.mean(seeds) - j["R1"]["mean_sharpe"]) < 1e-12
+    tol = round((j["R1"]["band"][1] - j["R1"]["band"][0]) / 2, 3)
+    out.append(row("Ensemble F7(깔때기, 서버 CPU)", "Sharpe(1,097행)", "미기재", 1.30, tol, "5회 산술평균(시드 미고정)",
+                   j["R1"]["mean_sharpe"], 0.47, j["aux_djia"]["ours"]["sharpe"], seeds, j["grade"],
+                   f"R1 통과·R2 실패({j['R2']['count']}/5 > {j['R2']['bar']}); 비교 대상 DJIA"))
+    return out
+
+
 def main():
-    out = deeparies_rows() + alphamix_rows() + finrl_rows() + mars_rows()
+    out = deeparies_rows() + alphamix_rows() + finrl_rows() + mars_rows() + funnel_f7_rows()
     with open(ROOT / "replication/reproduction_synthesis.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=list(out[0]))
         w.writeheader()
