@@ -4,7 +4,7 @@
 LOG=~/f4work/f4_seq.log
 log(){ echo "$(date '+%F %T') $*" | tee -a "$LOG"; }
 log "SmartFolio 대기: f4_seq 끝(F4 순서 끝) 기다림"
-until grep -q "F4 순서 끝" "$LOG" && ! tmux has-session -t f4_seq 2>/dev/null; do
+until grep -q "F4 순서 끝" "$LOG" && ! tmux has-session -t "=f4_seq" 2>/dev/null; do
   if [ "$(date +%Y%m%d)" -ge 20261125 ]; then log "11-25 이후 새 실행 시작 안 함"; exit 0; fi
   sleep 60
 done
