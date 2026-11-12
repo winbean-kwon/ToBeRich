@@ -28,3 +28,8 @@
 스크립트: `replication/funnel_f4_smartfolio_local.py`, 순서: `replication/funnel_f4_after_xiong.sh`(xiong2018 F4가 끝난 뒤 실행).
 
 **설치 정정(2026-11-12, 실행 전, 성과 미열람):** 환경 설치는 끝났고(python 3.9.23, torch 2.0.1+cpu, gym 0.21.0, sb3 1.8.0, pyg 2.3.1), 관문에서 `policy/policy.py`의 `from model import HGAT`가 실패했다. `model/` 폴더에 `__init__.py`가 없어 `model`이 이름공간 패키지로 잡히기 때문이다(클래스는 `model/model.py`에 있음). 허용 수정 1(경로)에 하나를 더한다: `PYTHONPATH`에 `model/`을 덧붙여 `model`이 `model/model.py` 모듈로 해석되게 한다(일반 모듈이 이름공간 패키지보다 우선). 코드는 고치지 않는다. 기본 정책은 MLP라 HGAT는 import만 된다.
+
+## 3. 시도 1(2026-11-12 16:27, 성과 미열람)
+- rc 1, 4.9초. `trainer/irl_trainer.py` 136행 `data_dict['pyg_data']`에서 `KeyError: 'pyg_data'`.
+- 원인 확인(데이터 구조만 봄): 번들 `dataset/data_train_predict_hs300/1_hy/*.pkl` 1,697개의 키는 corr·ts_features·features·industry_matrix·pos_matrix·neg_matrix·labels·mask이고 `pyg_data`가 없다. 첫 파일에서 `ts_features`·`features`·`labels`가 **크기 0인 빈 텐서**다. 번들 학습 데이터는 코드가 쓸 수 있는 형태가 아니다(F3 "번들" 분류 재검토 필요).
+- 저자 생성 스크립트 `gen_data/train_predict_data.py`가 `pyg_data`를 포함한 pkl을 만든다(184행). 입력(`dataset/hs300_org.csv`, `dataset/corr/hs300/`, `dataset/A_stock_industry_matrx.csv`)은 저장소에 있다. 이 스크립트 실행은 2.2의 허용 수정 목록에 없으므로 사용자 결정 전에는 돌리지 않는다.
