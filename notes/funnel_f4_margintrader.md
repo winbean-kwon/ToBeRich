@@ -35,3 +35,8 @@
 스크립트: `replication/funnel_f4_margintrader_mac.py`(이 절과 같은 커밋). 결과 기록은 `~/f4mac/out/margintrader/`.
 
 **설치 정정(2026-11-12, 시도 1 뒤, 성과 미열람):** 시도 1은 0.7초 만에 `ModuleNotFoundError: typing_extensions`로 끝났다(rc 1, 시도 1회로 셈). 사전 설치 확인은 사용자 site-packages(`~/.local/lib/python3.10`)가 섞인 상태였고, 실행 래퍼는 `PYTHONNOUSERSITE=1`로 이를 막는다. 같은 조건의 import 관문(`finrl`·`finrl.main`·`finrl.plot`·전처리·`env.marginEnv`·`env.agent`·SB3 tensorboard 로거)이 통과할 때까지 빠진 패키지를 env에 설치했다: typing_extensions 4.16.0, torch 2.14.1(2.1의 2.9.0은 사용자 site의 판이었음 — 정정), requests 2.34.2, aiohttp 3.14.5. 저자 코드·FinRL 파일 변경 없음. 시도 2로 진행한다.
+
+## 3. 결과(2026-11-12)
+- **F4 통과(저자 스크립트 기본 인자 1회).** 시도 2: rc 0, 177.0초(맥 M1 CPU), 표지 `results/*/a2c/perf_stats_trade.csv` 존재. 시도 1은 import 실패(위 설치 정정). 성과 파일·표준출력은 열지 않았다.
+- 재수집 데이터 `datasets/data.csv`: sha256 5dbb2cf1…15fa, 100,912행, **28종목**. FinRL 0.3.6 `DOW_30_TICKER` 30개 중 DOW(2019 상장, 2009년부터 기간 없음 → FinRL 전처리가 전 기간 공통 날짜만 남기며 제외된 것으로 보임)와 WBA(현재 Yahoo에서 받히지 않음)가 빠졌다. 논문 데이터 절의 종목 수와의 대조는 하지 않았다(F7 대상 아님). F3 비고 "FinRL 버전 미고정이라 종목 목록 변동 가능"에 더해, 재수집 시점에 따라서도 종목이 달라진다.
+- 기록 파일: `~/f4mac/out/margintrader/attempt1.json`·`attempt2.json`·`done.json`(맥 로컬).

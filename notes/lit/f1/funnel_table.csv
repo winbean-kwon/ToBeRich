@@ -61,7 +61,7 @@ S-Q,SQ-XPM,XPM (CIKM 2021),not_found,F1,찾지 못함(문의 안 함),,
 S-Q,SQ-DGDRL,DGDRL (CIKM 2024),not_found,F1,찾지 못함(문의 안 함),,
 S-Q,SQ-APTS,Automated portfolio trading RRL (ICAIF 2021),not_found,F1,찾지 못함(문의 안 함),,
 S-Q,SQ-ObjDriven,Objective Driven (ICAIF 2022),not_found,F1,찾지 못함(문의 안 함),,
-S-Q,SQ-MarginTrader,Margin Trader (ICAIF 2023),pass,F4,F4까지만(미실행),,
+S-Q,SQ-MarginTrader,Margin Trader (ICAIF 2023),pass,F4,F4 통과(F7 자리 없음),"맥 CPU 177초, 저자 스크립트 기본 인자 1회(A2C 50k), 재수집 28종목",notes/funnel_f4_margintrader.md
 S-Q,SQ-Regret,Regret-Optimized (ICAIF 2025),not_found,F1,찾지 못함(문의 안 함),,
 S-Q,SQ-MAPS,MAPS (IJCAI 2020),not_found,F1,찾지 못함(문의 안 함),,
 S-Q,SQ-TwoLevel,Two-level RL ambiguous MV (IJCAI 2020; F0 보류),not_found,F1,찾지 못함(문의 안 함),,
