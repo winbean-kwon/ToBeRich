@@ -29,3 +29,11 @@
 스크립트: `replication/funnel_f4_adrl_local.py`, 순서: `replication/funnel_f4_after_smartfolio.sh`.
 
 **설치 정정(2026-11-12 18:10, 실행 전, 성과 미열람):** 첫 설치(16:35)는 `extra` 단계에서 pip 오류로 멈췄고, 다시 설치한 환경은 관문에서 `import quantstats` → `yfinance` → `multitasking`의 `from typing import TypedDict`로 실패했다(최신 multitasking은 Python 3.8 이상). quantstats 0.0.59가 판을 고정하지 않은 의존성이라, `extra` 단계에 Python 3.7과 맞는 2022년 판 `yfinance==0.1.70`·`multitasking==0.0.11`을 더한다. 환경은 처음부터 다시 만든다(`env_ok`·`gate_ok` 삭제). 코드·판정·상한은 그대로이고, 설치 실패이므로 시도 횟수에 넣지 않는다.
+
+## 3. 결과(2026-11-12, 성과 미열람): **F4 실행 불가**
+- 설치(정정 2 반영)는 통과했다: python 3.7.12, tf 1.15.4, gym 0.15.3, numpy 1.16.4, pandas 1.0.3.
+- 관문에서 `stable_baselines/__init__.py` 5행 `from stable_baselines.a2c_original import A2C_Original`이 `ModuleNotFoundError`로 실패했다. 같은 파일이 `a2c_original`, `a2c_timedebug`, `a2c_infrequentintrinsic_old`, `a2c_infrequentintrinsic`, `a2c_infrequentintrinsictimedebug` 5개를 import하는데, 저장소(@2e73349)에 이 모듈들의 소스가 없다.
+- 저장소 이력 26커밋 전체에도 이 `.py` 파일은 없다. `1ac855c`(2024-08-03, "Add files via upload")에 `stable_baselines/a2c/__pycache__/a2c_original.cpython-38.pyc` 하나만 있고, 이것도 `__init__`이 찾는 경로(`stable_baselines.a2c_original`)와 다르다. 저자 로컬에만 있던 파일이 공개되지 않은 것으로 보인다.
+- **시도 1(실제 실행, 2.4):** 실행 사본(`git archive 2e73349`)에 출력 폴더만 만들고 `A2C_autoregressive_run.py`를 그대로 실행했다. 16행 `from stable_baselines import A2C_autoregressive as A2C`에서 같은 오류로 rc 1, 1초, stdout 0바이트. 서버 WSL CPU, 18:1x 시작.
+- **판정:** 고치려면 누락 모듈을 새로 쓰거나(스텁 포함) 저자 `__init__.py`의 import를 지워야 한다. 둘 다 v3 2.3 허용 수정(호환 shim·날짜 인자·비용 함수·결과 기록)에 해당하지 않으므로 v3 1.1 규칙대로 **실행 불가**로 판정하고 시도 2·3은 하지 않는다.
+- 이탈 가능성(사용자 결정 사항, 실행하지 않음): 진입점이 쓰는 것은 `A2C_autoregressive`와 `A2C`뿐이라, 누락 5개 import를 지우면 돌 가능성이 있다. 이는 허용 목록 밖의 코드 수정이므로 하려면 결과를 보기 전에 이탈로 기록해야 하고, 그 경우에도 "공개 코드 그대로는 실행 불가"는 바뀌지 않는다.

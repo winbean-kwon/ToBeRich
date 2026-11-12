@@ -70,5 +70,5 @@ S-Q,SQ-SCR,Scenario-Context Rollout (KDD 2026),pass,F4,F4까지만(미실행),,
 보충,SUP-CLRS,CLRS (IJCAI 2023),link_dead_copy,F1,링크 사망(사본),,
 보충,SUP-ReCAP,ReCAP (KDD 2026),pass,F2,탈락(F2),,
 보충,SUP-LSRE,LSRE-CAAN (IP&M 2023),pass,F2,탈락(F2),,
-보충,SUP-ADRL,ADRLwIntReward (ICAIF 2024),pass,F4,F4까지만(미실행),,
+보충,SUP-ADRL,ADRLwIntReward (ICAIF 2024),pass,F4,실행 불가,"공개 코드에 모듈 누락(stable_baselines/__init__가 a2c_original 등 5개 import, 이력에도 .py 없음); 시도 1 rc 1·1초, 서버 CPU",notes/funnel_f4_adrl.md
 보충,SUP-BRT,Bayesian Robust Trading (KDD 2026),pass,F0,탈락(F0),,

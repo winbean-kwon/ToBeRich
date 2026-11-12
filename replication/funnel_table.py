@@ -20,6 +20,7 @@ RUN = {
     'li2019adaptive': ('F4', 'F4 통과(F7 자리 없음)', '서버 CPU 76.5초, 1에폭(25,000스텝)+시험 경로', 'notes/funnel_f4_li2019adaptive.md'),
     'xiong2018ddpg': ('F4', 'F4 통과(F7 자리 없음)', '서버 CPU 69.2초, 1에폭(25,000스텝)+시험 경로, baselines master', 'notes/funnel_f4_xiong2018ddpg.md'),
     'jiang2017eiie': ('F4', '실행 불가', 'Poloniex 레거시 API 403', 'notes/funnel_f4_jiang2017eiie.md'),
+    'SUP-ADRL': ('F4', '실행 불가', '공개 코드에 모듈 누락(stable_baselines/__init__가 a2c_original 등 5개 import, 이력에도 .py 없음); 시도 1 rc 1·1초, 서버 CPU', 'notes/funnel_f4_adrl.md'),
 }
 PRESELECTED = {'Y25-01', 'P23-02', 'W21_FinRL', 'Y25-03'}  # T1~T4, 별도 집계(프로토콜 1.5)
 
