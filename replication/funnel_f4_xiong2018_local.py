@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # xiong2018ddpg(Practical DRL) F4 로컬 실행(서버 WSL CPU). notes/funnel_f4_xiong2018ddpg.md 2절 그대로.
 # 설치 → 관문 → 1에폭 학습 + 시험 경로(--play) 1회. 성과(표준출력·Adaptive DDPG.txt·그림)는 열지 않는다.
-# 사용: python3 replication/funnel_f4_li2019_local.py [--install-only]
+# 사용: python3 replication/funnel_f4_xiong2018_local.py [--install-only]
 import json, os, pathlib, subprocess, sys, time
 
 HOME = pathlib.Path.home()
@@ -24,7 +24,9 @@ sha256sum run.py gym/envs/rlstock/rlstock_env.py gym/envs/rlstock/rlstock_testen
 grep -q '^b780bb890f499bc3f64b1a12b5e39af2028dcc6ac1f4ffa302ba72a43f4e5246  run.py' "$W/out/main_sha.txt"
 grep -q '^81f7436a8d7c71faccf29077bdab42d04423e1fb6ae2601e202298a47a80d5ec  gym/envs/rlstock/rlstock_env.py' "$W/out/main_sha.txt"
 grep -q '^3de1b4ae96b6c2585eeb48f4b02cd8a0f3938500d1497ec6fa66daff4f9020bb  gym/envs/rlstock/rlstock_testenv.py' "$W/out/main_sha.txt"
-curl -sL https://github.com/openai/baselines/archive/7bfbcf177eca8f46c0c0bfbb378e044539f5e061.tar.gz | tar -xz -C "$W/src" && mv "$W/src/baselines-7bfbcf177eca8f46c0c0bfbb378e044539f5e061" "$W/src/baselines"
+# 설치 정정(2026-11-12, 실행 전): 2018 서브모듈 7bfbcf1은 gym 0.15.7과 맞지 않는다(cmd_util이 0.15에서 없어진 FlattenDictWrapper를 import).
+# README Step 4("git clone https://github.com/openai/baselines.git")대로 baselines master를 쓰고, 그 마지막 커밋 ea25b9e(2020-01-31, setup.py gym>=0.15.4,<0.16)로 고정한다.
+curl -sL https://github.com/openai/baselines/archive/ea25b9e8b234e6ee1bca43083f8f3cf974143998.tar.gz | tar -xz -C "$W/src" && mv "$W/src/baselines-ea25b9e8b234e6ee1bca43083f8f3cf974143998" "$W/src/baselines"
 cd "$W"
 cp "$W/src/run.py" "$W/src/baselines/baselines/run.py"
 MM=$HOME/f4work/ensemble/bin/micromamba
@@ -32,7 +34,7 @@ step py37 $MM create -y -p "$W/p37" -c conda-forge python=3.7 pip
 P="$W/p37/bin/python -m pip --default-timeout=120 --retries 5"
 step core $P install -q numpy==1.16.4 pandas==1.0.3 scipy==1.4.1 matplotlib==3.2.1 tensorflow==1.14.0 "protobuf<3.20"
 step gym $P install -q gym==0.15.7
-# 2018 baselines setup.py는 gym[mujoco,atari,robotics]·mpi4py를 요구한다. 이 대상과 무관한 gym 확장은 빼고
+# baselines setup.py의 gym 확장·mpi 요구를 피하려고 이 대상과 무관한 gym 확장은 빼고
 # --no-deps로 설치한 뒤 나머지 의존성을 직접 깐다. DDPG가 mpi4py를 조건 없이 import하므로 conda-forge로 설치한다.
 step mpi $MM install -y -p "$W/p37" -c conda-forge mpi4py openmpi
 step baselines $P install -q --no-deps -e "$W/src/baselines"

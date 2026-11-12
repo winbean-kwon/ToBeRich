@@ -40,7 +40,9 @@ PD="$GYM/gym/envs/portfolio"
 for f in "$PD/portfolio_env.py" "$PD/portfolio_testenv.py"; do
   sed -i "s#E:/Anaconda3/envs/tensorflow/Lib/site-packages/gym/envs/portfolio/#$PD/#g; s#E:/Anaconda3/envs/tensorflow/Lib/site-packages/gym/envs/zxstock/#$PD/#g" "$f"
 done
-! grep -n "E:/" "$PD/portfolio_env.py" "$PD/portfolio_testenv.py"
+# 설치 정정(2026-11-12, 실행 전): 같은 접두어가 학습 코드 baselines/ddpg/ddpg.py(손실 그림 저장)에도 있어 같은 방식으로 바꾼다.
+sed -i "s#E:/Anaconda3/envs/tensorflow/Lib/site-packages/gym/envs/portfolio/#$PD/#g; s#E:/Anaconda3/envs/tensorflow/Lib/site-packages/gym/envs/zxstock/#$PD/#g" "$BL/baselines/ddpg/ddpg.py"
+! grep -n "E:/" "$PD/portfolio_env.py" "$PD/portfolio_testenv.py" "$BL/baselines/ddpg/ddpg.py"
 mkdir -p "$PD/Data_Daily_Stock_Dow_Jones_30/DQN"
 touch "$W/out/env_ok"
 '''
@@ -49,7 +51,8 @@ GATE = r'''
 import sys, numpy, pandas, tensorflow, gym
 assert sys.version_info[:2] == (3, 7) and tensorflow.__version__ == '1.15.2' and numpy.__version__ == '1.16.4'
 print('python', sys.version.split()[0], 'tf', tensorflow.__version__, 'gym', gym.__version__, 'numpy', numpy.__version__, 'pandas', pandas.__version__)
-import baselines.run, gym.envs.portfolio
+# baselines/run.py는 끝에서 main()을 조건 없이 호출하므로(import 시 학습 시작) 관문은 run.py를 import하지 않는다.
+import baselines.ddpg.ddpg, baselines.common.cmd_util, gym.envs.portfolio
 print('import ok')
 open(sys.argv[1], 'w').write('1')
 '''
