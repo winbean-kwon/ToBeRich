@@ -14,3 +14,4 @@
 - 판정 영향: E1이 이번에 끝나지 않으면 사전 등록 규칙대로 failed_max_attempts. 일정: 5회 완료 예상 11-12 오전, 이후 RAT R.
 - 11-11 20:51 E1 시도 3 시작 후 E1~E5 모두 완료(E5 끝 11-12 02:09:04, `ens_all_done`). 이어서 RAT R1~ 재개.
 - 11-12 04:00:06 Ensemble 판정 스크립트 1회 실행(`judge_result.json`). 실행한 세션은 결과 노트를 남기지 않음. 11-12 12시대 별도 폴더에서 재계산해 JSON 동일 확인 → 결과 `notes/funnel_f7_ensemble_result.md`(부분 재현).
+- 11-12 R1~R5 완료(R5 끝 16:19). RAT 판정 스크립트 1회 실행(첫 호출은 시스템 python3에 numpy 없음 → 계산 전 정지, `~/f4work/p37` python으로 재호출) → 결과 `notes/funnel_f7_rat_result.md`(부분 재현). 판정 시점이 P5 직후가 아니라 R5 뒤인 것은 경미한 시점 이탈(노트 0절).

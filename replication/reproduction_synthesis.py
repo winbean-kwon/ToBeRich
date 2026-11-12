@@ -9,6 +9,7 @@
     FinRL      replication/finrl_t3/o1/judge_W0.json
     MARS       data/mars_t4/judge_o1.json, data/mars_t4/aux_o1.json
     Ensemble   replication/funnel_f7/ensemble_judge_result.json (깔때기 F7, 순서 규칙으로 선택)
+    RAT        replication/funnel_f7/rat_f7_result.json (깔때기 F7)
 - 논문 보고값: judge JSON에 들어 있는 값을 쓰고, JSON에 없는 것만 아래 PAPER_ONLY에 둔다.
   보고값은 모두 논문 원문과 대조해야 한다(notes/claim_ledger.csv).
 
@@ -128,6 +129,14 @@ def funnel_f7_rows():
     out.append(row("Ensemble F7(깔때기, 서버 CPU)", "Sharpe(1,097행)", "미기재", 1.30, tol, "5회 산술평균(시드 미고정)",
                    j["R1"]["mean_sharpe"], 0.47, j["aux_djia"]["ours"]["sharpe"], seeds, j["grade"],
                    f"R1 통과·R2 실패({j['R2']['count']}/5 > {j['R2']['bar']}); 비교 대상 DJIA"))
+    r = load("replication/funnel_f7/rat_f7_result.json")
+    seeds = [x["fAPV"] for x in r["P_runs"]]
+    assert abs(st.mean(seeds) - r["P_summary"]["mean_fAPV"]) < 1e-6
+    lo, hi = r["R1_A_range"]
+    out.append(row("RAT F7 P(깔때기, GTX 1650)", "fAPV(Crypto-A)", "5회 평균", r["report"]["APV"], round((hi - lo) / 2, 2),
+                   "5회 산술평균(시드 미고정, 시험 구간 체크포인트 선택=코드)", r["P_summary"]["mean_fAPV"], r["MTL"]["APV"],
+                   r["UCRP(점검)"]["APV"], seeds, r["grade_P"],
+                   f"R1 {r['R1_A(주)']}(보고값보다 높음)·R2 {r['R2']}; 논문 비교 대상 MTL, 우리 비교 대상 열은 UCRP(점검용)"))
     return out
 
 

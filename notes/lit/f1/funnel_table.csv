@@ -9,7 +9,7 @@ S56,yu2019modelbased,Model-based DRL dynamic PM,not_found,F1,찾지 못함(문�
 S56,park2020dqn,DQN portfolio trading (ESWA),not_found,F1,찾지 못함(문의 안 함),,
 S56,liu2020finrl,FinRL (NeurIPS WS 2020),pass,F0,탈락(F0),,
 S56,benhamou2020bridging,Bridging Markowitz and DRL,not_found,F1,찾지 못함(문의 안 함),,
-S56,xu2020rat,RAT,pass,F7,진행 중,F5 A=1.46h(T4)·4.46h(GTX 1650),notes/funnel_f7_rat_prereg.md
+S56,xu2020rat,RAT,pass,F7,부분 재현,"R1 실패(위쪽: fAPV 평균 378.3, 폭 [88.11,224.95]), R2 통과(5/5); GTX 1650 P·R 각 5회",notes/funnel_f7_rat_result.md
 S56,yang2020ensemble,Ensemble strategy ICAIF 2020,pass,F7,부분 재현,"R1 통과(Sharpe 평균 1.008, 폭 [0.885,1.715]), R2 실패(1/5 > 1.12); 5회 CPU",notes/funnel_f7_ensemble_result.md
 S56,li2019adaptive,Optimistic Bull or Pessimistic Bear,pass,F4,F4까지만(미실행),"F7 자리 없음, 1에폭 측정 예정",notes/funnel_f4_li2019adaptive.md
 S56,shi2019ei3,Multi-scale TFA CNN,original_missing,F1,원문 미확보,,

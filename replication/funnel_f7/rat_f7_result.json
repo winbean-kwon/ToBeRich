@@ -1,0 +1,269 @@
+{
+ "grade_P": "부분 재현",
+ "R1_A(주)": "fail_high",
+ "R1_B(보조)": "fail_high",
+ "R2": "pass",
+ "interpretation": "부분 재현: R1=fail_high, R2=pass.",
+ "R1_A_range": [
+  88.11,
+  224.95
+ ],
+ "R1_B_range": [
+  138.83,
+  174.23
+ ],
+ "report": {
+  "APV": 156.53,
+  "SR_pct": 7.13,
+  "CR": 304.26
+ },
+ "MTL": {
+  "APV": 19.69,
+  "SR_pct": 6.9,
+  "CR": 79.21
+ },
+ "P_summary": {
+  "n": 5,
+  "mean_fAPV": 378.34955444335935,
+  "min_fAPV": 246.0081787109375,
+  "max_fAPV": 532.900390625,
+  "mean_SR_pct": 8.10521051287651,
+  "mean_CR": 883.7275390625,
+  "n_in_R1_A": 0,
+  "n_in_R1_B": 0,
+  "n_beat_MTL_all3": 5
+ },
+ "P_runs": [
+  {
+   "fAPV": 246.0081787109375,
+   "SR_pct": 7.674461603164673,
+   "CR": 481.76116943359375,
+   "TO": 1.1079121828079224,
+   "MDD": 0.5106435649744863,
+   "n_steps": 2777,
+   "check_fAPV_from_history": 246.00843293656342,
+   "check_SR_pct_from_history": 7.674461778520792,
+   "idx": 1,
+   "selected_ckpt_step": 50000,
+   "n_ckpt_saves": 34
+  },
+  {
+   "fAPV": 397.0378723144531,
+   "SR_pct": 8.112264424562454,
+   "CR": 751.7096557617188,
+   "TO": 1.127064824104309,
+   "MDD": 0.5281798742579049,
+   "n_steps": 2777,
+   "check_fAPV_from_history": 397.03726932796314,
+   "check_SR_pct_from_history": 8.11226150335215,
+   "idx": 2,
+   "selected_ckpt_step": 58000,
+   "n_ckpt_saves": 42
+  },
+  {
+   "fAPV": 324.5691833496094,
+   "SR_pct": 8.319192379713058,
+   "CR": 928.8549194335938,
+   "TO": 1.2577799558639526,
+   "MDD": 0.3494294325369617,
+   "n_steps": 2777,
+   "check_fAPV_from_history": 324.56962094850127,
+   "check_SR_pct_from_history": 8.319191133116458,
+   "idx": 3,
+   "selected_ckpt_step": 60000,
+   "n_ckpt_saves": 31
+  },
+  {
+   "fAPV": 391.2321472167969,
+   "SR_pct": 8.196306973695755,
+   "CR": 1012.5053100585938,
+   "TO": 1.370337724685669,
+   "MDD": 0.3864001418386698,
+   "n_steps": 2777,
+   "check_fAPV_from_history": 391.23184996272727,
+   "check_SR_pct_from_history": 8.196307888861314,
+   "idx": 4,
+   "selected_ckpt_step": 74000,
+   "n_ckpt_saves": 32
+  },
+  {
+   "fAPV": 532.900390625,
+   "SR_pct": 8.223827183246613,
+   "CR": 1243.806640625,
+   "TO": 1.431323766708374,
+   "MDD": 0.42844266969102096,
+   "n_steps": 2777,
+   "check_fAPV_from_history": 532.900528201481,
+   "check_SR_pct_from_history": 8.2238274508402,
+   "idx": 5,
+   "selected_ckpt_step": 67000,
+   "n_ckpt_saves": 27
+  }
+ ],
+ "F_summary(보조)": {
+  "n": 5,
+  "mean_fAPV": 307.6423767089844,
+  "min_fAPV": 184.13841247558594,
+  "max_fAPV": 437.1362609863281,
+  "mean_SR_pct": 7.663532942533493,
+  "mean_CR": 676.3096496582032,
+  "n_in_R1_A": 1,
+  "n_in_R1_B": 0,
+  "n_beat_MTL_all3": 5
+ },
+ "F_runs(보조)": [
+  {
+   "fAPV": 300.8203430175781,
+   "SR_pct": 7.553395628929138,
+   "CR": 508.9878845214844,
+   "TO": 1.3504109382629395,
+   "MDD": 0.5910167509890618,
+   "n_steps": 2777,
+   "check_fAPV_from_history": 300.8198435207444,
+   "check_SR_pct_from_history": 7.55339524755152,
+   "idx": 1
+  },
+  {
+   "fAPV": 368.02392578125,
+   "SR_pct": 8.002933114767075,
+   "CR": 777.6246948242188,
+   "TO": 1.21774423122406,
+   "MDD": 0.47326650912500356,
+   "n_steps": 2777,
+   "check_fAPV_from_history": 368.02311655722366,
+   "check_SR_pct_from_history": 8.00293161756572,
+   "idx": 2
+  },
+  {
+   "fAPV": 184.13841247558594,
+   "SR_pct": 7.208417356014252,
+   "CR": 427.68670654296875,
+   "TO": 1.5806305408477783,
+   "MDD": 0.43054512907468045,
+   "n_steps": 2777,
+   "check_fAPV_from_history": 184.13888134155962,
+   "check_SR_pct_from_history": 7.2084190706317175,
+   "idx": 3
+  },
+  {
+   "fAPV": 437.1362609863281,
+   "SR_pct": 8.239509165287018,
+   "CR": 1122.3714599609375,
+   "TO": 1.5014111995697021,
+   "MDD": 0.38947558662961956,
+   "n_steps": 2777,
+   "check_fAPV_from_history": 437.1383056498595,
+   "check_SR_pct_from_history": 8.239511544492117,
+   "idx": 4
+  },
+  {
+   "fAPV": 248.0929412841797,
+   "SR_pct": 7.313409447669983,
+   "CR": 544.8775024414062,
+   "TO": 1.6255823373794556,
+   "MDD": 0.45531867891976674,
+   "n_steps": 2777,
+   "check_fAPV_from_history": 248.09347188976093,
+   "check_SR_pct_from_history": 7.313411345127674,
+   "idx": 5
+  }
+ ],
+ "R_summary(병기)": {
+  "n": 5,
+  "mean_fAPV": 270.2765716552734,
+  "min_fAPV": 170.92625427246094,
+  "max_fAPV": 472.3046875,
+  "mean_SR_pct": 7.9696497321128845,
+  "mean_CR": 667.7387756347656,
+  "n_in_R1_A": 2,
+  "n_in_R1_B": 1,
+  "n_beat_MTL_all3": 5
+ },
+ "R_runs(병기)": [
+  {
+   "fAPV": 170.92625427246094,
+   "SR_pct": 7.828326523303986,
+   "CR": 496.04248046875,
+   "TO": 1.20677649974823,
+   "MDD": 0.34457999931945416,
+   "n_steps": 2776,
+   "check_fAPV_from_history": 170.92598373845985,
+   "check_SR_pct_from_history": 7.828324896445007,
+   "idx": 1,
+   "selected_ckpt_step": 48000,
+   "n_ckpt_saves": 28
+  },
+  {
+   "fAPV": 472.3046875,
+   "SR_pct": 8.365890383720398,
+   "CR": 1165.4647216796875,
+   "TO": 1.4538836479187012,
+   "MDD": 0.4052501293436669,
+   "n_steps": 2776,
+   "check_fAPV_from_history": 472.3053301209752,
+   "check_SR_pct_from_history": 8.365890650641271,
+   "idx": 2,
+   "selected_ckpt_step": 48000,
+   "n_ckpt_saves": 24
+  },
+  {
+   "fAPV": 271.8290710449219,
+   "SR_pct": 8.048436045646667,
+   "CR": 741.6372680664062,
+   "TO": 1.1845754384994507,
+   "MDD": 0.3665258378738864,
+   "n_steps": 2776,
+   "check_fAPV_from_history": 271.82869918681604,
+   "check_SR_pct_from_history": 8.048435312627396,
+   "idx": 3,
+   "selected_ckpt_step": 46000,
+   "n_ckpt_saves": 22
+  },
+  {
+   "fAPV": 243.3813018798828,
+   "SR_pct": 8.076167106628418,
+   "CR": 596.4843139648438,
+   "TO": 1.0701487064361572,
+   "MDD": 0.408026210197898,
+   "n_steps": 2776,
+   "check_fAPV_from_history": 243.38154502191313,
+   "check_SR_pct_from_history": 8.07616643697969,
+   "idx": 4,
+   "selected_ckpt_step": 43000,
+   "n_ckpt_saves": 25
+  },
+  {
+   "fAPV": 192.94154357910156,
+   "SR_pct": 7.529428601264954,
+   "CR": 339.0650939941406,
+   "TO": 1.0568790435791016,
+   "MDD": 0.5690399827663937,
+   "n_steps": 2776,
+   "check_fAPV_from_history": 192.94136011093642,
+   "check_SR_pct_from_history": 7.52942692993931,
+   "idx": 5,
+   "selected_ckpt_step": 44000,
+   "n_ckpt_saves": 33
+  }
+ ],
+ "R_F_summary(병기)": {
+  "n": 5,
+  "mean_fAPV": 291.7298095703125,
+  "min_fAPV": 152.3878173828125,
+  "max_fAPV": 421.83514404296875,
+  "mean_SR_pct": 7.95864075422287,
+  "mean_CR": 733.1493774414063,
+  "n_in_R1_A": 2,
+  "n_in_R1_B": 2,
+  "n_beat_MTL_all3": 5
+ },
+ "UCRP(점검)": {
+  "APV": 2.3881520917570356,
+  "SR_pct": 4.076687353946932,
+  "CR": 6.351391554730418,
+  "n_steps": 2777,
+  "rel_diff_vs_paper": 0.007659110446006528,
+  "flag_data_mismatch": false,
+  "steps_match_P1": true
+ }
+}
