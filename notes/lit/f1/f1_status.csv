@@ -37,7 +37,7 @@ S56,P24-04,Transformer DRL + ?,not_found,,auto,2026-11-05
 S56,P24-05,HRT bi-level,not_found,,auto,2026-11-05
 S56,P24-06,DRL and MV strategies,not_found,,auto,2026-11-05
 S56,P24-07,Markowitz Meets Bellman,not_found,,auto,2026-11-05
-S56,P24-08,DRL framework (Waterloo),pass_check,jackieli19/PGPortfolio(포크; 소유자-저자 일치 확인 필요),recorded,2026-11-05
+S56,P24-08,DRL framework (Waterloo),pass,jackieli19/PGPortfolio/tree/Stock (arXiv 2409.08426v1 부록 C 첫 문단(논문 쪽 번호 44)이 구현 저장소로 명시; PGPortfolio 포크; 2026-11-12 저장소·Stock 브랜치 열림),"paper(arXiv v1 부록 C, 사용자 제공 PDF)",2026-11-12
 S56,P24-09,PM using DRL,not_found,,auto,2026-11-05
 S56,P24-10,DeepClair,pass,jkcost/Deepclair (README 논문 제목; 기존 CSV unspecified 정정),auto(신규),2026-11-05
 S56,Y25-01,DeepAries (T1),pass,dmis-lab/DeepAries,recorded,2026-11-05
