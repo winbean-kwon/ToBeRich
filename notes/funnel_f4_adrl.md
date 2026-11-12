@@ -27,3 +27,5 @@
 - **성과 비노출:** stdout(검증·거래 Sharpe print), `results/` CSV, 모델 파일을 열지 않는다.
 
 스크립트: `replication/funnel_f4_adrl_local.py`, 순서: `replication/funnel_f4_after_smartfolio.sh`.
+
+**설치 정정(2026-11-12 18:10, 실행 전, 성과 미열람):** 첫 설치(16:35)는 `extra` 단계에서 pip 오류로 멈췄고, 다시 설치한 환경은 관문에서 `import quantstats` → `yfinance` → `multitasking`의 `from typing import TypedDict`로 실패했다(최신 multitasking은 Python 3.8 이상). quantstats 0.0.59가 판을 고정하지 않은 의존성이라, `extra` 단계에 Python 3.7과 맞는 2022년 판 `yfinance==0.1.70`·`multitasking==0.0.11`을 더한다. 환경은 처음부터 다시 만든다(`env_ok`·`gate_ok` 삭제). 코드·판정·상한은 그대로이고, 설치 실패이므로 시도 횟수에 넣지 않는다.

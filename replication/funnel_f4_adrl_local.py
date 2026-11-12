@@ -27,7 +27,7 @@ P="$W/p37/bin/python -m pip --default-timeout=120 --retries 5"
 # requirements.txt 고정값(numpy 1.16.4, pandas 1.0.3, scikit-learn 0.21.0, gym 0.15.3, tensorflow 1.15.4, joblib 0.15.1, matplotlib 3.2.1)
 step core $P install -q numpy==1.16.4 pandas==1.0.3 scikit-learn==0.21.0 gym==0.15.3 tensorflow==1.15.4 joblib==0.15.1 matplotlib==3.2.1 "protobuf<3.20"
 # requirements에 판이 없는 것: stockstats·quantstats(코드가 import)와 번들 stable_baselines 의존성
-step extra $P install -q stockstats==0.3.2 quantstats==0.0.59 cloudpickle==1.6.0 opencv-python-headless==4.2.0.34
+step extra $P install -q stockstats==0.3.2 quantstats==0.0.59 cloudpickle==1.6.0 opencv-python-headless==4.2.0.34 yfinance==0.1.70 multitasking==0.0.11
 step repin $P install -q --force-reinstall --no-deps numpy==1.16.4 pandas==1.0.3 scikit-learn==0.21.0 matplotlib==3.2.1
 touch "$W/out/env_ok"
 '''
