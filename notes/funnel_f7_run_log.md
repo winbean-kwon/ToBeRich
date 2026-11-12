@@ -12,3 +12,5 @@
 - 11-10 14:38:52 WSL이 다시 정상 종료(systemd poweroff, Windows 재부팅 아님). ssh 끊김 약 5분 뒤. `.wslconfig`의 유휴 설정으로는 막히지 않았음. E1 시도 2는 약 9분(PPO 학습 시작 직후)에 중단. 이후 11-11 18:38까지 서버 유휴.
 - 11-11 20:39 사용자가 Windows 예약 작업 `wsl_keepalive`(로그온 시 `wsl.exe -e sleep infinity`) 등록·실행. 무접속 11분 생존 확인 후 20:51:23 재실행, E1 시도 3(마지막) 시작.
 - 판정 영향: E1이 이번에 끝나지 않으면 사전 등록 규칙대로 failed_max_attempts. 일정: 5회 완료 예상 11-12 오전, 이후 RAT R.
+- 11-11 20:51 E1 시도 3 시작 후 E1~E5 모두 완료(E5 끝 11-12 02:09:04, `ens_all_done`). 이어서 RAT R1~ 재개.
+- 11-12 04:00:06 Ensemble 판정 스크립트 1회 실행(`judge_result.json`). 실행한 세션은 결과 노트를 남기지 않음. 11-12 12시대 별도 폴더에서 재계산해 JSON 동일 확인 → 결과 `notes/funnel_f7_ensemble_result.md`(부분 재현).

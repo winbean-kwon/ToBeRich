@@ -13,7 +13,7 @@ RUN = {
     'P24-01': ('F5', '한도 초과', 'A=32.26h(T4)', 'notes/funnel_f4_earnmore.md'),
     'W22_PPN': ('F5', '한도 초과', 'A_lb=101.8h(T4, 하한)', 'notes/funnel_f4_ppn.md'),
     'xu2020rat': ('F7', '진행 중', 'F5 A=1.46h(T4)·4.46h(GTX 1650)', 'notes/funnel_f7_rat_prereg.md'),
-    'yang2020ensemble': ('F7', '진행 중', 'F5 A=1.12h(CPU, 첫 사이클 ×18 외삽)', 'notes/funnel_f7_ensemble_prereg.md'),
+    'yang2020ensemble': ('F7', '부분 재현', 'R1 통과(Sharpe 평균 1.008, 폭 [0.885,1.715]), R2 실패(1/5 > 1.12); 5회 CPU', 'notes/funnel_f7_ensemble_result.md'),
     'W21_WaveCorr': ('F5', '한도 초과', 'A=39.4h(CPU)', 'notes/funnel_f4_wavecorr.md'),
     'li2019adaptive': ('F4', 'F4까지만(미실행)', 'F7 자리 없음, 1에폭 측정 예정', 'notes/funnel_f4_li2019adaptive.md'),
     'xiong2018ddpg': ('F4', 'F4까지만(미실행)', 'F7 자리 없음, 1에폭 측정 예정', 'notes/funnel_f4_xiong2018ddpg.md'),
