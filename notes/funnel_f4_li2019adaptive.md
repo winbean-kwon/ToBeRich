@@ -46,3 +46,6 @@
 **설치 정정 기록(2026-11-12, 실행 전, 성과 미열람):** 관문에서 환경 import 시 matplotlib가 Tk 창을 열려다 실패했다(서버에 디스플레이 없음). 관문과 실행에 환경변수 `MPLBACKEND=Agg`를 준다(코드 수정 아님, 그림은 파일로만 저장).
 
 **설치 정정 기록 2(2026-11-12, 실행 전, 성과 미열람):** 02:55 관문이 다시 실패했다. (1) 같은 저자 경로 접두어(`E:/Anaconda3/.../gym/envs/zxstock/`)가 env 두 파일 밖의 학습 코드 `baselines/ddpg/ddpg.py` 287행(손실 그림 저장)에도 있다. 허용 수정 1(경로 접두어 교체)을 이 파일에도 같은 방식으로 적용한다. 실행에 쓰지 않는 독립 그림 스크립트 `plot_property.py`는 고치지 않는다. (2) 관문이 `import baselines.run`을 하면 저자 `run.py` 끝의 조건 없는 `main()`이 실행돼 기본값(0에폭)으로 학습 경로가 돈다. 관문은 `baselines.ddpg.ddpg`·`baselines.common.cmd_util`·`gym.envs.portfolio`만 import한다(본 실행은 원래대로 `python -m baselines.run`). 관문 출력에서 본 것은 에이전트 설정 출력과 traceback뿐이고 성과 값은 없었다. (3) 11-11 22:39의 설치 실패 기록 `done.json`(`실행 불가(환경)`, stage install)은 설치 정정 전의 기록이라 `done.install_fail_1111.json`으로 이름을 바꿔 보존하고, 환경을 처음부터 다시 설치한다. 본 실행 시도 수(최대 3)에는 넣지 않는다(본 실행은 아직 시작한 적 없음). 실행은 RAT F7이 끝난 뒤 `replication/funnel_f4_after_rat.sh`(tmux `f4_seq`)가 한다.
+
+## 3. 결과(2026-11-12)
+- **F4 통과(1에폭 기준, 논문 학습 길이 미지정).** 시도 1(서버 WSL CPU, RAT F7 종료 직후 16:19 시작): rc 0, 76.5초, 표지 `Adaptive DDPG.txt` 존재(열지 않음). 설치 실패 기록(11-11)은 `done.install_fail_1111.json`으로 보존.

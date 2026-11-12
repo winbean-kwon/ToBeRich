@@ -17,8 +17,8 @@ RUN = {
     'Y25-02': ('F4', 'F4 통과(F7 자리 없음)', '맥 CPU 1.41시간, Colab 각주 2 노트북 전체 1회(감성 시뮬레이션)', 'notes/funnel_f4_harlf.md'),
     'yang2020ensemble': ('F7', '부분 재현', 'R1 통과(Sharpe 평균 1.008, 폭 [0.885,1.715]), R2 실패(1/5 > 1.12); 5회 CPU', 'notes/funnel_f7_ensemble_result.md'),
     'W21_WaveCorr': ('F5', '한도 초과', 'A=39.4h(CPU)', 'notes/funnel_f4_wavecorr.md'),
-    'li2019adaptive': ('F4', 'F4까지만(미실행)', 'F7 자리 없음, 1에폭 측정 예정', 'notes/funnel_f4_li2019adaptive.md'),
-    'xiong2018ddpg': ('F4', 'F4까지만(미실행)', 'F7 자리 없음, 1에폭 측정 예정', 'notes/funnel_f4_xiong2018ddpg.md'),
+    'li2019adaptive': ('F4', 'F4 통과(F7 자리 없음)', '서버 CPU 76.5초, 1에폭(25,000스텝)+시험 경로', 'notes/funnel_f4_li2019adaptive.md'),
+    'xiong2018ddpg': ('F4', 'F4 통과(F7 자리 없음)', '서버 CPU 69.2초, 1에폭(25,000스텝)+시험 경로, baselines master', 'notes/funnel_f4_xiong2018ddpg.md'),
     'jiang2017eiie': ('F4', '실행 불가', 'Poloniex 레거시 API 403', 'notes/funnel_f4_jiang2017eiie.md'),
 }
 PRESELECTED = {'Y25-01', 'P23-02', 'W21_FinRL', 'Y25-03'}  # T1~T4, 별도 집계(프로토콜 1.5)

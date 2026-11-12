@@ -45,3 +45,6 @@
 **설치 정정 기록 2(2026-11-12, 실행 전, 성과 미열람):** 02:55 관문이 `ImportError: cannot import name 'FlattenDictWrapper' from 'gym.wrappers'`로 실패했다. 2.1에서 고른 baselines `7bfbcf1`(2018 서브모듈)은 gym 0.15.7과 맞지 않는다(0.15에서 없어진 래퍼를 import). 반면 README Step 4는 서브모듈이 아니라 `git clone https://github.com/openai/baselines.git`(master)를 지시하고, master의 마지막 커밋 `ea25b9e`(2020-01-31)는 `gym>=0.15.4,<0.16`을 요구해 저장소 gym 사본(0.15.7)과 맞는다. 그래서 README대로 baselines master `ea25b9e`로 바꾼다(HEAD `e59b994` 실행 절차를 따른다는 2.1의 원칙과 일치; 2018 서브모듈 고정은 철회). 나머지(gym 0.15.7, TF 1.14.0, `--no-deps` 설치와 직접 의존성, conda mpi4py, `MPLBACKEND=Agg`)는 그대로다. 00:34의 설치 실패 기록 `done.json`은 `done.install_fail_1112.json`으로 보존하고 환경을 다시 설치한다. 본 실행 시도 수에는 넣지 않는다. 실행 순서는 li2019 다음(`replication/funnel_f4_after_rat.sh`).
 
 **설치 정정 기록 3(2026-11-12, 실행 전, 성과 미열람):** baselines master로 다시 설치한 뒤 관문이 `ImportError: libSM.so.6`으로 실패했다(`opencv-python`이 X 라이브러리를 요구, 서버 WSL에 없고 sudo 없음). 같은 버전의 `opencv-python-headless==4.2.0.34`로 바꾼다. 저자 코드는 그대로다. li2019는 같은 날 재설치 관문을 통과했다(python 3.7.12, tf 1.15.2, gym 0.10.0 사본, numpy 1.16.4, pandas 1.0.3).
+
+## 3. 결과(2026-11-12)
+- **F4 통과(1에폭 기준, 논문 학습 길이 미지정).** 시도 1(서버 WSL CPU, li2019 다음): rc 0, 69.2초, 표지 `result_test.png` 존재(열지 않음). baselines는 README대로 master `ea25b9e`(설치 정정 2). 설치 실패 기록은 `done.install_fail_1112.json`으로 보존.
