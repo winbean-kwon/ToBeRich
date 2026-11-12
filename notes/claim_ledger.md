@@ -53,17 +53,19 @@
 
 ## D. 우리 값 재계산 — 판정을 다시 돌려 같은 값이 나오는지
 
+Claude가 2026-11-12에 맥에서 D1~D5·D7을 실행했다. 모두 저장값과 일치했다. 다만 Claude 실행이므로 확인으로 치려면 사용자가 같은 명령을 직접 한 번 실행한다. 저장값이 같은 코드로 다시 나온다는 것만 보이고, 원시 출력 자체가 맞는지는 E(직접 재실행)가 맡는다.
+
 추적 중인 JSON(T1·T2·T3)은 다시 돌린 뒤 `git diff`로 비교한다. 바뀐 게 없으면 재현된 것이다.
 
 | ID | 대상 | 명령 | 결과 |
 |---|---|---|---|
-| D1 | 종합표 | `python3 replication/reproduction_synthesis.py && git diff replication/reproduction_synthesis.csv` | |
-| D2 | DeepAries O1 | `python3 replication/deeparies_run.py judge1` | |
-| D3 | AlphaMix+ | `python3 replication/alphamix_t2.py judge1 <결과 폴더>`(폴더는 `notes/alphamix_t2_o1_result.md` 참고) | |
-| D4 | FinRL | `python3 replication/finrl_t3_run.py judge` | |
-| D5 | MARS | `cp -r data/mars_t4/judge_o1.json /tmp/j_old.json && MARS_WORK=.marswork MARS_OUT=data/mars_t4 python3 replication/mars_t4.py judge && diff <(python3 -m json.tool /tmp/j_old.json) <(python3 -m json.tool data/mars_t4/judge_o1.json)` | |
+| D1 | 종합표 | `python3 replication/reproduction_synthesis.py && git diff replication/reproduction_synthesis.csv` | Claude 실행 2026-11-12: 차이 없음 |
+| D2 | DeepAries O1 | `python3 replication/deeparies_run.py judge1` (출력은 `replication/deeparies/runs/judge_o1.json`에 생기므로 추적 중인 `replication/deeparies/judge_o1.json`과 비교) | Claude 실행 2026-11-12: 시드별 값·선택·등급 동일. 새 출력에 기록용 항목 3개(검증 손실 기록·장치·분)만 추가됨 |
+| D3 | AlphaMix+ | `python3 replication/alphamix_t2.py judge1 <결과 폴더>`(원본은 일일 파일이 없어 실패한다. 결과 노트대로 `python3 replication/alphamix_t2/judge1_without_daily_check.py judge1 replication/alphamix_t2` 사용) | Claude 실행 2026-11-12: JSON 완전 동일 |
+| D4 | FinRL | `python3 replication/finrl_t3_run.py judge` | Claude 실행 2026-11-12: 파일 바이트 동일(git diff 없음) |
+| D5 | MARS | `cp -r data/mars_t4/judge_o1.json /tmp/j_old.json && MARS_WORK=.marswork MARS_OUT=data/mars_t4 python3 replication/mars_t4.py judge && diff <(python3 -m json.tool /tmp/j_old.json) <(python3 -m json.tool data/mars_t4/judge_o1.json)` | Claude 실행 2026-11-12: JSON 완전 동일(C 결정적, CR 29.679) |
 | D6 | 손 계산 1건 | 아무 행 하나를 골라 시드 값(JSON)으로 중앙값·평균·허용 폭 판정을 계산기로 직접 계산 | |
-| D7 | FinRL DDPG 경계 | 판정이 0.005%p 차이로 실패다. JSON은 소수 2자리라 표에서는 재계산할 수 없다. 원시 CSV(`replication/finrl_t3/o1/ddpg_W0_a_s*.csv`)로 미반올림 중앙값을 계산 | |
+| D7 | FinRL DDPG 경계 | 판정이 0.005%p 차이로 실패다. JSON은 소수 2자리라 표에서는 재계산할 수 없다. 원시 CSV(`replication/finrl_t3/o1/ddpg_W0_a_s*.csv`)로 미반올림 중앙값을 계산 | Claude 실행 2026-11-12: 시드 41.9438·36.6951·38.9331·34.7620·37.6049, 중앙 37.6049, 차 1.5949 > 허용 1.59, 초과 0.0049%p. 기록과 일치 |
 
 ## E. 직접 다시 실행 — Claude 없이 (가장 강한 확인, 1건이면 충분)
 
