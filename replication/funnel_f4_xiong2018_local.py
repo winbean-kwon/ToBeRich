@@ -38,7 +38,8 @@ step gym $P install -q gym==0.15.7
 # --no-deps로 설치한 뒤 나머지 의존성을 직접 깐다. DDPG가 mpi4py를 조건 없이 import하므로 conda-forge로 설치한다.
 step mpi $MM install -y -p "$W/p37" -c conda-forge mpi4py openmpi
 step baselines $P install -q --no-deps -e "$W/src/baselines"
-step bdeps $P install -q tqdm joblib dill progressbar2 cloudpickle click opencv-python==4.2.0.34
+# 설치 정정 3(2026-11-12, 실행 전): opencv-python은 libSM.so.6(X 라이브러리)을 요구해 서버 WSL에서 import 실패 → 같은 버전의 headless 빌드
+step bdeps $P install -q tqdm joblib dill progressbar2 cloudpickle click opencv-python-headless==4.2.0.34
 step repin $P install -q --force-reinstall --no-deps numpy==1.16.4 pandas==1.0.3 scipy==1.4.1 matplotlib==3.2.1
 # README Step 7·8: rlstock 폴더를 설치된 gym/envs로 복사하고 두 env를 등록한다
 GE=$(cd / && "$W/p37/bin/python" -c "import gym,os;print(os.path.dirname(gym.__file__))")/envs
