@@ -26,3 +26,5 @@
 - **성과 비노출:** stdout(예측 지표 print), 모델 파일을 열지 않는다. F7 대상이 아니다.
 
 스크립트: `replication/funnel_f4_smartfolio_local.py`, 순서: `replication/funnel_f4_after_xiong.sh`(xiong2018 F4가 끝난 뒤 실행).
+
+**설치 정정(2026-11-12, 실행 전, 성과 미열람):** 환경 설치는 끝났고(python 3.9.23, torch 2.0.1+cpu, gym 0.21.0, sb3 1.8.0, pyg 2.3.1), 관문에서 `policy/policy.py`의 `from model import HGAT`가 실패했다. `model/` 폴더에 `__init__.py`가 없어 `model`이 이름공간 패키지로 잡히기 때문이다(클래스는 `model/model.py`에 있음). 허용 수정 1(경로)에 하나를 더한다: `PYTHONPATH`에 `model/`을 덧붙여 `model`이 `model/model.py` 모듈로 해석되게 한다(일반 모듈이 이름공간 패키지보다 우선). 코드는 고치지 않는다. 기본 정책은 MLP라 HGAT는 import만 된다.

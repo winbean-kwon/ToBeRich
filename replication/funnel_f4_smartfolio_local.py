@@ -38,7 +38,7 @@ GATE = r'''
 import sys, numpy, pandas, torch, gym, stable_baselines3, torch_geometric
 print('python', sys.version.split()[0], 'torch', torch.__version__, 'gym', gym.__version__, 'sb3', stable_baselines3.__version__,
       'pyg', torch_geometric.__version__, 'numpy', numpy.__version__, 'pandas', pandas.__version__)
-sys.path.insert(0, sys.argv[2])
+sys.path.insert(0, sys.argv[2]); sys.path.append(sys.argv[2] + '/model')   # 경로 수정: policy.py의 'from model import HGAT'
 import os; os.chdir(sys.argv[2])
 from dataloader.data_loader import *
 from policy.policy import *
@@ -103,7 +103,7 @@ def main():
     t0 = time.time()
     with open(run / 'stdout.log', 'w') as fo, open(run / 'stderr.log', 'w') as fe:
         p = subprocess.Popen([py, str(run / 'runner.py'), str(run / 'events.jsonl')], cwd=str(REPO), stdout=fo, stderr=fe,
-                             env=dict(os.environ, CUDA_VISIBLE_DEVICES='', PYTHONPATH=str(REPO)))
+                             env=dict(os.environ, CUDA_VISIBLE_DEVICES='', PYTHONPATH=f'{REPO}:{REPO}/model'))
         try:
             rc = p.wait(timeout=CAP); capped = False
         except subprocess.TimeoutExpired:
