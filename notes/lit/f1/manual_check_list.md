@@ -12,7 +12,7 @@
 
 | ID | 논문 | 무엇을 확인 | 결과 |
 |---|---|---|---|
-| Y25-02 | HARLF | 논문 3.4절의 Colab 노트북 링크가 열리는지, 학습·평가 코드인지 | 링크 사망(사용자 확인 2026-11-10): 3.4절 Colab 2번·3번(학습 포함)이 PDF에서 직접 눌러도 열리지 않음. 1번(데이터·감성 추출, "all in one NLP")만 열리나 학습·평가 코드가 아님 |
+| Y25-02 | HARLF | 논문 3.4절의 Colab 노트북 링크가 열리는지, 학습·평가 코드인지 | 찾음(2026-11-12 정정): 각주 1 https://colab.research.google.com/drive/1DLQIooP7kNYHztQ7tHu5eO9NPNDPxIrY , 2 https://colab.research.google.com/drive/1FPX9_8z0X39Pg3tf1bSvoByEWbbQ_juF , 3 https://colab.research.google.com/drive/1SbKGmPLjF2DAKkNwEYdfc_2lS2KWMySi 모두 로그인 없이 열림. 11-10 "링크 사망"은 PDF 텍스트의 밑줄(_)이 공백으로 추출된 주소로 연 오류. 학습·평가(PPO·SAC·DDPG·TD3 하위·메타·슈퍼 에이전트, 백테스트)는 2번에만 있고 감성 입력은 `np.random.uniform` 시뮬레이션. 3번(논문 설명: 학습 포함 전체 파이프라인)은 셀 12개로 감성 추출뿐(사용자 확인). 실제 감성→관측 벡터 연결 코드 없음 → F2 비고 |
 | SQ-SCR | Scenario-Context Rollout (KDD 2026) | edrtfu531/rlscr1 이 이 논문 코드인지(README·논문 대조) | (Claude 사전 확인 2026-11-10) 찾음(유력): https://github.com/edrtfu531/rlscr1 — CITATION.cff가 논문 제목·저자(Bendatu, Lu)·KDD 2026 DOI 10.1145/3770855.3817999를 명시. 계정은 익명(2026-02 생성) → 논문 본문 링크 여부만 확인 |
 | SUP-CLRS | CLRS (IJCAI 2023) | BlackBoxOperator/FinTech-DPM 소유자가 저자(Lien, Li, Wang) 중 하나인지 | (Claude 사전 확인 2026-11-10) 찾음: https://github.com/BlackBoxOperator/FinTech-DPM — README가 "official implementations", 저자 Lien·Li·Wang, IJCAI 2023 인용 명시. README가 가리키는 1저자 원 저장소(sophialien/FinTech-DPM)는 현재 없음 |
 | P24-08 | DRL framework (Waterloo) | jackieli19 계정이 저자 본인인지 | (Claude 사전 확인 2026-11-10) 찾음: https://github.com/jackieli19/PGPortfolio/tree/Stock — 논문 부록 C가 이 저장소를 구현으로 명시. 저자 Jinyang Li, 커밋 작성자 JackieLi(2019-12). PGPortfolio 포크 |
