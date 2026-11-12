@@ -27,18 +27,18 @@
 | yu2019modelbased | 2019 | Model-based Deep Reinforcement Learning for Dynamic Portfolio Optimization | Pengqian Yu | (Claude 사전 확인 2026-11-10) 없음: arXiv 1901.08740 본문은 외부 도구(ibm-research-tokyo/dybm)만 인용, 논문 자체 코드 없음 |
 | park2020dqn | 2020 | An intelligent financial portfolio trading strategy using deep Q-learning | Hyungjun Park | (Claude 사전 확인 2026-11-10) 없음: arXiv 1907.03665 본문에 링크 없음 |
 | benhamou2020bridging | 2020 | Bridging the gap between Markowitz planning and deep reinforcement learning | Eric Benhamou | (Claude 사전 확인 2026-11-10) 없음: arXiv 2010.09108 본문에 링크 없음 |
-| W21_HRPM | 2021 | Commission Fee is not Enough: A Hierarchical Reinforced Framework for Portfolio Management | Rundong Wang | (Claude 사전 확인 2026-11-10) 없음: arXiv 2012.12620 본문에 링크 없음 |
+| W21_HRPM | 2021 | Commission Fee is not Enough: A Hierarchical Reinforced Framework for Portfolio Management | Rundong Wang | 없음(사용자 제공 PDF, Claude 판독 2026-11-12, arXiv 2012.12620v2 전문: 링크 없음, 데이터 출처 wind.com.cn만) |
 | W22_MetaTrader | 2022 | MetaTrader: An Reinforcement Learning Approach Integrating Diverse Policies for Portfolio Optimization | Hui Niu | (Claude 사전 확인 2026-11-10) 없음: arXiv 2210.01774 본문은 qlib·stockstats만 인용 |
 | W22_MSPM | 2022 | MSPM: A modularized and scalable multi-agent reinforcement learning-based system for financial portfolio management | Zhenhan Huang | (Claude 사전 확인 2026-11-10) 제3자만: https://github.com/oft2026/mspm ("Unofficial PyTorch reproduction"). arXiv 2102.03502 본문은 mlfinlab만 인용 |
 | W21_PigorschSchafer | 2021 | High-Dimensional Stock Portfolio Trading with Deep Reinforcement Learning | Uta Pigorsch | (Claude 사전 확인 2026-11-10) 없음: arXiv 2112.04755 본문에 링크 없음 |
-| W21_LFSS | 2021 | Deep Reinforcement Learning for Portfolio Optimization using Latent Feature State Space (LFSS) Module | Kumar Yashaswi | (Claude 사전 확인 2026-11-10) 없음: arXiv 2102.06233 본문에 링크 없음 |
+| W21_LFSS | 2021 | Deep Reinforcement Learning for Portfolio Optimization using Latent Feature State Space (LFSS) Module | Kumar Yashaswi | 없음(사용자 제공 PDF, Claude 판독 2026-11-12, arXiv 2102.06233v1 전문: 링크 없음) |
 | W22_PretoriusVanZyl | 2022 | Deep Reinforcement Learning and Convex Mean-Variance Optimisation for Portfolio Management | Ruan Pretorius | (Claude 사전 확인 2026-11-10) 없음: arXiv 2203.11318 본문에 링크 없음(F1 자동 검색의 FinRL·cvxportfolio는 의존 라이브러리) |
 | W21_Benhamou_crisis | 2021 | Detecting and adapting to crisis pattern with context based Deep Reinforcement Learning | Eric Benhamou | (Claude 사전 확인 2026-11-10) 없음: arXiv 2009.07200 본문에 링크 없음 |
 | P24-03 | 2024 | FreQuant: A Reinforcement-Learning based Adaptive Portfolio Optimization with Multi-frequency Decomposition | Jihyeong Jeon | (Claude 사전 확인 2026-11-10) 없음(약한 확인): 웹 검색에 코드 없음, 원문 PDF 미확인 |
-| P24-04 | 2024 | Combining Transformer based Deep Reinforcement Learning with Black-Litterman Model for Portfolio Optimization (BDA) | Ruoyu Sun | (Claude 사전 확인 2026-11-10) 없음: arXiv 2402.16609 본문에 링크 없음 |
+| P24-04 | 2024 | Combining Transformer based Deep Reinforcement Learning with Black-Litterman Model for Portfolio Optimization (BDA) | Ruoyu Sun | 없음(사용자 제공 PDF, Claude 판독 2026-11-12, arXiv 2402.16609v1: "Data availability"가 코드를 "교신저자에게 합리적 요청 시 제공"으로만 명시 — 공개 코드 아님. 각주 qlib 링크는 라이브러리) |
 | P24-05 | 2024 | Hierarchical Reinforced Trader (HRT): A Bi-Level Approach for Optimizing Stock Selection and Execution | Zijie Zhao | (Claude 사전 확인 2026-11-10) 없음: arXiv 2410.14927 본문에 링크 없음 |
 | P24-06 | 2024 | Deep Reinforcement Learning and Mean-Variance Strategies for Responsible Portfolio Optimization | Fernando Acero | (Claude 사전 확인 2026-11-10) 없음: arXiv 2403.16667 본문에 링크 없음 |
-| P24-07 | 2024 | Markowitz Meets Bellman: Knowledge-distilled Reinforcement Learning for Portfolio Management | Gang Hu | (Claude 사전 확인 2026-11-10) 없음: arXiv 2405.05449 본문에 링크 없음 |
+| P24-07 | 2024 | Markowitz Meets Bellman: Knowledge-distilled Reinforcement Learning for Portfolio Management | Gang Hu | 없음(사용자 제공 PDF, Claude 판독 2026-11-12, arXiv 2405.05449v1 전문: github·code 링크 없음) |
 | P24-09 | 2024 | Portfolio Management using Deep Reinforcement Learning | Ashish Anil Pawar | (Claude 사전 확인 2026-11-10) 없음: arXiv 2405.01604 본문에 링크 없음 |
 | Y25-04 | 2025 | Reinforcement Learning-Based Cryptocurrency Portfolio Management Using Soft Actor–Critic and Deep Deterministic Policy Gradient Algorithms | Kamal Paykan | (Claude 사전 확인 2026-11-10) 없음: arXiv 2511.20678 본문에 링크 없음 |
 | Y26-01 | 2026 | Regime-Aware Portfolio Management via Retrieval-Augmented LLM-Guided Expert Switching | Ahmad Asadi | (Claude 사전 확인 2026-11-10) 없음: arXiv 2608.28252 본문에 링크 없음 |
@@ -57,5 +57,10 @@
 | SQ-APTS |  | Automated portfolio trading RRL (ICAIF 2021) |  | (Claude 사전 확인 2026-11-10) 없음: arXiv 2110.05299 본문에 링크 없음 |
 | SQ-ObjDriven |  | Objective Driven (ICAIF 2022) |  | (Claude 사전 확인 2026-11-10) 없음(약한 확인): 웹 검색에 코드 없음, ACM 원문 미확인 |
 | SQ-Regret |  | Regret-Optimized (ICAIF 2025) |  | (Claude 사전 확인 2026-11-10) 없음: arXiv 2502.02619 본문은 arch 라이브러리만 인용 |
-| SQ-MAPS |  | MAPS (IJCAI 2020) |  | (Claude 사전 확인 2026-11-10) 없음: arXiv 2007.05402 본문에 링크 없음 |
+| SQ-MAPS |  | MAPS (IJCAI 2020) |  | 없음(사용자 제공 PDF, Claude 판독 2026-11-12, arXiv 2007.05402v1 전문: 링크 없음. 1저자 Jinho Lee 확인) |
 | SQ-TwoLevel |  | Two-level RL ambiguous MV (IJCAI 2020; F0 보류) |  | (Claude 사전 확인 2026-11-10) 없음: IJCAI 공개 PDF 본문에 링크 없음 |
+
+
+## C. 무작위 표본 감사(2026-11-12)
+
+B의 "없음" 판정 30편 중 시드 20261111로 뽑은 5편(P24-07, SQ-MAPS, W21_LFSS, P24-04, W21_HRPM)을 사용자가 PDF로 받아 주었고 Claude가 판독했다. 5편 모두 기존 판정과 같다(불일치 0/5). 사전 규칙(`notes/claim_ledger.md` F)대로 B 전체 재확인은 하지 않는다. 한계: 표본 5편의 0/5는 오판율이 낮다는 약한 근거일 뿐이다(오판율 30%여도 5편 모두 맞을 확률 약 17%).

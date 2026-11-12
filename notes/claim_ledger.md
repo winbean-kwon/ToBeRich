@@ -85,7 +85,7 @@ python3 -c "import random;random.seed(20261111);print(random.sample(['jiang2017c
 
 | ID | 결과(논문 ID별) |
 |---|---|
-| F1 | |
+| F1 | 사용자 제공 PDF, Claude 판독(2026-11-12; 결과 칸은 사용자가 PDF에서 github·code 검색으로 재확인 시 확정): P24-07·SQ-MAPS·W21_LFSS·P24-04·W21_HRPM 모두 "없음" 일치(0/5 불일치). P24-04는 "요청 시 제공"만 있음. 남은 F: A 남은 항목(SUP-CLRS PDF), 약한 확인 6편 |
 
 ## G. 문헌·기록
 
