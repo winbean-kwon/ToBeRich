@@ -44,7 +44,11 @@ def row(name, metric, agg, rep, tol, how, ours, paper_base, our_base, seeds, gra
             "우리 값": r2(ours), "차이(우리-보고)": r2(ours - rep),
             "논문 우위": "" if paper_base is None else r2(rep - paper_base), "우리 우위": r2(ours - our_base),
             "시드 수": len(seeds), "시드 최소": r2(min(seeds)), "시드 최대": r2(max(seeds)),
-            "시드 SD": r2(st.stdev(seeds)) if len(seeds) > 1 else "", "등급": grade, "비고": note}
+            "시드 SD": r2(st.stdev(seeds)) if len(seeds) > 1 else "",
+            # 공통 기술 지표(탐색적, 2026-11-13 추가, 판정 아님): 대상마다 다른 등급을 비교 가능하게 보조
+            "허용 폭 안 시드": f"{sum(abs(x - rep) <= tol for x in seeds)}/{len(seeds)}",
+            "보고값 이하 시드 비율": round(sum(x <= rep for x in seeds) / len(seeds), 2),
+            "등급": grade, "비고": note}
 
 
 def deeparies_rows():
