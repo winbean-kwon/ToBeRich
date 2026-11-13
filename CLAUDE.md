@@ -1,6 +1,6 @@
 # 졸업프로젝트 — Claude 작업 지침
 
-새 대화를 시작하면 **`HANDOFF_2026-11-05.md`를 먼저 읽는다**(이전 맥락은 `HANDOFF_2026-11-03.md`, `HANDOFF_2026-10-27.md`, `HANDOFF_2026-10-26.md`, 전체 경과는 `notes/PROGRESS_SUMMARY_2026-11-01.md`). Claude 메모리 백업은 `notes/claude_memory/`에 있다.
+새 대화를 시작하면 **`HANDOFF_2026-11-13.md`를 먼저 읽는다**(이전 맥락은 `HANDOFF_2026-11-05.md`, `HANDOFF_2026-11-03.md`, `HANDOFF_2026-10-27.md`, `HANDOFF_2026-10-26.md`, 전체 경과는 `notes/PROGRESS_SUMMARY_2026-11-01.md`). Claude 메모리 백업은 `notes/claude_memory/`에 있다.
 
 **서버 노트북(DESKTOP-U6SI9TA, Windows)에서 시작한 세션이면 `notes/server_gtx1650_runbook.md`를 먼저 읽고 그대로 진행한다**(PPN·RAT F4·F5 측정을 GTX 1650으로, 2026-11-07 결정). 봇 폴더는 건드리지 않는다.
 사용자와는 한국어로 대화한다. 결과는 포장하지 말고 직설적으로 말한다.
