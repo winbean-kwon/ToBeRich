@@ -33,3 +33,10 @@
 - rc 1, 4.9초. `trainer/irl_trainer.py` 136행 `data_dict['pyg_data']`에서 `KeyError: 'pyg_data'`.
 - 원인 확인(데이터 구조만 봄): 번들 `dataset/data_train_predict_hs300/1_hy/*.pkl` 1,697개의 키는 corr·ts_features·features·industry_matrix·pos_matrix·neg_matrix·labels·mask이고 `pyg_data`가 없다. 첫 파일에서 `ts_features`·`features`·`labels`가 **크기 0인 빈 텐서**다. 번들 학습 데이터는 코드가 쓸 수 있는 형태가 아니다(F3 "번들" 분류 재검토 필요).
 - 저자 생성 스크립트 `gen_data/train_predict_data.py`가 `pyg_data`를 포함한 pkl을 만든다(184행). 입력(`dataset/hs300_org.csv`, `dataset/corr/hs300/`, `dataset/A_stock_industry_matrx.csv`)은 저장소에 있다. 이 스크립트 실행은 2.2의 허용 수정 목록에 없으므로 사용자 결정 전에는 돌리지 않는다.
+
+## 4. 시도 2 사전 등록(2026-11-13, 실행 전, 성과 미열람, 사용자 결정)
+- **이탈(사용자 결정 2026-11-13):** 번들 학습 데이터가 쓸 수 없는 형태이므로, 저자 저장소의 생성 스크립트 `gen_data/train_predict_data.py`를 **무수정으로** 실행해 번들 원자료(`hs300_org.csv`, `corr/hs300/`, 업종 행렬)에서 학습 데이터를 다시 만든다. FinRL 계열의 "저자 다운로드 코드로 재수집"과 같은 수준으로 본다. F3 유형은 "번들"에서 **"구축 필요(저자 스크립트, 번들 원자료)"**로 재분류한다(규격은 코드가 정함 → F3 통과 규칙 충족).
+- 실행 폴더: 저장소 `013e089`를 `git archive`로 `run2/code`에 풀고(원본 clone은 건드리지 않음), 생성 스크립트를 `gen_data/`에서 실행한다(스크립트가 `../dataset/` 상대 경로를 씀). 사본의 번들 pkl은 생성 결과로 덮인다.
+- 생성 스크립트가 import하는 networkx 3.1·tqdm 4.66.1을 env에 더한다.
+- 생성 단계 판정: rc 0이고 생성된 pkl에 `pyg_data` 키가 있어야 본 실행으로 간다. 아니면 "F4 실패(시도)"로 기록한다(stderr 마지막 40줄만). 생성 단계 상한 3시간(`timeout`).
+- 본 실행·판정·상한·성과 비노출은 2절 그대로다(`main.py` 기본 설정 1회, rc 0·`main_end`·`predict_end` ≥ 1).

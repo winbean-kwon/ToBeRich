@@ -92,18 +92,30 @@ def main():
     if len(atts) >= MAX_ATT:
         (OUT / 'done.json').write_text(json.dumps({'status': 'F4 실패(시도 3회)'}, ensure_ascii=False)); return
     att = len(atts) + 1
-    # 허용 수정(경로): main.py가 읽는 dataset_default/를 저장소의 dataset/으로 잇는다(심볼릭 링크, 코드 무수정)
-    link = REPO / 'dataset_default'
-    if not link.exists():
-        link.symlink_to('dataset')
-    assert sh(f'git -C {REPO} diff --quiet').returncode == 0   # 추적 파일 무수정 확인
     run = WORK / f'run{att}'; sh(f'rm -rf {run}'); run.mkdir()
+    # 시도 2부터(사용자 결정 2026-11-13): 저장소 사본을 실행 폴더에 풀고, 저자 생성 스크립트로 학습 데이터를 다시 만든다(코드 무수정).
+    code = run / 'code'
+    assert sh(f'mkdir -p {code} && git -C {REPO} archive {HEAD} | tar -x -C {code}').returncode == 0
+    (code / 'dataset_default').symlink_to('dataset')   # 허용 수정(경로)
+    pip = f'{py} -m pip --default-timeout=120 --retries 5'
+    assert sh(f'{pip} install -q networkx==3.1 tqdm==4.66.1 > {run}/install_gen.log 2>&1').returncode == 0
+    (OUT / f'attempt{att}.json').write_text(json.dumps({'attempt': att, 'start': time.time(), 'stage': 'build'}))
+    tb = time.time()
+    rb = sh(f'cd {code}/gen_data && CUDA_VISIBLE_DEVICES="" PYTHONPATH={code}:{code}/model timeout {CAP} {py} train_predict_data.py > {run}/build_stdout.log 2> {run}/build_stderr.log')
+    build = {'rc': rb.returncode, 'seconds': round(time.time() - tb, 1)}
+    chk = sh(f'cd {code} && {py} -c "import pickle,glob; fs=sorted(glob.glob(\'dataset/data_train_predict_hs300/1_hy/*.pkl\')); d=pickle.load(open(fs[0],\'rb\')); print(len(fs), sorted(d.keys()), tuple(d[\'features\'].shape))"',
+             capture_output=True, text=True)
+    build['check'] = chk.stdout.strip()[-300:]
+    if rb.returncode != 0 or 'pyg_data' not in chk.stdout:
+        res = {'attempt': att, 'stage': 'build', 'build': build, 'status': 'F4 실패(시도)',
+               'stderr_tail': (run / 'build_stderr.log').read_text(errors='ignore').splitlines()[-40:]}
+        (OUT / f'attempt{att}.json').write_text(json.dumps(res, ensure_ascii=False, indent=1))
+        print(json.dumps({k: v for k, v in res.items() if k != 'stderr_tail'}, ensure_ascii=False)); return
     (run / 'runner.py').write_text(RUNNER)
-    (OUT / f'attempt{att}.json').write_text(json.dumps({'attempt': att, 'start': time.time()}))
     t0 = time.time()
     with open(run / 'stdout.log', 'w') as fo, open(run / 'stderr.log', 'w') as fe:
-        p = subprocess.Popen([py, str(run / 'runner.py'), str(run / 'events.jsonl')], cwd=str(REPO), stdout=fo, stderr=fe,
-                             env=dict(os.environ, CUDA_VISIBLE_DEVICES='', PYTHONPATH=f'{REPO}:{REPO}/model'))
+        p = subprocess.Popen([py, str(run / 'runner.py'), str(run / 'events.jsonl')], cwd=str(code), stdout=fo, stderr=fe,
+                             env=dict(os.environ, CUDA_VISIBLE_DEVICES='', PYTHONPATH=f'{code}:{code}/model'))
         try:
             rc = p.wait(timeout=CAP); capped = False
         except subprocess.TimeoutExpired:
@@ -112,7 +124,7 @@ def main():
     evs = [json.loads(l) for l in open(run / 'events.jsonl')] if (run / 'events.jsonl').exists() else []
     n_pred = sum(e['ev'] == 'predict_end' for e in evs)
     main_end = any(e['ev'] == 'main_end' for e in evs)
-    res = {'attempt': att, 'rc': rc, 'capped': capped, 'seconds': round(sec, 1), 'n_predict_end': n_pred, 'main_end': main_end}
+    res = {'attempt': att, 'build': build, 'rc': rc, 'capped': capped, 'seconds': round(sec, 1), 'n_predict_end': n_pred, 'main_end': main_end}
     if capped:
         res['status'] = '상한 내 미완' + (f'(시험 예측 {n_pred}회 완료)' if n_pred else '')
     elif rc == 0 and main_end and n_pred >= 1:
