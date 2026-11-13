@@ -65,7 +65,7 @@ S-Q,SQ-MarginTrader,Margin Trader (ICAIF 2023),pass,F4,F4 통과(F7 자리 없�
 S-Q,SQ-Regret,Regret-Optimized (ICAIF 2025),not_found,F1,찾지 못함(문의 안 함),,
 S-Q,SQ-MAPS,MAPS (IJCAI 2020),not_found,F1,찾지 못함(문의 안 함),,
 S-Q,SQ-TwoLevel,Two-level RL ambiguous MV (IJCAI 2020; F0 보류),not_found,F1,찾지 못함(문의 안 함),,
-S-Q,SQ-SmartFolio,SmartFolio (IJCAI),pass,F4,F4까지만(미실행),,
+S-Q,SQ-SmartFolio,SmartFolio (IJCAI),pass,F4,실행 불가,"번들 학습 pkl 빈 placeholder → 저자 gen_data로 구축(사용자 결정) 후 필수 입력 industry.npy 누락(생성 코드 없음), 서버 CPU 시도 2회",notes/funnel_f4_smartfolio.md
 S-Q,SQ-SCR,Scenario-Context Rollout (KDD 2026),pass,F4,F4까지만(미실행),,
 보충,SUP-CLRS,CLRS (IJCAI 2023),link_dead_copy,F1,링크 사망(사본),,
 보충,SUP-ReCAP,ReCAP (KDD 2026),pass,F2,탈락(F2),,

@@ -15,6 +15,7 @@ RUN = {
     'xu2020rat': ('F7', '부분 재현', 'R1 실패(위쪽: fAPV 평균 378.3, 폭 [88.11,224.95]), R2 통과(5/5); GTX 1650 P·R 각 5회', 'notes/funnel_f7_rat_result.md'),
     'SQ-MarginTrader': ('F4', 'F4 통과(F7 자리 없음)', '맥 CPU 177초, 저자 스크립트 기본 인자 1회(A2C 50k), 재수집 28종목', 'notes/funnel_f4_margintrader.md'),
     'Y25-02': ('F4', 'F4 통과(F7 자리 없음)', '맥 CPU 1.41시간, Colab 각주 2 노트북 전체 1회(감성 시뮬레이션)', 'notes/funnel_f4_harlf.md'),
+    'SQ-SmartFolio': ('F4', '실행 불가', '번들 학습 pkl 빈 placeholder → 저자 gen_data로 구축(사용자 결정) 후 필수 입력 industry.npy 누락(생성 코드 없음), 서버 CPU 시도 2회', 'notes/funnel_f4_smartfolio.md'),
     'yang2020ensemble': ('F7', '부분 재현', 'R1 통과(Sharpe 평균 1.008, 폭 [0.885,1.715]), R2 실패(1/5 > 1.12); 5회 CPU', 'notes/funnel_f7_ensemble_result.md'),
     'W21_WaveCorr': ('F5', '한도 초과', 'A=39.4h(CPU)', 'notes/funnel_f4_wavecorr.md'),
     'li2019adaptive': ('F4', 'F4 통과(F7 자리 없음)', '서버 CPU 76.5초, 1에폭(25,000스텝)+시험 경로', 'notes/funnel_f4_li2019adaptive.md'),

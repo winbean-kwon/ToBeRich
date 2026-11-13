@@ -40,3 +40,9 @@
 - 생성 스크립트가 import하는 networkx 3.1·tqdm 4.66.1을 env에 더한다.
 - 생성 단계 판정: rc 0이고 생성된 pkl에 `pyg_data` 키가 있어야 본 실행으로 간다. 아니면 "F4 실패(시도)"로 기록한다(stderr 마지막 40줄만). 생성 단계 상한 3시간(`timeout`).
 - 본 실행·판정·상한·성과 비노출은 2절 그대로다(`main.py` 기본 설정 1회, rc 0·`main_end`·`predict_end` ≥ 1).
+
+## 5. 결과(2026-11-13)
+- **시도 2:** 저자 생성 스크립트 rc 0, 2,439.8초. 생성 pkl 1,697개에 `pyg_data` 포함(첫 파일 2018-01-03의 `features`는 여전히 크기 0 — 앞쪽 날짜의 lookback 부족으로 보이며 확인하지 않음). 이어진 `main.py`는 rc 1, 5.3초: `gen_data/generate_expert.py` 105행이 `dataset_default/data_train_predict_hs300/industry.npy`를 열다가 `FileNotFoundError`.
+- `industry.npy`는 저장소에 없고, 이 파일을 쓰는 코드(`np.save`)도 저장소 어디에도 없다(`train_predict_data.py` 134행도 `../dataset/{market}/industry.npy`를 읽기만 함). 업종 행렬 CSV(`A_stock_industry_matrx.csv`)에서 만들 수는 있겠지만 형식·종목 순서를 우리가 정해야 하므로 허용 수정(v3 2.3) 밖이다.
+- **판정: F4 실행 불가(필수 입력 `industry.npy` 누락, 생성 코드 없음).** 시도 3은 하지 않는다. 시도 1·2 모두 성과 출력 전 단계에서 멈췄다.
+- F3 비고 갱신: 번들 학습 데이터는 빈 placeholder(`pyg_data` 없음, `features`·`labels` 빈 텐서)이고, 저자 스크립트로 구축하더라도 `industry.npy`가 빠져 있다.
