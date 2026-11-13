@@ -7,32 +7,42 @@
 - 허용 폭은 모두 논문 값에서 계산된다(T1·T3·T4: ½·(보고값 − 논문 비교 대상), T2: 2·σ/√5, 근거 `notes/prereg_reeval_v3.md` 60–62행, `notes/mars_t4_o1_prereg.md`). 그래서 A의 보고값을 확인하면 허용 폭도 함께 확인된다. 계산은 손으로 다시 해 본다.
 - 표의 우리 값은 `python3 replication/reproduction_synthesis.py`가 judge JSON을 읽어 만든다(2026-11-11부터 손으로 옮겨 적지 않음).
 
-## A. 논문 보고값 — 원문 PDF와 대조 (최우선, Claude가 가장 틀리기 쉬운 부분)
+## A. 논문 보고값 — 원문 PDF와 대조 (최우선)
 
-| ID | 논문 | 항목 | 대장 값 | 어디서 찾을지 | 결과 |
-|---|---|---|---|---|---|
-| A1 | DeepAries (CIKM 2025) | DJ30 CAGR | 7.90% | 주요 결과 표 | |
-| A2 | DeepAries | DJ30 MDD | 13.67% | 같은 표 | |
-| A3 | DeepAries | ^DJI CAGR(비교 대상) | 6.15% | 같은 표 | |
-| A4 | DeepAries | 시드 10개 중 검증 손실 최소를 고른다는 절차 | 논문/코드 중 어디에 있는지 | 실험 설정 절·저장소 README | |
-| A5 | AlphaMix+ | TR S2021 / S2020 / S2019 | 20.7 / 12.7 / 25.1 | 결과 표. **어느 판본인지(v3) 함께 적기** | |
-| A6 | AlphaMix+ | 시드 σ S2021 / S2020 / S2019 | 1.8 / 1.7 / 1.42 | 같은 표 | |
-| A7 | AlphaMix+ | 5시드 평균이라는 서술 | 5시드 평균 | 실험 설정 절 | |
-| A8 | AlphaMix+ | SR S2021 | 1.64 | 결과 표 | |
-| A9 | FinRL (Liu et al., ICAIF 2021) | 연수익 A2C / PPO / DDPG / TD3 | 42.57 / 36.17 / 36.01 / 39.38% | 포트폴리오 배분 결과 표 | |
-| A10 | FinRL | 샤프 A2C / PPO / DDPG / TD3 | 2.36 / 2.11 / 2.21 / 2.28 | 같은 표 | |
-| A11 | FinRL | DJIA / Min-Var 연수익 | 32.84 / 24.10% | 같은 표 | |
-| A12 | FinRL | 종목 수 30(우리는 28) | 30 | 데이터 절 | |
-| A13 | MARS | CR / AR / SR / AVol / MDD | 29.50 / 31.19 / 2.84 / 10.99 / −5.39 | 결과 표 | |
-| A14 | MARS | DJI CR / AR / SR / AVol / MDD | 15.36 / 16.19 / 1.41 / 11.51 / −6.06 | 같은 표 | |
-| A15 | MARS | 시드 42를 명시함 | 시드 42 | 실험 설정 | |
-| A16 | MARS | 시험 구간 길이(우리는 240거래일 창으로 역산) | 2024-01-17~12-27 | 데이터 절. 원문이 다른 구간을 적었으면 판정 전제가 흔들림 | |
-| A17 | Ensemble (Yang et al., ICAIF 2020) | Table 2 Ensemble 누적 / 연수익 / 연변동성 / Sharpe / MDD | 70.4 / 13.0 / 9.7% / **1.30** / −9.7% | Table 2(2016/01/04–2020/05/08). 우리는 arXiv 2511.12120(재업로드)에서 읽음 → **ACM 판과 같은지**도 적기 | |
-| A18 | Ensemble | Table 2 DJIA 누적 / Sharpe, Min-Variance Sharpe | 38.6% / **0.47**, 0.45 | 같은 표. R1 허용 폭 = ½(1.30 − 0.47) | |
-| A19 | Ensemble | Table 2 A2C / PPO / DDPG Sharpe | **1.12** / 1.10 / 0.87 | 같은 표. R2 문턱 = 1.12 | |
-| A20 | RAT (Xu et al., IJCAI 2020) | Table 2 Crypto-A RAT APV / SR(%) / CR | **156.53 ± 14.25** / 7.13 / 304.26 | Table 2 | |
-| A21 | RAT | Table 2 Crypto-A MTL APV / SR / CR, UCRP APV | **19.69** / 6.90 / 79.21, 2.37 | 같은 표. R1 허용 폭 = ½(156.53 − 19.69), R2 = MTL 3지표 | |
-| A22 | RAT | 절차: 80,000스텝, 가중치 감쇠 1e-7, k=30, 거래비용 0.25%, "무작위 초기화 5회 평균" | 위 값 | 5.1절. 우리 조건 P의 설정 근거 | |
+**하는 법(행마다 30초):** ① 링크로 PDF를 연다 → ② `Cmd+F`에 "검색어" 칸을 그대로 붙여 넣는다 → ③ 찾은 줄이 "쪽·표"에 적힌 표의 **맞는 행·열**인지 눈으로 본다 → ④ `결과` 칸에 `일치(날짜)`나 `불일치: …`를 쓴다.
+- 숫자 자체는 Claude가 아래 PDF의 텍스트에서 모두 찾았다(2026-11-13, "Claude 확인" 칸). 텍스트 추출은 표의 열이 밀려도 알아채지 못하므로, 사용자가 볼 것은 **그 숫자가 맞는 칸에 있는지**다.
+- 링크는 arXiv/학회 공개판이다. 학회 출판판(ACM·AAAI)과 다를 수 있는 곳은 "주의"에 적었다.
+
+PDF: [DeepAries arXiv 2510.14985](https://arxiv.org/pdf/2510.14985) · [AlphaMix+(PRUDEX-Compass) arXiv 2302.00586](https://arxiv.org/pdf/2302.00586) · [FinRL arXiv 2111.09395](https://arxiv.org/pdf/2111.09395) · [MARS arXiv 2508.01173](https://arxiv.org/pdf/2508.01173) · [Ensemble arXiv 2511.12120](https://arxiv.org/pdf/2511.12120) · [RAT IJCAI 2020](https://www.ijcai.org/proceedings/2020/0641.pdf)
+
+| ID | 논문 | 쪽·표 | 검색어(복사) | 대장 값(무엇을 볼지) | Claude 확인 | 결과 |
+|---|---|---|---|---|---|---|
+| A1 | DeepAries | 5쪽 Table 1, DJ 30 열 | `7.90` | DeepAries 행 DJ 30 CAGR 7.90 | 있음 | |
+| A2 | DeepAries | 5쪽 Table 1, DJ 30 열 | `13.67` | 같은 행 DJ 30 MDD 13.67 | 있음 | |
+| A3 | DeepAries | 5쪽 Table 1, DJ 30 열 | `6.15` | "Index" 행 DJ 30 CAGR 6.15(비교 대상) | 있음 | |
+| A4 | DeepAries | 5쪽 본문 | `lowest validation loss` | "여러 시드를 돌려 검증 손실이 가장 낮은 실행의 시험 결과를 보고" | 있음 | |
+| A5 | AlphaMix+ | 25쪽 Table 5·6·7(US Stock 2021·2020·2019), 맨 오른쪽 AlphaMix+ 열 | `US Stock 2021` | TR(%) 20.7±1.8 / 12.7±1.7 / 25.1±1.42 | 있음 | |
+| A6 | AlphaMix+ | 같음 | 같음 | ± 뒤의 값 1.8 / 1.7 / 1.42(시드 σ) | 있음 | |
+| A7 | AlphaMix+ | 실험 설정 절 | `5 fixed random seeds` | "5개 고정 시드" | 있음 | |
+| A8 | AlphaMix+ | 25쪽 Table 5 | `1.64±0.11` | AlphaMix+ SR 1.64 | 있음 | |
+| A9 | FinRL | 7쪽 Table 3 | `Annualized return` | A2C 42.57 / PPO 36.17 / DDPG 36.01 / TD3 39.38. **주의:** 한 칸에 숫자가 두 개("46.65%; 42.57%")인데 앞이 주식 거래, **뒤가 포트폴리오 배분**이다. 뒤 숫자가 맞는지 | 있음 | |
+| A10 | FinRL | 7쪽 Table 3 | `Sharpe ratio  ` | 뒤 숫자 2.36 / 2.11 / 2.21 / 2.28 | 있음 | |
+| A11 | FinRL | 7쪽 Table 3 | `32.84` | DJIA 32.84%, Min-Var 24.10%. 같은 표에 **DJIA Sharpe 2.02, Min-Var 1.98**도 있다(통계 v2의 δ_SR 결정에 씀) | 있음 | |
+| A12 | FinRL | 6쪽 | `30 constituent stocks` | 종목 30(우리는 28) | 있음 | |
+| A13 | MARS | 5쪽 Table 2 | `29.50` | MARS 행 CR 29.50 / AR 31.19 / SR 2.84 / AVol 10.99 / MDD −5.39 | 있음 | |
+| A14 | MARS | 5쪽 Table 2 | `15.36` | DJI Index 행 15.36 / 16.19 / 1.41 / 11.51 / −6.06 | 있음 | |
+| A15 | MARS | 5쪽 | `random seed of 42` | 시드 42 | 있음 | |
+| A16 | MARS | 5쪽 Table 1 | `2024 Test` | 원문 시험 구간은 **2024-01-01 to 2024-12-31**. 우리 판정은 240거래일 창(2024-01-17~12-27, `notes/mars_t4_o1_prereg.md`)을 썼다. 표기가 이와 같은지만 확인 | 있음 | |
+| A17 | Ensemble | 7쪽 TABLE II | `70.4%` | Ensemble 열 70.4% / 13.0% / 9.7% / 1.30 / −9.7%. **주의:** arXiv 재업로드판이다. ACM 판(ICAIF '20)이 있으면 같은지 | 있음 | |
+| A18 | Ensemble | 7쪽 TABLE II | `0.47` | DJIA 열 누적 38.6%, Sharpe 0.47 / Min-Variance Sharpe 0.45 | 있음 | |
+| A19 | Ensemble | 7쪽 TABLE II | `1.12` | A2C 1.12 / PPO 1.10 / DDPG 0.87 | 있음 | |
+| A20 | RAT | 6쪽 Table 2, Crypto-A 블록 | `156.53` | RAT 156.53 ± 14.25 / 7.13 / 304.26 | 있음 | |
+| A21 | RAT | 6쪽 Table 2 | `19.69` | MTL 19.69 / 6.90 / 79.21, UCRP 2.37 | 있음 | |
+| A22 | RAT | 5쪽 5.1절 | `averaged over 5 runs` | "5회 평균(무작위 초기화)", 같은 절에 80000스텝·10^-7·0.25% | 있음 | |
+
+**Claude가 찾은 확인할 점 두 개:**
+- A5·A6: 기존 대장·종합표는 AlphaMix+를 "arXiv v3"라고 적었는데, 지금 arXiv에는 **v2까지만** 있다(TMLR 02/2023 표기). v3라는 표기가 OpenReview 판을 말한 것인지 확인이 필요하다. 숫자는 v2 PDF와 같다.
+- A16: 위 "주의" 그대로. 판정 전제(240거래일 창)가 원문 구간 표기와 다르다는 사실을 사용자가 알고 있는지 확인용.
 
 ## B. "원문에 없다(미기재)"는 주장 — 원문 전체 검색
 
