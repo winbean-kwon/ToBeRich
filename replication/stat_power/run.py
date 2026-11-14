@@ -35,6 +35,7 @@ BLOCKS = (5, 10, 20); B_PRIMARY = 20
 N_SIZE, N_BOUND = 1000, 4000   # 경계 점검은 α/4 비율 판정의 이항 오차를 크기 점검과 맞추려 4,000회
 GENS = (10, 20)                # 합성 생성: 정상 부트스트랩 평균 블록
 TAIL_MAX = 0.04               # 크기 점검 꼬리별 상한(0.025 + 약 2.9 이항 SE, n = 1,000)
+EPS = 1e-12                    # 밴드 비교 허용 오차(닫힌 구간을 부동소수점으로 계산할 때, 2026-11-14 정정)
 MDE_MULT = 1.959963984540054 + 0.8416212335729143
 
 
@@ -197,6 +198,18 @@ def cal_job(args):
     return key, metric, shift, m, res
 
 
+def band_status(rate, lo, hi):
+    return '통과' if lo - EPS <= rate <= hi + EPS else ('보수적' if rate < lo else '보정 실패')
+
+
+def row_status(r):
+    # 저장된 기각률로 상태를 다시 계산(사전 등록 문서의 닫힌 구간 기준)
+    st = band_status(r['reject_rate'], *r['band'])
+    if r['kind'] == 'size' and max(r['reject_upper_tail'], r['reject_lower_tail']) > TAIL_MAX + EPS:
+        st = '보정 실패'
+    return st
+
+
 def run_cal(jobs_spec, out_name, workers=8, per_job=50):
     from multiprocessing import Pool
     T = targets(); jobs = []
@@ -221,9 +234,8 @@ def run_cal(jobs_spec, out_name, workers=8, per_job=50):
             rate = float((a[:, 1] < shift).mean()) if shift > 0 else float((a[:, 2] > shift).mean())
             lo, hi = 0.6 * A1, 1.4 * A1; kind = 'boundary_upper' if shift > 0 else 'boundary_lower'
         row.update(kind=kind, reject_rate=rate, band=[lo, hi],
-                   status='통과' if lo <= rate <= hi else ('보수적' if rate < lo else '보정 실패'))
-        if kind == 'size' and max(row['reject_upper_tail'], row['reject_lower_tail']) > TAIL_MAX:
-            row['status'] = '보정 실패'; row['tail_fail'] = True
+                   status=band_status(rate, lo, hi))
+        row['status'] = row_status(row)
         out.append(row)
     summary = {'n_fail': sum(r['status'] == '보정 실패' for r in out), 'n_conservative': sum(r['status'] == '보수적' for r in out),
                'seconds': time.time() - t0, 'B_cal': B_CAL, 'b': B_PRIMARY, 'provenance': provenance(), 'rows': out}
@@ -245,7 +257,8 @@ def delta_sr():
 
 
 def cmd_calib_srb():
-    d = delta_sr()
+    # 인자로 후보값을 주면 그 값으로 미리 계산(보정 점검은 효과 크기 정보가 없다). categorize에서 확정값과 같은지 확인한다.
+    d = float(sys.argv[2]) if len(sys.argv) > 2 else delta_sr()
     run_cal([(k, 'SR', s, N_BOUND) for k in CAL_TARGETS for s in (d, -d)], 'calib_srb.json')
 
 
@@ -319,6 +332,10 @@ def cmd_categorize():
     cal = []
     for f in ('calib.json', 'calib_srb.json'):
         cal += json.loads((OUT / f).read_text())['rows']
+    srb = {abs(r['shift']) for r in cal if r['metric'] == 'SR' and r['kind'] != 'size'}
+    assert srb and all(abs(x - deltas['SR']) < 1e-12 for x in srb), ('calib_srb의 δ가 확정 δ_SR와 다름', srb)
+    for r in cal:
+        r['status'] = row_status(r)
     for a in ALGOS:
         for metric in ('SR', 'G'):
             st = [r['status'] for r in cal if r['target'] == f'F/algo/{a}' and r['metric'] == metric]
