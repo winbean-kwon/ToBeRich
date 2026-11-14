@@ -1,0 +1,357 @@
+{
+ "n_fail": 0,
+ "n_conservative": 22,
+ "seconds": 4567.3403606414795,
+ "B_cal": 999,
+ "b": 20,
+ "provenance": {
+  "git_head": "6c34c241767ae8728651934abadd8aa1a7f1e001",
+  "inputs_sha256": {
+   "D.csv": "8801d6adfa95df7087ff3b03705733699a2f141a1cd63fd6937c07d861938945",
+   "Dp.csv": "8f3b7f32c76b130a22131b752ac92087e54070d1a02fdc771545b2367bcd0c54",
+   "E.csv": "97259c00dfddc685be33a414d9d3b7823fb5efa38fae550840cb277fdbc5ef55",
+   "F_W0.csv": "41f47639a9c7967e0e0cea1028721750a4163bd37503f681c73e9b5febe00cc3",
+   "F_W1.csv": "0592e5dd3b5ebff620d9e7adbc602947ec1ce2ce60083a234218f71eb84e21f6",
+   "F_W2.csv": "2b30966f5c8169a4b2dbd6b5e842ed1e0c6e6b41b7789c1c45d948f7e7731751"
+  },
+  "delta_g": 0.02358301593611629
+ },
+ "rows": [
+  {
+   "target": "F/algo/a2c",
+   "metric": "SR",
+   "shift": -0.09,
+   "gen_mean_block": 10,
+   "n": 4000,
+   "kind": "boundary_lower",
+   "reject_rate": 0.002,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/algo/a2c",
+   "metric": "SR",
+   "shift": -0.09,
+   "gen_mean_block": 20,
+   "n": 4000,
+   "kind": "boundary_lower",
+   "reject_rate": 0.00275,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/algo/a2c",
+   "metric": "SR",
+   "shift": 0.09,
+   "gen_mean_block": 10,
+   "n": 4000,
+   "kind": "boundary_upper",
+   "reject_rate": 0.00675,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/algo/a2c",
+   "metric": "SR",
+   "shift": 0.09,
+   "gen_mean_block": 20,
+   "n": 4000,
+   "kind": "boundary_upper",
+   "reject_rate": 0.00575,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/algo/ddpg",
+   "metric": "SR",
+   "shift": -0.09,
+   "gen_mean_block": 10,
+   "n": 4000,
+   "kind": "boundary_lower",
+   "reject_rate": 0.0025,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/algo/ddpg",
+   "metric": "SR",
+   "shift": -0.09,
+   "gen_mean_block": 20,
+   "n": 4000,
+   "kind": "boundary_lower",
+   "reject_rate": 0.0005,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/algo/ddpg",
+   "metric": "SR",
+   "shift": 0.09,
+   "gen_mean_block": 10,
+   "n": 4000,
+   "kind": "boundary_upper",
+   "reject_rate": 0.00525,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/algo/ddpg",
+   "metric": "SR",
+   "shift": 0.09,
+   "gen_mean_block": 20,
+   "n": 4000,
+   "kind": "boundary_upper",
+   "reject_rate": 0.00475,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/algo/ppo",
+   "metric": "SR",
+   "shift": -0.09,
+   "gen_mean_block": 10,
+   "n": 4000,
+   "kind": "boundary_lower",
+   "reject_rate": 0.0055,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/algo/ppo",
+   "metric": "SR",
+   "shift": -0.09,
+   "gen_mean_block": 20,
+   "n": 4000,
+   "kind": "boundary_lower",
+   "reject_rate": 0.00325,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/algo/ppo",
+   "metric": "SR",
+   "shift": 0.09,
+   "gen_mean_block": 10,
+   "n": 4000,
+   "kind": "boundary_upper",
+   "reject_rate": 0.00775,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "통과"
+  },
+  {
+   "target": "F/algo/ppo",
+   "metric": "SR",
+   "shift": 0.09,
+   "gen_mean_block": 20,
+   "n": 4000,
+   "kind": "boundary_upper",
+   "reject_rate": 0.0105,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "통과"
+  },
+  {
+   "target": "F/algo/td3",
+   "metric": "SR",
+   "shift": -0.09,
+   "gen_mean_block": 10,
+   "n": 4000,
+   "kind": "boundary_lower",
+   "reject_rate": 0.001,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/algo/td3",
+   "metric": "SR",
+   "shift": -0.09,
+   "gen_mean_block": 20,
+   "n": 4000,
+   "kind": "boundary_lower",
+   "reject_rate": 0.0005,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/algo/td3",
+   "metric": "SR",
+   "shift": 0.09,
+   "gen_mean_block": 10,
+   "n": 4000,
+   "kind": "boundary_upper",
+   "reject_rate": 0.00325,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/algo/td3",
+   "metric": "SR",
+   "shift": 0.09,
+   "gen_mean_block": 20,
+   "n": 4000,
+   "kind": "boundary_upper",
+   "reject_rate": 0.0015,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/run/ddpg/W2/s0",
+   "metric": "SR",
+   "shift": -0.09,
+   "gen_mean_block": 10,
+   "n": 4000,
+   "kind": "boundary_lower",
+   "reject_rate": 0.0005,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/run/ddpg/W2/s0",
+   "metric": "SR",
+   "shift": -0.09,
+   "gen_mean_block": 20,
+   "n": 4000,
+   "kind": "boundary_lower",
+   "reject_rate": 0.0,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/run/ddpg/W2/s0",
+   "metric": "SR",
+   "shift": 0.09,
+   "gen_mean_block": 10,
+   "n": 4000,
+   "kind": "boundary_upper",
+   "reject_rate": 0.00075,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/run/ddpg/W2/s0",
+   "metric": "SR",
+   "shift": 0.09,
+   "gen_mean_block": 20,
+   "n": 4000,
+   "kind": "boundary_upper",
+   "reject_rate": 0.0005,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/run/td3/W2/s0",
+   "metric": "SR",
+   "shift": -0.09,
+   "gen_mean_block": 10,
+   "n": 4000,
+   "kind": "boundary_lower",
+   "reject_rate": 0.00125,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/run/td3/W2/s0",
+   "metric": "SR",
+   "shift": -0.09,
+   "gen_mean_block": 20,
+   "n": 4000,
+   "kind": "boundary_lower",
+   "reject_rate": 0.00075,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/run/td3/W2/s0",
+   "metric": "SR",
+   "shift": 0.09,
+   "gen_mean_block": 10,
+   "n": 4000,
+   "kind": "boundary_upper",
+   "reject_rate": 0.00375,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  },
+  {
+   "target": "F/run/td3/W2/s0",
+   "metric": "SR",
+   "shift": 0.09,
+   "gen_mean_block": 20,
+   "n": 4000,
+   "kind": "boundary_upper",
+   "reject_rate": 0.00175,
+   "band": [
+    0.0075,
+    0.017499999999999998
+   ],
+   "status": "보수적"
+  }
+ ]
+}
