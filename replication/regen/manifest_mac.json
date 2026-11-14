@@ -1,0 +1,221 @@
+{
+ "git_head": "77611ecfcd02c16502ffb8eef21b0910a2050382",
+ "date": "2026-11-14 20:37",
+ "python": "3.9.6",
+ "steps": [
+  {
+   "step": "FinRL O1 판정",
+   "cmd": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 replication/finrl_t3_run.py judge",
+   "env": null,
+   "rc": 0,
+   "seconds": 1.2,
+   "files": [
+    {
+     "path": "replication/finrl_t3/o1/judge_W0.json",
+     "sha256_committed": "7823e371a4a58c301253be152171975b07b1c891ee878e9ba2d329ea8fbc0252",
+     "sha256_regenerated": "7823e371a4a58c301253be152171975b07b1c891ee878e9ba2d329ea8fbc0252",
+     "status": "바이트 동일"
+    }
+   ]
+  },
+  {
+   "step": "FinRL O2 판정",
+   "cmd": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 replication/finrl_t3_run.py judge2",
+   "env": null,
+   "rc": 0,
+   "seconds": 6.9,
+   "files": [
+    {
+     "path": "replication/finrl_t3/o2/judge_o2.json",
+     "sha256_committed": "63acac5f23c82a490003c5a8277a8db4a21cd852b4e17a83b793a90c1a399696",
+     "sha256_regenerated": "63acac5f23c82a490003c5a8277a8db4a21cd852b4e17a83b793a90c1a399696",
+     "status": "바이트 동일"
+    }
+   ]
+  },
+  {
+   "step": "FinRL O6 판정",
+   "cmd": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 replication/finrl_t3_run.py judge6",
+   "env": null,
+   "rc": 0,
+   "seconds": 0.9,
+   "files": [
+    {
+     "path": "replication/finrl_t3/o6/judge_o6.json",
+     "sha256_committed": "de1d3b3a0f20c4ea11772d997fa6267dc6fe4b26a6f155fc74b61db4b46c8c97",
+     "sha256_regenerated": "de1d3b3a0f20c4ea11772d997fa6267dc6fe4b26a6f155fc74b61db4b46c8c97",
+     "status": "바이트 동일"
+    }
+   ]
+  },
+  {
+   "step": "DeepAries O1 판정",
+   "cmd": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 replication/deeparies_run.py judge1",
+   "env": null,
+   "rc": 0,
+   "seconds": 0.5,
+   "files": [
+    {
+     "path": "replication/deeparies/judge_o1.json",
+     "sha256_committed": "0d91517a446744bfb3bd0dfd22e557f909d100199a5c01d687eecf611ecf231a",
+     "sha256_regenerated": "f41c84a15ca8c9592a010b48c90d1edb53113cefec6379a9a1fd21fd61190717",
+     "status": "내용 동일 + 기록용 키 추가",
+     "added_keys": [
+      "/시드별[0]/검증 손실 기록",
+      "/시드별[0]/장치",
+      "/시드별[0]/분",
+      "/시드별[1]/검증 손실 기록",
+      "/시드별[1]/장치",
+      "/시드별[1]/분",
+      "/시드별[2]/검증 손실 기록",
+      "/시드별[2]/장치",
+      "/시드별[2]/분",
+      "/시드별[3]/검증 손실 기록",
+      "/시드별[3]/장치",
+      "/시드별[3]/분",
+      "/시드별[4]/검증 손실 기록",
+      "/시드별[4]/장치",
+      "/시드별[4]/분",
+      "/시드별[5]/검증 손실 기록",
+      "/시드별[5]/장치",
+      "/시드별[5]/분",
+      "/시드별[6]/검증 손실 기록",
+      "/시드별[6]/장치"
+     ],
+     "regenerated_at": "replication/deeparies/runs/judge_o1.json"
+    }
+   ]
+  },
+  {
+   "step": "DeepAries E 판정(e1·e10)",
+   "cmd": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 replication/deeparies_run.py judge_e",
+   "env": {
+    "DA_RUNS": "replication/deeparies/e10"
+   },
+   "rc": 0,
+   "seconds": 0.5,
+   "files": [
+    {
+     "path": "replication/deeparies/e10/judge_e.json",
+     "sha256_committed": "bee0b8e635c6ebade81c6e998172fab98accc6b60f41d7ab40c133aa856dd54d",
+     "sha256_regenerated": "bee0b8e635c6ebade81c6e998172fab98accc6b60f41d7ab40c133aa856dd54d",
+     "status": "바이트 동일"
+    },
+    {
+     "path": "replication/deeparies/e10/judge_e1.json",
+     "sha256_committed": "b2a5abef572ddb9a458a0cda795b5ea1d846ce643c4fb79a1f2eedc0f695eb19",
+     "sha256_regenerated": "b2a5abef572ddb9a458a0cda795b5ea1d846ce643c4fb79a1f2eedc0f695eb19",
+     "status": "바이트 동일"
+    },
+    {
+     "path": "replication/deeparies/e10/judge_e10.json",
+     "sha256_committed": "a3164cb0d0855da1655b5d58f6a2ab2273e16eea2c062967618a21c04e3f97b0",
+     "sha256_regenerated": "a3164cb0d0855da1655b5d58f6a2ab2273e16eea2c062967618a21c04e3f97b0",
+     "status": "바이트 동일"
+    }
+   ]
+  },
+  {
+   "step": "AlphaMix+ O1 판정",
+   "cmd": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 replication/alphamix_t2/judge1_without_daily_check.py judge1 replication/alphamix_t2",
+   "env": null,
+   "rc": 0,
+   "seconds": 0.4,
+   "files": [
+    {
+     "path": "replication/alphamix_t2/judge_o1.json",
+     "sha256_committed": "ae4a7dc9a4a2c8d11fc5ee5dfaccbd4e42a6fe2d98ab7e7b70e42074318abfbb",
+     "sha256_regenerated": "ae4a7dc9a4a2c8d11fc5ee5dfaccbd4e42a6fe2d98ab7e7b70e42074318abfbb",
+     "status": "바이트 동일"
+    }
+   ]
+  },
+  {
+   "step": "MARS O1 판정",
+   "cmd": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 replication/mars_t4.py judge",
+   "env": {
+    "MARS_WORK": ".marswork",
+    "MARS_OUT": "data/mars_t4"
+   },
+   "rc": 0,
+   "seconds": 0.4,
+   "files": [
+    {
+     "path": "data/mars_t4/judge_o1.json",
+     "sha256_committed": "c5d727be59434464c6f440fed8725243aaba1b0fbc8ce451cb07400dd4ff3ab5",
+     "sha256_regenerated": "c5d727be59434464c6f440fed8725243aaba1b0fbc8ce451cb07400dd4ff3ab5",
+     "status": "바이트 동일"
+    }
+   ]
+  },
+  {
+   "step": "깔때기 표",
+   "cmd": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 replication/funnel_table.py",
+   "env": null,
+   "rc": 0,
+   "seconds": 0.0,
+   "files": [
+    {
+     "path": "notes/lit/f1/funnel_table.csv",
+     "sha256_committed": "de70be2627ede49cc8e72c561fa25ec601725a4bdf3fbb1e514a345602c48667",
+     "sha256_regenerated": "de70be2627ede49cc8e72c561fa25ec601725a4bdf3fbb1e514a345602c48667",
+     "status": "바이트 동일"
+    }
+   ]
+  },
+  {
+   "step": "재현 종합표",
+   "cmd": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 replication/reproduction_synthesis.py",
+   "env": null,
+   "rc": 0,
+   "seconds": 0.0,
+   "files": [
+    {
+     "path": "replication/reproduction_synthesis.csv",
+     "sha256_committed": "060d6f322be44b7d9663202521718eeee82798a572d158533c234c57694ade01",
+     "sha256_regenerated": "060d6f322be44b7d9663202521718eeee82798a572d158533c234c57694ade01",
+     "status": "바이트 동일"
+    }
+   ]
+  },
+  {
+   "step": "통계 v2 입력(F·D·D′)",
+   "cmd": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 replication/stat_power/prep.py fd",
+   "env": null,
+   "rc": 0,
+   "seconds": 1.1,
+   "files": [
+    {
+     "path": "replication/stat_power/inputs/F_W0.csv",
+     "sha256_committed": "41f47639a9c7967e0e0cea1028721750a4163bd37503f681c73e9b5febe00cc3",
+     "sha256_regenerated": "41f47639a9c7967e0e0cea1028721750a4163bd37503f681c73e9b5febe00cc3",
+     "status": "바이트 동일"
+    },
+    {
+     "path": "replication/stat_power/inputs/F_W1.csv",
+     "sha256_committed": "0592e5dd3b5ebff620d9e7adbc602947ec1ce2ce60083a234218f71eb84e21f6",
+     "sha256_regenerated": "0592e5dd3b5ebff620d9e7adbc602947ec1ce2ce60083a234218f71eb84e21f6",
+     "status": "바이트 동일"
+    },
+    {
+     "path": "replication/stat_power/inputs/F_W2.csv",
+     "sha256_committed": "2b30966f5c8169a4b2dbd6b5e842ed1e0c6e6b41b7789c1c45d948f7e7731751",
+     "sha256_regenerated": "2b30966f5c8169a4b2dbd6b5e842ed1e0c6e6b41b7789c1c45d948f7e7731751",
+     "status": "바이트 동일"
+    },
+    {
+     "path": "replication/stat_power/inputs/D.csv",
+     "sha256_committed": "8801d6adfa95df7087ff3b03705733699a2f141a1cd63fd6937c07d861938945",
+     "sha256_regenerated": "8801d6adfa95df7087ff3b03705733699a2f141a1cd63fd6937c07d861938945",
+     "status": "바이트 동일"
+    },
+    {
+     "path": "replication/stat_power/inputs/Dp.csv",
+     "sha256_committed": "8f3b7f32c76b130a22131b752ac92087e54070d1a02fdc771545b2367bcd0c54",
+     "sha256_regenerated": "8f3b7f32c76b130a22131b752ac92087e54070d1a02fdc771545b2367bcd0c54",
+     "status": "바이트 동일"
+    }
+   ]
+  }
+ ]
+}

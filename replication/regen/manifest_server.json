@@ -1,0 +1,42 @@
+{
+ "git_head": "77611ecfcd02c16502ffb8eef21b0910a2050382",
+ "date": "2026-11-14 20:37",
+ "rc": 0,
+ "seconds": 1.7,
+ "stderr_tail": "** WARNING: connection is not using a post-quantum key exchange algorithm.\r\n** This session may be vulnerable to \"store now, decrypt later\" attacks.\r\n** The server may need to be upgraded. See https://openssh.com/pq.html\r\n",
+ "steps": [
+  {
+   "step": "Ensemble F7 판정(서버)",
+   "files": [
+    {
+     "path": "replication/funnel_f7/ensemble_judge_result.json",
+     "sha256_committed": "3a149db115a1dccff2e4c901104fabb1145fccebc669262a2ae413c9aa968216",
+     "sha256_regenerated": "3a149db115a1dccff2e4c901104fabb1145fccebc669262a2ae413c9aa968216",
+     "status": "바이트 동일"
+    }
+   ]
+  },
+  {
+   "step": "RAT F7 판정(서버, GTX 1650 결과)",
+   "files": [
+    {
+     "path": "replication/funnel_f7/rat_f7_result.json",
+     "sha256_committed": "d4d3ec5f9becbad7da7928bd7e048ecb6d2bc4f814b6ae702b0ee0ec7046484c",
+     "sha256_regenerated": "d4d3ec5f9becbad7da7928bd7e048ecb6d2bc4f814b6ae702b0ee0ec7046484c",
+     "status": "바이트 동일"
+    }
+   ]
+  },
+  {
+   "step": "통계 v2 입력 E(서버)",
+   "files": [
+    {
+     "path": "replication/stat_power/inputs/E.csv",
+     "sha256_committed": "97259c00dfddc685be33a414d9d3b7823fb5efa38fae550840cb277fdbc5ef55",
+     "sha256_regenerated": "97259c00dfddc685be33a414d9d3b7823fb5efa38fae550840cb277fdbc5ef55",
+     "status": "바이트 동일"
+    }
+   ]
+  }
+ ]
+}
