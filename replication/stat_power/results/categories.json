@@ -1,0 +1,228 @@
+{
+ "delta": {
+  "SR": 0.09,
+  "G": 0.02358301593611629
+ },
+ "algo": {
+  "a2c": {
+   "SR": {
+    "5": {
+     "category": "열위",
+     "p_holm": 0.0008,
+     "tost_inside": false,
+     "calibration": "보정 점검 대상 아님"
+    },
+    "10": {
+     "category": "열위",
+     "p_holm": 0.0008,
+     "tost_inside": false,
+     "calibration": "보정 점검 대상 아님"
+    },
+    "20": {
+     "category": "열위",
+     "p_holm": 0.0008,
+     "tost_inside": false,
+     "calibration": "보수적"
+    }
+   },
+   "G": {
+    "5": {
+     "category": "열위",
+     "p_holm": 0.0008,
+     "tost_inside": false,
+     "calibration": "보정 점검 대상 아님"
+    },
+    "10": {
+     "category": "열위",
+     "p_holm": 0.0008,
+     "tost_inside": false,
+     "calibration": "보정 점검 대상 아님"
+    },
+    "20": {
+     "category": "열위",
+     "p_holm": 0.0008,
+     "tost_inside": false,
+     "calibration": "보수적"
+    }
+   }
+  },
+  "ppo": {
+   "SR": {
+    "5": {
+     "category": "열위",
+     "p_holm": 0.0008,
+     "tost_inside": false,
+     "calibration": "보정 점검 대상 아님"
+    },
+    "10": {
+     "category": "열위",
+     "p_holm": 0.0008,
+     "tost_inside": false,
+     "calibration": "보정 점검 대상 아님"
+    },
+    "20": {
+     "category": "열위",
+     "p_holm": 0.0008,
+     "tost_inside": false,
+     "calibration": "보수적"
+    }
+   },
+   "G": {
+    "5": {
+     "category": "열위",
+     "p_holm": 0.0008,
+     "tost_inside": false,
+     "calibration": "보정 점검 대상 아님"
+    },
+    "10": {
+     "category": "열위",
+     "p_holm": 0.0008,
+     "tost_inside": false,
+     "calibration": "보정 점검 대상 아님"
+    },
+    "20": {
+     "category": "열위",
+     "p_holm": 0.0008,
+     "tost_inside": false,
+     "calibration": "통과"
+    }
+   }
+  },
+  "ddpg": {
+   "SR": {
+    "5": {
+     "category": "동등",
+     "p_holm": 0.8652,
+     "tost_inside": true,
+     "calibration": "보정 점검 대상 아님"
+    },
+    "10": {
+     "category": "동등",
+     "p_holm": 0.886,
+     "tost_inside": true,
+     "calibration": "보정 점검 대상 아님"
+    },
+    "20": {
+     "category": "판정 불가",
+     "p_holm": 0.8836,
+     "tost_inside": false,
+     "calibration": "보수적"
+    }
+   },
+   "G": {
+    "5": {
+     "category": "동등",
+     "p_holm": 1.0,
+     "tost_inside": true,
+     "calibration": "보정 점검 대상 아님"
+    },
+    "10": {
+     "category": "동등",
+     "p_holm": 1.0,
+     "tost_inside": true,
+     "calibration": "보정 점검 대상 아님"
+    },
+    "20": {
+     "category": "동등",
+     "p_holm": 1.0,
+     "tost_inside": true,
+     "calibration": "보수적"
+    }
+   }
+  },
+  "td3": {
+   "SR": {
+    "5": {
+     "category": "판정 불가",
+     "p_holm": 0.8652,
+     "tost_inside": false,
+     "calibration": "보정 점검 대상 아님"
+    },
+    "10": {
+     "category": "판정 불가",
+     "p_holm": 0.886,
+     "tost_inside": false,
+     "calibration": "보정 점검 대상 아님"
+    },
+    "20": {
+     "category": "판정 불가",
+     "p_holm": 0.8836,
+     "tost_inside": false,
+     "calibration": "보수적"
+    }
+   },
+   "G": {
+    "5": {
+     "category": "동등",
+     "p_holm": 1.0,
+     "tost_inside": true,
+     "calibration": "보정 점검 대상 아님"
+    },
+    "10": {
+     "category": "동등",
+     "p_holm": 1.0,
+     "tost_inside": true,
+     "calibration": "보정 점검 대상 아님"
+    },
+    "20": {
+     "category": "동등",
+     "p_holm": 1.0,
+     "tost_inside": true,
+     "calibration": "보수적"
+    }
+   }
+  }
+ },
+ "block_sensitive": {
+  "a2c/SR": false,
+  "ppo/SR": false,
+  "ddpg/SR": true,
+  "td3/SR": false,
+  "a2c/G": false,
+  "ppo/G": false,
+  "ddpg/G": false,
+  "td3/G": false
+ },
+ "o2_compare": {
+  "a2c": {
+   "O2 판정": "소실",
+   "O2 창별": {
+    "W0": "열위",
+    "W1": "열위",
+    "W2": "열위"
+   },
+   "ΔG 범주(b=20)": "열위",
+   "ΔSR 범주(b=20)": "열위"
+  },
+  "ppo": {
+   "O2 판정": "소실",
+   "O2 창별": {
+    "W0": "열위",
+    "W1": "열위",
+    "W2": "열위"
+   },
+   "ΔG 범주(b=20)": "열위",
+   "ΔSR 범주(b=20)": "열위"
+  },
+  "ddpg": {
+   "O2 판정": "불확정",
+   "O2 창별": {
+    "W0": "불확정",
+    "W1": "우위",
+    "W2": "불확정"
+   },
+   "ΔG 범주(b=20)": "동등",
+   "ΔSR 범주(b=20)": "판정 불가"
+  },
+  "td3": {
+   "O2 판정": "불확정",
+   "O2 창별": {
+    "W0": "불확정",
+    "W1": "우위",
+    "W2": "불확정"
+   },
+   "ΔG 범주(b=20)": "동등",
+   "ΔSR 범주(b=20)": "판정 불가"
+  }
+ }
+}
