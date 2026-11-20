@@ -1,21 +1,30 @@
 순번,id,제목,1저자,연도,학회,식별자,판정,URL,근거 위치,소요(분),확인일,메모
-1,Y25-03,MARS: A Meta-Adaptive Reinforcement Learning Framework for Risk-Aware Multi-Agent Portfolio Management,Jiayi Chen,2025,AAAI 2026 Main Track (accepted per arXiv comment),arXiv:2508.01173,,,,,,
-2,W21_HRPM,Commission Fee is not Enough: A Hierarchical Reinforced Framework for Portfolio Management,Rundong Wang,2021,AAAI 2021,doi:10.1609/aaai.v35i1.16142; arXiv:2012.12620,,,,,,
-3,xiong2018ddpg,Practical Deep Reinforcement Learning Approach for Stock Trading,Xiao-Yang Liu (co-first: Zhuoran Xiong),2018,NeurIPS 2018 Workshop on Challenges and Opportunities for AI in Financial Services,arXiv:1811.07522,,,,,,
-4,W22_PretoriusVanZyl,Deep Reinforcement Learning and Convex Mean-Variance Optimisation for Portfolio Management,Ruan Pretorius,2022,arXiv preprint (IEEE TAI template; publication not verified),arXiv:2203.11318,,,,,,
-5,P24-01,Reinforcement Learning with Maskable Stock Representation for Portfolio Management in Customizable Stock Pools (EarnMore),Wentao Zhang,2024,WWW 2024,arXiv:2311.10801,,,,,,
-6,jiang2017crypto,Cryptocurrency Portfolio Management with Deep Reinforcement Learning,Zhengyao Jiang,2017,IntelliSys 2017 (IEEE),10.1109/IntelliSys.2017.8324237; arXiv:1612.01277,,,,,,
-7,SUP-LSRE,LSRE-CAAN (IP&M 2023),,,,,,,,,,
-8,P24-07,Markowitz Meets Bellman: Knowledge-distilled Reinforcement Learning for Portfolio Management,Gang Hu,2024,arXiv preprint,arXiv:2405.05449,,,,,,
-9,SQ-Regret,Regret-Optimized (ICAIF 2025),,,,arXiv 2502.02619,,,,,,
-10,P24-09,Portfolio Management using Deep Reinforcement Learning,Ashish Anil Pawar,2024,arXiv preprint,arXiv:2405.01604,,,,,,
-11,wang2019alphastock,AlphaStock: A Buying-Winners-and-Selling-Losers Investment Strategy using Interpretable Deep Reinforcement Attention Networks,Jingyuan Wang,2019,KDD 2019,10.1145/3292500.3330647; arXiv:1908.02646,,,,,,
-12,W21_FinRL,FinRL: Deep Reinforcement Learning Framework to Automate Trading in Quantitative Finance,Xiao-Yang Liu,2021,ICAIF 2021,doi:10.1145/3490354.3494366; arXiv:2111.09395,,,,,,
-13,Y25-04,Reinforcement Learning-Based Cryptocurrency Portfolio Management Using Soft Actor–Critic and Deep Deterministic Policy Gradient Algorithms,Kamal Paykan,2025,arXiv preprint,arXiv:2511.20678,,,,,,
-14,SQ-XPM,XPM (CIKM 2021),,,,,,,,,,
-15,W22_MSPM,MSPM: A modularized and scalable multi-agent reinforcement learning-based system for financial portfolio management,Zhenhan Huang,2022,PLOS ONE,doi:10.1371/journal.pone.0265924; arXiv:2102.03502,,,,,,
-16,SQ-APTS,Automated portfolio trading RRL (ICAIF 2021),,,,arXiv 2110.05299,,,,,,
-17,P24-05,Hierarchical Reinforced Trader (HRT): A Bi-Level Approach for Optimizing Stock Selection and Execution,Zijie Zhao,2024,arXiv preprint,arXiv:2410.14927,,,,,,
+1,Y25-03,MARS: A Meta-Adaptive Reinforcement Learning Framework for Risk-Aware Multi-Agent Portfolio Management,Jiayi Chen,2025,AAAI 2026 Main Track (accepted per arXiv comment),arXiv:2508.01173,없음,,,,2026-11-17,
+2,W21_HRPM,Commission Fee is not Enough: A Hierarchical Reinforced Framework for Portfolio Management,Rundong Wang,2021,AAAI 2021,doi:10.1609/aaai.v35i1.16142; arXiv:2012.12620,없음,,,,2026-11-17,
+3,xiong2018ddpg,Practical Deep Reinforcement Learning Approach for Stock Trading,Xiao-Yang Liu (co-first: Zhuoran Xiong),2018,NeurIPS 2018 Workshop on Challenges and Opportunities for AI in Financial Services,arXiv:1811.07522,없음,,,,2026-11-17,
+4,W22_PretoriusVanZyl,Deep Reinforcement Learning and Convex Mean-Variance Optimisation for Portfolio Management,Ruan Pretorius,2022,arXiv preprint (IEEE TAI template; publication not verified),arXiv:2203.11318,제3자만,,각주,,2026-11-17,"레퍼런스로 참조했던 것들의 github 링크가 있음
+아래 내용은 하이퍼파라미터 세팅 내용인듯. [14] 참조 내용을 참조한듯
+We also set all hyperparameter values
+for these models to the default values used in the code library
+accompanying the original study [14]
+[URL 칸에서 옮김] [20] S. Boyd, E. Busseti, S. Diamond, R. N. Kahn, K. Koh, P. Nystrup, and J. Speth, Cvxportfolio. [Online]. Available: https : / / github . com / cvxgrp / cvxportfolio (visited on Aug. 11, 2021). [21] R. Oprisor, Cvxportfolio. [Online]. Available: https:// github . com / roprisor / cvxportfolio / tree / 2019 - refresh (visited on Sep. 13, 2021). [22] X.-Y. Liu, H. Yang, Q. Chen, R. Zhang, L. Yang, B. Xiao, and C. D. Wang, FinRL. [Online]. Available: https : / / github . com / AI4Finance - Foundation / FinRL (visited on Aug. 25, 2021). [23] A. Raffin, A. Hill, A. Gleave, A. Kanervisto, M. Ernestus, and N. Dormann, Stable-baselines3. [Online]. Available: https : / / github . com / DLR - RM / stable - baselines3 (visited on Aug. 25, 2021)."
+5,P24-01,Reinforcement Learning with Maskable Stock Representation for Portfolio Management in Customizable Stock Pools (EarnMore),Wentao Zhang,2024,WWW 2024,arXiv:2311.10801,제3자만,https://github.com/DVampire/EarnMore,1쪽 각주,,2026-11-17,
+6,jiang2017crypto,Cryptocurrency Portfolio Management with Deep Reinforcement Learning,Zhengyao Jiang,2017,IntelliSys 2017 (IEEE),10.1109/IntelliSys.2017.8324237; arXiv:1612.01277,제3자만,https://link.springer.com/article/10.1007/s10994-012-5281-z,,,2026-11-17,"file:///Users/seungbin/Downloads/nature14236.pdf -> 내 파일에 다운로드함. 실제 링크는 ->https://www.nature.com/articles/nature14236
+
+https://arxiv.org/pdf/1412.6980"
+7,SUP-LSRE,LSRE-CAAN (IP&M 2023),,,,,없음,,,,2026-11-17,
+8,P24-07,Markowitz Meets Bellman: Knowledge-distilled Reinforcement Learning for Portfolio Management,Gang Hu,2024,arXiv preprint,arXiv:2405.05449,없음,,,,2026-11-17,
+9,SQ-Regret,Regret-Optimized (ICAIF 2025),,,,arXiv 2502.02619,원문 미확보,,,,2026-11-17,
+10,P24-09,Portfolio Management using Deep Reinforcement Learning,Ashish Anil Pawar,2024,arXiv preprint,arXiv:2405.01604,없음,,,,2026-11-17,
+11,wang2019alphastock,AlphaStock: A Buying-Winners-and-Selling-Losers Investment Strategy using Interpretable Deep Reinforcement Attention Networks,Jingyuan Wang,2019,KDD 2019,10.1145/3292500.3330647; arXiv:1908.02646,요청 시 제공,,1쪽 각주,,2026-11-17,
+12,W21_FinRL,FinRL: Deep Reinforcement Learning Framework to Automate Trading in Quantitative Finance,Xiao-Yang Liu,2021,ICAIF 2021,doi:10.1145/3490354.3494366; arXiv:2111.09395,요청 시 제공,,1쪽 각주,,2026-11-17,
+13,Y25-04,Reinforcement Learning-Based Cryptocurrency Portfolio Management Using Soft Actor–Critic and Deep Deterministic Policy Gradient Algorithms,Kamal Paykan,2025,arXiv preprint,arXiv:2511.20678,없음,,,,2026-11-17,
+14,SQ-XPM,XPM (CIKM 2021),,,,,요청 시 제공,,1쪽 각주,,2026-11-17,
+15,W22_MSPM,MSPM: A modularized and scalable multi-agent reinforcement learning-based system for financial portfolio management,Zhenhan Huang,2022,PLOS ONE,doi:10.1371/journal.pone.0265924; arXiv:2102.03502,제3자만,,,,2026-11-17,"29. Hudson and Thames Quantitative Research. Machine Learning Financial
+Laboratory (MlFinLab); 2021.
+https://github.com/hudson-and-thames/mlfinlab."
+16,SQ-APTS,Automated portfolio trading RRL (ICAIF 2021),,,,arXiv 2110.05299,없음,,,,2026-11-19,
+17,P24-05,Hierarchical Reinforced Trader (HRT): A Bi-Level Approach for Optimizing Stock Selection and Execution,Zijie Zhao,2024,arXiv preprint,arXiv:2410.14927,없음,,,,2026-11-19,
 18,SQ-ObjDriven,Objective Driven (ICAIF 2022),,,,,,,,,,
 19,P24-10,DeepClair: Utilizing Market Forecasts for Effective Portfolio Selection,Donghee Choi,2024,CIKM 2024,arXiv:2407.13427,,,,,,
 20,park2020dqn,An intelligent financial portfolio trading strategy using deep Q-learning,Hyungjun Park,2020,Expert Systems with Applications 158,10.1016/j.eswa.2020.113573; arXiv:1907.03665,,,,,,
