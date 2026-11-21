@@ -2,13 +2,14 @@
 1,Y25-03,MARS: A Meta-Adaptive Reinforcement Learning Framework for Risk-Aware Multi-Agent Portfolio Management,Jiayi Chen,2025,AAAI 2026 Main Track (accepted per arXiv comment),arXiv:2508.01173,없음,,,,2026-11-17,
 2,W21_HRPM,Commission Fee is not Enough: A Hierarchical Reinforced Framework for Portfolio Management,Rundong Wang,2021,AAAI 2021,doi:10.1609/aaai.v35i1.16142; arXiv:2012.12620,없음,,,,2026-11-17,
 3,xiong2018ddpg,Practical Deep Reinforcement Learning Approach for Stock Trading,Xiao-Yang Liu (co-first: Zhuoran Xiong),2018,NeurIPS 2018 Workshop on Challenges and Opportunities for AI in Financial Services,arXiv:1811.07522,없음,,,,2026-11-17,
-4,W22_PretoriusVanZyl,Deep Reinforcement Learning and Convex Mean-Variance Optimisation for Portfolio Management,Ruan Pretorius,2022,arXiv preprint (IEEE TAI template; publication not verified),arXiv:2203.11318,제3자만,,각주,,2026-11-17,"레퍼런스로 참조했던 것들의 github 링크가 있음
+4,W22_PretoriusVanZyl,Deep Reinforcement Learning and Convex Mean-Variance Optimisation for Portfolio Management,Ruan Pretorius,2022,arXiv preprint (IEEE TAI template; publication not verified),arXiv:2203.11318,찾음,https://github.com/ruankie/frontier-rl,"1저자 GitHub(ruankie, 이름 Ruan Pretorius) README",,2026-11-21,"원래 판정 제3자만(2026-11-17, 근거는 참고문헌의 cvxportfolio·FinRL 등 사용 도구 링크) → 찾음(2026-11-21). 논문에 코드 링크 없음. 1저자 계정 ruankie/frontier-rl의 README가 같은 논문(TechRxiv 10.36227/techrxiv.19165745.v1)을 가리키고 모델 이름 FRONTIER가 논문과 같음. 사용자가 찾음, Claude가 2026-11-21 확인(저자 계정·TechRxiv DOI·본문 FRONTIER)
+[원래 메모] 레퍼런스로 참조했던 것들의 github 링크가 있음
 아래 내용은 하이퍼파라미터 세팅 내용인듯. [14] 참조 내용을 참조한듯
 We also set all hyperparameter values
 for these models to the default values used in the code library
 accompanying the original study [14]
 [URL 칸에서 옮김] [20] S. Boyd, E. Busseti, S. Diamond, R. N. Kahn, K. Koh, P. Nystrup, and J. Speth, Cvxportfolio. [Online]. Available: https : / / github . com / cvxgrp / cvxportfolio (visited on Aug. 11, 2021). [21] R. Oprisor, Cvxportfolio. [Online]. Available: https:// github . com / roprisor / cvxportfolio / tree / 2019 - refresh (visited on Sep. 13, 2021). [22] X.-Y. Liu, H. Yang, Q. Chen, R. Zhang, L. Yang, B. Xiao, and C. D. Wang, FinRL. [Online]. Available: https : / / github . com / AI4Finance - Foundation / FinRL (visited on Aug. 25, 2021). [23] A. Raffin, A. Hill, A. Gleave, A. Kanervisto, M. Ernestus, and N. Dormann, Stable-baselines3. [Online]. Available: https : / / github . com / DLR - RM / stable - baselines3 (visited on Aug. 25, 2021)."
-5,P24-01,Reinforcement Learning with Maskable Stock Representation for Portfolio Management in Customizable Stock Pools (EarnMore),Wentao Zhang,2024,WWW 2024,arXiv:2311.10801,제3자만,https://github.com/DVampire/EarnMore,1쪽 각주,,2026-11-17,
+5,P24-01,Reinforcement Learning with Maskable Stock Representation for Portfolio Management in Customizable Stock Pools (EarnMore),Wentao Zhang,2024,WWW 2024,arXiv:2311.10801,찾음,https://github.com/DVampire/EarnMore,1쪽 각주,,2026-11-21,"원래 판정 제3자만(2026-11-17) → 찾음(2026-11-21, Claude 확인 후 사용자 요청). 논문 1쪽 각주가 이 저장소를 가리키고 README 인용이 논문과 일치. 데이터는 DJ30만 포함, SP500 없음"
 6,jiang2017crypto,Cryptocurrency Portfolio Management with Deep Reinforcement Learning,Zhengyao Jiang,2017,IntelliSys 2017 (IEEE),10.1109/IntelliSys.2017.8324237; arXiv:1612.01277,제3자만,https://link.springer.com/article/10.1007/s10994-012-5281-z,,,2026-11-17,"file:///Users/seungbin/Downloads/nature14236.pdf -> 내 파일에 다운로드함. 실제 링크는 ->https://www.nature.com/articles/nature14236
 
 https://arxiv.org/pdf/1412.6980"
@@ -16,10 +17,10 @@ https://arxiv.org/pdf/1412.6980"
 8,P24-07,Markowitz Meets Bellman: Knowledge-distilled Reinforcement Learning for Portfolio Management,Gang Hu,2024,arXiv preprint,arXiv:2405.05449,없음,,,,2026-11-17,
 9,SQ-Regret,Regret-Optimized (ICAIF 2025),,,,arXiv 2502.02619,원문 미확보,,,,2026-11-17,
 10,P24-09,Portfolio Management using Deep Reinforcement Learning,Ashish Anil Pawar,2024,arXiv preprint,arXiv:2405.01604,없음,,,,2026-11-17,
-11,wang2019alphastock,AlphaStock: A Buying-Winners-and-Selling-Losers Investment Strategy using Interpretable Deep Reinforcement Attention Networks,Jingyuan Wang,2019,KDD 2019,10.1145/3292500.3330647; arXiv:1908.02646,요청 시 제공,,1쪽 각주,,2026-11-17,
+11,wang2019alphastock,AlphaStock: A Buying-Winners-and-Selling-Losers Investment Strategy using Interpretable Deep Reinforcement Attention Networks,Jingyuan Wang,2019,KDD 2019,10.1145/3292500.3330647; arXiv:1908.02646,없음,,본문·각주 전체(코드 언급 없음),,2026-11-21,"원래 판정 요청 시 제공(2026-11-17, 근거는 1쪽 ACM 저작권 안내) → 없음(2026-11-21). request는 ACM 저작권 안내뿐, 각주 URL은 데이터(WRDS, Wind). GitHub·전체 제목 검색 결과 없음. Claude 판독"
 12,W21_FinRL,FinRL: Deep Reinforcement Learning Framework to Automate Trading in Quantitative Finance,Xiao-Yang Liu,2021,ICAIF 2021,doi:10.1145/3490354.3494366; arXiv:2111.09395,요청 시 제공,,1쪽 각주,,2026-11-17,
 13,Y25-04,Reinforcement Learning-Based Cryptocurrency Portfolio Management Using Soft Actor–Critic and Deep Deterministic Policy Gradient Algorithms,Kamal Paykan,2025,arXiv preprint,arXiv:2511.20678,없음,,,,2026-11-17,
-14,SQ-XPM,XPM (CIKM 2021),,,,,요청 시 제공,,1쪽 각주,,2026-11-17,
+14,SQ-XPM,XPM (CIKM 2021),,,,,없음,,본문·각주·감사의 글 전체(코드 언급 없음),,2026-11-21,"원래 판정 요청 시 제공(2026-11-17, 근거는 1쪽 ACM 저작권 안내) → 없음(2026-11-21). ACM supplementary는 발표 영상뿐. PDF에 코드·요청 문장 없음. 저자 GitHub·전체 제목 검색 결과 없음. Claude 판독"
 15,W22_MSPM,MSPM: A modularized and scalable multi-agent reinforcement learning-based system for financial portfolio management,Zhenhan Huang,2022,PLOS ONE,doi:10.1371/journal.pone.0265924; arXiv:2102.03502,제3자만,,,,2026-11-17,"29. Hudson and Thames Quantitative Research. Machine Learning Financial
 Laboratory (MlFinLab); 2021.
 https://github.com/hudson-and-thames/mlfinlab."

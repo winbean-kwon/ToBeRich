@@ -18,4 +18,8 @@
 ## 판정 변경 (사용자가 기입)
 | id | 원래 판정 | 바꾼 판정 | 이유 | 날짜 |
 |---|---|---|---|---|
-| | | | | |
+| P24-01 | 제3자만 | 찾음 | 논문 1쪽 각주 1이 github.com/DVampire/EarnMore를 가리키고, README의 인용(제목·저자 8명·WWW 2024)이 논문과 일치한다. 판정 가이드의 "각주에 저장소 → 찾음"에 해당한다. Claude가 확인한 뒤 사용자 요청으로 Claude가 시트에 기입했다. 7편 따로 표시 대상이다. | 2026-11-21 |
+| SQ-XPM | 요청 시 제공 | 없음 | 원래 근거는 1쪽 ACM 저작권 안내였다. 사용자가 준 PDF 전체에 코드·요청 문장이 없다. ACM supplementary는 발표 영상뿐이다. 저자 GitHub·전체 제목 검색에서도 나오지 않았다. **Claude 판독**(Claude가 PDF·검색을 확인하고 시트에 기입) — 주 지표에서 뺀다. 7편 따로 표시 대상이다. | 2026-11-21 |
+| wang2019alphastock | 요청 시 제공 | 없음 | 원래 근거는 1쪽 ACM 저작권 안내였다. arXiv PDF에서 request는 그 안내문에만 나오고, 각주 URL은 데이터 출처(WRDS, Wind)다. GitHub·전체 제목 검색 결과가 없다. **Claude 판독** — 주 지표에서 뺀다. 7편 따로 표시 대상이다. | 2026-11-21 |
+| W22_PretoriusVanZyl | 제3자만 | 찾음 | 원래 근거는 참고문헌에 있는 사용 도구 링크(cvxportfolio, FinRL, stable-baselines3)였다. 논문에는 자기 코드 링크가 없다. 1저자 계정 github.com/ruankie(이름 Ruan Pretorius)의 frontier-rl README가 같은 논문의 TechRxiv 판(10.36227/techrxiv.19165745.v1)을 가리키고, 모델 이름 FRONTIER도 논문과 같다. 가이드의 "저자 계정, README가 이 논문을 가리킴 → 찾음"에 해당한다. **Claude 판독** — 주 지표에서 뺀다. 7편 따로 표시 대상이다. | 2026-11-21 |
+| W22_PretoriusVanZyl | 제3자만 | 찾음 | 논문에는 코드 링크가 없다(참고문헌의 github 링크는 cvxportfolio·FinRL·SB3 등 사용 도구). 1저자 계정 github.com/ruankie(이름 Ruan Pretorius)의 frontier-rl README가 같은 논문(TechRxiv 10.36227/techrxiv.19165745.v1, 제목·저자 일치)을 가리키고, 모델 이름 FRONTIER가 본문과 같다. 확인 경로 3(1저자 GitHub)에 해당한다. 사용자가 찾았고 Claude가 확인했다. 층 1 거짓 음성이다. 7편 따로 표시 대상이다. 저장소 `main`은 공매도 확장판이고, 논문에 가까운 것은 첫 커밋 f04dbb3과 `long-only-policy` 브랜치다(후속 단계 미실행). | 2026-11-21 |
