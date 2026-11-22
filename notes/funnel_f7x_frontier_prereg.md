@@ -26,6 +26,7 @@
 | FRONTIER(log-return) 평균 프런티어, 초과위험 14.78%에서 | **11.79%** |
 | 참고(서술용): 같은 곡선의 다른 위험 수준(2·5·6·10·12·14%) | 2.81, 6.47, 6.99, 9.27, 10.42, 11.37 |
 
+- **사용자 확인(2026-11-23, 결과 산출 전):** 사용자가 원문 Fig. 7(a)를 직접 보고 위 세 값(EW 약 14.8%·9.8%, 그 위험에서 파란 선 약 11.8%)이 맞다고 확인했다. 우리 실행의 성과는 아직 열지 않았다.
 - 본문 근거(III절): "For the Dow 30 market, all FRONTIER models and MPO could produce greater returns for a given amount of risk compared to the EW portfolio."
 - 논문의 EW는 cvxportfolio로 계산했고, 그 코드는 저장소에 없다. 그래서 EW는 그림 값을 쓴다. 거래비용 포함 여부는 원문에서 분명하지 않다.
 - 그림의 95% 구간(10 시드)은 14.5% 부근에서 대략 ±0.5~0.7이다(서술용 판독).
