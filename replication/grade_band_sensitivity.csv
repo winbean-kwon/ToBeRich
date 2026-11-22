@@ -1,0 +1,17 @@
+대상,지표,|우리−보고|,R2(등록),주 지표만,B0 폭,B0 R1,B0 등급,B1 폭,B1 R1,B1 등급,B2 폭,B2 R1,B2 등급,B3 폭,B3 R1,B3 등급,B4 폭,B4 R1,B4 등급
+DeepAries O1(맥),CAGR,2.86,False,True,0.87,False,미재현,0.875,False,미재현,0.79,False,미재현,2.94,True,부분 재현,,,—
+"DeepAries e1(Colab, 탐색적)",CAGR,1.97,False,True,0.87,False,미재현,0.875,False,미재현,0.79,False,미재현,4.48,True,부분 재현,,,—
+"DeepAries E(10 epoch, Colab)",CAGR,1.52,False,True,0.87,False,미재현,0.875,False,미재현,0.79,False,미재현,3.78,True,부분 재현,,,—
+AlphaMix+ S2021,TR,2.23,False,False,1.61,False,미재현,,,—,2.07,False,미재현,2.004,False,미재현,1.61,False,미재현
+AlphaMix+ S2020,TR,3.28,False,False,1.52,False,미재현,,,—,1.27,False,미재현,2.111,False,미재현,1.521,False,미재현
+AlphaMix+ S2019,TR,0.99,False,False,1.27,True,부분 재현,,,—,2.51,True,부분 재현,1.458,True,부분 재현,1.27,True,부분 재현
+FinRL A2C,연수익,7.21,True,False,4.87,False,부분 재현,4.865,False,부분 재현,4.257,False,부분 재현,1.181,False,부분 재현,,,—
+FinRL PPO,연수익,0.24,True,False,1.67,True,재현,1.665,True,재현,3.617,True,재현,1.476,True,재현,,,—
+FinRL DDPG,연수익,1.59,True,False,1.59,False,부분 재현,1.585,False,부분 재현,3.601,True,재현,2.397,True,재현,,,—
+FinRL TD3,연수익,1.39,True,False,3.27,True,재현,3.27,True,재현,3.938,True,재현,2.209,True,재현,,,—
+MARS L(논문 시점 코드),CR(W240),14.24,False,True,7.07,False,미재현,7.07,False,미재현,2.95,False,미재현,2.074,False,미재현,,,—
+MARS N(저자 수정본),CR(W240),3.09,True,True,7.07,True,재현,7.07,True,재현,2.95,False,부분 재현,4.364,True,재현,,,—
+MARS C(번들 체크포인트),CR(W240),0.18,,True,7.07,True,R1 통과,7.07,True,R1 통과,2.95,True,R1 통과,,,—,,,—
+"Ensemble F7(깔때기, 서버 CPU)","Sharpe(1,097행)",0.29,False,False,0.415,True,부분 재현,0.415,True,부분 재현,0.13,False,미재현,0.107,False,미재현,,,—
+"RAT F7 P(깔때기, GTX 1650)",fAPV(Crypto-A),221.82,True,False,68.42,False,부분 재현,68.42,False,부분 재현,15.653,False,부분 재현,94.666,False,부분 재현,12.746,False,부분 재현
+AlphaMix+ (방법 단위),TR,,False,False,,False,미재현,,,—,,False,미재현,,False,미재현,,False,미재현
