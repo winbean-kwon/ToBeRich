@@ -15,3 +15,8 @@
 - 11-11 20:51 E1 시도 3 시작 후 E1~E5 모두 완료(E5 끝 11-12 02:09:04, `ens_all_done`). 이어서 RAT R1~ 재개.
 - 11-12 04:00:06 Ensemble 판정 스크립트 1회 실행(`judge_result.json`). 실행한 세션은 결과 노트를 남기지 않음. 11-12 12시대 별도 폴더에서 재계산해 JSON 동일 확인 → 결과 `notes/funnel_f7_ensemble_result.md`(부분 재현).
 - 11-12 R1~R5 완료(R5 끝 16:19). RAT 판정 스크립트 1회 실행(첫 호출은 시스템 python3에 numpy 없음 → 계산 전 정지, `~/f4work/p37` python으로 재호출) → 결과 `notes/funnel_f7_rat_result.md`(부분 재현). 판정 시점이 P5 직후가 아니라 R5 뒤인 것은 경미한 시점 이탈(노트 0절).
+
+## F7x Ensemble 난류 문턱 반사실 — 실행기 시작(2026-11-23 00:09 KST)
+- 사전 등록 034c734. 서버 WSL clone을 034c734로 pull, 실행기·판정 sha256이 맥과 같음(run 9fc003ec…17d6, judge 1c4a89a3…23b1).
+- tmux `ens_turb`, 드라이버 로그 `~/ToBeRich/data/funnel/ensemble_turb_driver.log`. FRONTIER F7이 돌고 있어 대기 중(`wait.jsonl` 첫 줄 why=frontier_running). `pip_freeze.txt` 기록됨(열람은 판정 때).
+- 진행 확인은 `ls ~/ToBeRich/data/funnel/ensemble_turb/*/done.json`, `tail -1 .../wait.jsonl`만. 성과 파일은 열지 않는다(사전 등록 3절).
