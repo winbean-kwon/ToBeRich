@@ -10,6 +10,7 @@ Usage (cwd = <fresh run copy>/code/REINFORCE):
   python funnel_f7x_frontier_run.py backtest <SEED> <OUT_JSON>
   python funnel_f7x_frontier_run.py pilot <SEED> <OUT_JSON>   # 2 episodes x first 30 pairs, training only (throughput/RSS)
 TF threads are fixed to 1 (intra/inter) before the notebook runs (prereg 2, allowed modification).
+plt.clf is replaced by plt.close('all') (memory shim, prereg 7).
 Never prints metrics. stdout of the notebook goes to <OUT>_stdout.log (not opened).
 """
 import contextlib
@@ -33,6 +34,12 @@ import tensorflow as tf  # noqa: E402
 tf.config.threading.set_intra_op_parallelism_threads(1)
 tf.config.threading.set_inter_op_parallelism_threads(1)
 import market_tickers  # noqa: E402
+import matplotlib.pyplot as plt  # noqa: E402
+
+# Memory shim (prereg 7, 2026-11-23): the author's training loop saves each pair's loss figure and then
+# calls plt.clf() without closing it, so figures accumulate (~3 MB/pair) and the run hit the WSL OOM killer.
+# After savefig, plt.clf() now closes all figures. Saved files and all computations are unchanged.
+plt.clf = lambda *a, **k: plt.close("all")
 
 PILOT = MODE == "pilot"
 if PILOT:
