@@ -1,7 +1,7 @@
 순번,id,제목,1저자,연도,학회,식별자,판정,URL,근거 위치,소요(분),확인일,메모
-1,Y25-03,MARS: A Meta-Adaptive Reinforcement Learning Framework for Risk-Aware Multi-Agent Portfolio Management,Jiayi Chen,2025,AAAI 2026 Main Track (accepted per arXiv comment),arXiv:2508.01173,없음,,,,2026-11-17,
+1,Y25-03,MARS: A Meta-Adaptive Reinforcement Learning Framework for Risk-Aware Multi-Agent Portfolio Management,Jiayi Chen,2025,AAAI 2026 Main Track (accepted per arXiv comment),arXiv:2508.01173,찾음,https://github.com/jiayiderekchen/MARS,"1저자 GitHub(이름 Jiayi Chen), README가 이 논문(arXiv 2508.01173)을 가리킴",,2026-11-24,"Claude 판독(2026-11-24, 사용자 승인) — 원래 판정: 없음"
 2,W21_HRPM,Commission Fee is not Enough: A Hierarchical Reinforced Framework for Portfolio Management,Rundong Wang,2021,AAAI 2021,doi:10.1609/aaai.v35i1.16142; arXiv:2012.12620,없음,,,,2026-11-17,
-3,xiong2018ddpg,Practical Deep Reinforcement Learning Approach for Stock Trading,Xiao-Yang Liu (co-first: Zhuoran Xiong),2018,NeurIPS 2018 Workshop on Challenges and Opportunities for AI in Financial Services,arXiv:1811.07522,없음,,,,2026-11-17,
+3,xiong2018ddpg,Practical Deep Reinforcement Learning Approach for Stock Trading,Xiao-Yang Liu (co-first: Zhuoran Xiong),2018,NeurIPS 2018 Workshop on Challenges and Opportunities for AI in Financial Services,arXiv:1811.07522,찾음,https://github.com/AI4Finance-Foundation/Deep-Reinforcement-Learning-for-Stock-Trading-DDPG-Algorithm-NIPS-2018,저자 조직 계정(논문에 링크 없음),,2026-11-24,"Claude 판독(2026-11-24, 사용자 승인) — 원래 판정: 없음"
 4,W22_PretoriusVanZyl,Deep Reinforcement Learning and Convex Mean-Variance Optimisation for Portfolio Management,Ruan Pretorius,2022,arXiv preprint (IEEE TAI template; publication not verified),arXiv:2203.11318,찾음,https://github.com/ruankie/frontier-rl,"1저자 GitHub(ruankie, 이름 Ruan Pretorius) README",,2026-11-21,"원래 판정 제3자만(2026-11-17, 근거는 참고문헌의 cvxportfolio·FinRL 등 사용 도구 링크) → 찾음(2026-11-21). 논문에 코드 링크 없음. 1저자 계정 ruankie/frontier-rl의 README가 같은 논문(TechRxiv 10.36227/techrxiv.19165745.v1)을 가리키고 모델 이름 FRONTIER가 논문과 같음. 사용자가 찾음, Claude가 2026-11-21 확인(저자 계정·TechRxiv DOI·본문 FRONTIER)
 [원래 메모] 레퍼런스로 참조했던 것들의 github 링크가 있음
 아래 내용은 하이퍼파라미터 세팅 내용인듯. [14] 참조 내용을 참조한듯
@@ -15,9 +15,9 @@ accompanying the original study [14]
 
 https://arxiv.org/pdf/1412.6980
 [원래 URL] https://link.springer.com/article/10.1007/s10994-012-5281-z"
-7,SUP-LSRE,LSRE-CAAN (IP&M 2023),,,,,없음,,,,2026-11-17,
+7,SUP-LSRE,LSRE-CAAN (IP&M 2023),,,,,찾음,https://github.com/jiahaoli57/LSRE-CAAN,"1저자 GitHub(이름 Jiahao Li), README가 이 논문을 가리킴",,2026-11-24,"Claude 판독(2026-11-24, 사용자 승인) — 원래 판정: 없음"
 8,P24-07,Markowitz Meets Bellman: Knowledge-distilled Reinforcement Learning for Portfolio Management,Gang Hu,2024,arXiv preprint,arXiv:2405.05449,없음,,,,2026-11-17,
-9,SQ-Regret,Regret-Optimized (ICAIF 2025),,,,arXiv 2502.02619,원문 미확보,,,,2026-11-17,
+9,SQ-Regret,Regret-Optimized (ICAIF 2025),,,,arXiv 2502.02619,없음,,,,2026-11-24,"Claude 판독(2026-11-24, 사용자 승인) — 원래 판정: 원문 미확보. arXiv 2502.02619 원문이 열림. 본문의 github 링크는 arch 라이브러리(사용 도구)뿐. GitHub 제목 검색 결과 없음."
 10,P24-09,Portfolio Management using Deep Reinforcement Learning,Ashish Anil Pawar,2024,arXiv preprint,arXiv:2405.01604,없음,,,,2026-11-17,
 11,wang2019alphastock,AlphaStock: A Buying-Winners-and-Selling-Losers Investment Strategy using Interpretable Deep Reinforcement Attention Networks,Jingyuan Wang,2019,KDD 2019,10.1145/3292500.3330647; arXiv:1908.02646,없음,,본문·각주 전체(코드 언급 없음),,2026-11-21,"원래 판정 요청 시 제공(2026-11-17, 근거는 1쪽 ACM 저작권 안내) → 없음(2026-11-21). request는 ACM 저작권 안내뿐, 각주 URL은 데이터(WRDS, Wind). GitHub·전체 제목 검색 결과 없음. Claude 판독"
 12,W21_FinRL,FinRL: Deep Reinforcement Learning Framework to Automate Trading in Quantitative Finance,Xiao-Yang Liu,2021,ICAIF 2021,doi:10.1145/3490354.3494366; arXiv:2111.09395,찾음,https://github.com/AI4Finance-Foundation/FinRL,"논문 4절(주소 없이 GitHub 언급), 저자 조직 계정 README 논문 목록",,2026-11-17,"원래 판정 요청 시 제공(2026-11-17, 근거는 1쪽 ACM 저작권 안내) → 찾음(2026-11-21, 사용자 판정). 논문에 저장소 주소 없음. 조직 계정 README 표에 ICAIF 2021 논문 수록"
@@ -29,40 +29,40 @@ Laboratory (MlFinLab); 2021.
 https://github.com/hudson-and-thames/mlfinlab."
 16,SQ-APTS,Automated portfolio trading RRL (ICAIF 2021),,,,arXiv 2110.05299,없음,,,,2026-11-19,
 17,P24-05,Hierarchical Reinforced Trader (HRT): A Bi-Level Approach for Optimizing Stock Selection and Execution,Zijie Zhao,2024,arXiv preprint,arXiv:2410.14927,없음,,,,2026-11-19,
-18,SQ-ObjDriven,Objective Driven (ICAIF 2022),,,,,,,,,,
-19,P24-10,DeepClair: Utilizing Market Forecasts for Effective Portfolio Selection,Donghee Choi,2024,CIKM 2024,arXiv:2407.13427,,,,,,
-20,park2020dqn,An intelligent financial portfolio trading strategy using deep Q-learning,Hyungjun Park,2020,Expert Systems with Applications 158,10.1016/j.eswa.2020.113573; arXiv:1907.03665,,,,,,
-21,xu2020rat,Relation-Aware Transformer for Portfolio Policy Learning,Ke Xu,2020,IJCAI 2020,10.24963/ijcai.2020/641,,,,,,
-22,ye2020sarl,Reinforcement-Learning Based Portfolio Management with Augmented Asset Movement Prediction States,Yunan Ye,2020,AAAI 2020,10.1609/aaai.v34i01.5462; arXiv:2002.05780,,,,,,
-23,P24-08,A Deep Reinforcement Learning Framework For Financial Portfolio Management,Jinyang Li,2024,"arXiv preprint (Master's research paper, U. Waterloo, 2019)",arXiv:2409.08426,,,,,,
-24,Y26-04,When News Gets Old: Portfolio Allocation with Reinforcement Learning and Large Language Models,Bolin Song,2026,arXiv preprint,arXiv:2610.30564,,,,,,
-25,W21_LFSS,Deep Reinforcement Learning for Portfolio Optimization using Latent Feature State Space (LFSS) Module,Kumar Yashaswi,2021,arXiv preprint,arXiv:2102.06233,,,,,,
-26,SQ-TwoLevel,Two-level RL ambiguous MV (IJCAI 2020; F0 보류),,,,,,,,,,
-27,W21_PigorschSchafer,High-Dimensional Stock Portfolio Trading with Deep Reinforcement Learning,Uta Pigorsch,2021,arXiv preprint,arXiv:2112.04755,,,,,,
-28,benhamou2020bridging,Bridging the gap between Markowitz planning and deep reinforcement learning,Eric Benhamou,2020,ICAPS 2020 PRL workshop (arXiv comment),arXiv:2010.09108,,,,,,
-29,P24-04,Combining Transformer based Deep Reinforcement Learning with Black-Litterman Model for Portfolio Optimization (BDA),Ruoyu Sun,2024,arXiv preprint,arXiv:2402.16609,,,,,,
-30,P23-04,Simplex Decomposition for Portfolio Allocation Constraints in Reinforcement Learning (CAOSD),David Winkel,2023,ECAI 2023,arXiv:2404.10683; DOI 10.3233/FAIA230573,,,,,,
-31,P24-06,Deep Reinforcement Learning and Mean-Variance Strategies for Responsible Portfolio Optimization,Fernando Acero,2024,AAAI 2024 Workshop on AI in Finance,arXiv:2403.16667,,,,,,
-32,SQ-MAPS,MAPS (IJCAI 2020),,,,arXiv 2007.05402,,,,,,
-33,Y25-09,"FR-LUX: Friction-Aware, Regime-Conditioned Policy Optimization for Implementable Portfolio Management",Zhang Jian'an,2025,arXiv preprint (submitted to AI/ML in Finance track),arXiv:2510.02986,,,,,,
-34,SUP-CLRS,CLRS (IJCAI 2023),,,,,,,,,,
-35,W21_Benhamou_crisis,Detecting and adapting to crisis pattern with context based Deep Reinforcement Learning,Eric Benhamou,2021,ICPR 2020 (proceedings Jan 2021),doi:10.1109/ICPR48806.2021.9412958; arXiv:2009.07200,,,,,,
-36,P24-03,FreQuant: A Reinforcement-Learning based Adaptive Portfolio Optimization with Multi-frequency Decomposition,Jihyeong Jeon,2024,KDD 2024,DOI 10.1145/3637528.3671668 (from PDF),,,,,,
-37,Y25-05,MTS: A Deep Reinforcement Learning Portfolio Management Framework with Time-Awareness and Short-Selling,Fengchen Gu,2025,Intelligent Data Analysis 2025 (arXiv journal-ref),arXiv:2503.04143,,,,,,
-38,Y26-01,Regime-Aware Portfolio Management via Retrieval-Augmented LLM-Guided Expert Switching,Ahmad Asadi,2026,arXiv preprint,arXiv:2608.28252,,,,,,
-39,SQ-DPSRRL,DPS-RRL (AAAI SA 2020),,,,,,,,,,
-40,Y25-06,MIGT: Memory Instance Gated Transformer Framework for Financial Portfolio Management,Fengchen Gu,2025,IEEE BigData 2025 (arXiv journal-ref),arXiv:2502.07280,,,,,,
-41,P23-01,TradeMaster: A Holistic Quantitative Trading Platform Empowered by Reinforcement Learning,Shuo Sun,2023,NeurIPS 2023 Datasets & Benchmarks,proceedings.neurips.cc/paper_files/paper/2023/hash/b8f6f7f2ba4137124ac976286eacb611-Abstract.html (no arXiv id),,,,,,
-42,W22_MetaTrader,MetaTrader: An Reinforcement Learning Approach Integrating Diverse Policies for Portfolio Optimization,Hui Niu,2022,CIKM 2022,doi:10.1145/3511808.3557363; arXiv:2210.01774,,,,,,
-43,Y25-07,Hybrid LSTM and PPO Networks for Dynamic Portfolio Optimization,Jun Kevin,2025,2025 8th Artificial Intelligence and Cloud Computing Conference (accepted per arXiv comment),arXiv:2511.17963,,,,,,
-44,W21_WaveCorr,WaveCorr: Correlation-savvy Deep Reinforcement Learning for Portfolio Management,Saeed Marzban,2021,arXiv preprint,arXiv:2109.07005,,,,,,
-45,Y25-08,SAMP-HDRL: Segmented Allocation with Momentum-Adjusted Utility for Multi-agent Portfolio Management via Hierarchical Deep Reinforcement Learning,Xiaotian Ren,2025,arXiv preprint,arXiv:2512.22895,,,,,,
-46,liang2018adversarial,Adversarial Deep Reinforcement Learning in Portfolio Management,Zhipeng Liang,2018,arXiv preprint,arXiv:1808.09940,,,,,,
-47,Y26-02,Deep Reinforcement Learning Framework for Diversified Portfolio Management Across Global Equity Markets,Kamil Kashif,2026,arXiv preprint,arXiv:2605.17307,,,,,,
-48,W21_DeepPocket,Deep Graph Convolutional Reinforcement Learning for Financial Portfolio Management - DeepPocket,Farzan Soleymani,2021,Expert Systems with Applications 182,doi:10.1016/j.eswa.2021.115127; arXiv:2105.08664,,,,,,
-49,Y26-03,SBCA: Cross-Modal BERT-driven Actor-Critic for Multi-Asset Portfolio Optimization,Jinfeng Pan,2026,arXiv preprint,arXiv:2605.01384,,,,,,
-50,Y25-10,Reinforcement-Learning Portfolio Allocation with Dynamic Embedding of Market Information,Jinghai He,2025,arXiv preprint,arXiv:2501.17992,,,,,,
-51,SQ-DGDRL,DGDRL (CIKM 2024),,,,,,,,,,
-52,SQ-ALRL,Augmented Lagrangian RL (AAAI SA 2025),,,,,,,,,,
-53,P23-03,Deep Reinforcement Learning for Optimal Portfolio Allocation: A Comparative Study with Mean-Variance Optimization,Srijan Sood,2023,FinPlan'23 Workshop @ ICAPS 2023 (arXiv posted 2026),arXiv:2602.17098,,,,,,
-54,yu2019modelbased,Model-based Deep Reinforcement Learning for Dynamic Portfolio Optimization,Pengqian Yu,2019,arXiv preprint,arXiv:1901.08740,,,,,,
+18,SQ-ObjDriven,Objective Driven (ICAIF 2022),,,,,없음,,,,2026-11-23,
+19,P24-10,DeepClair: Utilizing Market Forecasts for Effective Portfolio Selection,Donghee Choi,2024,CIKM 2024,arXiv:2407.13427,찾음,https://github.com/jkcost/Deepclair,"저자 측 GitHub(jkcost, 이름 jinkyu), README 제목이 논문 제목과 같음",,2026-11-24,"Claude 판독(2026-11-24, 사용자 승인) — 원래 판정: 없음"
+20,park2020dqn,An intelligent financial portfolio trading strategy using deep Q-learning,Hyungjun Park,2020,Expert Systems with Applications 158,10.1016/j.eswa.2020.113573; arXiv:1907.03665,없음,,,,2026-11-23,
+21,xu2020rat,Relation-Aware Transformer for Portfolio Policy Learning,Ke Xu,2020,IJCAI 2020,10.24963/ijcai.2020/641,찾음,The source code is available: https://github.com/Ivsxk/RAT,1쪽 각주,,2026-11-23,
+22,ye2020sarl,Reinforcement-Learning Based Portfolio Management with Augmented Asset Movement Prediction States,Yunan Ye,2020,AAAI 2020,10.1609/aaai.v34i01.5462; arXiv:2002.05780,없음,,,,2026-11-23,
+23,P24-08,A Deep Reinforcement Learning Framework For Financial Portfolio Management,Jinyang Li,2024,"arXiv preprint (Master's research paper, U. Waterloo, 2019)",arXiv:2409.08426,찾음,https://github.com/jackieli19/PGPortfolio/tree/Stock,arXiv v1 부록 C 첫 문단,,2026-11-24,"Claude 판독(2026-11-24, 사용자 승인) — 원래 판정: 없음"
+24,Y26-04,When News Gets Old: Portfolio Allocation with Reinforcement Learning and Large Language Models,Bolin Song,2026,arXiv preprint,arXiv:2610.30564,없음,,,,2026-11-23,
+25,W21_LFSS,Deep Reinforcement Learning for Portfolio Optimization using Latent Feature State Space (LFSS) Module,Kumar Yashaswi,2021,arXiv preprint,arXiv:2102.06233,없음,,,,2026-11-23,
+26,SQ-TwoLevel,Two-level RL ambiguous MV (IJCAI 2020; F0 보류),,,,,없음,,,,2026-11-23,
+27,W21_PigorschSchafer,High-Dimensional Stock Portfolio Trading with Deep Reinforcement Learning,Uta Pigorsch,2021,arXiv preprint,arXiv:2112.04755,없음,,,,2026-11-23,
+28,benhamou2020bridging,Bridging the gap between Markowitz planning and deep reinforcement learning,Eric Benhamou,2020,ICAPS 2020 PRL workshop (arXiv comment),arXiv:2010.09108,없음,,,,2026-11-23,
+29,P24-04,Combining Transformer based Deep Reinforcement Learning with Black-Litterman Model for Portfolio Optimization (BDA),Ruoyu Sun,2024,arXiv preprint,arXiv:2402.16609,요청 시 제공,,논문 끝 Data availability 문단,,2026-11-24,"Claude 판독(2026-11-24, 사용자 승인) — 원래 판정: 없음. ""models, or codes that support the findings of this study are available from the corresponding author upon reasonable request"""
+30,P23-04,Simplex Decomposition for Portfolio Allocation Constraints in Reinforcement Learning (CAOSD),David Winkel,2023,ECAI 2023,arXiv:2404.10683; DOI 10.3233/FAIA230573,링크 사망,https://github.com/DavWinkel/SimplexDecompositionECAI,6쪽 4번 각주,,2026-11-23,
+31,P24-06,Deep Reinforcement Learning and Mean-Variance Strategies for Responsible Portfolio Optimization,Fernando Acero,2024,AAAI 2024 Workshop on AI in Finance,arXiv:2403.16667,없음,,,,2026-11-23,
+32,SQ-MAPS,MAPS (IJCAI 2020),,,,arXiv 2007.05402,없음,,,,2026-11-23,
+33,Y25-09,"FR-LUX: Friction-Aware, Regime-Conditioned Policy Optimization for Implementable Portfolio Management",Zhang Jian'an,2025,arXiv preprint (submitted to AI/ML in Finance track),arXiv:2510.02986,없음,,,,2026-11-23,
+34,SUP-CLRS,CLRS (IJCAI 2023),,,,,링크 사망,https://github.com/sophialien/FinTech-DPM,논문이 가리키는 저장소(2026-11-24 404),,2026-11-24,"Claude 판독(2026-11-24, 사용자 승인) — 원래 판정: 찾음. 처음 적은 google-deepmind/clrs는 이름만 같은 다른 연구(DeepMind CLRS 벤치마크). 이 항목은 포트폴리오 논문(Lien·Li·Wang). BlackBoxOperator/FinTech-DPM 사본은 저자 계정 확인 불가."
+35,W21_Benhamou_crisis,Detecting and adapting to crisis pattern with context based Deep Reinforcement Learning,Eric Benhamou,2021,ICPR 2020 (proceedings Jan 2021),doi:10.1109/ICPR48806.2021.9412958; arXiv:2009.07200,없음,,,,2026-11-23,
+36,P24-03,FreQuant: A Reinforcement-Learning based Adaptive Portfolio Optimization with Multi-frequency Decomposition,Jihyeong Jeon,2024,KDD 2024,DOI 10.1145/3637528.3671668 (from PDF),없음,,,,2026-11-23,
+37,Y25-05,MTS: A Deep Reinforcement Learning Portfolio Management Framework with Time-Awareness and Short-Selling,Fengchen Gu,2025,Intelligent Data Analysis 2025 (arXiv journal-ref),arXiv:2503.04143,없음,,,,2026-11-23,
+38,Y26-01,Regime-Aware Portfolio Management via Retrieval-Augmented LLM-Guided Expert Switching,Ahmad Asadi,2026,arXiv preprint,arXiv:2608.28252,찾음,https://github.com/ahmad-asadi/sopmoe,"1저자 GitHub(이름 Ahmad Asadi), README 제목이 논문 제목과 같음(논문에 링크 없음)",,2026-11-24,"Claude 판독(2026-11-24, 사용자 승인) — 원래 판정: 없음"
+39,SQ-DPSRRL,DPS-RRL (AAAI SA 2020),,,,,없음,,,,2026-11-23,
+40,Y25-06,MIGT: Memory Instance Gated Transformer Framework for Financial Portfolio Management,Fengchen Gu,2025,IEEE BigData 2025 (arXiv journal-ref),arXiv:2502.07280,없음,,,,2026-11-23,
+41,P23-01,TradeMaster: A Holistic Quantitative Trading Platform Empowered by Reinforcement Learning,Shuo Sun,2023,NeurIPS 2023 Datasets & Benchmarks,proceedings.neurips.cc/paper_files/paper/2023/hash/b8f6f7f2ba4137124ac976286eacb611-Abstract.html (no arXiv id),찾음,https://github.com/TradeMaster-NTU/TradeMaster,abstract,,2026-11-24,
+42,W22_MetaTrader,MetaTrader: An Reinforcement Learning Approach Integrating Diverse Policies for Portfolio Optimization,Hui Niu,2022,CIKM 2022,doi:10.1145/3511808.3557363; arXiv:2210.01774,없음,,,,2026-11-24,
+43,Y25-07,Hybrid LSTM and PPO Networks for Dynamic Portfolio Optimization,Jun Kevin,2025,2025 8th Artificial Intelligence and Cloud Computing Conference (accepted per arXiv comment),arXiv:2511.17963,없음,,,,2026-11-24,
+44,W21_WaveCorr,WaveCorr: Correlation-savvy Deep Reinforcement Learning for Portfolio Management,Saeed Marzban,2021,arXiv preprint,arXiv:2109.07005,찾음,https://github.com/saeedmarzban/waveCorr,4. Experimental results,,2026-11-24,
+45,Y25-08,SAMP-HDRL: Segmented Allocation with Momentum-Adjusted Utility for Multi-agent Portfolio Management via Hierarchical Deep Reinforcement Learning,Xiaotian Ren,2025,arXiv preprint,arXiv:2512.22895,없음,,,,2026-11-24,"없음 유지(사용자 결정 2026-11-24). github.com/shuttuu/my-hdrl에 제목·저자 CITATION만 있고 ""코드는 게재 후 공개"" 안내. 논문은 이 저장소를 가리키지 않고 계정 주인 확인 불가."
+46,liang2018adversarial,Adversarial Deep Reinforcement Learning in Portfolio Management,Zhipeng Liang,2018,arXiv preprint,arXiv:1808.09940,링크 사망,https://github.com/qq303067814/Reinforcement-learning-in-portfolio-management-posed,,,2026-11-24,
+47,Y26-02,Deep Reinforcement Learning Framework for Diversified Portfolio Management Across Global Equity Markets,Kamil Kashif,2026,arXiv preprint,arXiv:2605.17307,없음,,,,2026-11-24,
+48,W21_DeepPocket,Deep Graph Convolutional Reinforcement Learning for Financial Portfolio Management - DeepPocket,Farzan Soleymani,2021,Expert Systems with Applications 182,doi:10.1016/j.eswa.2021.115127; arXiv:2105.08664,제3자만,https://github.com/MCCCSunny/DeepPocket,GitHub 제목 검색(저자 무관 재구현),,2026-11-24,"Claude 판독(2026-11-24, 사용자 승인) — 원래 판정: 없음"
+49,Y26-03,SBCA: Cross-Modal BERT-driven Actor-Critic for Multi-Asset Portfolio Optimization,Jinfeng Pan,2026,arXiv preprint,arXiv:2605.01384,찾음,https://github.com/ChenJiahaoJNU/SBCA,"2저자 계정, README에 제목·저자(Jinfeng Pan & Jiahao Chen)(논문의 Code availability 칸은 비어 있음)",,2026-11-24,"Claude 판독(2026-11-24, 사용자 승인) — 원래 판정: 없음"
+50,Y25-10,Reinforcement-Learning Portfolio Allocation with Dynamic Embedding of Market Information,Jinghai He,2025,arXiv preprint,arXiv:2501.17992,없음,,,,2026-11-24,
+51,SQ-DGDRL,DGDRL (CIKM 2024),,,,,없음,,,,2026-11-24,
+52,SQ-ALRL,Augmented Lagrangian RL (AAAI SA 2025),,,,,없음,,,,2026-11-24,
+53,P23-03,Deep Reinforcement Learning for Optimal Portfolio Allocation: A Comparative Study with Mean-Variance Optimization,Srijan Sood,2023,FinPlan'23 Workshop @ ICAPS 2023 (arXiv posted 2026),arXiv:2602.17098,없음,,,,2026-11-24,
+54,yu2019modelbased,Model-based Deep Reinforcement Learning for Dynamic Portfolio Optimization,Pengqian Yu,2019,arXiv preprint,arXiv:1901.08740,없음,,,,2026-11-24,"Claude 판독(2026-11-24, 사용자 승인) — 원래 판정: 찾음. 처음 근거 dybm은 논문이 사용한 IBM 라이브러리(판정 가이드의 사용 도구 경우). 논문 자체 코드 없음. | 이전 메모: Our implementation of the NDyBM based infused prediction module is based on the open-source code available at https://github.com/ibm-research-tokyo/dybm. Algorithm 3 describes the basics steps."
