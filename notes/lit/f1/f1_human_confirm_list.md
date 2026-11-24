@@ -21,3 +21,8 @@ Claude가 근거를 찾아 판정을 바꾼 편이다. 각 줄의 주소를 직�
 | 14 | W22_MSPM | 제3자만 | https://github.com/oft2026/mspm | README에 "unofficial"이 있고 저자와 무관한가 |있음. 근데 저자와 무관한지는 모르겠음 |
 | 15 | wang2019alphastock | 없음 | https://arxiv.org/pdf/1908.02646 | PDF에서 github·code·request 검색: ACM 저작권 안내 말고 없는가 |O 없음 |
 | 16 | SQ-XPM | 없음 | 가지고 있는 PDF | PDF에서 github·code·request 검색: ACM 저작권 안내 말고 없는가 |O 없음|
+
+## 추가(2026-11-24, 저자 계정 점검에서 나온 후보)
+| # | id | 제안 판정 | 열 곳 | 볼 것 | 확인 |
+|---|---|---|---|---|---|
+| 17 | P24-07 (Markowitz Meets Bellman) | 찾음 | https://github.com/BMEgang/BellmanMarkwitzProject | 계정 이름이 Gang Hu(1저자)인가, README에 "the paper related to this work is: https://arxiv.org/abs/2405.05449"가 있는가 | |

@@ -1,0 +1,1159 @@
+{
+ "W21_HRPM": {
+  "id": "W21_HRPM",
+  "arxiv": "2012.12620",
+  "doi": "10.1609/aaai.v35i1.16142",
+  "title": "Deep Stock Trading: A Hierarchical Reinforcement Learning Framework for Portfolio Optimization and Order Execution",
+  "authors": [
+   "Rundong Wang",
+   "Hongxin Wei",
+   "Bo An",
+   "Zhouyan Feng",
+   "Jun Yao"
+  ],
+  "checked": [
+   {
+    "author": "Rundong Wang",
+    "login": "EC2EZ4RD",
+    "repos": 19
+   },
+   {
+    "author": "Rundong Wang",
+    "login": "rundongw",
+    "repos": 2
+   },
+   {
+    "author": "Rundong Wang",
+    "login": "cs-w0r1d",
+    "repos": 18
+   },
+   {
+    "author": "Jun Yao",
+    "login": "SYaoJun",
+    "repos": 93
+   },
+   {
+    "author": "Jun Yao",
+    "login": "yaojuncn",
+    "repos": 9
+   },
+   {
+    "author": "Jun Yao",
+    "login": "PeppaYao",
+    "repos": 8
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "P24-07": {
+  "id": "P24-07",
+  "arxiv": "2405.05449",
+  "doi": null,
+  "title": "Markowitz Meets Bellman: Knowledge-distilled Reinforcement Learning for Portfolio Management",
+  "authors": [
+   "Gang Hu",
+   "Ming Gu"
+  ],
+  "checked": [
+   {
+    "author": "Gang Hu",
+    "login": "cnsaturn",
+    "repos": 32
+   },
+   {
+    "author": "Gang Hu",
+    "login": "ghu3",
+    "repos": 4
+   },
+   {
+    "author": "Gang Hu",
+    "login": "GangHu1993",
+    "repos": 83
+   },
+   {
+    "author": "Ming Gu",
+    "login": "gmingchen",
+    "repos": 24
+   },
+   {
+    "author": "Ming Gu",
+    "login": "mfgu",
+    "repos": 10
+   },
+   {
+    "author": "Ming Gu",
+    "login": "Hsien-Ming-Ku",
+    "repos": 7
+   }
+  ],
+  "status": "후보 있음",
+  "hits": [
+   {
+    "repo": "BMEgang/BellmanMarkwitzProject",
+    "author": "Gang Hu",
+    "why": [
+     "arxiv-readme-search"
+    ],
+    "created": "2024-02-17"
+   }
+  ],
+  "done": true
+ },
+ "SQ-Regret": {
+  "id": "SQ-Regret",
+  "arxiv": "2502.02619",
+  "doi": null,
+  "title": "Regret-Optimized Portfolio Enhancement through Deep Reinforcement Learning and Future Looking Rewards",
+  "authors": [
+   "Daniil Karzanov",
+   "Rubén Garzón",
+   "Mikhail Terekhov",
+   "Caglar Gulcehre",
+   "Thomas Raffinot",
+   "Marcin Detyniecki"
+  ],
+  "checked": [
+   {
+    "author": "Marcin Detyniecki",
+    "login": "mdety",
+    "repos": 0
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "Y25-04": {
+  "id": "Y25-04",
+  "arxiv": "2511.20678",
+  "doi": null,
+  "title": "Cryptocurrency Portfolio Management with Reinforcement Learning: Soft Actor--Critic and Deep Deterministic Policy Gradient Algorithms",
+  "authors": [
+   "Kamal Paykan"
+  ],
+  "checked": [
+   {
+    "author": "Kamal Paykan",
+    "login": "Paykan1357",
+    "repos": 3
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "W22_MSPM": {
+  "id": "W22_MSPM",
+  "arxiv": "2102.03502",
+  "doi": "10.1371/journal.pone.0265924",
+  "title": "MSPM: A Modularized and Scalable Multi-Agent Reinforcement Learning-based System for Financial Portfolio Management",
+  "authors": [
+   "Zhenhan Huang",
+   "Fumihide Tanaka"
+  ],
+  "checked": [
+   {
+    "author": "Zhenhan Huang",
+    "login": "Zhenhan-Huang",
+    "repos": 7
+   },
+   {
+    "author": "Fumihide Tanaka",
+    "login": "ftl-ut",
+    "repos": 0
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "SQ-APTS": {
+  "id": "SQ-APTS",
+  "arxiv": "2110.05299",
+  "doi": null,
+  "title": "An Automated Portfolio Trading System with Feature Preprocessing and Recurrent Reinforcement Learning",
+  "authors": [
+   "Lin Li"
+  ],
+  "checked": [
+   {
+    "author": "Lin Li",
+    "login": "myrual",
+    "repos": 96
+   },
+   {
+    "author": "Lin Li",
+    "login": "leecjson",
+    "repos": 24
+   },
+   {
+    "author": "Lin Li",
+    "login": "qqaatw",
+    "repos": 56
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "P24-05": {
+  "id": "P24-05",
+  "arxiv": "2410.14927",
+  "doi": null,
+  "title": "Hierarchical Reinforced Trader (HRT): A Bi-Level Approach for Optimizing Stock Selection and Execution",
+  "authors": [
+   "Zijie Zhao",
+   "Roy E. Welsch"
+  ],
+  "checked": [
+   {
+    "author": "Zijie Zhao",
+    "login": "ZijieZhaoMMHW",
+    "repos": 34
+   },
+   {
+    "author": "Zijie Zhao",
+    "login": "zhaozijie2022",
+    "repos": 13
+   },
+   {
+    "author": "Zijie Zhao",
+    "login": "zzjas",
+    "repos": 37
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "ye2020sarl": {
+  "id": "ye2020sarl",
+  "arxiv": "2002.05780",
+  "doi": "10.1609/aaai.v34i01.5462",
+  "title": "Reinforcement-Learning based Portfolio Management with Augmented Asset Movement Prediction States",
+  "authors": [
+   "Yunan Ye",
+   "Hengzhi Pei",
+   "Boxin Wang",
+   "Pin-Yu Chen",
+   "Yada Zhu",
+   "Jun Xiao",
+   "Bo Li"
+  ],
+  "checked": [
+   {
+    "author": "Bo Li",
+    "login": "prclibo",
+    "repos": 44
+   },
+   {
+    "author": "Bo Li",
+    "login": "bli25",
+    "repos": 7
+   },
+   {
+    "author": "Bo Li",
+    "login": "Boom5426",
+    "repos": 24
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "Y26-04": {
+  "id": "Y26-04",
+  "arxiv": "2610.30564",
+  "doi": null,
+  "title": "When News Gets Old: Portfolio Allocation with Reinforcement Learning and Large Language Models",
+  "authors": [
+   "Bolin Song",
+   "Surui Xiang"
+  ],
+  "checked": [
+   {
+    "author": "Bolin Song",
+    "login": "BolinSong4",
+    "repos": 0
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "W21_LFSS": {
+  "id": "W21_LFSS",
+  "arxiv": "2102.06233",
+  "doi": null,
+  "title": "Deep Reinforcement Learning for Portfolio Optimization using Latent Feature State Space (LFSS) Module",
+  "authors": [
+   "Kumar Yashaswi"
+  ],
+  "checked": [
+   {
+    "author": "Kumar Yashaswi",
+    "login": "pixperk",
+    "repos": 100
+   },
+   {
+    "author": "Kumar Yashaswi",
+    "login": "yash-cs-ai",
+    "repos": 12
+   },
+   {
+    "author": "Kumar Yashaswi",
+    "login": "yashaswikr",
+    "repos": 16
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "W21_PigorschSchafer": {
+  "id": "W21_PigorschSchafer",
+  "arxiv": "2112.04755",
+  "doi": null,
+  "title": "High-Dimensional Stock Portfolio Trading with Deep Reinforcement Learning",
+  "authors": [
+   "Uta Pigorsch",
+   "Sebastian Schäfer"
+  ],
+  "checked": [
+   {
+    "author": "Sebastian Schäfer",
+    "login": "sebasj13",
+    "repos": 16
+   },
+   {
+    "author": "Sebastian Schäfer",
+    "login": "Snixells",
+    "repos": 38
+   },
+   {
+    "author": "Sebastian Schäfer",
+    "login": "scschaefer",
+    "repos": 4
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "benhamou2020bridging": {
+  "id": "benhamou2020bridging",
+  "arxiv": "2010.09108",
+  "doi": null,
+  "title": "Bridging the gap between Markowitz planning and deep reinforcement learning",
+  "authors": [
+   "Eric Benhamou",
+   "David Saltiel",
+   "Sandrine Ungari",
+   "Abhishek Mukhopadhyay"
+  ],
+  "checked": [
+   {
+    "author": "Abhishek Mukhopadhyay",
+    "login": "abhishekm-nrift",
+    "repos": 0
+   },
+   {
+    "author": "Abhishek Mukhopadhyay",
+    "login": "abhishek1222017",
+    "repos": 0
+   },
+   {
+    "author": "Abhishek Mukhopadhyay",
+    "login": "toct92",
+    "repos": 4
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "P24-04": {
+  "id": "P24-04",
+  "arxiv": "2402.16609",
+  "doi": null,
+  "title": "Combining Transformer based Deep Reinforcement Learning with Black-Litterman Model for Portfolio Optimization",
+  "authors": [
+   "Ruoyu Sun",
+   "Angelos Stefanidis",
+   "Zhengyong Jiang",
+   "Jionglong Su"
+  ],
+  "checked": [
+   {
+    "author": "Ruoyu Sun",
+    "login": "insraq",
+    "repos": 47
+   },
+   {
+    "author": "Ruoyu Sun",
+    "login": "ruoyus",
+    "repos": 12
+   },
+   {
+    "author": "Ruoyu Sun",
+    "login": "ruoyusun",
+    "repos": 6
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "P23-04": {
+  "id": "P23-04",
+  "arxiv": "2404.10683",
+  "doi": "10.3233/FAIA230573",
+  "title": "Simplex Decomposition for Portfolio Allocation Constraints in Reinforcement Learning",
+  "authors": [
+   "David Winkel",
+   "Niklas Strauß",
+   "Matthias Schubert",
+   "Thomas Seidl"
+  ],
+  "checked": [
+   {
+    "author": "David Winkel",
+    "login": "davidwinkel",
+    "repos": 0
+   },
+   {
+    "author": "David Winkel",
+    "login": "davidwinkel-docplanner",
+    "repos": 0
+   },
+   {
+    "author": "Thomas Seidl",
+    "login": "drunken-monkey",
+    "repos": 17
+   },
+   {
+    "author": "Thomas Seidl",
+    "login": "ThomasSeidl",
+    "repos": 4
+   },
+   {
+    "author": "Thomas Seidl",
+    "login": "fairprop-labs",
+    "repos": 0
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "P24-06": {
+  "id": "P24-06",
+  "arxiv": "2403.16667",
+  "doi": null,
+  "title": "Deep Reinforcement Learning and Mean-Variance Strategies for Responsible Portfolio Optimization",
+  "authors": [
+   "Fernando Acero",
+   "Parisa Zehtabi",
+   "Nicolas Marchesotti",
+   "Michael Cashmore",
+   "Daniele Magazzeni",
+   "Manuela Veloso"
+  ],
+  "checked": [
+   {
+    "author": "Fernando Acero",
+    "login": "feracero",
+    "repos": 18
+   },
+   {
+    "author": "Fernando Acero",
+    "login": "dvera0",
+    "repos": 1
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "SQ-MAPS": {
+  "id": "SQ-MAPS",
+  "arxiv": "2007.05402",
+  "doi": null,
+  "title": "MAPS: Multi-agent Reinforcement Learning-based Portfolio Management System",
+  "authors": [
+   "Jinho Lee",
+   "Raehyun Kim",
+   "Seok-Won Yi",
+   "Jaewoo Kang"
+  ],
+  "checked": [
+   {
+    "author": "Jinho Lee",
+    "login": "elzino",
+    "repos": 20
+   },
+   {
+    "author": "Jinho Lee",
+    "login": "binary-h0",
+    "repos": 57
+   },
+   {
+    "author": "Jinho Lee",
+    "login": "Ageia",
+    "repos": 12
+   },
+   {
+    "author": "Jaewoo Kang",
+    "login": "minjun3987",
+    "repos": 0
+   },
+   {
+    "author": "Jaewoo Kang",
+    "login": "swan2818",
+    "repos": 0
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "Y25-05": {
+  "id": "Y25-05",
+  "arxiv": "2503.04143",
+  "doi": null,
+  "title": "MTS: A Deep Reinforcement Learning Portfolio Management Framework with Time-Awareness and Short-Selling",
+  "authors": [
+   "Fengchen Gu",
+   "Zhengyong Jiang",
+   "Ángel F. García-Fernández",
+   "Angelos Stefanidis",
+   "Jionglong Su",
+   "Huakang Li"
+  ],
+  "checked": [
+   {
+    "author": "Fengchen Gu",
+    "login": "gfcliv",
+    "repos": 1
+   },
+   {
+    "author": "Huakang Li",
+    "login": "Li-Huakang",
+    "repos": 27
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "Y25-06": {
+  "id": "Y25-06",
+  "arxiv": "2502.07280",
+  "doi": null,
+  "title": "MIGT: Memory Instance Gated Transformer Framework for Financial Portfolio Management",
+  "authors": [
+   "Fengchen Gu",
+   "Angelos Stefanidis",
+   "Ángel García-Fernández",
+   "Jionglong Su",
+   "Huakang Li"
+  ],
+  "checked": [
+   {
+    "author": "Fengchen Gu",
+    "login": "gfcliv",
+    "repos": 1
+   },
+   {
+    "author": "Huakang Li",
+    "login": "Li-Huakang",
+    "repos": 27
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "Y25-08": {
+  "id": "Y25-08",
+  "arxiv": "2512.22895",
+  "doi": null,
+  "title": "SAMP-HDRL: Segmented Allocation with Momentum-Adjusted Utility for Multi-agent Portfolio Management via Hierarchical Deep Reinforcement Learning",
+  "authors": [
+   "Xiaotian Ren",
+   "Nuerxiati Abudurexiti",
+   "Zhengyong Jiang",
+   "Angelos Stefanidis",
+   "Hongbin Liu",
+   "Jionglong Su"
+  ],
+  "checked": [
+   {
+    "author": "Xiaotian Ren",
+    "login": "jacksonasriel",
+    "repos": 1
+   },
+   {
+    "author": "Xiaotian Ren",
+    "login": "neu-xiaotian",
+    "repos": 0
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "liang2018adversarial": {
+  "id": "liang2018adversarial",
+  "arxiv": "1808.09940",
+  "doi": null,
+  "title": "Adversarial Deep Reinforcement Learning in Portfolio Management",
+  "authors": [
+   "Zhi-Peng Liang",
+   "Hao Chen",
+   "Jun-Hao Zhu",
+   "Kangkang Jiang",
+   "Yanran Li"
+  ],
+  "checked": [
+   {
+    "author": "Zhi-Peng Liang",
+    "login": "liangzp1213",
+    "repos": 0
+   },
+   {
+    "author": "Yanran Li",
+    "login": "niangaotuantuan",
+    "repos": 73
+   },
+   {
+    "author": "Yanran Li",
+    "login": "R-Y-L",
+    "repos": 8
+   },
+   {
+    "author": "Yanran Li",
+    "login": "yanranlihappy",
+    "repos": 3
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true
+ },
+ "wang2019alphastock": {
+  "id": "wang2019alphastock",
+  "arxiv": "1908.02646",
+  "doi": "10.1145/3292500.3330647",
+  "title": "AlphaStock: A Buying-Winners-and-Selling-Losers Investment Strategy using Interpretable Deep Reinforcement Attention Networks",
+  "authors": [
+   "Jingyuan Wang",
+   "Yang Zhang",
+   "Ke Tang",
+   "Junjie Wu",
+   "Zhang Xiong"
+  ],
+  "checked": [
+   {
+    "author": "Jingyuan Wang",
+    "login": "jameswangthecoder",
+    "repos": 1
+   },
+   {
+    "author": "Jingyuan Wang",
+    "login": "jywangx",
+    "repos": 16
+   },
+   {
+    "author": "Jingyuan Wang",
+    "login": "Andydiantu",
+    "repos": 31
+   },
+   {
+    "author": "Zhang Xiong",
+    "login": "Hulalazz",
+    "repos": 100
+   },
+   {
+    "author": "Zhang Xiong",
+    "login": "bearzx",
+    "repos": 12
+   },
+   {
+    "author": "Zhang Xiong",
+    "login": "xuwenkeke",
+    "repos": 13
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true,
+  "gh_errors": []
+ },
+ "SUP-CLRS": {
+  "id": "SUP-CLRS",
+  "arxiv": null,
+  "doi": null,
+  "title": "CLRS (IJCAI 2023)",
+  "authors": null,
+  "checked": [],
+  "status": "저자 확인 불가",
+  "done": true
+ },
+ "W21_Benhamou_crisis": {
+  "id": "W21_Benhamou_crisis",
+  "arxiv": "2009.07200",
+  "doi": "10.1109/ICPR48806.2021.9412958",
+  "title": "Detecting and adapting to crisis pattern with context based Deep Reinforcement Learning",
+  "authors": [
+   "Eric Benhamou",
+   "David Saltiel",
+   "Jean-Jacques Ohana",
+   "Jamal Atif"
+  ],
+  "checked": [
+   {
+    "author": "Jamal Atif",
+    "login": "atifjamal360",
+    "repos": 7
+   },
+   {
+    "author": "Jamal Atif",
+    "login": "Jamal128",
+    "repos": 20
+   },
+   {
+    "author": "Jamal Atif",
+    "login": "atifjama",
+    "repos": 0
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true,
+  "gh_errors": []
+ },
+ "P24-03": {
+  "id": "P24-03",
+  "arxiv": null,
+  "doi": "10.1145/3637528.3671668",
+  "title": "FreQuant: A Reinforcement-Learning based Adaptive Portfolio Optimization with Multi-frequency Decomposition",
+  "authors": [
+   "Jihyeong Jeon",
+   "Jiwon Park",
+   "Chanhee Park",
+   "U. Kang"
+  ],
+  "checked": [
+   {
+    "author": "Jihyeong Jeon",
+    "login": "jihyeong-jeon-cls",
+    "repos": 2
+   },
+   {
+    "author": "U. Kang",
+    "login": "seongji-kang",
+    "repos": 0
+   },
+   {
+    "author": "U. Kang",
+    "login": "kang-yunu",
+    "repos": 0
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true,
+  "gh_errors": []
+ },
+ "W22_MetaTrader": {
+  "id": "W22_MetaTrader",
+  "arxiv": "2210.01774",
+  "doi": "10.1145/3511808.3557363",
+  "title": "MetaTrader: An Reinforcement Learning Approach Integrating Diverse Policies for Portfolio Optimization",
+  "authors": [
+   "Hui Niu",
+   "Siyuan Li",
+   "Jian Li"
+  ],
+  "checked": [
+   {
+    "author": "Hui Niu",
+    "login": "brianxinsnmc",
+    "repos": 0
+   },
+   {
+    "author": "Jian Li",
+    "login": "yinyanghu",
+    "repos": 44
+   },
+   {
+    "author": "Jian Li",
+    "login": "ONLY-yours",
+    "repos": 93
+   },
+   {
+    "author": "Jian Li",
+    "login": "hustlijian",
+    "repos": 60
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true,
+  "gh_errors": []
+ },
+ "W21_DeepPocket": {
+  "id": "W21_DeepPocket",
+  "arxiv": "2105.08664",
+  "doi": "10.1016/j.eswa.2021.115127",
+  "title": "Deep Graph Convolutional Reinforcement Learning for Financial Portfolio Management - DeepPocket",
+  "authors": [
+   "Farzan Soleymani",
+   "E. Paquet"
+  ],
+  "checked": [
+   {
+    "author": "Farzan Soleymani",
+    "login": "FarzanSoli",
+    "repos": 2
+   },
+   {
+    "author": "E. Paquet",
+    "login": "epaquet",
+    "repos": 0
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true,
+  "gh_errors": []
+ },
+ "P24-09": {
+  "id": "P24-09",
+  "arxiv": "2405.01604",
+  "doi": null,
+  "title": "Portfolio Management using Deep Reinforcement Learning",
+  "authors": [
+   "Ashish Anil Pawar",
+   "Vishnureddy Prashant Muskawar",
+   "Ritesh Tiku"
+  ],
+  "checked": [],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true,
+  "gh_errors": []
+ },
+ "SQ-XPM": {
+  "id": "SQ-XPM",
+  "arxiv": null,
+  "doi": null,
+  "title": "XPM: An Explainable Deep Reinforcement Learning Framework for Portfolio Management",
+  "authors": null,
+  "checked": [],
+  "status": "저자 확인 불가",
+  "done": true
+ },
+ "SQ-ObjDriven": {
+  "id": "SQ-ObjDriven",
+  "arxiv": null,
+  "doi": null,
+  "title": "ALE-Bench: A Benchmark for Long-Horizon Objective-Driven Algorithm Engineering",
+  "authors": [
+   "Yuki Imajuku",
+   "Kohki Horie",
+   "Yoichi Iwata",
+   "Kensho Aoki",
+   "Naohiro Takahashi",
+   "Takuya Akiba"
+  ],
+  "checked": [
+   {
+    "author": "Yuki Imajuku",
+    "login": "Yuki-Imajuku",
+    "repos": 10
+   },
+   {
+    "author": "Takuya Akiba",
+    "login": "iwiwi",
+    "repos": 55
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true,
+  "gh_errors": []
+ },
+ "park2020dqn": {
+  "id": "park2020dqn",
+  "arxiv": "1907.03665",
+  "doi": "10.1016/j.eswa.2020.113573",
+  "title": "An intelligent financial portfolio trading strategy using deep Q-learning",
+  "authors": [
+   "Hyungjun Park",
+   "Min Kyu Sim",
+   "Dong Gu Choi"
+  ],
+  "checked": [
+   {
+    "author": "Hyungjun Park",
+    "login": "hjhjpark",
+    "repos": 25
+   },
+   {
+    "author": "Hyungjun Park",
+    "login": "Roise",
+    "repos": 14
+   },
+   {
+    "author": "Hyungjun Park",
+    "login": "podkd7226",
+    "repos": 7
+   },
+   {
+    "author": "Dong Gu Choi",
+    "login": "dongguchoi",
+    "repos": 7
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true,
+  "gh_errors": []
+ },
+ "SQ-TwoLevel": {
+  "id": "SQ-TwoLevel",
+  "arxiv": null,
+  "doi": null,
+  "title": "Two-level RL ambiguous MV (IJCAI 2020; F0 보류)",
+  "authors": null,
+  "checked": [],
+  "status": "저자 확인 불가",
+  "done": true
+ },
+ "Y25-09": {
+  "id": "Y25-09",
+  "arxiv": "2510.02986",
+  "doi": null,
+  "title": "FR-LUX: Friction-Aware, Regime-Conditioned Policy Optimization for Implementable Portfolio Management",
+  "authors": [
+   "Jian&#39;an Zhang"
+  ],
+  "checked": [],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true,
+  "gh_errors": []
+ },
+ "SQ-DPSRRL": {
+  "id": "SQ-DPSRRL",
+  "arxiv": null,
+  "doi": null,
+  "title": "DPS-RRL (AAAI SA 2020)",
+  "authors": null,
+  "checked": [],
+  "status": "저자 확인 불가",
+  "done": true
+ },
+ "Y25-07": {
+  "id": "Y25-07",
+  "arxiv": "2511.17963",
+  "doi": null,
+  "title": "Hybrid LSTM and PPO Networks for Dynamic Portfolio Optimization",
+  "authors": [
+   "Jun Kevin",
+   "Pujianto Yugopuspito"
+  ],
+  "checked": [
+   {
+    "author": "Jun Kevin",
+    "login": "kimkevin",
+    "repos": 37
+   },
+   {
+    "author": "Jun Kevin",
+    "login": "cjh2806",
+    "repos": 1
+   },
+   {
+    "author": "Jun Kevin",
+    "login": "keKvnJun",
+    "repos": 13
+   }
+  ],
+  "status": "후보 있음",
+  "hits": [
+   {
+    "repo": "kimkevin/SlidingIconTabLayout",
+    "author": "Jun Kevin",
+    "why": [
+     "ppo"
+    ],
+    "created": "2015-07-13"
+   }
+  ],
+  "done": true,
+  "gh_errors": []
+ },
+ "Y26-02": {
+  "id": "Y26-02",
+  "arxiv": "2605.17307",
+  "doi": null,
+  "title": "Deep Reinforcement Learning Framework for Diversified Portfolio Management Across Global Equity Markets",
+  "authors": [
+   "Kamil Kashif",
+   "Robert Ślepaczuk"
+  ],
+  "checked": [
+   {
+    "author": "Kamil Kashif",
+    "login": "PlatanowaAmbasssador",
+    "repos": 15
+   },
+   {
+    "author": "Robert Ślepaczuk",
+    "login": "robertslepaczuk",
+    "repos": 0
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true,
+  "gh_errors": []
+ },
+ "Y25-10": {
+  "id": "Y25-10",
+  "arxiv": "2501.17992",
+  "doi": null,
+  "title": "Reinforcement-Learning Portfolio Allocation with Dynamic Embedding of Market Information",
+  "authors": [
+   "Jinghai He",
+   "Cheng Hua",
+   "Chunyang Zhou",
+   "Zeyu Zheng"
+  ],
+  "checked": [
+   {
+    "author": "Zeyu Zheng",
+    "login": "Hwhitetooth",
+    "repos": 13
+   },
+   {
+    "author": "Zeyu Zheng",
+    "login": "zeyu-zheng",
+    "repos": 22
+   },
+   {
+    "author": "Zeyu Zheng",
+    "login": "Zeyu-Z-1210",
+    "repos": 0
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true,
+  "gh_errors": []
+ },
+ "SQ-DGDRL": {
+  "id": "SQ-DGDRL",
+  "arxiv": null,
+  "doi": null,
+  "title": "DGDRL (CIKM 2024)",
+  "authors": null,
+  "checked": [],
+  "status": "저자 확인 불가",
+  "done": true
+ },
+ "SQ-ALRL": {
+  "id": "SQ-ALRL",
+  "arxiv": null,
+  "doi": null,
+  "title": "Constrained Reinforcement-Learning-Enabled Policies With Augmented Lagrangian for Cooperative Intersection Management",
+  "authors": [
+   "Zhen-Hai Gao",
+   "Hesheng Hao",
+   "Fei Gao",
+   "Rui Zhao"
+  ],
+  "checked": [
+   {
+    "author": "Rui Zhao",
+    "login": "Robert0812",
+    "repos": 30
+   },
+   {
+    "author": "Rui Zhao",
+    "login": "renyuneyun",
+    "repos": 100
+   },
+   {
+    "author": "Rui Zhao",
+    "login": "ruizhaocv",
+    "repos": 21
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true,
+  "gh_errors": []
+ },
+ "P23-03": {
+  "id": "P23-03",
+  "arxiv": "2602.17098",
+  "doi": null,
+  "title": "Deep Reinforcement Learning for Optimal Portfolio Allocation: A Comparative Study with Mean-Variance Optimization",
+  "authors": [
+   "Srijan Sood",
+   "Kassiani Papasotiriou",
+   "Marius Vaiciulis",
+   "Tucker Balch"
+  ],
+  "checked": [
+   {
+    "author": "Srijan Sood",
+    "login": "SrijanSood01",
+    "repos": 21
+   },
+   {
+    "author": "Srijan Sood",
+    "login": "srijansood",
+    "repos": 23
+   },
+   {
+    "author": "Srijan Sood",
+    "login": "sood-saahab",
+    "repos": 23
+   },
+   {
+    "author": "Tucker Balch",
+    "login": "tuckerbalch",
+    "repos": 5
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true,
+  "gh_errors": []
+ },
+ "yu2019modelbased": {
+  "id": "yu2019modelbased",
+  "arxiv": "1901.08740",
+  "doi": null,
+  "title": "Model-based Deep Reinforcement Learning for Dynamic Portfolio Optimization",
+  "authors": [
+   "Pengqian Yu",
+   "Joon Sern Lee",
+   "Ilya Kulyatin",
+   "Zekun Shi",
+   "Sakyasingha Dasgupta"
+  ],
+  "checked": [],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true,
+  "gh_errors": []
+ }
+}

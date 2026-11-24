@@ -1,0 +1,199 @@
+{
+ "Y26-01": {
+  "id": "Y26-01",
+  "arxiv": "2608.28252",
+  "doi": null,
+  "title": "Regime-Aware Portfolio Management via Retrieval-Augmented LLM-Guided Expert Switching",
+  "authors": [
+   "Ahmad Asadi",
+   "Reza Safabakhsh"
+  ],
+  "checked": [
+   {
+    "author": "Ahmad Asadi",
+    "login": "AsadiAhmad",
+    "repos": 90
+   },
+   {
+    "author": "Ahmad Asadi",
+    "login": "ahmad-asadi",
+    "repos": 39
+   },
+   {
+    "author": "Ahmad Asadi",
+    "login": "loyeh",
+    "repos": 92
+   }
+  ],
+  "status": "후보 있음",
+  "hits": [
+   {
+    "repo": "ahmad-asadi/sopmoe",
+    "author": "Ahmad Asadi",
+    "why": [
+     "readme:title4"
+    ],
+    "created": "2026-06-19"
+   }
+  ],
+  "done": true,
+  "gh_errors": []
+ },
+ "W22_PretoriusVanZyl": {
+  "id": "W22_PretoriusVanZyl",
+  "arxiv": "2203.11318",
+  "doi": null,
+  "title": "Deep Reinforcement Learning and Convex Mean-Variance Optimisation for Portfolio Management",
+  "authors": [
+   "Ruan Pretorius",
+   "Terence van Zyl"
+  ],
+  "checked": [
+   {
+    "author": "Ruan Pretorius",
+    "login": "ruankie",
+    "repos": 74
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true,
+  "gh_errors": []
+ },
+ "jiang2017crypto": {
+  "id": "jiang2017crypto",
+  "arxiv": "1612.01277",
+  "doi": "10.1109/IntelliSys.2017.8324237",
+  "title": "Cryptocurrency Portfolio Management with Deep Reinforcement Learning",
+  "authors": [
+   "Zhengyao Jiang",
+   "Jinjun Liang"
+  ],
+  "checked": [
+   {
+    "author": "Zhengyao Jiang",
+    "login": "ZhengyaoJiang",
+    "repos": 63
+   },
+   {
+    "author": "Jinjun Liang",
+    "login": "kumkee",
+    "repos": 41
+   }
+  ],
+  "status": "후보 있음",
+  "hits": [
+   {
+    "repo": "kumkee/SURF2016",
+    "author": "Jinjun Liang",
+    "why": [
+     "readme:arxiv"
+    ],
+    "created": "2016-04-15"
+   },
+   {
+    "repo": "kumkee/SURF2016",
+    "author": "Jinjun Liang",
+    "why": [
+     "arxiv-readme-search"
+    ],
+    "created": "2016-04-15"
+   }
+  ],
+  "done": true,
+  "gh_errors": []
+ },
+ "Y26-03": {
+  "id": "Y26-03",
+  "arxiv": "2605.01384",
+  "doi": null,
+  "title": "SBCA: Cross-Modal BERT-driven Actor-Critic for Multi-Asset Portfolio Optimization",
+  "authors": [
+   "Jinfeng Pan",
+   "Jiahao Chen"
+  ],
+  "checked": [
+   {
+    "author": "Jinfeng Pan",
+    "login": "Bibabu330",
+    "repos": 9
+   },
+   {
+    "author": "Jinfeng Pan",
+    "login": "JinfengPan",
+    "repos": 60
+   },
+   {
+    "author": "Jiahao Chen",
+    "login": "jiahao",
+    "repos": 100
+   },
+   {
+    "author": "Jiahao Chen",
+    "login": "horychen",
+    "repos": 32
+   },
+   {
+    "author": "Jiahao Chen",
+    "login": "GToad",
+    "repos": 35
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true,
+  "gh_errors": []
+ },
+ "Y25-03": {
+  "id": "Y25-03",
+  "arxiv": "2508.01173",
+  "doi": null,
+  "title": "MARS: A Meta-Adaptive Reinforcement Learning Framework for Risk-Aware Multi-Agent Portfolio Management",
+  "authors": [
+   "Jiayi Chen",
+   "Jing Li",
+   "Guiling Wang"
+  ],
+  "checked": [
+   {
+    "author": "Jiayi Chen",
+    "login": "JYChen18",
+    "repos": 20
+   },
+   {
+    "author": "Jiayi Chen",
+    "login": "Janecjy",
+    "repos": 25
+   },
+   {
+    "author": "Jiayi Chen",
+    "login": "jia-yi-chen",
+    "repos": 25
+   },
+   {
+    "author": "Guiling Wang",
+    "login": "dataservicespace",
+    "repos": 10
+   },
+   {
+    "author": "Guiling Wang",
+    "login": "wanggroup2006",
+    "repos": 3
+   }
+  ],
+  "status": "후보 없음",
+  "hits": [],
+  "done": true,
+  "gh_errors": []
+ },
+ "SUP-LSRE": {
+  "id": "SUP-LSRE",
+  "arxiv": null,
+  "doi": null,
+  "title": "LSRE-CAAN (IP&M 2023)",
+  "authors": null,
+  "checked": [],
+  "status": "저자 확인 불가",
+  "done": true
+ }
+}
