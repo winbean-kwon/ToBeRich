@@ -47,18 +47,39 @@ def get(url, accept="application/vnd.github+json", tries=4):
 
 
 def gh(path):
-    st, body, _ = get("https://api.github.com" + path)
-    return json.loads(body) if st == 200 and body else None
+    for k in range(3):
+        st, body, _ = get("https://api.github.com" + path)
+        if st == 200 and body:
+            return json.loads(body)
+        if st == 404:
+            return None
+        print(f"  gh {st} {path[:60]}, 재시도", flush=True)
+        time.sleep(30)
+    ERRORS.append(path)
+    return None
+
+
+ERRORS = []
 
 
 def arxiv_id(s):
-    m = re.search(r"(\d{4}\.\d{4,5})", s or "")
+    # 2026-11-24 정정: DOI 안의 숫자(예 j.eswa.2020.113573)를 잡지 않도록 arXiv 표기를 요구한다
+    m = re.search(r"arXiv[:\s]*(\d{4}\.\d{4,5})", s or "", re.I)
     return m.group(1) if m else None
 
 
 def authors_arxiv(ax):
-    st, body, _ = get(f"http://export.arxiv.org/api/query?id_list={ax}", accept="application/atom+xml")
-    if st != 200:
+    # 2026-11-24 정정: arXiv API 실패 시 재시도 후 Semantic Scholar ARXIV: 조회로 대신한다
+    for k in range(3):
+        time.sleep(4)
+        st, body, _ = get(f"https://export.arxiv.org/api/query?id_list={ax}", accept="application/atom+xml")
+        if st == 200 and "<entry>" in body:
+            break
+    else:
+        st2, b2, _ = get(f"https://api.semanticscholar.org/graph/v1/paper/ARXIV:{ax}?fields=title,authors", accept="application/json")
+        if st2 == 200:
+            d = json.loads(b2)
+            return [a["name"] for a in d.get("authors", [])], d.get("title")
         return None, None
     ns = {"a": "http://www.w3.org/2005/Atom"}
     e = ET.fromstring(body).find("a:entry", ns)
@@ -113,7 +134,14 @@ def main():
     sheet = {r["id"]: r for r in csv.DictReader(open(F.SHEET, encoding="utf-8"))}
     cand_title = {r.get("id"): r for r in csv.DictReader(open(CAND, encoding="utf-8"))} if CAND.exists() else {}
     targets = [i for i in sheet if i in ids1 and sheet[i]["판정"] != "찾음"]
-    out = json.loads(OUT.read_text()) if OUT.exists() else {}
+    out_path = OUT
+    if "--control" in sys.argv:  # 양성 대조: 이미 저자 계정에서 찾은 편으로 도구가 잡는지 본다(판정과 무관)
+        targets = ["W22_PretoriusVanZyl", "jiang2017crypto", "Y26-01", "Y26-03", "Y25-03", "SUP-LSRE"]
+        out_path = OUT.with_name("f1_author_sweep_control.json")
+    out = json.loads(out_path.read_text()) if out_path.exists() else {}
+    for k in [a.split("=", 1)[1] for a in sys.argv if a.startswith("--redo=")]:
+        for i in k.split(","):
+            out.pop(i, None)
     for pid in targets:
         if pid in out and out[pid].get("done"):
             continue
@@ -129,13 +157,15 @@ def main():
             if ct.get(k) and len(ct[k]) > len(title):
                 title = ct[k]
         names, t2 = authors_arxiv(ax) if ax else (None, None)
-        if not names:
+        if pid == "SUP-CLRS":  # 2026-11-24 정정: 제목 검색이 이름만 같은 다른 논문(DeepMind CLRS)과 짝지어짐 → 저자 확인 불가로 처리
+            names, t2 = None, None
+        elif not names:
             names, t2 = authors_s2(doi=doi, title=None if doi else re.sub(r"\(.*?\)", "", title).strip())
         rec = {"id": pid, "arxiv": ax, "doi": doi, "title": t2 or title, "authors": names, "checked": []}
         if not names:
             rec.update(status="저자 확인 불가", done=True)
             out[pid] = rec
-            OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1))
+            out_path.write_text(json.dumps(out, ensure_ascii=False, indent=1))
             print(pid, "저자 확인 불가", flush=True)
             continue
         acr, words = keywords(rec["title"])
@@ -169,9 +199,10 @@ def main():
                 nm = (u.get("name") or "").lower()
                 if any(p.lower() in nm or nm and nm in p.lower() for p in names):
                     hits.append({"repo": it["full_name"], "author": u.get("name"), "why": ["arxiv-readme-search"], "created": it["created_at"][:10]})
-        rec.update(status="후보 있음" if hits else "후보 없음", hits=hits, done=True)
+        rec.update(status="후보 있음" if hits else "후보 없음", hits=hits, done=True, gh_errors=list(ERRORS))
+        ERRORS.clear()
         out[pid] = rec
-        OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1))
+        out_path.write_text(json.dumps(out, ensure_ascii=False, indent=1))
         print(pid, rec["status"], len(hits), flush=True)
     print("끝", len(out))
 
