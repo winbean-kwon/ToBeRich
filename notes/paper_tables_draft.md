@@ -1,22 +1,22 @@
 # Paper tables — draft (2026-11-14)
 
 > Working note (Korean header for the repo; table text is in paper English).
-> 상태: 초안. 출처는 `notes/lit/f1/funnel_table.csv`(funnel_table.py 출력)와 `replication/reproduction_synthesis.csv`. **잠정:** F1 재확인 시트(사용자 판정 대기)와 대장 A절(보고값 원문 대조) 결과에 따라 수치가 바뀔 수 있다. 재현율을 한 수치로 합치지 않는다(프로토콜 0장). 표 본문에는 과정 기록(커밋·시도 횟수·감사 경위)을 넣지 않는다.
+> 상태: 초안. 출처는 `notes/lit/f1/funnel_table.csv`(funnel_table.py 출력)와 `replication/reproduction_synthesis.csv`. F1 재확인은 반영했다(2026-11-24, 54편 사람 확인 완료, `notes/lit/f1/f1_recheck_log.md`). **잠정:** 대장 A절(보고값 원문 대조) 결과에 따라 Table 2 수치가 바뀔 수 있다. 재현율을 한 수치로 합치지 않는다(프로토콜 0장). 표 본문에는 과정 기록(커밋·시도 횟수·감사 경위)을 넣지 않는다.
 
 ---
 
 ## Table 1. Reproduction funnel: first stage at which each paper exited, by sample
 
-Each paper is counted once, at the first stage it did not pass. Stages follow the pre-registered protocol: F0 eligibility, F1 official code, F2 code completeness, F3 data availability, F4 execution, F5 compute budget (10 h per seed), F7 reproduction verdict. No paper exited at F6 (reported comparison values). S56: an existing literature collection (56 papers, of which four were the in-depth targets T1–T4 and are listed separately). S-Q: a documented title search (Semantic Scholar, 2017–2026, selected venues). Supplementary: papers added because code was already known to exist; they are excluded from code-availability rates.
+Each paper is counted once, at the first stage it did not pass. Stages follow the pre-registered protocol: F0 eligibility, F1 official code, F2 code completeness, F3 data availability, F4 execution, F5 compute budget (10 h per seed), F7 reproduction verdict. No paper in the fixed order exited at F6 (reported comparison values). S56: an existing literature collection (56 papers, of which four were the in-depth targets T1–T4 and are listed separately). S-Q: a documented title search (Semantic Scholar, 2017–2026, selected venues). Supplementary: papers added because code was already known to exist; they are excluded from code-availability rates.
 
 | Exit stage / outcome | S56 (n = 52) | S-Q (n = 12) | Suppl. (n = 5) | T1–T4 (n = 4) |
 |---|---:|---:|---:|---:|
 | F0 not eligible | 4 | 0 | 1 | 0 |
-| F1 no official code found (authors not contacted) | 29 | 9 | 0 | 0 |
+| F1 no official code found (authors not contacted)ᵇ | 26 | 9 | 0 | 0 |
 | F1 link dead | 2 | 0 | 1ᵃ | 0 |
 | F1 third-party code only | 2 | 0 | 0 | 0 |
-| F1 placeholder link | 1 | 0 | 0 | 0 |
 | F1 full text unavailable | 2 | 0 | 0 | 0 |
+| Official code located at the F1 check; later stages exploratoryᶜ | 4 | 0 | 0 | 0 |
 | F2 incomplete code | 0 | 0 | 2 | 0 |
 | F3 data not obtainable as specified | 3 | 0 | 0 | 0 |
 | F4 not executable | 1 | 1 | 1 | 0 |
@@ -26,8 +26,11 @@ Each paper is counted once, at the first stage it did not pass. Stages follow th
 | F7 verdict reached | 2 | 0 | 0 | 4 |
 
 ᵃ A copy of the repository exists elsewhere; the official link is dead.
+ᵇ A human check of all papers that did not pass F1 located official code for 4 of 44 (95% Wilson interval 0.04–0.21; 2 of 44 when only first- or corresponding-author accounts are accepted). In every case the paper contained no link, and the repository was identifiable only through an author's personal GitHub account. Author accounts were not searched exhaustively for the remaining papers, so this count is a lower bound on missed code.
+ᶜ These papers were examined outside the fixed execution order. One exited at F3 (dataset link not public, news source unspecified), one at F4 (legacy exchange API no longer serves data), one at F6 (evaluation period not reported), and one reached an exploratory F7 comparison against values read from a figure.
 
 Notes for the text (not table content):
+- F1 check (methods/limitations): one human rater, not blind to the original LLM-assisted judgments; disagreements were resolved by inspecting the cited repository or sentence, with an LLM proposing the evidence and the rater confirming it. Report the rater's original judgments as well (random sample of F1 passes: 7 of 10 initially judged as not found; all 7 had an open official repository on inspection). Second rater on 15 papers: pending.
 - "Not executable" and "over compute budget" are outcomes under our environment and time limits; they are not counted as reproduction failures.
 - F7 for the two S56 papers: Ensemble strategy (ICAIF 2020) and RAT (IJCAI 2020), both *partially reproduced* (Table 2).
 
