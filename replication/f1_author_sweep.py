@@ -19,14 +19,14 @@ import f1_recheck as F  # noqa: E402
 ROOT = F.ROOT
 OUT = ROOT / "notes/lit/f1/f1_author_sweep.json"
 CAND = ROOT / "notes/lit/f1/f1_candidates.csv"
-UA = {"User-Agent": "f1-author-sweep (academic reproducibility study)"}
+UA = {"User-Agent": "Mozilla/5.0 (f1-author-sweep; academic reproducibility study)"}
 STOP = set("""a an the of for and with in on to via using based from by under into toward towards its their
 deep reinforcement learning portfolio management financial finance optimization optimisation trading stock stocks
 framework approach model models network networks agent agents strategy strategies market markets asset assets
 allocation policy multi dynamic investment selection method novel study comparative""".split())
 
 
-def get(url, accept="application/vnd.github+json", tries=4):
+def get(url, accept="application/vnd.github+json", tries=6):
     for k in range(tries):
         req = urllib.request.Request(url, headers={**UA, "Accept": accept})
         try:
@@ -39,6 +39,9 @@ def get(url, accept="application/vnd.github+json", tries=4):
                 wait = max(5, reset - time.time() + 5) if h.get("X-RateLimit-Remaining") == "0" else 65
                 print(f"  rate limit, {int(wait)}s 대기", flush=True)
                 time.sleep(wait)
+                continue
+            if e.code == 429 and "semanticscholar" in url:  # 2026-11-24 정정 2: S2 요청 과다 시 기다렸다 재시도
+                time.sleep(60)
                 continue
             return e.code, "", h
         except Exception:
@@ -69,24 +72,18 @@ def arxiv_id(s):
 
 
 def authors_arxiv(ax):
-    # 2026-11-24 정정: arXiv API 실패 시 재시도 후 Semantic Scholar ARXIV: 조회로 대신한다
+    # 2026-11-24 정정 2: export API가 응답하지 않아 같은 arXiv 메타데이터를 초록 페이지의 citation_* 태그에서 읽는다
     for k in range(3):
         time.sleep(4)
-        st, body, _ = get(f"https://export.arxiv.org/api/query?id_list={ax}", accept="application/atom+xml")
-        if st == 200 and "<entry>" in body:
-            break
-    else:
-        st2, b2, _ = get(f"https://api.semanticscholar.org/graph/v1/paper/ARXIV:{ax}?fields=title,authors", accept="application/json")
-        if st2 == 200:
-            d = json.loads(b2)
-            return [a["name"] for a in d.get("authors", [])], d.get("title")
-        return None, None
-    ns = {"a": "http://www.w3.org/2005/Atom"}
-    e = ET.fromstring(body).find("a:entry", ns)
-    if e is None:
-        return None, None
-    names = [a.find("a:name", ns).text.strip() for a in e.findall("a:author", ns)]
-    return names, " ".join(e.find("a:title", ns).text.split())
+        st, body, _ = get(f"https://arxiv.org/abs/{ax}", accept="text/html")
+        if st == 200:
+            names = re.findall(r'<meta name="citation_author" content="([^"]+)"', body)
+            t = re.search(r'<meta name="citation_title" content="([^"]+)"', body)
+            if names:
+                # "Last, First" → "First Last"
+                names = [" ".join(reversed([x.strip() for x in n.split(",", 1)])) if "," in n else n for n in names]
+                return names, t.group(1) if t else None
+    return None, None
 
 
 def authors_s2(doi=None, title=None):
