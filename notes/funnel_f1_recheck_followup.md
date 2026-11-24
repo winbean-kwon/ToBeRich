@@ -35,3 +35,32 @@ F1 재확인에서 찾음이 된 4편이 멈춘 곳:
 - Y26-03: F3
 
 jiang2017crypto, Y26-01, Y26-03의 F1 `찾음`은 사람 확인을 기다린다.
+
+## P24-07(Markowitz Meets Bellman, KDD) — 정적 층(2026-11-24, Claude 판정, F1 사람 확인 대기)
+F1은 저자 계정 점검에서 찾았다(`notes/f1_author_account_sweep_prereg.md`). 저장소 `BMEgang/BellmanMarkwitzProject`는 계정 이름이 Gang Hu(1저자)이고 README가 arXiv 2405.05449를 가리킨다. 아직 사람 확인 전이다. 후속 단계는 앞 4편과 같은 이탈 결정에 따라 탐색적으로 본다.
+- 성과 비노출: 저장소의 `draw/*.csv`(저자 결과 곡선)와 `data/trade_predictions.csv`는 열지 않았다.
+- 저장소 크기: 약 1.3GB(GitHub API `size`).
+
+| 단계 | 판정 | 근거 |
+|---|---|---|
+| F0 | 통과 | 마르코위츠 지식 증류 + DDPG, DJ30, 표본 외 거래 구간 |
+| F2 | 통과(비고) | `profilo management/`에 학습(`agent.train_model`, 50,000 스텝)·거래(`DRL_prediction`) 경로가 있다(FinRL·SB3·PyPortfolioOpt). 비고 참고 |
+| F6 | 통과(그림·코드 판독) | Table 1 KDD: TR 138.38%, AR 38.74%, Sharpe 2.03, MDD −11.46%. 본문에는 데이터 기간(2009-01-01~2018-09-30)만 있다. 거래 구간은 Fig. 1 축(2016-01~2018-09)과 코드(`TRADE_START_DATE='2016-01-01'`, `TRADE_END_DATE='2018-09-01'`)에서 읽었다 |
+| F3 | 통과(번들) | `data/processed_full.csv`, `after_processed_full.csv`, `train_data.csv`, `trade_data.csv`(29종목, 2016-01-04~2018-08-30) |
+
+F2 비고:
+- 데이터·출력 경로가 저자 맥의 절대 경로(`/Users/ganghu/Desktop/...`)로 박혀 있다.
+- 같은 파이프라인 판이 여러 개다(`knowledgement_drill.py`, `knowledgement_drill_ddpg.py`, `new_test.py`, `new_trial.py`, `share.py`, `backup.py`).
+- 그림 스크립트 `draw/draw.py`는 "KDD"를 `richard.csv`~`richard4.csv` 5개의 평균으로 그린다. 이 다섯 파일은 저장소에 없고, 어느 스크립트가 만들었는지도 코드에 명시되어 있지 않다.
+- "DDPG" 기준선(`originate_ddpg.csv`)은 `knowledgement_drill_ddpg.py`가 만든다. 이 스크립트는 증류 없이 원 가격으로 학습하는 FinRL DDPG다.
+
+**데이터 관찰(탐색적, 실행 안 함, 저자 결과 미열람).**
+- `new_test.py`의 증류 단계는 Markowitz 비중 w로 환경 입력 가격을 `close *= (1 + w)`처럼 바꾼다. 번들된 `after_processed_full.csv`는 open·high·low·close·volume이 모두 같은 배율로 바뀐 판이다.
+- 번들 `trade_data.csv`(거래 구간)의 종가는 `after_processed_full.csv`와 같다(19,459행 일치). 즉 **수정된 가격**이다.
+- 원 `processed_full.csv`와 비교하면 다음과 같다.
+  - 거래 구간 행의 91.2%에서 배율 ≠ 1이다(평균 1.035, 최대 2.0).
+  - 종목별 배율이 전날과 달라지는 날이 85.9%다. 하루 배율 변화의 절댓값 평균은 0.195%다.
+- 이 배율 변화는 실제 시장에 없는 가격 움직임이다. 그래서 이 데이터로 잰 계좌 가치는 원 가격 기준 수익과 같지 않다.
+- 다만 다음은 확인하지 않았다(정적 의심으로만 기록).
+  - 논문 Table 1의 KDD 수치가 이 데이터로 계산되었는지는 확인하지 못했다(`richard*.csv` 생성 스크립트 미상).
+  - 수익을 올리는 쪽으로 작용하는지는 실행하지 않아 모른다.
