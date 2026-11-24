@@ -29,6 +29,9 @@ RECHECK_FOUND = {'W22_PretoriusVanZyl', 'jiang2017crypto', 'Y26-01', 'Y26-03'}
 # 후속 단계는 탐색적(3.3 밖, notes/funnel_f1_recheck_followup.md). 결과가 나오면 여기에 적는다
 RECHECK_FOUND_RESULT = {
     'W22_PretoriusVanZyl': ('F1재확인', 'F1 재확인에서 찾음, 탐색적 F7x 별도(notes/funnel_f7x_frontier_prereg.md)'),
+    'jiang2017crypto': ('F1재확인', 'F1 재확인에서 찾음 → 탐색적 후속 F4 실행 불가(Poloniex API 403)'),
+    'Y26-01': ('F1재확인', 'F1 재확인에서 찾음 → 탐색적 후속 F6 탈락(평가 기간 미기재)'),
+    'Y26-03': ('F1재확인', 'F1 재확인에서 찾음 → 탐색적 후속 F3 탈락(규격 미정: HF 데이터 비공개, 뉴스 원천 미기재)'),
 }
 PRESELECTED = {'Y25-01', 'P23-02', 'W21_FinRL', 'Y25-03'}  # T1~T4, 별도 집계(프로토콜 1.5)
 
