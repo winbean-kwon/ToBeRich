@@ -24,6 +24,8 @@ RUN = {
     'jiang2017eiie': ('F4', '실행 불가', 'Poloniex 레거시 API 403', 'notes/funnel_f4_jiang2017eiie.md'),
     'SUP-ADRL': ('F4', '실행 불가', '공개 코드에 모듈 누락(stable_baselines/__init__가 a2c_original 등 5개 import, 이력에도 .py 없음); 시도 1 rc 1·1초, 서버 CPU', 'notes/funnel_f4_adrl.md'),
 }
+# F1 재확인(notes/f1_recheck_prereg.md 결과 처리)에서 찾음으로 바뀐 논문: 후속 단계는 이번 일정에서 실행하지 않는다
+RECHECK_FOUND = {'W22_PretoriusVanZyl', 'jiang2017crypto', 'Y26-01', 'Y26-03'}
 PRESELECTED = {'Y25-01', 'P23-02', 'W21_FinRL', 'Y25-03'}  # T1~T4, 별도 집계(프로토콜 1.5)
 
 F1_LABEL = {'not_found': '찾지 못함(문의 안 함)', 'link_dead': '링크 사망', 'link_dead_copy': '링크 사망(사본)',
@@ -38,6 +40,8 @@ for r in F1:
     f1 = r['F1']
     if f1 in F1_LABEL:
         stage, res = 'F1', F1_LABEL[f1]
+    elif pid in RECHECK_FOUND:
+        stage, res = 'F1재확인', 'F1 재확인에서 찾음, 후속 단계 미실행'
     elif st.get('status', '').startswith('탈락('):
         stage = st['status'][3:5]
         res = st['status']

@@ -1,6 +1,6 @@
 sample,id,title_short,F1,repo_or_note,how_found,checked
 S56,jiang2017eiie,EIIE/PGPortfolio,pass,ZhengyaoJiang/PGPortfolio,recorded,2026-11-05
-S56,jiang2017crypto,Crypto PM with DRL (IntelliSys),not_found,,auto,2026-11-05
+S56,jiang2017crypto,Crypto PM with DRL (IntelliSys),pass,"ZhengyaoJiang/PGPortfolio (2저자 kumkee/SURF2016 README가 이 논문 코드로 명시; 공저자 계정 근거, 가이드보다 넓은 해석) [원 F1 not_found]",F1 재확인(notes/lit/f1/f1_recheck_log.md),2026-11-24
 S56,liang2018adversarial,Adversarial DRL in PM,link_dead,qq303067814 404; mirror deepcrypto/... (소유자 다름),recorded+auto,2026-11-05
 S56,wang2019alphastock,AlphaStock,not_found,제3자 재구현만 알려짐,auto,2026-11-05
 S56,ye2020sarl,SARL,not_found,,auto,2026-11-05
@@ -24,7 +24,7 @@ S56,W22_MSPM,MSPM,not_found,,auto,2026-11-05
 S56,W21_WaveCorr,WaveCorr,pass,saeedmarzban/waveCorr,recorded,2026-11-05
 S56,W21_PigorschSchafer,High-dim stock portfolio DRL,not_found,,auto,2026-11-05
 S56,W21_LFSS,DRL portfolio LFSS,not_found,,auto,2026-11-05
-S56,W22_PretoriusVanZyl,DRL and convex MV,not_found,본문 링크는 사용 라이브러리뿐,auto,2026-11-05
+S56,W22_PretoriusVanZyl,DRL and convex MV,pass,"ruankie/frontier-rl (1저자 계정, README가 TechRxiv 판을 가리킴; 논문에 링크 없음) [원 F1 not_found]",F1 재확인(notes/lit/f1/f1_recheck_log.md),2026-11-24
 S56,W21_Benhamou_crisis,Crisis pattern context DRL,not_found,,auto,2026-11-05
 S56,P23-01,TradeMaster,pass,TradeMaster-NTU/TradeMaster(플랫폼; F0 재검토),recorded,2026-11-05
 S56,P23-02,PRUDEX-Compass/AlphaMix+ (T2),pass,TradeMaster-NTU/PRUDEX-Compass,recorded,2026-11-05
@@ -44,7 +44,7 @@ S56,Y25-01,DeepAries (T1),pass,dmis-lab/DeepAries,recorded,2026-11-05
 S56,Y25-02,HARLF,pass,"논문 3.4절 각주 Colab 3개 모두 공개 접근(2026-11-12 재확인; 11-10 link_dead는 PDF 텍스트 추출 시 밑줄이 빠진 주소로 연 오류). 학습·평가는 각주 2(1FPX9_8z0X39Pg3tf1bSvoByEWbbQ_juF, 감성 무작위 시뮬레이션), 각주 1·3은 감성 추출만",recorded,2026-11-12
 S56,Y25-03,MARS (T4),pass,jiayiderekchen/MARS (기존 CSV none found 정정),auto,2026-11-05
 S56,Y25-04,RL crypto PM,not_found,,auto,2026-11-05
-S56,Y26-01,Regime-aware RAG LLM,not_found,,auto,2026-11-05
+S56,Y26-01,Regime-aware RAG LLM,pass,"ahmad-asadi/sopmoe (1저자 계정, README 제목=논문 제목; 논문에 링크 없음) [원 F1 not_found]",F1 재확인(notes/lit/f1/f1_recheck_log.md),2026-11-24
 S56,Y25-05,MTS,not_found,,auto,2026-11-05
 S56,Y25-06,MIGT,not_found,,auto,2026-11-05
 S56,Y25-07,Hybrid LSTM PPO,not_found,,auto,2026-11-05
@@ -52,7 +52,7 @@ S56,Y25-08,SAMP-HDRL,not_found,,auto,2026-11-05
 S56,Y25-09,FR-LUX,not_found,,auto,2026-11-05
 S56,Y25-10,Dynamic embedding RL,not_found,,auto,2026-11-05
 S56,Y26-02,Diversified portfolio DRL,not_found,,auto,2026-11-05
-S56,Y26-03,SBCA,placeholder,본문 'XXX.git',recorded,2026-11-05
+S56,Y26-03,SBCA,pass,"ChenJiahaoJNU/SBCA (2저자 계정, README에 제목·저자; 논문 Code availability 칸 빈칸; 공저자 계정 근거) [원 F1 placeholder]",F1 재확인(notes/lit/f1/f1_recheck_log.md),2026-11-24
 S56,Y26-04,When News Gets Old,not_found,,auto,2026-11-05
 S56,Y25-11,MoE DRL portfolio (Appl Intell),original_missing,원문 미확보(메타데이터만),—,2026-11-05
 S-Q,SQ-DPSRRL,DPS-RRL (AAAI SA 2020),not_found,,auto,2026-11-05

@@ -7,13 +7,16 @@ import csv
 import json
 import math
 import pathlib
+import io
 import random
+import subprocess
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 FT = ROOT / "notes/lit/f1/funnel_table.csv"
 LIT = ROOT / "notes/lit/lit_survey_merged.csv"
 SHEET = ROOT / "notes/lit/f1/f1_recheck_sheet.csv"
+PREREG = "6cac6d6"  # 사전 등록 커밋: 층과 Claude 판정은 이 시점의 funnel_table로 고정(이후 F1 반영과 무관)
 SEED = 20261113
 EXCLUDE = {"original_missing"}
 PASS = {"pass", "pass_tutorial"}
@@ -22,8 +25,14 @@ LABELS = {"찾음", "제3자만", "링크 사망", "요청 시 제공", "없음"
 EXTRA_ID = {"SQ-APTS": "arXiv 2110.05299", "SQ-Regret": "arXiv 2502.02619", "SQ-MAPS": "arXiv 2007.05402"}
 
 
+def ft_rows():
+    txt = subprocess.run(["git", "-C", str(ROOT), "show", f"{PREREG}:notes/lit/f1/funnel_table.csv"],
+                         check=True, capture_output=True, text=True).stdout
+    return list(csv.DictReader(io.StringIO(txt)))
+
+
 def strata():
-    rows = list(csv.DictReader(open(FT, encoding="utf-8")))
+    rows = ft_rows()
     s1 = [r for r in rows if r["F1"] not in PASS and r["F1"] not in EXCLUDE]
     passed = sorted((r for r in rows if r["F1"] in PASS), key=lambda r: r["id"])
     s2 = random.Random(SEED).sample(passed, 10)
@@ -71,7 +80,7 @@ def agreement(pairs):
 
 
 def score():
-    claude = {r["id"]: r["F1"] for r in csv.DictReader(open(FT, encoding="utf-8"))}
+    claude = {r["id"]: r["F1"] for r in ft_rows()}
     s1, s2 = strata()
     ids1, ids2 = {r["id"] for r in s1}, {r["id"] for r in s2}
     rows = list(csv.DictReader(open(SHEET, encoding="utf-8")))
