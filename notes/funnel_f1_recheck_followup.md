@@ -51,16 +51,16 @@ F1은 저자 계정 점검에서 찾았다(`notes/f1_author_account_sweep_prereg
 F2 비고:
 - 데이터·출력 경로가 저자 맥의 절대 경로(`/Users/ganghu/Desktop/...`)로 박혀 있다.
 - 같은 파이프라인 판이 여러 개다(`knowledgement_drill.py`, `knowledgement_drill_ddpg.py`, `new_test.py`, `new_trial.py`, `share.py`, `backup.py`).
-- 그림 스크립트 `draw/draw.py`는 "KDD"를 `richard.csv`~`richard4.csv` 5개의 평균으로 그린다. 이 다섯 파일은 저장소에 없고, 어느 스크립트가 만들었는지도 코드에 명시되어 있지 않다.
+- 그림 스크립트 `draw/draw.py`는 "KDD"를 `richard.csv`~`richard4.csv` 5개의 평균으로 그린다. ~~이 다섯 파일은 저장소에 없다~~ → **정정(반박 심사):** `draw/richard.csv`~`richard5.csv`가 저장소에 있다. Claude가 파일 목록을 잘라 읽어 놓쳤다. 각 파일은 `final/2023-11-2x_*/data/` 실행 폴더의 파일과 blob이 같다(내용은 열지 않음).
 - "DDPG" 기준선(`originate_ddpg.csv`)은 `knowledgement_drill_ddpg.py`가 만든다. 이 스크립트는 증류 없이 원 가격으로 학습하는 FinRL DDPG다.
 
-**데이터 관찰(탐색적, 실행 안 함, 저자 결과 미열람).**
-- `new_test.py`의 증류 단계는 Markowitz 비중 w로 환경 입력 가격을 `close *= (1 + w)`처럼 바꾼다. 번들된 `after_processed_full.csv`는 open·high·low·close·volume이 모두 같은 배율로 바뀐 판이다.
-- 번들 `trade_data.csv`(거래 구간)의 종가는 `after_processed_full.csv`와 같다(19,459행 일치). 즉 **수정된 가격**이다.
-- 원 `processed_full.csv`와 비교하면 다음과 같다.
-  - 거래 구간 행의 91.2%에서 배율 ≠ 1이다(평균 1.035, 최대 2.0).
-  - 종목별 배율이 전날과 달라지는 날이 85.9%다. 하루 배율 변화의 절댓값 평균은 0.195%다.
-- 이 배율 변화는 실제 시장에 없는 가격 움직임이다. 그래서 이 데이터로 잰 계좌 가치는 원 가격 기준 수익과 같지 않다.
-- 다만 다음은 확인하지 않았다(정적 의심으로만 기록).
-  - 논문 Table 1의 KDD 수치가 이 데이터로 계산되었는지는 확인하지 못했다(`richard*.csv` 생성 스크립트 미상).
-  - 수익을 올리는 쪽으로 작용하는지는 실행하지 않아 모른다.
+**데이터 관찰 — 철회(2026-11-24 반박 심사).**
+- 처음 기록: 번들 `data/trade_data.csv`의 가격이 Markowitz 비중으로 수정된 판이라는 관찰. 이 관찰 자체는 맞다. `new_test.py` 계열은 분할 전에 `close *= (1 + w)`를 하고, 비중 매칭은 날짜가 아니라 정수 위치다.
+- 그러나 이 데이터는 KDD 표·그림 경로와 연결되지 않는다. git blob 대조로 확인했고 저자 결과 파일은 열지 않았다.
+  - `richard*.csv`가 나온 실행 폴더의 `trade_data.csv`(blob eac58121)는 번들 파일과 다르다.
+  - 심사자가 확인한 바로는 이 파일은 5종목(AAPL·BA·CRM·UNH·V)이고, 원 가격 기준 배율이 1.0이다.
+  - 따라서 "KDD 계좌 가치를 수정된 가격으로 쟀다"는 주장은 **철회**한다.
+- 대신 남는 정적 관찰(탐색적, 저자 결과 미열람). 이 셋은 F7 사전 등록 전에 확인할 항목이다.
+  - **KDD와 DDPG가 같은 스크립트 출력이다.** `richard.csv`는 `final/2023-11-21_19-19-07/data/originate_ddpg.csv`와 같은 blob이다. `richard3.csv`는 `profilo management/originate_ddpg.csv`와 같다. 증류는 SB3 `td3/policies.py`를 직접 고친 것으로 주석에 적혀 있고, 수정본 사본이 `draw/algo/policies.py`(`HuFeatureExtractor` 등)에 있다. 이것이 Markowitz 교사 망과 어떻게 연결되는지는 아직 다 읽지 않았다.
+  - **"5회 평균"에 같은 파일이 두 번 들어간다.** `richard.csv`와 `richard4.csv`가 같은 blob(adbb977c)이다.
+  - **종목 구성이 다를 수 있다.** 논문은 DJ30이라고 하는데, KDD 실행 데이터는 5종목으로 보인다(심사자 확인). DDPG 기준선 `draw/originate_ddpg.csv`(f211805e)와 같은 blob인 실행 폴더는 없어서, 기준선이 어떤 데이터로 나왔는지는 알 수 없다.
