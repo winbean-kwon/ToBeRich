@@ -20,3 +20,14 @@
 - 사전 등록 034c734. 서버 WSL clone을 034c734로 pull, 실행기·판정 sha256이 맥과 같음(run 9fc003ec…17d6, judge 1c4a89a3…23b1).
 - tmux `ens_turb`, 드라이버 로그 `~/ToBeRich/data/funnel/ensemble_turb_driver.log`. FRONTIER F7이 돌고 있어 대기 중(`wait.jsonl` 첫 줄 why=frontier_running). `pip_freeze.txt` 기록됨(열람은 판정 때).
 - 진행 확인은 `ls ~/ToBeRich/data/funnel/ensemble_turb/*/done.json`, `tail -1 .../wait.jsonl`만. 성과 파일은 열지 않는다(사전 등록 3절).
+
+## F7x Ensemble 난류 문턱 — 대기 원인 확인(2026-11-24 18:00 KST, 성과 없음)
+- 상태: 실행 0회, `done.json` 0개. `wait.jsonl` 252줄이 모두 `frontier_running`이다(마지막 2026-11-24 17:59).
+- 원인: FRONTIER F7은 끝났다(8e8f35f). 그런데 tmux 서버 프로세스(pid 673)는 처음 `tmux new-session -d -s frontier_f7 bash …/f7_all.sh`로 떴고, 그 명령줄을 그대로 갖고 있다. 실행기의 `busy()`는 `pgrep -f` 패턴(`f7_all.sh` 포함)으로 FRONTIER를 찾는데, 이 tmux 서버의 명령줄이 패턴에 걸려 계속 "돌고 있음"으로 판정한다. `ens_turb` 세션도 같은 tmux 서버 아래에 있다.
+- 조치안(실행기 코드는 바꾸지 않음):
+  1. 실행기(pid 6932)를 끝낸다.
+  2. `tmux kill-server`로 tmux 서버를 끝낸다.
+  3. `tmux new-session -d -s ens_turb "bash -c 'cd ~/ToBeRich && python3 replication/funnel_f7x_ensemble_turb_run.py >> ~/ToBeRich/data/funnel/ensemble_turb_driver.log 2>&1'"`로 다시 시작한다.
+  - 시작된 실행이 없으므로 재시작은 시도로 세지 않는다.
+  - Claude가 이 조치를 하려 했으나 자동 권한 검사에서 프로세스 종료가 거부되었다. 사용자 승인 뒤 진행한다.
+- 일정: 첫 실행 시작 마감 2026-11-27 00:00 KST(사전 등록 1.3). 17회 약 19시간.
