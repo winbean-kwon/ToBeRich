@@ -25,12 +25,13 @@ RUN = {
     'SUP-ADRL': ('F4', '실행 불가', '공개 코드에 모듈 누락(stable_baselines/__init__가 a2c_original 등 5개 import, 이력에도 .py 없음); 시도 1 rc 1·1초, 서버 CPU', 'notes/funnel_f4_adrl.md'),
 }
 # F1 재확인(notes/f1_recheck_prereg.md 결과 처리)에서 찾음으로 바뀐 논문: 후속 단계는 이번 일정에서 실행하지 않는다
-RECHECK_FOUND = {'W22_PretoriusVanZyl', 'jiang2017crypto', 'Y26-01', 'Y26-03'}
+RECHECK_FOUND = {'W22_PretoriusVanZyl', 'jiang2017crypto', 'Y26-01', 'Y26-03', 'P24-07'}  # P24-07: 저자 계정 점검(보충)
 # 후속 단계는 탐색적(3.3 밖, notes/funnel_f1_recheck_followup.md). 결과가 나오면 여기에 적는다
 RECHECK_FOUND_RESULT = {
     'W22_PretoriusVanZyl': ('F1재확인', 'F1 재확인에서 찾음, 탐색적 F7x 별도(notes/funnel_f7x_frontier_prereg.md)'),
     'jiang2017crypto': ('F1재확인', 'F1 재확인에서 찾음 → 탐색적 후속 F4 실행 불가(Poloniex API 403)'),
     'Y26-01': ('F1재확인', 'F1 재확인에서 찾음 → 탐색적 후속 F6 탈락(평가 기간 미기재)'),
+    'P24-07': ('F1재확인', 'F1 저자 계정 점검에서 찾음 → 탐색적 후속 정적 층 통과, F4 미실행'),
     'Y26-03': ('F1재확인', 'F1 재확인에서 찾음 → 탐색적 후속 F3 탈락(규격 미정: HF 데이터 비공개, 뉴스 원천 미기재)'),
 }
 PRESELECTED = {'Y25-01', 'P23-02', 'W21_FinRL', 'Y25-03'}  # T1~T4, 별도 집계(프로토콜 1.5)

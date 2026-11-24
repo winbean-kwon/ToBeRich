@@ -25,4 +25,4 @@ Claude가 근거를 찾아 판정을 바꾼 편이다. 각 줄의 주소를 직�
 ## 추가(2026-11-24, 저자 계정 점검에서 나온 후보)
 | # | id | 제안 판정 | 열 곳 | 볼 것 | 확인 |
 |---|---|---|---|---|---|
-| 17 | P24-07 (Markowitz Meets Bellman) | 찾음 | https://github.com/BMEgang/BellmanMarkwitzProject | 계정 이름이 Gang Hu(1저자)인가, README에 "the paper related to this work is: https://arxiv.org/abs/2405.05449"가 있는가 | |
+| 17 | P24-07 (Markowitz Meets Bellman) | 찾음 | https://github.com/BMEgang/BellmanMarkwitzProject | 계정 이름이 Gang Hu(1저자)인가, README에 "the paper related to this work is: https://arxiv.org/abs/2405.05449"가 있는가 | O(2026-11-25, 둘 다 확인) |

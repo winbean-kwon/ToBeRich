@@ -12,11 +12,11 @@ Each paper is counted once, at the first stage it did not pass. Stages follow th
 | Exit stage / outcome | S56 (n = 52) | S-Q (n = 12) | Suppl. (n = 5) | T1–T4 (n = 4) |
 |---|---:|---:|---:|---:|
 | F0 not eligible | 4 | 0 | 1 | 0 |
-| F1 no official code found (authors not contacted)ᵇ | 26 | 9 | 0 | 0 |
+| F1 no official code found (authors not contacted)ᵇ | 25 | 9 | 0 | 0 |
 | F1 link dead | 2 | 0 | 1ᵃ | 0 |
 | F1 third-party code only | 2 | 0 | 0 | 0 |
 | F1 full text unavailable | 2 | 0 | 0 | 0 |
-| Official code located at the F1 check; later stages exploratoryᶜ | 4 | 0 | 0 | 0 |
+| Official code located at the F1 check; later stages exploratoryᶜ | 5 | 0 | 0 | 0 |
 | F2 incomplete code | 0 | 0 | 2 | 0 |
 | F3 data not obtainable as specified | 3 | 0 | 0 | 0 |
 | F4 not executable | 1 | 1 | 1 | 0 |
@@ -26,8 +26,8 @@ Each paper is counted once, at the first stage it did not pass. Stages follow th
 | F7 verdict reached | 2 | 0 | 0 | 4 |
 
 ᵃ A copy of the repository exists elsewhere; the official link is dead.
-ᵇ A human check of all papers that did not pass F1 located official code for 4 of 44 (95% Wilson interval 0.04–0.21; 2 of 44 when only first- or corresponding-author accounts are accepted). In every case the paper contained no link, and the repository was identifiable only through an author's personal GitHub account. Author accounts were not searched exhaustively for the remaining papers, so this count is a lower bound on missed code.
-ᶜ These papers were examined outside the fixed execution order. One exited at F3 (dataset link not public, news source unspecified), one at F4 (legacy exchange API no longer serves data), one at F6 (evaluation period not reported), and one reached an exploratory F7 comparison against values read from a figure.
+ᵇ A human check of all papers that did not pass F1 located official code for 4 of 44 (95% Wilson interval 0.04–0.21; 2 of 44 when only first- or corresponding-author accounts are accepted); a subsequent search of first- and last-author GitHub accounts located one more (5 of 44, 0.05–0.24). In every case the paper contained no link, and the repository was identifiable only through an author's personal GitHub account. Author accounts were not searched exhaustively for the remaining papers, so this count is a lower bound on missed code.
+ᶜ These papers were examined outside the fixed execution order. One exited at F3 (dataset link not public, news source unspecified), one at F4 (legacy exchange API no longer serves data), one at F6 (evaluation period not reported), one passed the static stages without an execution attempt, and one reached an exploratory F7 comparison against values read from a figure.
 
 Notes for the text (not table content):
 - F1 check (methods/limitations): one human rater, not blind to the original LLM-assisted judgments; disagreements were resolved by inspecting the cited repository or sentence, with an LLM proposing the evidence and the rater confirming it. Report the rater's original judgments as well (random sample of F1 passes: 7 of 10 initially judged as not found; all 7 had an open official repository on inspection). Second rater on 15 papers: pending.
