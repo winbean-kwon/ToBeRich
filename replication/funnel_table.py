@@ -26,6 +26,10 @@ RUN = {
 }
 # F1 재확인(notes/f1_recheck_prereg.md 결과 처리)에서 찾음으로 바뀐 논문: 후속 단계는 이번 일정에서 실행하지 않는다
 RECHECK_FOUND = {'W22_PretoriusVanZyl', 'jiang2017crypto', 'Y26-01', 'Y26-03'}
+# 후속 단계는 탐색적(3.3 밖, notes/funnel_f1_recheck_followup.md). 결과가 나오면 여기에 적는다
+RECHECK_FOUND_RESULT = {
+    'W22_PretoriusVanZyl': ('F1재확인', 'F1 재확인에서 찾음, 탐색적 F7x 별도(notes/funnel_f7x_frontier_prereg.md)'),
+}
 PRESELECTED = {'Y25-01', 'P23-02', 'W21_FinRL', 'Y25-03'}  # T1~T4, 별도 집계(프로토콜 1.5)
 
 F1_LABEL = {'not_found': '찾지 못함(문의 안 함)', 'link_dead': '링크 사망', 'link_dead_copy': '링크 사망(사본)',
@@ -41,7 +45,7 @@ for r in F1:
     if f1 in F1_LABEL:
         stage, res = 'F1', F1_LABEL[f1]
     elif pid in RECHECK_FOUND:
-        stage, res = 'F1재확인', 'F1 재확인에서 찾음, 후속 단계 미실행'
+        stage, res = RECHECK_FOUND_RESULT.get(pid, ('F1재확인', 'F1 재확인에서 찾음, 후속 단계 진행 중(탐색적)'))
     elif st.get('status', '').startswith('탈락('):
         stage = st['status'][3:5]
         res = st['status']
