@@ -1,0 +1,54 @@
+{
+ "주: 층1 미통과→찾음": {
+  "k": 1,
+  "n": 33,
+  "ids": [
+   "W22_PretoriusVanZyl"
+  ],
+  "Wilson95": [
+   0.005,
+   0.153
+  ]
+ },
+ "주: 층2 통과→미통과": {
+  "k": 0,
+  "n": 5,
+  "ids": [],
+  "Wilson95": [
+   0,
+   0.434
+  ]
+ },
+ "보조: 54편 이진 일치(층별 표집이라 모집단 일치도 아님)": {
+  "n": 38,
+  "원일치율": 0.974,
+  "kappa": 0.894,
+  "PABAK": 0.947,
+  "AC1": 0.965
+ },
+ "교차표(Claude → 사람)": {
+  "link_dead → 링크 사망": 2,
+  "not_found → 없음": 29,
+  "not_found → 찾음": 1,
+  "pass → 찾음": 5,
+  "third_party_only → 없음": 1
+ },
+ "Claude 판독이라 제외": [
+  "P24-04",
+  "P24-08",
+  "P24-10",
+  "SQ-Regret",
+  "SQ-XPM",
+  "SUP-CLRS",
+  "SUP-LSRE",
+  "W21_DeepPocket",
+  "W22_MSPM",
+  "Y25-03",
+  "Y26-01",
+  "Y26-03",
+  "jiang2017crypto",
+  "wang2019alphastock",
+  "xiong2018ddpg",
+  "yu2019modelbased"
+ ]
+}
