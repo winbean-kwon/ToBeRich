@@ -1,0 +1,2039 @@
+{
+ "runs": {
+  "P": {
+   "E1": {
+    "status": "ok",
+    "main": {
+     "cum": 0.47334208256572596,
+     "ann": 0.0931059690003011,
+     "vol": 0.07841780851911709,
+     "sharpe": 1.175629230945411,
+     "mdd": -0.07751756833955192,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 378
+   },
+   "E2": {
+    "status": "ok",
+    "main": {
+     "cum": 0.3626753731551309,
+     "ann": 0.07367360312546589,
+     "vol": 0.07257436076818335,
+     "sharpe": 1.0167879984951131,
+     "mdd": -0.07313118625493298,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 378
+   },
+   "E3": {
+    "status": "ok",
+    "main": {
+     "cum": 0.3790567961372877,
+     "ann": 0.07662497662310375,
+     "vol": 0.0758810042439498,
+     "sharpe": 1.0119520931965238,
+     "mdd": -0.07187777402929518,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 378
+   },
+   "E4": {
+    "status": "ok",
+    "main": {
+     "cum": 0.39193292397418444,
+     "ann": 0.07892591782385217,
+     "vol": 0.0798787066467981,
+     "sharpe": 0.9919670045133963,
+     "mdd": -0.08685010088060385,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 362
+   },
+   "E5": {
+    "status": "ok",
+    "main": {
+     "cum": 0.30852707829925574,
+     "ann": 0.0637192600204981,
+     "vol": 0.07661173743069069,
+     "sharpe": 0.845420592754771,
+     "mdd": -0.07445467850191057,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 378
+   }
+  },
+  "C": {
+   "C1": {
+    "status": "ok",
+    "main": {
+     "cum": 0.5334154017025712,
+     "ann": 0.10318740129600168,
+     "vol": 0.10635576778728409,
+     "sharpe": 0.9775257913819055,
+     "mdd": -0.13598790062685306,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 138,
+    "thresholds": [
+     {
+      "iter": 126,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 189,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 252,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 315,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 378,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 441,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 504,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 567,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 630,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 693,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 756,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 819,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 882,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 945,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1008,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1071,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1134,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1197,
+      "thr": 140.0,
+      "hist_mean": null
+     }
+    ]
+   },
+   "C2": {
+    "status": "ok",
+    "main": {
+     "cum": 0.4474034242528746,
+     "ann": 0.08865488628396045,
+     "vol": 0.11527321783973586,
+     "sharpe": 0.7953205575406114,
+     "mdd": -0.1279211150529972,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 138,
+    "thresholds": [
+     {
+      "iter": 126,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 189,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 252,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 315,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 378,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 441,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 504,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 567,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 630,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 693,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 756,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 819,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 882,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 945,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1008,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1071,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1134,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1197,
+      "thr": 140.0,
+      "hist_mean": null
+     }
+    ]
+   },
+   "C3": {
+    "status": "ok",
+    "main": {
+     "cum": 0.2960225258503135,
+     "ann": 0.06137551211854286,
+     "vol": 0.11648815633868782,
+     "sharpe": 0.5701932296187718,
+     "mdd": -0.2052304055909352,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 138,
+    "thresholds": [
+     {
+      "iter": 126,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 189,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 252,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 315,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 378,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 441,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 504,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 567,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 630,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 693,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 756,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 819,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 882,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 945,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1008,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1071,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1134,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1197,
+      "thr": 140.0,
+      "hist_mean": null
+     }
+    ]
+   },
+   "C4": {
+    "status": "ok",
+    "main": {
+     "cum": 0.5320726403446292,
+     "ann": 0.10296541368394951,
+     "vol": 0.11305464797142922,
+     "sharpe": 0.924358053447401,
+     "mdd": -0.1479931339681947,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 138,
+    "thresholds": [
+     {
+      "iter": 126,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 189,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 252,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 315,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 378,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 441,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 504,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 567,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 630,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 693,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 756,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 819,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 882,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 945,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1008,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1071,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1134,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1197,
+      "thr": 140.0,
+      "hist_mean": null
+     }
+    ]
+   },
+   "C5": {
+    "status": "ok",
+    "main": {
+     "cum": 0.33738788675652187,
+     "ann": 0.0690635432852591,
+     "vol": 0.11058493296659883,
+     "sharpe": 0.6598472026797138,
+     "mdd": -0.16459504986544848,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 138,
+    "thresholds": [
+     {
+      "iter": 126,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 189,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 252,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 315,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 378,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 441,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 504,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 567,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 630,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 693,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 756,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 819,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 882,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 945,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1008,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1071,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1134,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1197,
+      "thr": 140.0,
+      "hist_mean": null
+     }
+    ]
+   }
+  },
+  "T": {
+   "T1": {
+    "status": "ok",
+    "main": {
+     "cum": 0.3791655312365565,
+     "ann": 0.0766444765408052,
+     "vol": 0.07530257760498008,
+     "sharpe": 1.0193263645519688,
+     "mdd": -0.0645800070139031,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 416,
+    "thresholds": [
+     {
+      "iter": 126,
+      "thr": 130.19491825259718,
+      "hist_mean": NaN
+     },
+     {
+      "iter": 189,
+      "thr": 96.08032158358284,
+      "hist_mean": 109.97827335624598
+     },
+     {
+      "iter": 252,
+      "thr": 130.19491825259718,
+      "hist_mean": 88.61966706451511
+     },
+     {
+      "iter": 315,
+      "thr": 130.19491825259718,
+      "hist_mean": 62.89076137739401
+     },
+     {
+      "iter": 378,
+      "thr": 130.19491825259718,
+      "hist_mean": 63.51769139709565
+     },
+     {
+      "iter": 441,
+      "thr": 96.08032158358284,
+      "hist_mean": 98.68390220631015
+     },
+     {
+      "iter": 504,
+      "thr": 130.19491825259718,
+      "hist_mean": 56.880263225355954
+     },
+     {
+      "iter": 567,
+      "thr": 130.19491825259718,
+      "hist_mean": 78.50498188920504
+     },
+     {
+      "iter": 630,
+      "thr": 96.08032158358284,
+      "hist_mean": 102.35598336570112
+     },
+     {
+      "iter": 693,
+      "thr": 96.08032158358284,
+      "hist_mean": 102.09033520270225
+     },
+     {
+      "iter": 756,
+      "thr": 96.08032158358284,
+      "hist_mean": 119.04836325878006
+     },
+     {
+      "iter": 819,
+      "thr": 96.08032158358284,
+      "hist_mean": 97.35399843216146
+     },
+     {
+      "iter": 882,
+      "thr": 130.19491825259718,
+      "hist_mean": 93.32184433495149
+     },
+     {
+      "iter": 945,
+      "thr": 96.08032158358284,
+      "hist_mean": 123.01910401696634
+     },
+     {
+      "iter": 1008,
+      "thr": 96.08032158358284,
+      "hist_mean": 117.02016033640938
+     },
+     {
+      "iter": 1071,
+      "thr": 96.08032158358284,
+      "hist_mean": 153.03152008590885
+     },
+     {
+      "iter": 1134,
+      "thr": 96.08032158358284,
+      "hist_mean": 113.88285802556427
+     },
+     {
+      "iter": 1197,
+      "thr": 96.08032158358284,
+      "hist_mean": 120.0110127611024
+     }
+    ]
+   },
+   "T2": {
+    "status": "ok",
+    "main": {
+     "cum": 0.08503708535297405,
+     "ann": 0.0189250459205621,
+     "vol": 0.07279111271396885,
+     "sharpe": 0.29419548574870485,
+     "mdd": -0.08666476640304233,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 423,
+    "thresholds": [
+     {
+      "iter": 126,
+      "thr": 130.19491825259718,
+      "hist_mean": NaN
+     },
+     {
+      "iter": 189,
+      "thr": 96.08032158358284,
+      "hist_mean": 109.97827335624598
+     },
+     {
+      "iter": 252,
+      "thr": 130.19491825259718,
+      "hist_mean": 88.61966706451511
+     },
+     {
+      "iter": 315,
+      "thr": 130.19491825259718,
+      "hist_mean": 62.89076137739401
+     },
+     {
+      "iter": 378,
+      "thr": 130.19491825259718,
+      "hist_mean": 63.51769139709565
+     },
+     {
+      "iter": 441,
+      "thr": 96.08032158358284,
+      "hist_mean": 98.68390220631015
+     },
+     {
+      "iter": 504,
+      "thr": 130.19491825259718,
+      "hist_mean": 56.880263225355954
+     },
+     {
+      "iter": 567,
+      "thr": 130.19491825259718,
+      "hist_mean": 78.50498188920504
+     },
+     {
+      "iter": 630,
+      "thr": 96.08032158358284,
+      "hist_mean": 102.35598336570112
+     },
+     {
+      "iter": 693,
+      "thr": 96.08032158358284,
+      "hist_mean": 102.09033520270225
+     },
+     {
+      "iter": 756,
+      "thr": 96.08032158358284,
+      "hist_mean": 119.04836325878006
+     },
+     {
+      "iter": 819,
+      "thr": 96.08032158358284,
+      "hist_mean": 97.35399843216146
+     },
+     {
+      "iter": 882,
+      "thr": 130.19491825259718,
+      "hist_mean": 93.32184433495149
+     },
+     {
+      "iter": 945,
+      "thr": 96.08032158358284,
+      "hist_mean": 123.01910401696634
+     },
+     {
+      "iter": 1008,
+      "thr": 96.08032158358284,
+      "hist_mean": 117.02016033640938
+     },
+     {
+      "iter": 1071,
+      "thr": 96.08032158358284,
+      "hist_mean": 153.03152008590885
+     },
+     {
+      "iter": 1134,
+      "thr": 96.08032158358284,
+      "hist_mean": 113.88285802556427
+     },
+     {
+      "iter": 1197,
+      "thr": 96.08032158358284,
+      "hist_mean": 120.0110127611024
+     }
+    ]
+   },
+   "T3": {
+    "status": "ok",
+    "main": {
+     "cum": 0.3234796144840273,
+     "ann": 0.06649929573382507,
+     "vol": 0.07258224033577762,
+     "sharpe": 0.9241567198566897,
+     "mdd": -0.0716295010143736,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 423,
+    "thresholds": [
+     {
+      "iter": 126,
+      "thr": 130.19491825259718,
+      "hist_mean": NaN
+     },
+     {
+      "iter": 189,
+      "thr": 96.08032158358284,
+      "hist_mean": 109.97827335624598
+     },
+     {
+      "iter": 252,
+      "thr": 130.19491825259718,
+      "hist_mean": 88.61966706451511
+     },
+     {
+      "iter": 315,
+      "thr": 130.19491825259718,
+      "hist_mean": 62.89076137739401
+     },
+     {
+      "iter": 378,
+      "thr": 130.19491825259718,
+      "hist_mean": 63.51769139709565
+     },
+     {
+      "iter": 441,
+      "thr": 96.08032158358284,
+      "hist_mean": 98.68390220631015
+     },
+     {
+      "iter": 504,
+      "thr": 130.19491825259718,
+      "hist_mean": 56.880263225355954
+     },
+     {
+      "iter": 567,
+      "thr": 130.19491825259718,
+      "hist_mean": 78.50498188920504
+     },
+     {
+      "iter": 630,
+      "thr": 96.08032158358284,
+      "hist_mean": 102.35598336570112
+     },
+     {
+      "iter": 693,
+      "thr": 96.08032158358284,
+      "hist_mean": 102.09033520270225
+     },
+     {
+      "iter": 756,
+      "thr": 96.08032158358284,
+      "hist_mean": 119.04836325878006
+     },
+     {
+      "iter": 819,
+      "thr": 96.08032158358284,
+      "hist_mean": 97.35399843216146
+     },
+     {
+      "iter": 882,
+      "thr": 130.19491825259718,
+      "hist_mean": 93.32184433495149
+     },
+     {
+      "iter": 945,
+      "thr": 96.08032158358284,
+      "hist_mean": 123.01910401696634
+     },
+     {
+      "iter": 1008,
+      "thr": 96.08032158358284,
+      "hist_mean": 117.02016033640938
+     },
+     {
+      "iter": 1071,
+      "thr": 96.08032158358284,
+      "hist_mean": 153.03152008590885
+     },
+     {
+      "iter": 1134,
+      "thr": 96.08032158358284,
+      "hist_mean": 113.88285802556427
+     },
+     {
+      "iter": 1197,
+      "thr": 96.08032158358284,
+      "hist_mean": 120.0110127611024
+     }
+    ]
+   },
+   "T4": {
+    "status": "ok",
+    "main": {
+     "cum": 0.2490777481608677,
+     "ann": 0.05241803864227057,
+     "vol": 0.06973128419439503,
+     "sharpe": 0.7683185012260512,
+     "mdd": -0.059930508262389104,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 423,
+    "thresholds": [
+     {
+      "iter": 126,
+      "thr": 130.19491825259718,
+      "hist_mean": NaN
+     },
+     {
+      "iter": 189,
+      "thr": 96.08032158358284,
+      "hist_mean": 109.97827335624598
+     },
+     {
+      "iter": 252,
+      "thr": 130.19491825259718,
+      "hist_mean": 88.61966706451511
+     },
+     {
+      "iter": 315,
+      "thr": 130.19491825259718,
+      "hist_mean": 62.89076137739401
+     },
+     {
+      "iter": 378,
+      "thr": 130.19491825259718,
+      "hist_mean": 63.51769139709565
+     },
+     {
+      "iter": 441,
+      "thr": 96.08032158358284,
+      "hist_mean": 98.68390220631015
+     },
+     {
+      "iter": 504,
+      "thr": 130.19491825259718,
+      "hist_mean": 56.880263225355954
+     },
+     {
+      "iter": 567,
+      "thr": 130.19491825259718,
+      "hist_mean": 78.50498188920504
+     },
+     {
+      "iter": 630,
+      "thr": 96.08032158358284,
+      "hist_mean": 102.35598336570112
+     },
+     {
+      "iter": 693,
+      "thr": 96.08032158358284,
+      "hist_mean": 102.09033520270225
+     },
+     {
+      "iter": 756,
+      "thr": 96.08032158358284,
+      "hist_mean": 119.04836325878006
+     },
+     {
+      "iter": 819,
+      "thr": 96.08032158358284,
+      "hist_mean": 97.35399843216146
+     },
+     {
+      "iter": 882,
+      "thr": 130.19491825259718,
+      "hist_mean": 93.32184433495149
+     },
+     {
+      "iter": 945,
+      "thr": 96.08032158358284,
+      "hist_mean": 123.01910401696634
+     },
+     {
+      "iter": 1008,
+      "thr": 96.08032158358284,
+      "hist_mean": 117.02016033640938
+     },
+     {
+      "iter": 1071,
+      "thr": 96.08032158358284,
+      "hist_mean": 153.03152008590885
+     },
+     {
+      "iter": 1134,
+      "thr": 96.08032158358284,
+      "hist_mean": 113.88285802556427
+     },
+     {
+      "iter": 1197,
+      "thr": 96.08032158358284,
+      "hist_mean": 120.0110127611024
+     }
+    ]
+   },
+   "T5": {
+    "status": "ok",
+    "main": {
+     "cum": 0.33962199308895613,
+     "ann": 0.0694735251597598,
+     "vol": 0.07367900017623823,
+     "sharpe": 0.9493889486472067,
+     "mdd": -0.06187956304929898,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 423,
+    "thresholds": [
+     {
+      "iter": 126,
+      "thr": 130.19491825259718,
+      "hist_mean": NaN
+     },
+     {
+      "iter": 189,
+      "thr": 96.08032158358284,
+      "hist_mean": 109.97827335624598
+     },
+     {
+      "iter": 252,
+      "thr": 130.19491825259718,
+      "hist_mean": 88.61966706451511
+     },
+     {
+      "iter": 315,
+      "thr": 130.19491825259718,
+      "hist_mean": 62.89076137739401
+     },
+     {
+      "iter": 378,
+      "thr": 130.19491825259718,
+      "hist_mean": 63.51769139709565
+     },
+     {
+      "iter": 441,
+      "thr": 96.08032158358284,
+      "hist_mean": 98.68390220631015
+     },
+     {
+      "iter": 504,
+      "thr": 130.19491825259718,
+      "hist_mean": 56.880263225355954
+     },
+     {
+      "iter": 567,
+      "thr": 130.19491825259718,
+      "hist_mean": 78.50498188920504
+     },
+     {
+      "iter": 630,
+      "thr": 96.08032158358284,
+      "hist_mean": 102.35598336570112
+     },
+     {
+      "iter": 693,
+      "thr": 96.08032158358284,
+      "hist_mean": 102.09033520270225
+     },
+     {
+      "iter": 756,
+      "thr": 96.08032158358284,
+      "hist_mean": 119.04836325878006
+     },
+     {
+      "iter": 819,
+      "thr": 96.08032158358284,
+      "hist_mean": 97.35399843216146
+     },
+     {
+      "iter": 882,
+      "thr": 130.19491825259718,
+      "hist_mean": 93.32184433495149
+     },
+     {
+      "iter": 945,
+      "thr": 96.08032158358284,
+      "hist_mean": 123.01910401696634
+     },
+     {
+      "iter": 1008,
+      "thr": 96.08032158358284,
+      "hist_mean": 117.02016033640938
+     },
+     {
+      "iter": 1071,
+      "thr": 96.08032158358284,
+      "hist_mean": 153.03152008590885
+     },
+     {
+      "iter": 1134,
+      "thr": 96.08032158358284,
+      "hist_mean": 113.88285802556427
+     },
+     {
+      "iter": 1197,
+      "thr": 96.08032158358284,
+      "hist_mean": 120.0110127611024
+     }
+    ]
+   }
+  },
+  "O": {
+   "O1": {
+    "status": "ok",
+    "main": {
+     "cum": 0.16537286503012627,
+     "ann": 0.035781488717481214,
+     "vol": 0.19956925200669332,
+     "sharpe": 0.27624999877813067,
+     "mdd": -0.4391619366016867,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 17,
+    "thresholds": [
+     {
+      "iter": 126,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 189,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 252,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 315,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 378,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 441,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 504,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 567,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 630,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 693,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 756,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 819,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 882,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 945,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1008,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1071,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1134,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1197,
+      "thr": Infinity,
+      "hist_mean": null
+     }
+    ]
+   },
+   "O2": {
+    "status": "ok",
+    "main": {
+     "cum": -0.08243030318857314,
+     "ann": -0.019567854351111302,
+     "vol": 0.19922215413307548,
+     "sharpe": 0.0008093853361465865,
+     "mdd": -0.46906664608319926,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 17,
+    "thresholds": [
+     {
+      "iter": 126,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 189,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 252,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 315,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 378,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 441,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 504,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 567,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 630,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 693,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 756,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 819,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 882,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 945,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1008,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1071,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1134,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1197,
+      "thr": Infinity,
+      "hist_mean": null
+     }
+    ]
+   },
+   "O3": {
+    "status": "ok",
+    "main": {
+     "cum": 0.23784852933831258,
+     "ann": 0.05023706014736895,
+     "vol": 0.21905101722271603,
+     "sharpe": 0.3335679955241354,
+     "mdd": -0.37207909509036285,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 17,
+    "thresholds": [
+     {
+      "iter": 126,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 189,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 252,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 315,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 378,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 441,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 504,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 567,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 630,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 693,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 756,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 819,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 882,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 945,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1008,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1071,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1134,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1197,
+      "thr": Infinity,
+      "hist_mean": null
+     }
+    ]
+   },
+   "O4": {
+    "status": "ok",
+    "main": {
+     "cum": 0.3738214451242723,
+     "ann": 0.0756846949568708,
+     "vol": 0.19968817166485445,
+     "sharpe": 0.46587779674753954,
+     "mdd": -0.32800886021868825,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 17,
+    "thresholds": [
+     {
+      "iter": 126,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 189,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 252,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 315,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 378,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 441,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 504,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 567,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 630,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 693,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 756,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 819,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 882,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 945,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1008,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1071,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1134,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1197,
+      "thr": Infinity,
+      "hist_mean": null
+     }
+    ]
+   },
+   "O5": {
+    "status": "ok",
+    "main": {
+     "cum": 0.17212938676334377,
+     "ann": 0.03715791452181305,
+     "vol": 0.21097965153396284,
+     "sharpe": 0.27928880621048335,
+     "mdd": -0.4483626549722076,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 17,
+    "thresholds": [
+     {
+      "iter": 126,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 189,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 252,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 315,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 378,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 441,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 504,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 567,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 630,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 693,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 756,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 819,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 882,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 945,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1008,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1071,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1134,
+      "thr": Infinity,
+      "hist_mean": null
+     },
+     {
+      "iter": 1197,
+      "thr": Infinity,
+      "hist_mean": null
+     }
+    ]
+   }
+  },
+  "R": {
+   "R1": {
+    "status": "ok",
+    "main": {
+     "cum": 0.3207339160549494,
+     "ann": 0.06599062428704316,
+     "vol": 0.07516579320849792,
+     "sharpe": 0.8886323271578334,
+     "mdd": -0.07968895594758374,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 378,
+    "thresholds": [
+     {
+      "iter": 126,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 189,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 252,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 315,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 378,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 441,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 504,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 567,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 630,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 693,
+      "thr": 100.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 756,
+      "thr": 100.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 819,
+      "thr": 100.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 882,
+      "thr": 100.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 945,
+      "thr": 100.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1008,
+      "thr": 100.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1071,
+      "thr": 100.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1134,
+      "thr": 90.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1197,
+      "thr": 90.0,
+      "hist_mean": null
+     }
+    ]
+   },
+   "R2": {
+    "status": "ok",
+    "main": {
+     "cum": 0.37354094944115723,
+     "ann": 0.07563423940664515,
+     "vol": 0.07719887929557545,
+     "sharpe": 0.9840217287967996,
+     "mdd": -0.07073075094945946,
+     "n_rows": 1097
+    },
+    "zero_return_days_1097": 378,
+    "thresholds": [
+     {
+      "iter": 126,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 189,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 252,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 315,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 378,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 441,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 504,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 567,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 630,
+      "thr": 140.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 693,
+      "thr": 100.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 756,
+      "thr": 100.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 819,
+      "thr": 100.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 882,
+      "thr": 100.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 945,
+      "thr": 100.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1008,
+      "thr": 100.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1071,
+      "thr": 100.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1134,
+      "thr": 90.0,
+      "hist_mean": null
+     },
+     {
+      "iter": 1197,
+      "thr": 90.0,
+      "hist_mean": null
+     }
+    ]
+   }
+  }
+ },
+ "n": {
+  "P": 5,
+  "C": 5,
+  "T": 5,
+  "O": 5,
+  "R": 2
+ },
+ "contrasts": {
+  "C-P": {
+   "diff": -0.22290241704736247,
+   "ci95": [
+    -0.44267097803461203,
+    -0.003133856060112905
+   ],
+   "se": 0.09308018989411826,
+   "df": 7.0524047437655675,
+   "category": "차이 있음(낮음)"
+  },
+  "T-P": {
+   "diff": -0.21727417997491894,
+   "ci95": [
+    -0.5743786336527059,
+    0.13983027370286805
+   ],
+   "se": 0.14091855024931796,
+   "df": 5.25056402238723,
+   "category": "구분 안 됨"
+  },
+  "O-P": {
+   "diff": -0.7371925874617561,
+   "ci95": [
+    -0.9544380247889458,
+    -0.5199471501345664
+   ],
+   "se": 0.09216076414936944,
+   "df": 7.109757285834914,
+   "category": "차이 있음(낮음)"
+  }
+ },
+ "describe_C": {
+  "mean_sharpe": 0.7854489669336807,
+  "mean_in_F7_R1_band": false,
+  "n_above_1.12": 0,
+  "n": 5
+ },
+ "describe_T": {
+  "mean_sharpe": 0.7910772040061242,
+  "mean_in_F7_R1_band": false,
+  "n_above_1.12": 0,
+  "n": 5
+ },
+ "describe_O": {
+  "mean_sharpe": 0.2711587965192871,
+  "mean_in_F7_R1_band": false,
+  "n_above_1.12": 0,
+  "n": 5
+ },
+ "check_R": {
+  "sharpe": [
+   0.8886323271578334,
+   0.9840217287967996
+  ],
+  "P_range": [
+   0.845420592754771,
+   1.175629230945411
+  ],
+  "within_P_range": [
+   true,
+   true
+  ]
+ },
+ "aux": {
+  "P": {
+   "cum": 0.38310685082631696,
+   "ann": 0.0772099453186442,
+   "vol": 0.07667272352174781,
+   "sharpe": 1.0083513839810432,
+   "mdd": -0.0767662616012589,
+   "zero_return_days_mean": 374.8
+  },
+  "C": {
+   "cum": 0.42926037578138204,
+   "ann": 0.08504935133354272,
+   "vol": 0.11235134458074716,
+   "sharpe": 0.7854489669336807,
+   "mdd": -0.15634552102088572,
+   "zero_return_days_mean": 138.0,
+   "thresholds_identical_across_runs": true,
+   "thresholds_run1": [
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0
+   ]
+  },
+  "T": {
+   "cum": 0.27527639446467633,
+   "ann": 0.056792076399444544,
+   "vol": 0.07281724300507196,
+   "sharpe": 0.7910772040061242,
+   "mdd": -0.06893686914860142,
+   "zero_return_days_mean": 421.6,
+   "thresholds_identical_across_runs": true,
+   "thresholds_run1": [
+    130.194918,
+    96.080322,
+    130.194918,
+    130.194918,
+    130.194918,
+    96.080322,
+    130.194918,
+    130.194918,
+    96.080322,
+    96.080322,
+    96.080322,
+    96.080322,
+    130.194918,
+    96.080322,
+    96.080322,
+    96.080322,
+    96.080322,
+    96.080322
+   ]
+  },
+  "O": {
+   "cum": 0.17334838461349636,
+   "ann": 0.03585866079848454,
+   "vol": 0.2057020493122604,
+   "sharpe": 0.2711587965192871,
+   "mdd": -0.411335838593229,
+   "zero_return_days_mean": 17.0,
+   "thresholds_identical_across_runs": true,
+   "thresholds_run1": [
+    Infinity,
+    Infinity,
+    Infinity,
+    Infinity,
+    Infinity,
+    Infinity,
+    Infinity,
+    Infinity,
+    Infinity,
+    Infinity,
+    Infinity,
+    Infinity,
+    Infinity,
+    Infinity,
+    Infinity,
+    Infinity,
+    Infinity,
+    Infinity
+   ]
+  },
+  "R": {
+   "cum": 0.3471374327480533,
+   "ann": 0.07081243184684416,
+   "vol": 0.07618233625203669,
+   "sharpe": 0.9363270279773165,
+   "mdd": -0.0752098534485216,
+   "zero_return_days_mean": 378.0,
+   "thresholds_identical_across_runs": true,
+   "thresholds_run1": [
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    140.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    90.0,
+    90.0
+   ]
+  }
+ }
+}
