@@ -18,7 +18,7 @@ RUN = {
     'SQ-SmartFolio': ('F4', '실행 불가', '번들 학습 pkl 빈 placeholder → 저자 gen_data로 구축(사용자 결정) 후 필수 입력 industry.npy 누락(생성 코드 없음), 서버 CPU 시도 2회', 'notes/funnel_f4_smartfolio.md'),
     'SQ-SCR': ('F4', '미시험(입력 구축 규모)', '학습 입력 8개 중 4개 미번들(수익률·시나리오·충격) → FNSPID·FRED·FOMC(수집 코드 없음)·GPR 구축 필요, 사용자 결정으로 미실행', 'notes/funnel_f4_scr.md'),
     'yang2020ensemble': ('F7', '부분 재현', 'R1 통과(Sharpe 평균 1.008, 폭 [0.885,1.715]), R2 실패(1/5 > 1.12); 5회 CPU', 'notes/funnel_f7_ensemble_result.md'),
-    'W21_WaveCorr': ('F5', '한도 초과', 'A=39.4h(CPU)', 'notes/funnel_f4_wavecorr.md'),
+    'W21_WaveCorr': ('F5', 'F5 통과(F7 자리 없음)', '시드당 3.94h(서버 CPU). 2026-11-25 정정: 이전 판정은 10시드 합 39.4h를 시드당으로 셈(notes/funnel_f4_wavecorr.md 4절)', 'notes/funnel_f4_wavecorr.md'),
     'li2019adaptive': ('F4', 'F4 통과(F7 자리 없음)', '서버 CPU 76.5초, 1에폭(25,000스텝)+시험 경로', 'notes/funnel_f4_li2019adaptive.md'),
     'xiong2018ddpg': ('F4', 'F4 통과(F7 자리 없음)', '서버 CPU 69.2초, 1에폭(25,000스텝)+시험 경로, baselines master', 'notes/funnel_f4_xiong2018ddpg.md'),
     'jiang2017eiie': ('F4', '실행 불가', 'Poloniex 레거시 API 403', 'notes/funnel_f4_jiang2017eiie.md'),
@@ -31,7 +31,7 @@ RECHECK_FOUND_RESULT = {
     'W22_PretoriusVanZyl': ('F1재확인', 'F1 재확인에서 찾음, 탐색적 F7x 별도(notes/funnel_f7x_frontier_prereg.md)'),
     'jiang2017crypto': ('F1재확인', 'F1 재확인에서 찾음 → 탐색적 후속 F4 실행 불가(Poloniex API 403)'),
     'Y26-01': ('F1재확인', 'F1 재확인에서 찾음 → 탐색적 후속 F6 탈락(평가 기간 미기재)'),
-    'P24-07': ('F1재확인', 'F1 저자 계정 점검에서 찾음 → 탐색적 후속 정적 층 통과, F4 미실행'),
+    'P24-07': ('F1재확인', 'F1 저자 계정 점검에서 찾음 → 탐색적 F7x 별도(notes/funnel_f7x_p2407_prereg.md)'),
     'Y26-03': ('F1재확인', 'F1 재확인에서 찾음 → 탐색적 후속 F3 탈락(규격 미정: HF 데이터 비공개, 뉴스 원천 미기재)'),
 }
 PRESELECTED = {'Y25-01', 'P23-02', 'W21_FinRL', 'Y25-03'}  # T1~T4, 별도 집계(프로토콜 1.5)

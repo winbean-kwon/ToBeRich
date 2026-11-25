@@ -21,13 +21,14 @@ Each paper is counted once, at the first stage it did not pass. Stages follow th
 | F3 data not obtainable as specified | 3 | 0 | 0 | 0 |
 | F4 not executable | 1 | 1 | 1 | 0 |
 | F4 not tested (input construction out of scope) | 0 | 1 | 0 | 0 |
-| F4 passed, no F7 attempt | 3 | 1 | 0 | 0 |
-| F5 over compute budget | 3 | 0 | 0 | 0 |
+| Passed F4 (and F5 where measured), no F7 placeᵈ | 4 | 1 | 0 | 0 |
+| F5 over compute budget | 2 | 0 | 0 | 0 |
 | F7 verdict reached | 2 | 0 | 0 | 4 |
 
 ᵃ A copy of the repository exists elsewhere; the official link is dead.
 ᵇ A human check of all papers that did not pass F1 located official code for 4 of 44 (95% Wilson interval 0.04–0.21; 2 of 44 when only first- or corresponding-author accounts are accepted); a subsequent search of first- and last-author GitHub accounts located one more (5 of 44, 0.05–0.24). In every case the paper contained no link, and the repository was identifiable only through an author's personal GitHub account. Author accounts were not searched exhaustively for the remaining papers, so this count is a lower bound on missed code.
 ᶜ These papers were examined outside the fixed execution order. One exited at F3 (dataset link not public, news source unspecified), one at F4 (legacy exchange API no longer serves data), one at F6 (evaluation period not reported), and two reached an exploratory F7 comparison (Table 3).
+ᵈ The two F7 places were filled in the fixed order before these papers; one of them also passed F5 (3.9 h per seed).
 
 Notes for the text (not table content):
 - F1 check (methods/limitations): one human rater, not blind to the original LLM-assisted judgments; disagreements were resolved by inspecting the cited repository or sentence, with an LLM proposing the evidence and the rater confirming it. Report the rater's original judgments as well (random sample of F1 passes: 7 of 10 initially judged as not found; all 7 had an open official repository on inspection). Second rater on 15 papers: pending.
