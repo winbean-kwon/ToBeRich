@@ -76,7 +76,7 @@ These comparisons lie outside the fixed execution order. For each paper the comp
 | Paper | Target | Reported | Tolerance | Ours | R1 | R2 rule | R2 | Pre-specified reading |
 |---|---|---:|---:|---:|:-:|---|:-:|---|
 | FRONTIER (Pretorius & van Zyl, 2022) | Mean Pareto-frontier excess return at the equal-weight excess risk of 14.78% (%) | 11.79ᵃ | ±1.01 | 11.71 | ✓ | Frontier dominates equal weight (≥ 4/5 seeds) | ✓ (5/5) | Matches the published figure |
-| Markowitz Meets Bellman (KDD), five-ticker run | Sharpe of the date-wise mean of run curves | 2.03 | ±0.525 | 1.81 | ✓ | Per-seed Sharpe above equal weight of the same five stocks (2.00, 0.1% cost) in ≥ 4/5 seeds | ✗ (0/5) | Reported value indistinguishable from holding the same five stocks |
+| Markowitz Meets Bellman (Hu and Gu, 2024; method "KDD"), five-ticker run | Sharpe of the date-wise mean of run curves | 2.03 | ±0.525 | 1.81 | ✓ | Per-seed Sharpe above equal weight of the same five stocks (2.00, 0.1% cost) in ≥ 4/5 seeds | ✗ (0/5) | Reported value indistinguishable from holding the same five stocks |
 
 ᵃ Read from the published figure.
 
