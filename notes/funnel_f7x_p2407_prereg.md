@@ -116,3 +116,24 @@
   - 저자 모델의 첫날 체결은 AAPL 1주와 UNH 96주다. 이후 2년 8개월을 보유한다. 즉 보고된 KDD 곡선 중 두 개(같은 파일)는 사실상 UNH 한 종목 매수 후 보유다.
 - **시드 2는 저자 곡선과 비트 단위로 같다**(첫날 체결 같음). 시드 0과 3도 서로 같다. 서로 다른 학습이 몇 가지 첫날 배분으로 모인다.
 - 해석(탐색적): 이 설정의 DDPG(공개 코드, 증류 꺼짐)는 상태를 쓰지 않는 상수 정책으로 수렴한다. 성과는 첫날 어떤 종목을 샀는지로 정해진다. 저자 모델 곡선도 같은 성질이다. 증류가 켜졌던 실행이었는지는 여전히 알 수 없다. 다만 공개 모델 자체가 상수 정책이라는 점은 증류 여부와 관계없이 확인된다.
+
+**반박 심사 반영(2026-11-25). 사전 판정은 그대로이고, 해석 문장을 세 곳 고친다.**
+- 독립 재계산: 시드별 Sharpe와 평균 곡선 1.8071이 판정 출력과 같다. EW5는 심사자 구현으로 1.9936이다(첫날 비용 처리 차이). R2 0/5는 어느 구현에서도 같다.
+- **정정 1. "정책이 UNH를 샀다"는 틀린 표현이다.**
+  - 저자 체크포인트의 부호는 AAPL +, BA −, CRM +, UNH +, V −다. 정책은 세 종목에 똑같이 최대 매수(+100주)를 낸다.
+  - FinRL은 `argsort`를 뒤집은 순서로 매수한다. 값이 같으면 열 순서를 거꾸로 따른다. 그래서 UNH 96주가 현금을 거의 다 쓰고, CRM은 0주, AAPL은 1주만 체결된다.
+  - 따라서 배분을 정한 것은 정책이 아니라 환경의 동률 처리, hmax 100 상한, 현금 제약이다.
+- **정정 2. "거래는 첫날뿐"은 시드 4에서 틀린다.** 시드 4는 2016-01-05와 01-07에도 남은 현금으로 샀다. "처음 며칠 뒤로는 거래가 없다"로 고친다. 행동 CSV는 체결 주식 수이고, 포화 여부는 predict를 다시 돌려 확인했다.
+- **정정 3. 상수성의 범위.**
+  - 6개 모델 모두 670일 내내 |a| = 1이다. tanh 앞 값의 최솟값은 18~752다.
+  - 관측 상태 주변을 2,000번 흔들어도(배율 e^±1, 성분 20% 부호 반전) 부호는 한 번도 바뀌지 않았다.
+  - 그래서 "평가 구간의 관측 상태와 그 주변에서 출력이 일정하다"까지만 쓴다. 원인(상태 비정규화 등)은 가설이다.
+- **범위 제한.**
+  - 저자 곡선은 첫날 이후 "UNH 96주 + AAPL 1주 + 현금 19.92" 보유 곡선과 상대 차이 2e-16으로 같다.
+  - 이 사실은 보고 평균을 만든 다섯 곡선 중 두 개(같은 파일)에만 해당한다. richard1~3은 확인하지 않았다. 따라서 "보고된 KDD 행이 UNH 보유"라고 쓰지 않는다.
+- **추가 한계.**
+  - 우리 시드 중 서로 다른 실행은 4개다(시드 0 = 3). 시드 2는 저자 곡선과 같다. R1 통과는 이 중복과 첫날 배분의 운에 기대고 있다.
+  - 행동 포화를 FinRL·DDPG의 "알려진 결함"이라고 쓰지 않는다. 일반 포럼 보고만 찾았고, 동료 심사 문헌은 찾지 못했다.
+  - 2405.05449의 선행 재현이나 비판은 찾지 못했다(SOTAVerified unverified).
+- **주장하지 않는 것:** 증류의 효과(어느 방향이든), 저자의 의도·선택 편향, 포화 원인.
+- **논문 문구(심사 권장안):** "Re-evaluating the released checkpoint reproduces the authors' stored account-value curve exactly; on the trading period its deterministic actions are saturated at ±1 with a fixed sign per asset, so after the initial purchases (96 UNH and 1 AAPL, determined by the environment's order-filling and cash constraint) the portfolio is held unchanged, and the curve coincides with this buy-and-hold position. Retraining the released code with five seeds yields an averaged-curve Sharpe ratio (1.81) within our pre-specified tolerance of the reported 2.03, but no seed exceeds an equal-weight daily-rebalanced portfolio of the same five assets (Sharpe 2.00, 0.1% cost)."
