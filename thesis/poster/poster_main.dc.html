@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>재현 연구 포스터</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@500;600;700&amp;family=Noto+Sans+KR:wght@400;500;700;900&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0F5E63}a:hover{color:#0A4245}
+</style>
+</helmet>
+<div style="width: 1414px; height: 2000px; box-sizing: border-box; background: #F6F5F0; color: #16181D; font-family: 'Noto Sans KR', sans-serif; display: flex; flex-direction: column">
+
+<header style="background: #16181D; color: #F6F5F0; padding: 56px 72px 48px; display: flex; flex-direction: column; gap: 18px">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 18px; letter-spacing: 0.12em; color: #8FD0CF">2026 졸업 프로젝트 · 재현 연구</div>
+<h1 style="margin: 0; font-family: 'IBM Plex Sans KR', sans-serif; font-weight: 700; font-size: 64px; line-height: 1.18; letter-spacing: -0.01em">강화학습 포트폴리오 논문은 재현되는가?<br>공개 코드로 다시 돌려 본 73편</h1>
+<p style="margin: 0; font-size: 22px; line-height: 1.5; color: #C9CCD1; font-style: italic">Do Reinforcement-Learning Portfolio Results Reproduce? A Pre-registered Re-examination with the Authors' Public Code</p>
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-top: 8px">
+<p style="margin: 0; font-size: 24px; font-weight: 500">권승빈 · [학과] · 지도교수 [이름]</p>
+</div>
+<div style="margin-top: 14px; background: {{accent}}; color: #FFFFFF; padding: 20px 28px; border-radius: 10px; font-size: 26px; font-weight: 700; line-height: 1.45">공식 코드로 다시 돌린 6편 중 완전히 재현된 논문은 없었고, FinRL은 거래비용을 넣어 1/N과 비교하면 우위가 남지 않았다.</div>
+</header>
+
+<main style="flex: 1; padding: 44px 72px 36px; display: flex; flex-direction: column; gap: 32px">
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px">
+<section style="background: #FFFFFF; border-radius: 14px; padding: 28px 32px; display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-family: 'IBM Plex Sans KR', sans-serif; font-size: 30px; font-weight: 700; color: #0F5E63">① 배경</h2>
+<ul style="margin: 0; padding-left: 22px; font-size: 20px; line-height: 1.6; display: flex; flex-direction: column; gap: 6px">
+<li>강화학습(RL)으로 주식 비중을 정하는 논문 대부분이 "시장·기존 방법보다 낫다"고 보고한다.</li>
+<li>공식 코드로 그 숫자가 다시 나오는지, 거래비용과 1/N 등가중까지 넣어도 우위가 남는지는 거의 확인되지 않았다.</li>
+<li>판정 기준을 <b>결과를 보기 전에 고정(사전 등록)</b>하고 공식 코드로 다시 실행했다.</li>
+</ul>
+</section>
+<section style="background: #FFFFFF; border-radius: 14px; padding: 28px 32px; display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-family: 'IBM Plex Sans KR', sans-serif; font-size: 30px; font-weight: 700; color: #0F5E63">② 연구 질문</h2>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; gap: 16px; align-items: baseline"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 600; color: #0F5E63">Q1</span><span style="font-size: 22px; line-height: 1.5; font-weight: 500">공개 코드로 논문의 보고 수치를 다시 얻을 수 있는가?</span></div>
+<div style="display: flex; gap: 16px; align-items: baseline"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 600; color: #0F5E63">Q2</span><span style="font-size: 22px; line-height: 1.5; font-weight: 500">거래비용·여러 평가 기간·여러 시드로 조건을 맞추면 1/N 등가중보다 나은가?</span></div>
+</div>
+</section>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px">
+<section style="background: #FFFFFF; border-radius: 14px; padding: 28px 32px; display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-family: 'IBM Plex Sans KR', sans-serif; font-size: 30px; font-weight: 700; color: #0F5E63">③ 방법 — 재현 깔때기와 판정 기준</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 17px; font-weight: 700">
+<span style="background: #E4EFEE; color: #0A4245; padding: 8px 12px; border-radius: 6px">F0 대상</span><span aria-hidden="true">→</span>
+<span style="background: #0F5E63; color: #FFFFFF; padding: 8px 12px; border-radius: 6px">F1 공식 코드</span><span aria-hidden="true">→</span>
+<span style="background: #E4EFEE; color: #0A4245; padding: 8px 12px; border-radius: 6px">F2 코드 완전성</span><span aria-hidden="true">→</span>
+<span style="background: #E4EFEE; color: #0A4245; padding: 8px 12px; border-radius: 6px">F6 비교값</span><span aria-hidden="true">→</span>
+<span style="background: #E4EFEE; color: #0A4245; padding: 8px 12px; border-radius: 6px">F3 데이터</span><span aria-hidden="true">→</span>
+<span style="background: #E4EFEE; color: #0A4245; padding: 8px 12px; border-radius: 6px">F4 실행</span><span aria-hidden="true">→</span>
+<span style="background: #E4EFEE; color: #0A4245; padding: 8px 12px; border-radius: 6px">F5 계산량</span><span aria-hidden="true">→</span>
+<span style="background: #16181D; color: #FFFFFF; padding: 8px 12px; border-radius: 6px">F7 재현 판정</span>
+</div>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #3B3F46">논문은 처음 막힌 단계에서 한 번만 센다. 실행 불가·계산량 초과(시드당 10시간)는 "재현 실패"와 따로 센다.</p>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<div style="background: #F6F5F0; border-radius: 10px; padding: 16px 18px"><div style="font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; color: #0F5E63">R1 수치</div><div style="font-size: 17px; line-height: 1.55; margin-top: 6px">우리 값이 보고값 허용 폭 안에 있는가<br><span style="color: #4A4F57">폭 = (보고값 − 최강 기준선) ÷ 2</span></div></div>
+<div style="background: #F6F5F0; border-radius: 10px; padding: 16px 18px"><div style="font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; color: #0F5E63">R2 주장</div><div style="font-size: 17px; line-height: 1.55; margin-top: 6px">"기준선보다 낫다"는 주장이 우리 실행에서도 성립하는가</div></div>
+</div>
+<p style="margin: 0; font-size: 18px; font-weight: 700">둘 다 → 재현 · 하나 → 부분 재현 · 없음 → 미재현</p>
+</section>
+
+<section style="background: #FFFFFF; border-radius: 14px; padding: 28px 32px; display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-family: 'IBM Plex Sans KR', sans-serif; font-size: 30px; font-weight: 700; color: #0F5E63">④ 결과 1 — 어디서 멈췄나 (조사 표본 52편)</h2>
+<div style="display: flex; flex-direction: column; gap: 9px">
+<div style="display: grid; grid-template-columns: 250px 1fr 40px; gap: 12px; align-items: center; font-size: 17px"><span>F0 대상 아님</span><div style="height: 20px; width: 7.7%; background: #9AA0A8; border-radius: 3px"></div><b style="font-family: 'IBM Plex Mono', monospace">4</b></div>
+<div style="display: grid; grid-template-columns: 250px 1fr 40px; gap: 12px; align-items: center; font-size: 17px"><span style="font-weight: 700">F1 공식 코드 못 찾음 등</span><div style="height: 20px; width: 59.6%; background: #0F5E63; border-radius: 3px"></div><b style="font-family: 'IBM Plex Mono', monospace">31</b></div>
+<div style="display: grid; grid-template-columns: 250px 1fr 40px; gap: 12px; align-items: center; font-size: 17px"><span>F1 재확인에서 코드 발견</span><div style="height: 20px; width: 9.6%; background: #6FB3B1; border-radius: 3px"></div><b style="font-family: 'IBM Plex Mono', monospace">5</b></div>
+<div style="display: grid; grid-template-columns: 250px 1fr 40px; gap: 12px; align-items: center; font-size: 17px"><span>F3 데이터 확보 불가</span><div style="height: 20px; width: 5.8%; background: #9AA0A8; border-radius: 3px"></div><b style="font-family: 'IBM Plex Mono', monospace">3</b></div>
+<div style="display: grid; grid-template-columns: 250px 1fr 40px; gap: 12px; align-items: center; font-size: 17px"><span>F4 실행 불가</span><div style="height: 20px; width: 1.9%; background: #9AA0A8; border-radius: 3px"></div><b style="font-family: 'IBM Plex Mono', monospace">1</b></div>
+<div style="display: grid; grid-template-columns: 250px 1fr 40px; gap: 12px; align-items: center; font-size: 17px"><span>F5 계산량 초과</span><div style="height: 20px; width: 5.8%; background: #9AA0A8; border-radius: 3px"></div><b style="font-family: 'IBM Plex Mono', monospace">3</b></div>
+<div style="display: grid; grid-template-columns: 250px 1fr 40px; gap: 12px; align-items: center; font-size: 17px"><span>F4 통과, 판정 자리 없음</span><div style="height: 20px; width: 5.8%; background: #9AA0A8; border-radius: 3px"></div><b style="font-family: 'IBM Plex Mono', monospace">3</b></div>
+<div style="display: grid; grid-template-columns: 250px 1fr 40px; gap: 12px; align-items: center; font-size: 17px"><span style="font-weight: 700">F7 재현 판정</span><div style="height: 20px; width: 3.8%; background: #16181D; border-radius: 3px"></div><b style="font-family: 'IBM Plex Mono', monospace">2</b></div>
+</div>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #4A4F57">그 밖에 제목 검색 12편(9편 F1), 보충 5편, 심층 대상 4편 — 총 73편.</p>
+<div style="display: flex; gap: 18px; align-items: center; background: #E4EFEE; border-radius: 10px; padding: 16px 20px">
+<div style="font-family: 'IBM Plex Mono', monospace; font-size: 44px; font-weight: 600; color: #0A4245; white-space: nowrap">≥ 5/44</div>
+<div style="font-size: 17px; line-height: 1.55">"코드 없음"으로 판정한 44편을 사람이 다시 보니 최소 5편은 코드가 있었다. 모두 논문에 링크가 없고 <b>저자 개인 GitHub</b>에만 있었다.</div>
+</div>
+</section>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px">
+<section style="background: #FFFFFF; border-radius: 14px; padding: 28px 32px; display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-family: 'IBM Plex Sans KR', sans-serif; font-size: 30px; font-weight: 700; color: #0F5E63">⑤ 결과 2 — 재현 판정 (6편)</h2>
+<table style="width: 100%; border-collapse: collapse; font-size: 18px">
+<thead><tr style="text-align: left; color: #4A4F57; font-size: 15px"><th style="padding: 8px 6px; border-bottom: 2px solid #16181D; font-weight: 700">논문</th><th style="padding: 8px 6px; border-bottom: 2px solid #16181D; font-weight: 700">판정</th><th style="padding: 8px 6px; border-bottom: 2px solid #16181D; font-weight: 700">비고</th></tr></thead>
+<tbody>
+<tr><td style="padding: 11px 6px; border-bottom: 1px solid #DDDCD5; font-weight: 700">FinRL<br><span style="font-weight: 400; font-size: 14px; color: #4A4F57">ICAIF 2021</span></td><td style="padding: 11px 6px; border-bottom: 1px solid #DDDCD5"><span style="background: #F4D7B8; color: #6B3205; padding: 5px 10px; border-radius: 999px; font-weight: 700; font-size: 16px; white-space: nowrap">부분 재현</span></td><td style="padding: 11px 6px; border-bottom: 1px solid #DDDCD5; font-size: 16px">알고리즘 4개 중 2개 재현</td></tr>
+<tr><td style="padding: 11px 6px; border-bottom: 1px solid #DDDCD5; font-weight: 700">Ensemble<br><span style="font-weight: 400; font-size: 14px; color: #4A4F57">ICAIF 2020</span></td><td style="padding: 11px 6px; border-bottom: 1px solid #DDDCD5"><span style="background: #F4D7B8; color: #6B3205; padding: 5px 10px; border-radius: 999px; font-weight: 700; font-size: 16px; white-space: nowrap">부분 재현</span></td><td style="padding: 11px 6px; border-bottom: 1px solid #DDDCD5; font-size: 16px">수치 ✓ · 우위 주장 ✗</td></tr>
+<tr><td style="padding: 11px 6px; border-bottom: 1px solid #DDDCD5; font-weight: 700">RAT<br><span style="font-weight: 400; font-size: 14px; color: #4A4F57">IJCAI 2020</span></td><td style="padding: 11px 6px; border-bottom: 1px solid #DDDCD5"><span style="background: #F4D7B8; color: #6B3205; padding: 5px 10px; border-radius: 999px; font-weight: 700; font-size: 16px; white-space: nowrap">부분 재현</span></td><td style="padding: 11px 6px; border-bottom: 1px solid #DDDCD5; font-size: 16px">보고값보다 훨씬 높음 · 우위 ✓</td></tr>
+<tr><td style="padding: 11px 6px; border-bottom: 1px solid #DDDCD5; font-weight: 700">MARS<br><span style="font-weight: 400; font-size: 14px; color: #4A4F57">AAAI 2026</span></td><td style="padding: 11px 6px; border-bottom: 1px solid #DDDCD5"><span style="background: #3D4249; color: #FFFFFF; padding: 5px 10px; border-radius: 999px; font-weight: 700; font-size: 16px; white-space: nowrap">미재현</span></td><td style="padding: 11px 6px; border-bottom: 1px solid #DDDCD5; font-size: 16px">출판 시점 코드 기준 · 저자 후속 수정 코드는 재현</td></tr>
+<tr><td style="padding: 11px 6px; border-bottom: 1px solid #DDDCD5; font-weight: 700">DeepAries<br><span style="font-weight: 400; font-size: 14px; color: #4A4F57">CIKM 2025</span></td><td style="padding: 11px 6px; border-bottom: 1px solid #DDDCD5"><span style="background: #3D4249; color: #FFFFFF; padding: 5px 10px; border-radius: 999px; font-weight: 700; font-size: 16px; white-space: nowrap">미재현</span></td><td style="padding: 11px 6px; border-bottom: 1px solid #DDDCD5; font-size: 16px">논문의 시드 선택 규칙 적용</td></tr>
+<tr><td style="padding: 11px 6px; font-weight: 700">AlphaMix+<br><span style="font-weight: 400; font-size: 14px; color: #4A4F57">PRUDEX-Compass</span></td><td style="padding: 11px 6px"><span style="background: #3D4249; color: #FFFFFF; padding: 5px 10px; border-radius: 999px; font-weight: 700; font-size: 16px; white-space: nowrap">미재현</span></td><td style="padding: 11px 6px; font-size: 16px">논문이 밝히지 않은 선택에 따라 판정이 바뀜</td></tr>
+</tbody>
+</table>
+<p style="margin: 0; font-size: 20px; font-weight: 700">완전히 재현된 논문 0편 — 판정은 코드 판본과 미기재 세부 선택에 민감했다.</p>
+</section>
+
+<section style="background: #FFFFFF; border-radius: 14px; padding: 28px 32px; display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-family: 'IBM Plex Sans KR', sans-serif; font-size: 30px; font-weight: 700; color: #0F5E63">⑥ 결과 3 — 같은 조건에서 1/N과 비교 (FinRL)</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3B3F46">거래비용 0.1% · 평가 기간 3개 · 시드 5개. 매일 재조정 1/N 대비 연 로그 성장 차이(%p/년)와 95% 신뢰구간. 회색 띠 = 동등 범위(±2.36%p).</p>
+<div style="display: flex; flex-direction: column; gap: 12px; margin-top: 4px">
+<div style="display: grid; grid-template-columns: 70px 1fr; gap: 12px; align-items: center"><b style="font-size: 18px">A2C</b><div style="position: relative; height: 34px"><div style="position: absolute; left: 64.67%; width: 26.22%; top: 0; bottom: 0; background: #E9E8E2"></div><div style="position: absolute; left: 77.78%; top: 0; bottom: 0; width: 2px; background: #16181D"></div><div style="position: absolute; left: 12.22%; width: 12.22%; top: 14px; height: 6px; background: #C9671A; border-radius: 3px"></div><div style="position: absolute; left: calc(18.33% - 8px); top: 9px; width: 16px; height: 16px; border-radius: 50%; background: #C9671A"></div></div></div>
+<div style="display: grid; grid-template-columns: 70px 1fr; gap: 12px; align-items: center"><b style="font-size: 18px">PPO</b><div style="position: relative; height: 34px"><div style="position: absolute; left: 64.67%; width: 26.22%; top: 0; bottom: 0; background: #E9E8E2"></div><div style="position: absolute; left: 77.78%; top: 0; bottom: 0; width: 2px; background: #16181D"></div><div style="position: absolute; left: 2.78%; width: 13.33%; top: 14px; height: 6px; background: #C9671A; border-radius: 3px"></div><div style="position: absolute; left: calc(9.44% - 8px); top: 9px; width: 16px; height: 16px; border-radius: 50%; background: #C9671A"></div></div></div>
+<div style="display: grid; grid-template-columns: 70px 1fr; gap: 12px; align-items: center"><b style="font-size: 18px">DDPG</b><div style="position: relative; height: 34px"><div style="position: absolute; left: 64.67%; width: 26.22%; top: 0; bottom: 0; background: #E9E8E2"></div><div style="position: absolute; left: 77.78%; top: 0; bottom: 0; width: 2px; background: #16181D"></div><div style="position: absolute; left: 72.78%; width: 10.56%; top: 14px; height: 6px; background: #1D5FA8; border-radius: 3px"></div><div style="position: absolute; left: calc(78.11% - 8px); top: 9px; width: 16px; height: 16px; border-radius: 50%; background: #1D5FA8"></div></div></div>
+<div style="display: grid; grid-template-columns: 70px 1fr; gap: 12px; align-items: center"><b style="font-size: 18px">TD3</b><div style="position: relative; height: 34px"><div style="position: absolute; left: 64.67%; width: 26.22%; top: 0; bottom: 0; background: #E9E8E2"></div><div style="position: absolute; left: 77.78%; top: 0; bottom: 0; width: 2px; background: #16181D"></div><div style="position: absolute; left: 70%; width: 13.33%; top: 14px; height: 6px; background: #1D5FA8; border-radius: 3px"></div><div style="position: absolute; left: calc(76.78% - 8px); top: 9px; width: 16px; height: 16px; border-radius: 50%; background: #1D5FA8"></div></div></div>
+<div style="display: grid; grid-template-columns: 70px 1fr; gap: 12px"><span></span><div style="position: relative; height: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #4A4F57"><span style="position: absolute; left: 11.11%; transform: translateX(-50%)">−12</span><span style="position: absolute; left: 33.33%; transform: translateX(-50%)">−8</span><span style="position: absolute; left: 55.56%; transform: translateX(-50%)">−4</span><span style="position: absolute; left: 77.78%; transform: translateX(-50%)">0</span><span style="position: absolute; left: 100%; transform: translateX(-100%)">+4</span></div></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; font-size: 18px; line-height: 1.5">
+<div><b style="color: #A04F10">A2C · PPO</b> — 세 기간 모두 1/N보다 연 11~12%p 낮다(유의).</div>
+<div><b style="color: #1D5FA8">DDPG · TD3</b> — 1/N과 구분되지 않는다(동등 범위 안).</div>
+<div>학습된 정책의 일별 수익은 1/N과 <b>상관 0.98 이상</b> — 사실상 1/N 근처에 머문다.</div>
+</div>
+</section>
+</div>
+
+<section style="background: #FFFFFF; border-radius: 14px; padding: 28px 32px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-family: 'IBM Plex Sans KR', sans-serif; font-size: 30px; font-weight: 700; color: #0F5E63">⑦ 결과 4 — 코드에서 발견한 것</h2>
+<div style="font-size: 19px; font-weight: 700">거래비용이 설정대로 부과되지 않음</div>
+<ul style="margin: 0; padding-left: 22px; font-size: 18px; line-height: 1.6">
+<li><b>FinRL</b> 포트폴리오 환경 — 비용을 설정해도 보상·수익에 반영 안 됨</li>
+<li><b>AlphaMix+</b> — 비용 값을 받기만 하고 쓰지 않음</li>
+<li><b>DeepAries</b> — 비중을 자주 바꿀수록 덜 부과(극단적 경우 설정의 약 2%)</li>
+</ul>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 19px; font-weight: 700; margin-top: 50px">비교 조건의 차이 <span style="font-weight: 500; color: #4A4F57">(탐색적, Markowitz Meets Bellman)</span></div>
+<p style="margin: 0; font-size: 18px; line-height: 1.6">공개 코드에서 제안 방법만 5종목, 기준선은 30종목으로 계산했다. 같은 5종목을 똑같은 비중으로 들고만 있어도:</p>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="background: #F6F5F0; border-radius: 10px; padding: 12px 16px"><div style="font-size: 15px; color: #4A4F57">5종목 등가중(비용 0)</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 600">37.0% · SR 2.01</div></div>
+<div style="background: #F6F5F0; border-radius: 10px; padding: 12px 16px"><div style="font-size: 15px; color: #4A4F57">논문 보고 KDD</div><div style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 600">38.7% · SR 2.03</div></div>
+</div>
+</div>
+</section>
+
+<div style="display: grid; grid-template-columns: 3fr 2fr; gap: 32px">
+<section style="background: #16181D; color: #F6F5F0; border-radius: 14px; padding: 28px 32px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-family: 'IBM Plex Sans KR', sans-serif; font-size: 30px; font-weight: 700; color: #8FD0CF">⑧ 결론</h2>
+<ol style="margin: 0; padding-left: 26px; font-size: 19px; line-height: 1.6; display: flex; flex-direction: column; gap: 4px">
+<li>공개 코드가 있어도 보고 수치가 그대로 다시 나온 논문은 없었다(6편 중 0편).</li>
+<li>FinRL의 재현된 실행도 비용을 넣고 1/N과 비교하면 우위가 사라지거나(A2C·PPO) 구분되지 않았다(DDPG·TD3).</li>
+<li>원인의 일부는 코드 수준(비용 미부과, 비교 조건 차이)에서 확인되었다.</li>
+<li>제언: 결과 선택 절차·시드 분포·비용 구현·1/N 비교를 함께 보고하자.</li>
+</ol>
+</section>
+<section style="background: #FFFFFF; border-radius: 14px; padding: 28px 32px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-family: 'IBM Plex Sans KR', sans-serif; font-size: 26px; font-weight: 700; color: #4A4F57">⑨ 한계</h2>
+<ul style="margin: 0; padding-left: 22px; font-size: 17px; line-height: 1.6; color: #3B3F46">
+<li>표본은 무작위가 아니며 분야 전체 재현율이 아니다.</li>
+<li>"미재현"은 "논문이 틀렸다"가 아니다(환경·라이브러리·비결정성).</li>
+<li>F1 재확인은 1인·비맹검이다.</li>
+</ul>
+</section>
+</div>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#0F5E63","options":["#0F5E63","#1D5FA8","#A04F10"]},"$preview":{"width":1414,"height":2000}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#0F5E63' };
+}
+}
+</script>
+</body>
+</html>
