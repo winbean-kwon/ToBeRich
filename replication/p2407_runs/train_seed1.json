@@ -1,0 +1,9 @@
+{
+ "mode": "train",
+ "seed": 1,
+ "seconds": 260.8308708667755,
+ "exception": null,
+ "account_csv_exists": true,
+ "account_csv_lines": 672,
+ "model_saved": true
+}
