@@ -17,32 +17,32 @@ PDF: [DeepAries arXiv 2510.14985](https://arxiv.org/pdf/2510.14985) · [AlphaMix
 
 | ID | 논문 | 쪽·표 | 검색어(복사) | 대장 값(무엇을 볼지) | Claude 확인 | 결과 |
 |---|---|---|---|---|---|---|
-| A1 | DeepAries | 5쪽 Table 1, DJ 30 열 | `7.90` | DeepAries 행 DJ 30 CAGR 7.90 | 있음 | |
-| A2 | DeepAries | 5쪽 Table 1, DJ 30 열 | `13.67` | 같은 행 DJ 30 MDD 13.67 | 있음 | |
-| A3 | DeepAries | 5쪽 Table 1, DJ 30 열 | `6.15` | "Index" 행 DJ 30 CAGR 6.15(비교 대상) | 있음 | |
-| A4 | DeepAries | 5쪽 본문 | `lowest validation loss` | "여러 시드를 돌려 검증 손실이 가장 낮은 실행의 시험 결과를 보고" | 있음 | |
-| A5 | AlphaMix+ | 25쪽 Table 5·6·7(US Stock 2021·2020·2019), 맨 오른쪽 AlphaMix+ 열 | `US Stock 2021` | TR(%) 20.7±1.8 / 12.7±1.7 / 25.1±1.42 | 있음 | |
-| A6 | AlphaMix+ | 같음 | 같음 | ± 뒤의 값 1.8 / 1.7 / 1.42(시드 σ) | 있음 | |
-| A7 | AlphaMix+ | 실험 설정 절 | `5 fixed random seeds` | "5개 고정 시드" | 있음 | |
-| A8 | AlphaMix+ | 25쪽 Table 5 | `1.64±0.11` | AlphaMix+ SR 1.64 | 있음 | |
-| A9 | FinRL | 7쪽 Table 3 | `Annualized return` | A2C 42.57 / PPO 36.17 / DDPG 36.01 / TD3 39.38. **주의:** 한 칸에 숫자가 두 개("46.65%; 42.57%")인데 앞이 주식 거래, **뒤가 포트폴리오 배분**이다. 뒤 숫자가 맞는지 | 있음 | |
-| A10 | FinRL | 7쪽 Table 3 | `Sharpe ratio  ` | 뒤 숫자 2.36 / 2.11 / 2.21 / 2.28 | 있음 | |
-| A11 | FinRL | 7쪽 Table 3 | `32.84` | DJIA 32.84%, Min-Var 24.10%. 같은 표에 **DJIA Sharpe 2.02, Min-Var 1.98**도 있다(통계 v2의 δ_SR 결정에 씀) | 있음 | |
-| A12 | FinRL | 6쪽 | `30 constituent stocks` | 종목 30(우리는 28) | 있음 | |
-| A13 | MARS | 5쪽 Table 2 | `29.50` | MARS 행 CR 29.50 / AR 31.19 / SR 2.84 / AVol 10.99 / MDD −5.39 | 있음 | |
-| A14 | MARS | 5쪽 Table 2 | `15.36` | DJI Index 행 15.36 / 16.19 / 1.41 / 11.51 / −6.06 | 있음 | |
-| A15 | MARS | 5쪽 | `random seed of 42` | 시드 42 | 있음 | |
-| A16 | MARS | 5쪽 Table 1 | `2024 Test` | 원문 시험 구간은 **2024-01-01 to 2024-12-31**. 우리 판정은 240거래일 창(2024-01-17~12-27, `notes/mars_t4_o1_prereg.md`)을 썼다. 표기가 이와 같은지만 확인 | 있음 | |
-| A17 | Ensemble | 7쪽 TABLE II | `70.4%` | Ensemble 열 70.4% / 13.0% / 9.7% / 1.30 / −9.7%. **주의:** arXiv 재업로드판이다. ACM 판(ICAIF '20)이 있으면 같은지 | 있음 | |
-| A18 | Ensemble | 7쪽 TABLE II | `0.47` | DJIA 열 누적 38.6%, Sharpe 0.47 / Min-Variance Sharpe 0.45 | 있음 | |
-| A19 | Ensemble | 7쪽 TABLE II | `1.12` | A2C 1.12 / PPO 1.10 / DDPG 0.87 | 있음 | |
-| A20 | RAT | 6쪽 Table 2, Crypto-A 블록 | `156.53` | RAT 156.53 ± 14.25 / 7.13 / 304.26 | 있음 | |
-| A21 | RAT | 6쪽 Table 2 | `19.69` | MTL 19.69 / 6.90 / 79.21, UCRP 2.37 | 있음 | |
-| A22 | RAT | 5쪽 5.1절 | `averaged over 5 runs` | "5회 평균(무작위 초기화)", 같은 절에 80000스텝·10^-7·0.25% | 있음 | |
+| A1 | DeepAries | 5쪽 Table 1, DJ 30 열 | `7.90` | DeepAries 행 DJ 30 CAGR 7.90 | 있음 | 일치(2026-11-14) |
+| A2 | DeepAries | 5쪽 Table 1, DJ 30 열 | `13.67` | 같은 행 DJ 30 MDD 13.67 | 있음 | 일치(2026-11-14) |
+| A3 | DeepAries | 5쪽 Table 1, DJ 30 열 | `6.15` | "Index" 행 DJ 30 CAGR 6.15(비교 대상) | 있음 | 일치(2026-11-14) |
+| A4 | DeepAries | 5쪽 본문 | `lowest validation loss` | "여러 시드를 돌려 검증 손실이 가장 낮은 실행의 시험 결과를 보고" | 있음 | 일치(2026-11-14) |
+| A5 | AlphaMix+ | 25쪽 Table 5·6·7(US Stock 2021·2020·2019), 맨 오른쪽 AlphaMix+ 열 | `US Stock 2021` | TR(%) 20.7±1.8 / 12.7±1.7 / 25.1±1.42 | 있음 | 일치(2026-11-14) |
+| A6 | AlphaMix+ | 같음 | 같음 | ± 뒤의 값 1.8 / 1.7 / 1.42(시드 σ) | 있음 | 일치(2026-11-14) |
+| A7 | AlphaMix+ | 실험 설정 절 | `5 fixed random seeds` | "5개 고정 시드" | 있음 | 일치(2026-11-14) |
+| A8 | AlphaMix+ | 25쪽 Table 5 | `1.64±0.11` | AlphaMix+ SR 1.64 | 있음 | 일치(2026-11-14) |
+| A9 | FinRL | 7쪽 Table 3 | `Annualized return` | A2C 42.57 / PPO 36.17 / DDPG 36.01 / TD3 39.38. **주의:** 한 칸에 숫자가 두 개("46.65%; 42.57%")인데 앞이 주식 거래, **뒤가 포트폴리오 배분**이다. 뒤 숫자가 맞는지 | 있음 | 일치(2026-11-14) |
+| A10 | FinRL | 7쪽 Table 3 | `Sharpe ratio  ` | 뒤 숫자 2.36 / 2.11 / 2.21 / 2.28 | 있음 | 일치(2026-11-14) |
+| A11 | FinRL | 7쪽 Table 3 | `32.84` | DJIA 32.84%, Min-Var 24.10%. 같은 표에 **DJIA Sharpe 2.02, Min-Var 1.98**도 있다(통계 v2의 δ_SR 결정에 씀) | 있음 | 일치(2026-11-14) |
+| A12 | FinRL | 6쪽 | `30 constituent stocks` | 종목 30(우리는 28) | 있음 | 일치(2026-11-14) |
+| A13 | MARS | 5쪽 Table 2 | `29.50` | MARS 행 CR 29.50 / AR 31.19 / SR 2.84 / AVol 10.99 / MDD −5.39 | 있음 | 일치(2026-11-14) |
+| A14 | MARS | 5쪽 Table 2 | `15.36` | DJI Index 행 15.36 / 16.19 / 1.41 / 11.51 / −6.06 | 있음 | 일치(2026-11-14) |
+| A15 | MARS | 5쪽 | `random seed of 42` | 시드 42 | 있음 | 일치(2026-11-14) |
+| A16 | MARS | 5쪽 Table 1 | `2024 Test` | 원문 시험 구간은 **2024-01-01 to 2024-12-31**. 우리 판정은 240거래일 창(2024-01-17~12-27, `notes/mars_t4_o1_prereg.md`)을 썼다. 표기가 이와 같은지만 확인 | 있음 | 일치(2026-11-14) |
+| A17 | Ensemble | 7쪽 TABLE II | `70.4%` | Ensemble 열 70.4% / 13.0% / 9.7% / 1.30 / −9.7%. **주의:** arXiv 재업로드판이다. ACM 판(ICAIF '20)이 있으면 같은지 | 있음 | 일치(2026-11-14) |
+| A18 | Ensemble | 7쪽 TABLE II | `0.47` | DJIA 열 누적 38.6%, Sharpe 0.47 / Min-Variance Sharpe 0.45 | 있음 | 일치(2026-11-14) |
+| A19 | Ensemble | 7쪽 TABLE II | `1.12` | A2C 1.12 / PPO 1.10 / DDPG 0.87 | 있음 | 일치(2026-11-14) |
+| A20 | RAT | 6쪽 Table 2, Crypto-A 블록 | `156.53` | RAT 156.53 ± 14.25 / 7.13 / 304.26 | 있음 | 일치(2026-11-14) |
+| A21 | RAT | 6쪽 Table 2 | `19.69` | MTL 19.69 / 6.90 / 79.21, UCRP 2.37 | 있음 | 일치(2026-11-14) |
+| A22 | RAT | 5쪽 5.1절 | `averaged over 5 runs` | "5회 평균(무작위 초기화 시드, RL 방법 전체)", 같은 절에 학습 80000스텝(암호화폐; 주식은 20000)·L2 감쇠 10^-7(학습률 10^-4)·거래비용 0.25% | 있음 | 일치(2026-11-14) |
 
 **Claude가 찾은 확인할 점 두 개:**
-- A5·A6: 기존 대장·종합표는 AlphaMix+를 "arXiv v3"라고 적었는데, 지금 arXiv에는 **v2까지만** 있다(TMLR 02/2023 표기). v3라는 표기가 OpenReview 판을 말한 것인지 확인이 필요하다. 숫자는 v2 PDF와 같다.
-- A16: 위 "주의" 그대로. 판정 전제(240거래일 창)가 원문 구간 표기와 다르다는 사실을 사용자가 알고 있는지 확인용.
+- A5·A6: (해결 2026-11-14) "v3"는 arXiv 판 번호가 아니라 우리 판정 프로토콜 `notes/prereg_reeval_v3.md`를 가리키는 표기였다. 보고값은 arXiv 2302.00586 v2(TMLR 02/2023)와 같다.
+- A16: (해결 2026-11-14) 사용자가 원문 구간 표기를 확인하고 "일치"로 기재. 240거래일 창 사용은 판정 전제로 별도 기록돼 있다.
 
 ## B. "원문에 없다(미기재)"는 주장 — 원문 전체 검색
 
@@ -50,10 +50,10 @@ PDF: [DeepAries arXiv 2510.14985](https://arxiv.org/pdf/2510.14985) · [AlphaMix
 
 | ID | 주장 | 결과 |
 |---|---|---|
-| B1 | FinRL은 연수익의 집계 방식(시드 수·평균/중앙값)을 적지 않았다 | |
-| B2 | MARS는 에피소드·체크포인트 선택 규칙을 적지 않았다 | |
-| B3 | MARS 번들 체크포인트(C)의 선택 경위가 적혀 있지 않다 | |
-| B4 | DeepAries 논문 ^DJI 6.15%의 기간·연율화 정의가 적혀 있지 않다 | |
+| B1 | FinRL은 연수익의 집계 방식(시드 수·평균/중앙값)을 적지 않았다 |  없음 확인(사용자 검색 2026-11-25, arXiv 2111.09395): seed·average·mean·run·median 검색, 실행 횟수·집계 방식 문장 없음. "seed"는 커뮤니티 문맥, "average"는 이동평균·DJIA·난류 지수·연수익 정의(단일 실행의 기하 연율화)뿐 (Claude가 사용자 보고를 받아 기입) |
+| B2 | MARS는 에피소드·체크포인트 선택 규칙을 적지 않았다 |  없음 확인(사용자 검색 2026-11-25, arXiv 2508.01173): episode·select·best·validation·checkpoint 검색, 보고할 에피소드·체크포인트 선택 규칙 없음. 관련 문장 "Hyperparameters were tuned based on performance on the validation set"(구현 세부)은 하이퍼파라미터 조정이며 보고 모델 선택 규칙이 아님 (Claude가 사용자 보고를 받아 기입) |
+| B3 | MARS 번들 체크포인트(C)의 선택 경위가 적혀 있지 않다 |  없음 확인(사용자 검색 2026-11-25, arXiv 2508.01173): checkpoint·released·pretrained·123 검색 결과 없음. 논문에 체크포인트 언급 자체가 없음 (Claude가 사용자 보고를 받아 기입) |
+| B4 | DeepAries 논문 ^DJI 6.15%의 기간·연율화 정의가 적혀 있지 않다 |  대체로 확인, 범위 좁힘(사용자 검색 2026-11-25, arXiv 2510.14985): Index·CAGR·period·test·annualized·연도 검색. 시험 기간 날짜·Index 행 정의·연율화 정의는 본문에 없음. 단 5쪽 본문에 데이터 전체 길이 "over 20 years"와 "dataset splits and evaluation metrics are provided in our interactive demo"가 있음 → 논문 문장은 "본문에 시험 구간 날짜와 지수 기준선·연율화 정의가 없고 분할은 데모로 미룸"으로 써야 함. Table 1 캡션은 지표 이름만 나열. 연도는 인용 모델 출판 연도·과제 번호뿐 (Claude가 사용자 보고를 받아 기입) |
 
 ## C. 사전 등록이 결과보다 먼저인지
 
@@ -61,11 +61,11 @@ PDF: [DeepAries arXiv 2510.14985](https://arxiv.org/pdf/2510.14985) · [AlphaMix
 
 | ID | 대상 | 사전 등록(최초 커밋) | 결과(최초 커밋) — Claude 기재 | 확인할 것 | 결과 |
 |---|---|---|---|---|---|
-| C1 | T1 DeepAries·T3 FinRL | `notes/prereg_reeval_v3.md` 6f8f512 10-27 23:29 | FinRL judge ff48193 10-28 12:02, DeepAries judge bbe7ceb 10-29 23:59 | 순서, 그리고 사전 등록 뒤 판정 기준(60–67행)이 바뀌었는지 `git log -p 6f8f512.. -- notes/prereg_reeval_v3.md` | |
-| C2 | T2 AlphaMix+ | `notes/alphamix_t2_o1_prereg.md` e2cfe8f 10-29 11:09 | judge eaebe7c 10-30 02:57 | 같음 | |
-| C3 | DeepAries e1·e10 | `notes/deeparies_e10_prereg.md` 051eb94 10-30 14:31 | 결과 787f9e9 10-30 22:43 | 같음 | |
-| C4 | T4 MARS | `notes/mars_t4_o1_prereg.md` 5e3cd6e 11-05 00:43 | 결과 9e0d81b 11-10 12:12 | 같음. 그리고 사전 등록 뒤 판정 코드 변경: `git log -p 5e3cd6e.. -- replication/mars_t4.py` | |
-| C5 | T4 MARS 원시 출력 | — | **원시 출력과 judge JSON은 .gitignore 대상이라 커밋된 적이 없다.** 2026-11-11에 해시를 `notes/mars_t4_hashes_2026-11-11.txt`로 남김 | 11-10 판정 시점의 값이었다는 증거는 결과 노트(9e0d81b)의 숫자뿐이다. 노트의 숫자와 지금 JSON이 같은지 확인 | |
+| C1 | T1 DeepAries·T3 FinRL | `notes/prereg_reeval_v3.md` 6f8f512 10-27 23:29 | FinRL judge ff48193 10-28 12:02, DeepAries judge bbe7ceb 10-29 23:59 | 순서, 그리고 사전 등록 뒤 판정 기준(60–67행)이 바뀌었는지 `git log -p 6f8f512.. -- notes/prereg_reeval_v3.md` |  순서 맞음(사전 등록 6f8f512 10-27 23:29 → T3 ff48193 10-28 12:02, T1 bbe7ceb 10-29 23:59). 사전 등록 뒤 변경 3회, 판정 기준 줄은 불변(추가만). 단 6142dd4("A1 판정 지위 = 확증")는 결과 커밋 ff48193과 같은 초 직전 커밋이라 결과 전 결정이었음을 git으로는 보일 수 없음 (Claude 확인 2026-11-25, 근거 커밋 시각=git log; 사용자 미확인. 상세 notes/claim_ledger_claude_check_2026-11-25.md) |
+| C2 | T2 AlphaMix+ | `notes/alphamix_t2_o1_prereg.md` e2cfe8f 10-29 11:09 | judge eaebe7c 10-30 02:57 | 같음 |  순서 맞음(e2cfe8f 10-29 11:09 → eaebe7c 10-30 02:57). 사전 등록 뒤 변경 없음 (Claude 확인 2026-11-25, 근거 커밋 시각=git log; 사용자 미확인. 상세 notes/claim_ledger_claude_check_2026-11-25.md) |
+| C3 | DeepAries e1·e10 | `notes/deeparies_e10_prereg.md` 051eb94 10-30 14:31 | 결과 787f9e9 10-30 22:43 | 같음 |  순서 맞음(051eb94 10-30 14:31 → 787f9e9 10-30 22:43). 사전 등록 뒤 변경 없음 (Claude 확인 2026-11-25, 근거 커밋 시각=git log; 사용자 미확인. 상세 notes/claim_ledger_claude_check_2026-11-25.md) |
+| C4 | T4 MARS | `notes/mars_t4_o1_prereg.md` 5e3cd6e 11-05 00:43 | 결과 9e0d81b 11-10 12:12 | 같음. 그리고 사전 등록 뒤 판정 코드 변경: `git log -p 5e3cd6e.. -- replication/mars_t4.py` |  순서 맞음(5e3cd6e 11-05 00:43 → 9e0d81b 11-10 12:12). 결과 전 mars_t4.py 변경 4회(f2917c7·0789a9c·506276d·dcfcf24)는 실행기·재개·스냅숏 함수뿐, 판정 함수·허용 폭 불변 (Claude 확인 2026-11-25, 근거 커밋 시각=git log; 사용자 미확인. 상세 notes/claim_ledger_claude_check_2026-11-25.md) |
+| C5 | T4 MARS 원시 출력 | — | **원시 출력과 judge JSON은 .gitignore 대상이라 커밋된 적이 없다.** 2026-11-11에 해시를 `notes/mars_t4_hashes_2026-11-11.txt`로 남김 | 11-10 판정 시점의 값이었다는 증거는 결과 노트(9e0d81b)의 숫자뿐이다. 노트의 숫자와 지금 JSON이 같은지 확인 |  mars_t4_hashes_2026-11-11.txt 99개 해시가 현재 파일과 모두 일치. 현재 judge_o1.json 재계산값(L CR 15.26·SR 1.43, N 26.41·2.33, C 29.68·2.54)이 결과 노트 9e0d81b 숫자와 같음. 11-10 시점 값이라는 증거는 여전히 노트 숫자뿐 (Claude 확인 2026-11-25, 근거 커밋 시각=git log; 사용자 미확인. 상세 notes/claim_ledger_claude_check_2026-11-25.md) |
 
 ## D. 우리 값 재계산 — 판정을 다시 돌려 같은 값이 나오는지
 
@@ -75,19 +75,19 @@ Claude가 2026-11-12에 맥에서 D1~D5·D7을 실행했다. 모두 저장값과
 
 | ID | 대상 | 명령 | 결과 |
 |---|---|---|---|
-| D1 | 종합표 | `python3 replication/reproduction_synthesis.py && git diff replication/reproduction_synthesis.csv` | Claude 실행 2026-11-12: 차이 없음 |
-| D2 | DeepAries O1 | `python3 replication/deeparies_run.py judge1` (출력은 `replication/deeparies/runs/judge_o1.json`에 생기므로 추적 중인 `replication/deeparies/judge_o1.json`과 비교) | Claude 실행 2026-11-12: 시드별 값·선택·등급 동일. 새 출력에 기록용 항목 3개(검증 손실 기록·장치·분)만 추가됨 |
-| D3 | AlphaMix+ | `python3 replication/alphamix_t2.py judge1 <결과 폴더>`(원본은 일일 파일이 없어 실패한다. 결과 노트대로 `python3 replication/alphamix_t2/judge1_without_daily_check.py judge1 replication/alphamix_t2` 사용) | Claude 실행 2026-11-12: JSON 완전 동일 |
-| D4 | FinRL | `python3 replication/finrl_t3_run.py judge` | Claude 실행 2026-11-12: 파일 바이트 동일(git diff 없음) |
-| D5 | MARS | `cp -r data/mars_t4/judge_o1.json /tmp/j_old.json && MARS_WORK=.marswork MARS_OUT=data/mars_t4 python3 replication/mars_t4.py judge && diff <(python3 -m json.tool /tmp/j_old.json) <(python3 -m json.tool data/mars_t4/judge_o1.json)` | Claude 실행 2026-11-12: JSON 완전 동일(C 결정적, CR 29.679) |
-| D6 | 손 계산 1건 | 아무 행 하나를 골라 시드 값(JSON)으로 중앙값·평균·허용 폭 판정을 계산기로 직접 계산 | |
-| D7 | FinRL DDPG 경계 | 판정이 0.005%p 차이로 실패다. JSON은 소수 2자리라 표에서는 재계산할 수 없다. 원시 CSV(`replication/finrl_t3/o1/ddpg_W0_a_s*.csv`)로 미반올림 중앙값을 계산 | Claude 실행 2026-11-12: 시드 41.9438·36.6951·38.9331·34.7620·37.6049, 중앙 37.6049, 차 1.5949 > 허용 1.59, 초과 0.0049%p. 기록과 일치 |
+| D1 | 종합표 | `python3 replication/reproduction_synthesis.py && git diff replication/reproduction_synthesis.csv` | Claude 실행 2026-11-12: 차이 없음. **사용자 실행 2026-11-25**(`python3 replication/regenerate_all.py`, manifest_mac.json): 재현 종합표 바이트 동일 |
+| D2 | DeepAries O1 | `python3 replication/deeparies_run.py judge1` (출력은 `replication/deeparies/runs/judge_o1.json`에 생기므로 추적 중인 `replication/deeparies/judge_o1.json`과 비교) | Claude 실행 2026-11-12: 시드별 값·선택·등급 동일. 새 출력에 기록용 항목 3개(검증 손실 기록·장치·분)만 추가됨. **사용자 실행 2026-11-25**(`python3 replication/regenerate_all.py`, manifest_mac.json): DeepAries O1 내용 동일 + 기록용 키 추가(검증 손실 기록·장치·분) |
+| D3 | AlphaMix+ | `python3 replication/alphamix_t2.py judge1 <결과 폴더>`(원본은 일일 파일이 없어 실패한다. 결과 노트대로 `python3 replication/alphamix_t2/judge1_without_daily_check.py judge1 replication/alphamix_t2` 사용) | Claude 실행 2026-11-12: JSON 완전 동일. **사용자 실행 2026-11-25**(`python3 replication/regenerate_all.py`, manifest_mac.json): AlphaMix+ O1 바이트 동일 |
+| D4 | FinRL | `python3 replication/finrl_t3_run.py judge` | Claude 실행 2026-11-12: 파일 바이트 동일(git diff 없음). **사용자 실행 2026-11-25**(`python3 replication/regenerate_all.py`, manifest_mac.json): FinRL O1·O2·O6 바이트 동일 |
+| D5 | MARS | `cp -r data/mars_t4/judge_o1.json /tmp/j_old.json && MARS_WORK=.marswork MARS_OUT=data/mars_t4 python3 replication/mars_t4.py judge && diff <(python3 -m json.tool /tmp/j_old.json) <(python3 -m json.tool data/mars_t4/judge_o1.json)` | Claude 실행 2026-11-12: JSON 완전 동일(C 결정적, CR 29.679). **사용자 실행 2026-11-25**(`python3 replication/regenerate_all.py`, manifest_mac.json): MARS O1 바이트 동일 |
+| D6 | 손 계산 1건 | 아무 행 하나를 골라 시드 값(JSON)으로 중앙값·평균·허용 폭 판정을 계산기로 직접 계산 | 사용자 손 계산 2026-11-25: AlphaMix+ S2021(`replication/alphamix_t2/judge_o1.json`), 시드 TR 평균 18.47, \|18.47−20.7\|=2.23 > 허용 1.61(=2×1.8/√5) → R1 실패. JSON과 일치(Claude가 사용자 보고를 받아 기입) |
+| D7 | FinRL DDPG 경계 | 판정이 0.005%p 차이로 실패다. JSON은 소수 2자리라 표에서는 재계산할 수 없다. 원시 CSV(`replication/finrl_t3/o1/ddpg_W0_a_s*.csv`)로 미반올림 중앙값을 계산 | Claude 실행 2026-11-12: 시드 41.9438·36.6951·38.9331·34.7620·37.6049, 중앙 37.6049, 차 1.5949 > 허용 1.59, 초과 0.0049%p. 기록과 일치. **사용자 실행 2026-11-25**(`python3 replication/regenerate_all.py`, manifest_mac.json): FinRL O1(DDPG 경계 포함) judge_W0.json 바이트 동일 |
 
 ## E. 직접 다시 실행 — Claude 없이 (가장 강한 확인, 1건이면 충분)
 
 | ID | 대상 | 기대값 | 결과 |
 |---|---|---|---|
-| E1 | MARS C(번들 체크포인트 평가, 결정적) | CR 29.68, SR 2.54(W240) | |
+| E1 | MARS C(번들 체크포인트 평가, 결정적) | CR 29.68, SR 2.54(W240) | 사용자 직접 실행 2026-11-25(맥 CPU, `.marswork/N` 6ca2051에서 원 코드 `python3 main.py --mode test --model_path checkpoints/dji2024_seed123_ep130 --device cpu`): return 0.28888551058140954, sharpe 2.164362692589101, MDD 0.06714208979763184, composite 0.27527480168016555. `data/mars_t4/C/run1_metrics.csv`와 전 자리 일치. 기대값 CR 29.68·SR 2.54는 판정 스크립트의 W240 창 값이라 원 출력과 직접 비교 대상 아님(Claude가 사용자 출력을 받아 기입) |
 | E2 | (대안) FinRL PPO 시드 1개 | `judge_W0.json`의 같은 시드 연수익 | |
 
 ## F. 코드 존재 여부(F1)
@@ -112,6 +112,6 @@ python3 -c "import random;random.seed(20261111);print(random.sample(['jiang2017c
 |---|---|---|
 | G1 | 논문 참고문헌에 넣는 모든 문헌의 제목·저자·연도·학회가 실제와 같은지(arXiv·DOI로) | |
 | G2 | 표본 목록(`notes/lit/lit_survey_merged.csv`)에서 무작위 10편이 실제로 있는 논문인지 | |
-| G3 | 저자 문의(DeepAries, PRUDEX)가 실제로 발송됐는지(본인 메일함) | |
-| G4 | MARS L 커밋 2561606이 "논문 시점 코드"라는 근거: 커밋 날짜와 논문 제출·게재일 비교 | |
-| G5 | MARS N의 "BMID 대역이 체크포인트 추가 커밋에서 넓어짐": 해당 커밋 diff를 직접 보기 | |
+| G3 | 저자 문의(DeepAries, PRUDEX)가 실제로 발송됐는지(본인 메일함) | 사용자 보고 2026-11-25: 문의한 3명(DeepAries·PRUDEX·MASA) 모두 발송, 답장 없음. 추가 문의 안 함. **발송 날짜 미기입**(보낸편지함에서 확인 필요)(Claude가 사용자 보고를 받아 기입) |
+| G4 | MARS L 커밋 2561606이 "논문 시점 코드"라는 근거: 커밋 날짜와 논문 제출·게재일 비교 |  2561606 = 2025-07-30 03:33 UTC, arXiv v1(2025-08-02 03:23 UTC) 사흘 전 초기 업로드의 마지막 코드 커밋. v1 이후 2026-07-10까지 코드 파일 변경 없음(마지막 arXiv 갱신 2025-12-02 시점도 이 코드). 논문 시점 코드로 볼 근거는 있으나 논문 수치를 이 코드로 냈다는 직접 증거는 아님 (Claude 확인 2026-11-25, 근거 커밋 시각=git log; 사용자 미확인. 상세 notes/claim_ledger_claude_check_2026-11-25.md) |
+| G5 | MARS N의 "BMID 대역이 체크포인트 추가 커밋에서 넓어짐": 해당 커밋 diff를 직접 보기 |  맞음. 6ca2051(2026-07-10) config.py BMID_EPISODE_MAX 150→200, 성과 중심값(0.25·1.80·0.11) 불변. 같은 커밋에서 체크포인트 dji2024_seed123_ep130·RELEASED_CHECKPOINT_PATH 추가, BMID 결과 없으면 체크포인트 로드로 main.py 변경 (Claude 확인 2026-11-25, 근거 커밋 시각=git log; 사용자 미확인. 상세 notes/claim_ledger_claude_check_2026-11-25.md) |

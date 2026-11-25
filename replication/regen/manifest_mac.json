@@ -1,6 +1,6 @@
 {
- "git_head": "77611ecfcd02c16502ffb8eef21b0910a2050382",
- "date": "2026-11-14 20:37",
+ "git_head": "78269fa9d2e68d2e662edd4a916580cfb4a9f147",
+ "date": "2026-11-25 23:43",
  "python": "3.9.6",
  "steps": [
   {
@@ -8,7 +8,7 @@
    "cmd": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 replication/finrl_t3_run.py judge",
    "env": null,
    "rc": 0,
-   "seconds": 1.2,
+   "seconds": 0.8,
    "files": [
     {
      "path": "replication/finrl_t3/o1/judge_W0.json",
@@ -23,7 +23,7 @@
    "cmd": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 replication/finrl_t3_run.py judge2",
    "env": null,
    "rc": 0,
-   "seconds": 6.9,
+   "seconds": 7.0,
    "files": [
     {
      "path": "replication/finrl_t3/o2/judge_o2.json",
@@ -38,7 +38,7 @@
    "cmd": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 replication/finrl_t3_run.py judge6",
    "env": null,
    "rc": 0,
-   "seconds": 0.9,
+   "seconds": 1.0,
    "files": [
     {
      "path": "replication/finrl_t3/o6/judge_o6.json",
@@ -53,7 +53,7 @@
    "cmd": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 replication/deeparies_run.py judge1",
    "env": null,
    "rc": 0,
-   "seconds": 0.5,
+   "seconds": 0.4,
    "files": [
     {
      "path": "replication/deeparies/judge_o1.json",
@@ -93,7 +93,7 @@
     "DA_RUNS": "replication/deeparies/e10"
    },
    "rc": 0,
-   "seconds": 0.5,
+   "seconds": 0.4,
    "files": [
     {
      "path": "replication/deeparies/e10/judge_e.json",
@@ -157,8 +157,8 @@
    "files": [
     {
      "path": "notes/lit/f1/funnel_table.csv",
-     "sha256_committed": "de70be2627ede49cc8e72c561fa25ec601725a4bdf3fbb1e514a345602c48667",
-     "sha256_regenerated": "de70be2627ede49cc8e72c561fa25ec601725a4bdf3fbb1e514a345602c48667",
+     "sha256_committed": "de6b4a8ec0e18540114027e166043af15406f48a35769fc578229fe17a6050b2",
+     "sha256_regenerated": "de6b4a8ec0e18540114027e166043af15406f48a35769fc578229fe17a6050b2",
      "status": "바이트 동일"
     }
    ]
