@@ -82,3 +82,15 @@ F2 비고:
   - 5종목을 왜 골랐는지는 논문과 코드에 없다.
   - 거래비용(코드 0.1%)은 위 등가중 계산에 넣지 않았다.
 - F4·F7 여부: 이 관찰로 F7 비교 대상(보고값 대 자체 실행)의 의미가 달라진다. 사전 등록을 쓸 때 "논문 서술(DJ30) 기준"과 "저자 실행(5종목) 기준" 중 무엇으로 할지를 먼저 정해야 한다.
+- **반박 심사 반영(2026-11-25).**
+  - **Sharpe 정의 정정.** 저자 평가 코드 `draw/draw.py`의 Sharpe는 rf = 0.02다(`(mean − 0.02/252)/std·√252`). 같은 정의로 다시 재면 5종목 등가중 매일 재조정이 **2.01**, 매수 후 보유가 1.95다(위의 2.14·2.08은 rf = 0). KDD 2.03과는 2.01로 비교한다. 연수익 37.0%는 그대로다. 0.1% 비용을 넣으면 36.7%다(심사자 계산).
+  - **유니버스 차이는 코드로 지지된다(Claude 직접 확인).** KDD 스크립트 `draw/algo/knowledgement_drill_ddpg.py` 77–80행의 5종목 필터는 **켜져 있다**. DDPG 기준선 후보 `draw/algo/ddpg_data.py`는 같은 필터가 주석 처리되어 있다. `BAH.py` 등 기준선은 `DOW_30_TICKER`를 쓴다. 다만 결과 파일과 스크립트의 대응은 확인하지 않았다.
+  - **종가 정의 비대칭(심사자).** KDD 쪽(YahooDownloader)은 수정 종가를 쓰고, BAH·CRP는 `yf.download(...)['Close']`를 쓴다. 이 비대칭은 연 1~2%p 정도 KDD에 유리할 수 있다.
+  - **종목 선택(심사자, 탐색적).**
+    - 다섯 종목은 거래 구간 총수익 순위로 29종목 중 1·2·3·6·7위다(BA, UNH, AAPL, CRM, V).
+    - 무작위 5종목 등가중이 연 37%를 넘는 비율은 약 0.02%다(2만 회).
+    - 학습 구간 수익 상위 5개 규칙으로는 이 조합이 나오지 않는다.
+    - 그래도 의도는 증명되지 않으므로 "사후 선택"이라고 쓰지 않는다. "거래 구간 성과 상위 종목과 겹친다"고만 쓴다.
+  - **남는 대안 설명.** 의도적인 5종목 실험인데 논문에서 생략했을 수 있다. 또는 표·그림에 다른 실행(29종목 실행 폴더도 있음)이 섞였을 수 있다. 공개된 표가 어느 실행에서 나왔는지는 확인하지 않았다.
+  - 재현 판정이 아니다. 정적·탐색적 관찰로만 보고한다.
+- 논문용 문구(심사 권장안): "In the authors' public code, the script producing the KDD curve restricts the universe to five tickers (AAPL, BA, CRM, UNH, V), whereas the baseline scripts use the Dow Jones 30 and the paper describes a Dow Jones 30 universe. Over the same trading window, a zero-cost equal-weight portfolio of these five stocks yields an annualized return of 37.0% and a Sharpe ratio of 2.01 (risk-free rate 2%, as in the authors' evaluation code), comparable to the reported KDD values (38.74%, 2.03). These five stocks rank among the top seven of the 29 constituents by trading-period return; the selection rationale is not stated. We report this as an exploratory static observation; it does not constitute a reproduction outcome, and we did not verify which run produced the published table."
