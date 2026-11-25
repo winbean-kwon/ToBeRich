@@ -148,3 +148,25 @@
   - 분류: d ≤ 5 → "사실상 매수 후 보유(처음 며칠 매수)", 5 < d ≤ 30 → "초반 거래 후 보유", 없음 → "매수 후 보유 아님(5종목 기준)".
   - 대조: richard.csv(= 저자 originate_ddpg.csv)가 d = 1, UNH 96·AAPL 1로 나와야 한다. 아니면 이 절의 결과는 쓰지 않는다.
 - **한계(미리 적음):** 5종목 기준이다. 곡선이 29종목 실행에서 나왔다면 "아님"으로 나올 수 있고, 그 경우 원인을 가리지 않는다. 사후 분석이므로 논문에는 관찰로만 쓴다.
+
+### 7.1 결과(2026-11-25, 1회 실행, 탐색적) — `replication/p2407_bh_fit.json`
+- **대조 통과:** richard(= richard4, 같은 sha256)는 d = 1, UNH 96·AAPL 1로 나왔다.
+- **네 곡선 모두 "사실상 매수 후 보유", d = 1, 최대 잔차 3.6e-12달러:**
+
+  | 곡선 | 보유 | Sharpe |
+  |---|---|---|
+  | richard = richard4 | UNH 96, AAPL 1 | 1.806 |
+  | richard1 | UNH 27, V 100, AAPL 1 | 1.724 |
+  | richard2 | BA 79, AAPL 1 | 1.610 |
+  | richard3 | UNH 96 | 1.804 |
+
+- **5개 파일의 날짜별 평균 = Table 1 KDD 행과 소수 둘째 자리까지 같다:** 138.379 / 38.741 / 2.027 / −11.464.
+- **반박 심사로 고친 점**(독립 재계산, 조건수 87, 정수 ±1 바꾸면 잔차 20.6달러 → 우연한 맞춤 아님):
+  - **시점:** 첫날(day 0) 종가에 사서 0.1% 비용을 냈고, day 1부터 보유가 반영된다(day 0까지 포함한 잔차 9.4달러 = 매수금액의 0.1000%). V 100주는 `hmax` 상한과 같다.
+  - **중복이 2.03을 만든 게 아니다:** 중복을 빼고 4개만 평균해도 Sharpe가 2.048이다(직접 확인). 매수 후 보유 곡선의 평균은 그 자체가 하나의 정적 보유(대략 UNH 63, V 20, BA 15.8, AAPL 0.8주)이다. 2.03이 개별 곡선(1.61~1.81)보다 높은 이유는 보유가 더 분산됐기 때문이다. "부풀림"이라고 쓰지 않는다.
+  - **같은 곡선 두 개 = 파일 복사라고 단정하지 않는다.** 심사자에 따르면 두 폴더의 모델 zip은 서로 다르다(d27b4400, b37e2bb5). 포화된 상수 정책이면 서로 다른 실행이 같은 곡선을 낼 수 있다(우리 시드 0 = 3과 같은 현상).
+  - **5종목 근거는 잔차가 아니라 출처다:** 심사자의 tree API 확인에 따르면 각 곡선은 `final/`의 별도 실행 폴더에 있고, 폴더의 trade_data.csv는 모두 같은 blob이며 로컬 5종목 파일과 같다.
+  - **출처 한계:** richard*.csv는 스크립트 출력(originate_ddpg.csv)을 이름만 바꾼 파일로 보인다. 같은 스크립트에는 증류 코드가 없다. 따라서 "저자 DDPG 스크립트 실행 폴더의 곡선"까지만 쓰고, "증류(KDD) 모델의 출력"이라고 쓰지 않는다.
+- **주장하지 않는 것:** 저자 의도(선택 보고, 의도적 중복), 증류 효과, 다른 데이터·실행으로 일반화.
+- **선행 비판:** 찾지 못함(SOTAVerified 재현 0건, 검색 1회).
+- **논문 문구(심사 권장안):** "The reported KDD curve is the date-wise mean of five stored run outputs (two of them identical), and it reproduces the reported metrics exactly. Each output equals an integer-share position bought at the first day's close (0.1% transaction cost) and held unchanged to the end of the test period (UNH 96 + AAPL 1; UNH 27 + V 100 + AAPL 1; BA 79 + AAPL 1; UNH 96; maximum absolute residual below 1e-11 USD). The average is therefore itself a static buy-and-hold portfolio; its Sharpe ratio (2.03) exceeds that of every constituent (1.61–1.81) because the averaged holdings are more diversified."
