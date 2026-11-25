@@ -14,7 +14,7 @@
 | Liu 2020 FinRL library | Liu et al.(7인). FinRL: A deep reinforcement learning library for automated stock trading in quantitative finance. NeurIPS 2020 Deep RL Workshop | arXiv 2011.09607 | 다른 논문이다. 혼동 주의 |
 | Sun 2023 PRUDEX | Sun, Qin, Wang, An. PRUDEX-Compass: Towards systematic evaluation of RL in financial markets. TMLR 2023 | arXiv 2302.00586 | T2(AlphaMix+). TMLR 게재 정보는 arXiv에 없음 → OpenReview로 사용자 확인 |
 | Kim 2025 DeepAries | Kim, Yi, Gim, Choi, Kang(5인). DeepAries: Adaptive rebalancing interval selection for enhanced portfolio selection. CIKM 2025, 5780–5787 | 10.1145/3746252.3761572; arXiv 2510.14985 | T1 |
-| Chen 2025 MARS | Chen, Li, Wang. MARS: A meta-adaptive RL framework for risk-aware multi-agent portfolio management. AAAI 2026(arXiv 주석 "Accepted") | arXiv 2508.01173 | 게재본 쪽수 미확인 |
+| Chen 2026 MARS | Chen, Li, Wang. MARS: A meta-adaptive RL framework for risk-aware multi-agent portfolio management. AAAI 2026, 40(24):20092–20099(사전 등록 노트 기준) | arXiv 2508.01173 | 인용 연도는 2026으로 통일 |
 | Gu 2023 Margin Trader | Gu, Du, Rahman, Wang. Margin Trader: A RL framework for portfolio management with margin and constraints. ICAIF 2023, 610–618 | 10.1145/3604237.3626906 | |
 | Pretorius & van Zyl 2022 | Deep RL and convex mean-variance optimisation for portfolio management | arXiv 2203.11318 | 게재 여부 미확인 → arXiv로 인용 |
 | Hu & Gu 2024 | Markowitz Meets Bellman: Knowledge-distilled RL for portfolio management | arXiv 2405.05449 | 게재처 정보 없음(arXiv·Crossref). "KDD"는 학회가 아니라 논문 Table 1의 방법 이름이다. 영어 초안 Y.3과 Table 3에서 학회처럼 읽히던 표기를 고쳤다 |
@@ -58,6 +58,7 @@
 | Fujimoto et al. 2018 TD3 | Addressing function approximation error in actor-critic methods. ICML 2018 | arXiv 1802.09477 |
 | Raffin et al. 2021 SB3 | Stable-Baselines3: Reliable RL implementations. JMLR 22(268):1–8 | jmlr.org v22/20-1364 |
 | Ledoit & Wolf 2008 | Robust performance hypothesis testing with the Sharpe ratio. JEF 15(5):850–859 | 10.1016/j.jempfin.2008.03.002 |
+| Götze & Künsch 1996 | Second-order correctness of the blockwise bootstrap for stationary observations. Ann. Stat. 24(5):1914–1933 | 10.1214/aos/1069362303 |
 | Künsch 1989 | The jackknife and the bootstrap for general stationary observations. Ann. Stat. 17(3):1217–1241 | 10.1214/aos/1176347265 |
 | Politis & Romano 1994 | The stationary bootstrap. JASA 89(428):1303–1313 | 10.1080/01621459.1994.10476870 |
 | Andrews 1991 | HAC covariance matrix estimation. Econometrica 59(3):817–858 | 10.2307/2938229 |
@@ -73,5 +74,5 @@
 - PRUDEX-Compass의 TMLR 게재 정보, PPN의 TKDE 권호, MARS의 AAAI 쪽수, EarnMore의 WWW 쪽수, Hu & Gu의 게재처.
 
 ## 5. 결과 요약
-- 표의 49건은 모두 실재하고, 서지가 노트의 표기와 맞았다. 차이는 위 비고에 적었다(Lavko 게재처, Ensemble 제목의 부제, FinRL 두 논문의 구분).
+- 표의 50건은 모두 실재하고(Götze & Künsch 1996은 심사 지적으로 추가), 서지가 노트의 표기와 맞았다. 차이는 위 비고에 적었다(Lavko 게재처, Ensemble 제목의 부제, FinRL 두 논문의 구분).
 - 실재를 확인하지 못한 것은 Aarnio 1건이다(Buczyński는 대조하지 않음).

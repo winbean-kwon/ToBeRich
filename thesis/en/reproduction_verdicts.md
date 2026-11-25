@@ -8,7 +8,7 @@
 
 For each target we fixed, before running anything, the reported value to be compared, the aggregation over runs, and two criteria.
 
-- **R1 (value).** Our aggregate lies within a tolerance band around the reported value. The half-width of the band is half the gap between the reported value and the strongest external baseline reported in the same table, so that a result counts as reproduced only if it is closer to the reported value than to the point where the paper's advantage would vanish.
+- **R1 (value).** Our aggregate lies within a tolerance band around the reported value. The half-width of the band is half the gap between the reported value and a comparator taken from the same table and fixed in advance for each target: usually the market index against which the paper states its advantage, or the strongest reported baseline where the claim is made against learned baselines. A result therefore counts as reproduced only if it is closer to the reported value than to the comparator.
 - **R2 (claim).** The paper's comparative claim — typically that the method outperforms its strongest reported baseline — holds in our runs, with a minimum number of runs specified per target.
 
 A target is *reproduced* if both criteria hold, *partially reproduced* if exactly one holds, and *not reproduced* if neither holds. Aggregation follows the paper where it is stated (for example, a seed-selection rule) and is otherwise fixed in advance (mean or median over seeds). We used the authors' public code at the version closest to publication, modifying it only to run on our hardware, to log outputs, or to fix errors that prevent execution, and we report every such change.

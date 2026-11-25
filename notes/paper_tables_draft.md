@@ -39,7 +39,7 @@ Notes for the text (not table content):
 
 ## Table 2. Reproduction verdicts against reported values
 
-R1: our aggregate falls within the tolerance band (half the gap between the reported value and the strongest reported external baseline). R2: the paper's comparative claim holds in our runs. Verdict: both → reproduced; one → partially reproduced; neither → not reproduced.
+R1: our aggregate falls within the tolerance band (half the gap between the reported value and a comparator from the same table fixed in advance per target, usually the market index named in the paper's claim). R2: the paper's comparative claim holds in our runs. Verdict: both → reproduced; one → partially reproduced; neither → not reproduced.
 
 | Paper (target) | Metric | Reported | Tolerance | Ours | Runs in band | R1 | R2 | Verdict |
 |---|---|---:|---:|---:|---:|:-:|:-:|---|
