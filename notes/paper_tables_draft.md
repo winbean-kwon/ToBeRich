@@ -1,7 +1,7 @@
 # Paper tables — draft (2026-11-14, Table 3 추가 2026-11-25)
 
 > Working note (Korean header for the repo; table text is in paper English).
-> 상태: 초안. 출처는 `notes/lit/f1/funnel_table.csv`(funnel_table.py 출력)와 `replication/reproduction_synthesis.csv`. F1 재확인은 반영했다(2026-11-24, 54편 사람 확인 완료, `notes/lit/f1/f1_recheck_log.md`). **잠정:** 대장 A절(보고값 원문 대조) 결과에 따라 Table 2 수치가 바뀔 수 있다. 재현율을 한 수치로 합치지 않는다(프로토콜 0장). 표 본문에는 과정 기록(커밋·시도 횟수·감사 경위)을 넣지 않는다.
+> 상태: 초안. 출처는 `notes/lit/f1/funnel_table.csv`(funnel_table.py 출력)와 `replication/reproduction_synthesis.csv`. F1 재확인은 반영했다(2026-11-24, 54편 사람 확인 완료, `notes/lit/f1/f1_recheck_log.md`). 대장 A절(보고값 원문 대조)은 2026-11-14 사용자 확인으로 모두 "일치"다(Table 2 보고값 확정). Table 2 각주 c(AlphaMix+ 판정 민감도)는 2026-11-25 사용자 결정으로 넣는다. 재현율을 한 수치로 합치지 않는다(프로토콜 0장). 표 본문에는 과정 기록(커밋·시도 횟수·감사 경위)을 넣지 않는다.
 
 ---
 

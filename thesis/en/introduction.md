@@ -1,0 +1,58 @@
+# Introduction (English draft, 2026-11-25)
+
+> Working draft for thesis chapter 1, written after the methods, verdict, funnel and re-evaluation drafts (`thesis/en/methods_limitations.md`, `reproduction_verdicts.md`, `funnel_methods_results.md`, `reevaluation_results.md`). Every number below is taken from those drafts or from `notes/paper_tables_draft.md`; re-check against them after any change. Citations are limited to entries in `notes/references_verified_2026-11-25.md`; content-level claims about cited work follow `notes/lit/repro_literature_verified.md`. Revised after an adversarial review (14 points, all applied). [check] marks items to settle before submission. No process details in the text.
+
+---
+
+# Chapter 1. Introduction
+
+## 1.1 Motivation
+
+Deep reinforcement learning (RL) has become a common approach to portfolio allocation. A typical paper trains a policy that maps recent market data to portfolio weights, evaluates it on a held-out period, and reports that it outperforms a market index and a set of baselines (e.g., Jiang et al., 2017; Liu et al., 2021; Sun et al., 2023; Kim et al., 2025; Chen et al., 2026). Such reports can be difficult to assess from the papers alone. Results may be given for a single test period; the number of training runs and how a reported run was chosen from them may not be stated; transaction costs are described in the text, but whether the code charges them is not usually shown; and the comparison set may omit the equal-weight (1/N) portfolio, which is known to be hard to beat out of sample (DeMiguel et al., 2009).
+
+Two lines of prior work bear on this situation. Studies of reproducibility in machine learning have shown that RL results are sensitive to random seeds, implementation details and evaluation choices (Henderson et al., 2018), that papers document only a fraction of the information needed to reproduce them (Gundersen and Kjensmo, 2018), and that independent reimplementation succeeded for 63.5% of 255 papers in one large attempt (Raff, 2019). In finance, large-scale replications of published return anomalies have reached different conclusions about how many survive (Hou et al., 2020; Jensen et al., 2023).
+
+Closer to our setting, a survey of RL trading systems found source code for only one of 29 papers (Felizardo et al., 2022), and a preprint auditing 685 stock-prediction studies, including deep RL, reported code for 7.6% of them (Srikantha et al., 2026). Published code has been re-run for deep-learning price prediction from limit order books, with performance below the reported values (Prata et al., 2024), and the authors of a financial RL framework have reproduced papers of their own group within it (Liu et al., 2022). Benchmarking studies have re-run open-source deep RL agents under common conditions (Velay et al., 2023), and Kruthof and Müller (2025) report that deep RL allocations did not beat 1/N. We are not aware of independent re-runs of the official code of RL portfolio papers, with criteria fixed in advance, that ask whether the code yields the reported values and whether any advantage remains once transaction costs are charged and 1/N is included as a baseline. This is the gap the present study addresses.
+
+## 1.2 Research questions
+
+We address three questions for papers that propose an RL method for multi-asset portfolio allocation.
+
+- **RQ1 (availability).** For how many papers can a reproduction from the authors' code be attempted at all, and at which stage do the others drop out?
+- **RQ2 (reproduction).** When the authors' code is run under its own procedure, does it yield the reported values and support the paper's comparative claim?
+- **RQ3 (robustness).** For pre-selected methods whose results are reproduced at least in part, does the advantage remain under a common protocol with correctly charged transaction costs, a cash start, several test windows, several seeds and an equal-weight baseline?
+
+## 1.3 Approach
+
+For RQ1, we followed 69 papers from three samples through a fixed sequence of stages (the reproduction funnel): eligibility, availability of official code, completeness of the code, availability of reported values to compare against, availability of the data, execution, compute budget and, finally, a reproduction verdict. Each paper is counted once, at the first stage it does not pass. Exits at the execution and compute stages are outcomes under our environment and time limits and are not counted as reproduction failures. By design, at most two papers in a fixed order could receive a verdict. Because most papers exited at the code-availability stage, every such judgment was re-checked by a human rater.
+
+For RQ2, we ran the official code of four methods selected in advance for in-depth study (DeepAries, AlphaMix+, the FinRL portfolio agents and MARS) and of the two papers that reached the last stage of the funnel (the ensemble strategy of Yang et al., 2020, and the Relation-Aware Transformer of Xu et al., 2020). For each, the reported value, the aggregation over runs and two criteria — whether our aggregate lies within a tolerance band around the reported value (R1) and whether the paper's comparative claim holds in our runs (R2) — were fixed before any performance output was produced or opened. Code was modified only within a pre-specified set of permitted changes (compatibility, date and split arguments, logging), and every change is reported. Three further papers were run outside the fixed order and are reported as exploratory.
+
+For RQ3, we first checked whether each official environment of the pre-selected methods charges the transaction cost it is configured with, by driving the runnable environments with injected actions (one environment was assessed by reading the code only). Among the pre-selected methods, those reproduced at least in part — in practice, the four FinRL agents — were then retrained and evaluated under a unified protocol with a reference cost model and compared with a daily-rebalanced equal-weight portfolio of the same assets, using pre-specified classification rules and block-bootstrap effect sizes. Diagnostics of what the trained policies do were added afterwards and are labelled exploratory.
+
+## 1.4 Summary of findings
+
+**Availability.** Of the 52 papers in our main sample, 31 exited at the code-availability stage, 25 of them because no official code could be found (authors were not contacted). Two papers reached a reproduction verdict through the funnel; five further papers passed the execution stage but did not receive a verdict because the two places had been filled. Across the three samples, the human check of the 44 papers that had not passed the code-availability stage located official code for five, in each case only through an author's personal GitHub account. Because a search of author accounts found only two of five repositories already known to us, "no official code found" is an upper bound on the number of papers without code.
+
+**Reproduction.** None of the six papers was fully reproduced with the code as of publication and the definitions fixed in advance. Three were partially reproduced (FinRL, the ensemble strategy and the Relation-Aware Transformer) and three were not reproduced (DeepAries, AlphaMix+ and MARS). Within FinRL, two of four algorithms (PPO and TD3) were reproduced individually. For two papers, the verdict changes with a choice the paper leaves unspecified (the reported training epoch and the definition of the market average for AlphaMix+) or with the code version (a later revision of the MARS repository by its authors yields a reproduced verdict).
+
+**Costs.** Of three official environments checked, two did not charge the transaction cost they were configured with, and the third charged it with a formula different from the one stated in the paper, with a negligible effect at the paper's fee.
+
+**Robustness.** Under the unified protocol, none of the four FinRL algorithms retained an advantage over equal weight. Two lost it, mainly through turnover generated by stochastic prediction (for A2C, this classification depends on the prediction setting); the other two were indeterminate, with differences in annualized log growth inside a pre-specified equivalence margin of ±2.36 percentage points per year and Sharpe-ratio differences undetermined. Exploratory diagnostics showed that these two had become fixed-weight portfolios and that PPO behaved like its untrained initialization; the reproduced advantage over the index in the paper's test year is consistent with an allocation close to equal weight having outperformed the index in that year. In an exploratory reproduction of a further paper, whose released code uses five stocks rather than the 30 described and omits the proposed distillation component, the stored runs behind the reported curve were positions bought on the first day and held unchanged; retraining met the value criterion, but no seed exceeded an equal-weight portfolio of the same five stocks.
+
+## 1.5 Contributions
+
+1. A reproduction funnel over 69 RL portfolio papers with fixed stages and a human-checked code-availability stage, which separates papers that could not be attempted from those that were attempted and failed.
+2. Pre-registered reproduction verdicts for six papers from the authors' own code, with tolerance bands and comparative criteria fixed before results were seen, and with verdicts that depend on unspecified choices reported under each reading.
+3. A check of whether official portfolio environments charge their configured transaction costs, by injected actions where the environment could be run.
+4. A re-evaluation of the FinRL portfolio agents under a common protocol with effect sizes against 1/N, together with exploratory descriptions of how policies obtained from the released code degenerate (fixed weights, behaviour indistinguishable from initialization, first-day buy-and-hold).
+
+Our literature search was not exhaustive, and we do not claim priority for this combination.
+
+## 1.6 Scope
+
+The verdicts concern the released code run under the stated definitions; they do not show that any paper's reported numbers are wrong, since our runs differ from the authors' in hardware, library versions and nondeterminism, and several papers do not specify the procedure behind the reported value. The papers studied in depth are a selected group, several of which share a code lineage, so we do not report a single reproduction rate and do not generalize beyond the samples. The check of the code-availability stage was carried out by a single rater who was not blind to the original judgments. The equivalences with 1/N hold for the configuration tested. Papers run outside the fixed order and all policy diagnostics are exploratory and describe particular code under particular settings.
+
+## 1.7 Outline
+
+Chapter 2 reviews related work on reproducibility in machine learning and finance and on RL for portfolio allocation. Chapter 3 describes the funnel, the reproduction criteria, the unified protocol, the cost check and the statistical analysis. Chapter 4 reports the funnel and the reproduction verdicts, and Chapter 5 the cost check, the unified-protocol re-evaluation and the exploratory diagnostics. Chapter 6 discusses limitations, and Chapter 7 concludes. [check: chapter numbering against the assembled thesis; the outline's case study of the author's own hierarchical RL system is not included in this draft.] [check: align the list of permitted modifications with Section 3.2 and Section Y.1, which also mention fixing errors that prevent execution.]

@@ -76,3 +76,9 @@
 ## 5. 결과 요약
 - 표의 50건은 모두 실재하고(Götze & Künsch 1996은 심사 지적으로 추가), 서지가 노트의 표기와 맞았다. 차이는 위 비고에 적었다(Lavko 게재처, Ensemble 제목의 부제, FinRL 두 논문의 구분).
 - 실재를 확인하지 못한 것은 Aarnio 1건이다(Buczyński는 대조하지 않음).
+
+## 6. 정정·추가 (2026-11-26, 2장 반박 심사)
+- **Pawar et al. 2024(arXiv 2405.01604) 정정:** 본문 확인 결과 제안 모델은 DQN, 거래비용 없음 가정, FinRL·SB3 언급 없음. "DDPG·A2C가 입력과 무관하게 거의 같은 가중치"라는 서술은 본문에 없다. 이 서술을 담은 노트(`notes/finrl_t3_o2_result.md` 62행, `notes/one_over_n_structure.md` 47행, `notes/prereg_code_audit.md` 130행, `notes/finrl_t3_o6_result.md` 73행, `notes/plan_2026-10-30.md` 24행)는 이 정정으로 대체한다. 퇴화 근거로 인용하지 않는다.
+- **Li 2024(2409.08426) 확인:** 6장 "a nearly uniform portfolio is kept in the whole back-testing process … Uniform Constant Rebalanced Portfolio", 결론에 주식시장에서 UCRP와 같아졌다는 문장. 인용 가능.
+- **Seyde 2021, MARS, Mohammadshafie 2024:** 초록·본문 기준으로 2장 문장 수정(`thesis/en/related_work.md`).
+- **추가 후보(서지 미대조):** André & Coqueret, Dirichlet policies for reinforced factor portfolios, arXiv 2011.05381(초록: RL 포트폴리오가 1/N에 매우 가까움). Aarnio 2025(Turku 저장소 https://www.utupub.fi/bitstreams/7d12624f-27e2-4448-99c9-2520ec3009f3/download — 4절 "확인 못 함" 해제 후보, 원문 확인 필요). arXiv 2603.29086(Realistic market impact modeling for RL trading environments). FinRL 이슈 #340·#968(포트폴리오 env 입력 변경 무영향 사용자 보고).

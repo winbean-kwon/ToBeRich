@@ -18,7 +18,7 @@
 ## 2장 관련연구
 - 1/N 기준선: DeMiguel et al. 2009
 - DRL과 1/N 비교: Kruthof & Müller 2025, Velay et al. 2023, Lavko et al. 2023
-- 거의 균등한 학습 배분: arXiv 2409.08426, 2405.01604
+- 거의 균등한 학습 배분: arXiv 2409.08426, André & Coqueret 2011.05381 (2405.01604는 본문에 해당 내용 없음 — 2026-11-26 정정, 인용 안 함)
 - 강화학습 재현성: Henderson et al. 2018
 - 대상 방법: FinRL, PRUDEX-Compass/AlphaMix+, DeepAries
 - 출처: `paper/RELATED_WORK.md`(참고만, 편집 금지), `notes/lit/`
