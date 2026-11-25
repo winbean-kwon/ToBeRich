@@ -1,0 +1,642 @@
+{
+ "ensemble_control": {
+  "max_price_diff": 0.0,
+  "value_rel_diff": 2.2062360707661529e-16,
+  "rows": 63,
+  "pass": true
+ },
+ "ensemble_alignment": {
+  "offset": 0
+ },
+ "ensemble": {
+  "E1": {
+   "cycles": 18,
+   "bh_cycles": 0,
+   "share": 0.0,
+   "class": "정적 아님",
+   "cash_only_cycles": 0,
+   "cycle_detail": [
+    {
+     "iter": 126,
+     "d": null,
+     "best_resid": 0.0042443871109874055,
+     "n_assets_held": null
+    },
+    {
+     "iter": 189,
+     "d": null,
+     "best_resid": 0.0009593447174575933,
+     "n_assets_held": null
+    },
+    {
+     "iter": 252,
+     "d": null,
+     "best_resid": 5.484947755074535e-05,
+     "n_assets_held": null
+    },
+    {
+     "iter": 315,
+     "d": null,
+     "best_resid": 0.0038573083688762935,
+     "n_assets_held": null
+    },
+    {
+     "iter": 378,
+     "d": null,
+     "best_resid": 0.0005511233939745278,
+     "n_assets_held": null
+    },
+    {
+     "iter": 441,
+     "d": null,
+     "best_resid": 0.0007989152271355821,
+     "n_assets_held": null
+    },
+    {
+     "iter": 504,
+     "d": null,
+     "best_resid": 0.002238387596007609,
+     "n_assets_held": null
+    },
+    {
+     "iter": 567,
+     "d": null,
+     "best_resid": 0.002967034486509967,
+     "n_assets_held": null
+    },
+    {
+     "iter": 630,
+     "d": null,
+     "best_resid": 0.0089647024279486,
+     "n_assets_held": null
+    },
+    {
+     "iter": 693,
+     "d": null,
+     "best_resid": 0.004400505502586047,
+     "n_assets_held": null
+    },
+    {
+     "iter": 756,
+     "d": null,
+     "best_resid": 0.003694755362615831,
+     "n_assets_held": null
+    },
+    {
+     "iter": 819,
+     "d": null,
+     "best_resid": 0.0009206897099647019,
+     "n_assets_held": null
+    },
+    {
+     "iter": 882,
+     "d": null,
+     "best_resid": 0.006250871285938221,
+     "n_assets_held": null
+    },
+    {
+     "iter": 945,
+     "d": null,
+     "best_resid": 0.0017395668942572823,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1008,
+     "d": null,
+     "best_resid": 0.0017395824248918705,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1071,
+     "d": null,
+     "best_resid": 0.0004394428644933096,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1134,
+     "d": null,
+     "best_resid": 0.0009593154289124374,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1197,
+     "d": null,
+     "best_resid": 0.0007613108313639045,
+     "n_assets_held": null
+    }
+   ]
+  },
+  "E2": {
+   "cycles": 18,
+   "bh_cycles": 0,
+   "share": 0.0,
+   "class": "정적 아님",
+   "cash_only_cycles": 0,
+   "cycle_detail": [
+    {
+     "iter": 126,
+     "d": null,
+     "best_resid": 0.004334652072804216,
+     "n_assets_held": null
+    },
+    {
+     "iter": 189,
+     "d": null,
+     "best_resid": 0.0014662276646295743,
+     "n_assets_held": null
+    },
+    {
+     "iter": 252,
+     "d": null,
+     "best_resid": 0.00027465529140658864,
+     "n_assets_held": null
+    },
+    {
+     "iter": 315,
+     "d": null,
+     "best_resid": 0.0037162639254805854,
+     "n_assets_held": null
+    },
+    {
+     "iter": 378,
+     "d": null,
+     "best_resid": 0.0009547012897732956,
+     "n_assets_held": null
+    },
+    {
+     "iter": 441,
+     "d": null,
+     "best_resid": 0.000981111069487894,
+     "n_assets_held": null
+    },
+    {
+     "iter": 504,
+     "d": null,
+     "best_resid": 0.0024041875933555044,
+     "n_assets_held": null
+    },
+    {
+     "iter": 567,
+     "d": null,
+     "best_resid": 0.001976670047611582,
+     "n_assets_held": null
+    },
+    {
+     "iter": 630,
+     "d": null,
+     "best_resid": 0.008472325769772403,
+     "n_assets_held": null
+    },
+    {
+     "iter": 693,
+     "d": null,
+     "best_resid": 0.004384450834404758,
+     "n_assets_held": null
+    },
+    {
+     "iter": 756,
+     "d": null,
+     "best_resid": 0.004624536126951545,
+     "n_assets_held": null
+    },
+    {
+     "iter": 819,
+     "d": null,
+     "best_resid": 0.0014506196616115717,
+     "n_assets_held": null
+    },
+    {
+     "iter": 882,
+     "d": null,
+     "best_resid": 0.0017077432962354583,
+     "n_assets_held": null
+    },
+    {
+     "iter": 945,
+     "d": null,
+     "best_resid": 0.0006419449813475509,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1008,
+     "d": null,
+     "best_resid": 0.0024245979596643477,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1071,
+     "d": null,
+     "best_resid": 0.00036911861199408923,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1134,
+     "d": null,
+     "best_resid": 0.0012653588979241568,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1197,
+     "d": null,
+     "best_resid": 0.000595757588346595,
+     "n_assets_held": null
+    }
+   ]
+  },
+  "E3": {
+   "cycles": 18,
+   "bh_cycles": 0,
+   "share": 0.0,
+   "class": "정적 아님",
+   "cash_only_cycles": 0,
+   "cycle_detail": [
+    {
+     "iter": 126,
+     "d": null,
+     "best_resid": 0.005621950454921051,
+     "n_assets_held": null
+    },
+    {
+     "iter": 189,
+     "d": null,
+     "best_resid": 0.0018786085381382002,
+     "n_assets_held": null
+    },
+    {
+     "iter": 252,
+     "d": null,
+     "best_resid": 9.051691471645808e-05,
+     "n_assets_held": null
+    },
+    {
+     "iter": 315,
+     "d": null,
+     "best_resid": 0.0032602027788848492,
+     "n_assets_held": null
+    },
+    {
+     "iter": 378,
+     "d": null,
+     "best_resid": 0.000910589649596779,
+     "n_assets_held": null
+    },
+    {
+     "iter": 441,
+     "d": null,
+     "best_resid": 0.001103146436781732,
+     "n_assets_held": null
+    },
+    {
+     "iter": 504,
+     "d": null,
+     "best_resid": 0.002037120375858096,
+     "n_assets_held": null
+    },
+    {
+     "iter": 567,
+     "d": null,
+     "best_resid": 0.001822914202821896,
+     "n_assets_held": null
+    },
+    {
+     "iter": 630,
+     "d": null,
+     "best_resid": 0.006974340907004751,
+     "n_assets_held": null
+    },
+    {
+     "iter": 693,
+     "d": null,
+     "best_resid": 0.004466489311824122,
+     "n_assets_held": null
+    },
+    {
+     "iter": 756,
+     "d": null,
+     "best_resid": 0.004586982201365333,
+     "n_assets_held": null
+    },
+    {
+     "iter": 819,
+     "d": null,
+     "best_resid": 0.0027303017938590333,
+     "n_assets_held": null
+    },
+    {
+     "iter": 882,
+     "d": null,
+     "best_resid": 0.005369356965816793,
+     "n_assets_held": null
+    },
+    {
+     "iter": 945,
+     "d": null,
+     "best_resid": 0.001352363756157208,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1008,
+     "d": null,
+     "best_resid": 0.002078473357348286,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1071,
+     "d": null,
+     "best_resid": 0.00027371794843293216,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1134,
+     "d": null,
+     "best_resid": 0.0013132819551628632,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1197,
+     "d": null,
+     "best_resid": 0.0009231871006554139,
+     "n_assets_held": null
+    }
+   ]
+  },
+  "E4": {
+   "cycles": 18,
+   "bh_cycles": 0,
+   "share": 0.0,
+   "class": "정적 아님",
+   "cash_only_cycles": 0,
+   "cycle_detail": [
+    {
+     "iter": 126,
+     "d": null,
+     "best_resid": 0.005499393092003426,
+     "n_assets_held": null
+    },
+    {
+     "iter": 189,
+     "d": null,
+     "best_resid": 0.0008421471644998198,
+     "n_assets_held": null
+    },
+    {
+     "iter": 252,
+     "d": null,
+     "best_resid": 0.00020308141680351353,
+     "n_assets_held": null
+    },
+    {
+     "iter": 315,
+     "d": null,
+     "best_resid": 0.002993098267309586,
+     "n_assets_held": null
+    },
+    {
+     "iter": 378,
+     "d": null,
+     "best_resid": 6.743583023885804e-05,
+     "n_assets_held": null
+    },
+    {
+     "iter": 441,
+     "d": null,
+     "best_resid": 0.0004185361796650337,
+     "n_assets_held": null
+    },
+    {
+     "iter": 504,
+     "d": null,
+     "best_resid": 0.002477530464549827,
+     "n_assets_held": null
+    },
+    {
+     "iter": 567,
+     "d": null,
+     "best_resid": 0.00248321292765959,
+     "n_assets_held": null
+    },
+    {
+     "iter": 630,
+     "d": null,
+     "best_resid": 0.009198699322448276,
+     "n_assets_held": null
+    },
+    {
+     "iter": 693,
+     "d": null,
+     "best_resid": 0.00421208338111606,
+     "n_assets_held": null
+    },
+    {
+     "iter": 756,
+     "d": null,
+     "best_resid": 0.005404793913361694,
+     "n_assets_held": null
+    },
+    {
+     "iter": 819,
+     "d": null,
+     "best_resid": 0.0025140513252544594,
+     "n_assets_held": null
+    },
+    {
+     "iter": 882,
+     "d": null,
+     "best_resid": 0.0055949950444936026,
+     "n_assets_held": null
+    },
+    {
+     "iter": 945,
+     "d": null,
+     "best_resid": 0.0010363081094454149,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1008,
+     "d": null,
+     "best_resid": 0.0015827177988530763,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1071,
+     "d": null,
+     "best_resid": 9.791019044927433e-05,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1134,
+     "d": null,
+     "best_resid": 0.001041771194157309,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1197,
+     "d": null,
+     "best_resid": 0.0006547779999701105,
+     "n_assets_held": null
+    }
+   ]
+  },
+  "E5": {
+   "cycles": 18,
+   "bh_cycles": 0,
+   "share": 0.0,
+   "class": "정적 아님",
+   "cash_only_cycles": 0,
+   "cycle_detail": [
+    {
+     "iter": 126,
+     "d": null,
+     "best_resid": 0.005984350201277771,
+     "n_assets_held": null
+    },
+    {
+     "iter": 189,
+     "d": null,
+     "best_resid": 0.0008442488569415009,
+     "n_assets_held": null
+    },
+    {
+     "iter": 252,
+     "d": null,
+     "best_resid": 0.00015698062699145198,
+     "n_assets_held": null
+    },
+    {
+     "iter": 315,
+     "d": null,
+     "best_resid": 0.003442924051699913,
+     "n_assets_held": null
+    },
+    {
+     "iter": 378,
+     "d": null,
+     "best_resid": 2.4033399150294104e-05,
+     "n_assets_held": null
+    },
+    {
+     "iter": 441,
+     "d": null,
+     "best_resid": 5.442008892623137e-05,
+     "n_assets_held": null
+    },
+    {
+     "iter": 504,
+     "d": null,
+     "best_resid": 0.0035762772593022556,
+     "n_assets_held": null
+    },
+    {
+     "iter": 567,
+     "d": null,
+     "best_resid": 0.0017439930092480625,
+     "n_assets_held": null
+    },
+    {
+     "iter": 630,
+     "d": null,
+     "best_resid": 0.007140062974333892,
+     "n_assets_held": null
+    },
+    {
+     "iter": 693,
+     "d": null,
+     "best_resid": 0.0044682033936940795,
+     "n_assets_held": null
+    },
+    {
+     "iter": 756,
+     "d": null,
+     "best_resid": 0.003684567793992465,
+     "n_assets_held": null
+    },
+    {
+     "iter": 819,
+     "d": null,
+     "best_resid": 0.0012657614813185803,
+     "n_assets_held": null
+    },
+    {
+     "iter": 882,
+     "d": null,
+     "best_resid": 0.002237137016349305,
+     "n_assets_held": null
+    },
+    {
+     "iter": 945,
+     "d": null,
+     "best_resid": 0.0009138174987201249,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1008,
+     "d": null,
+     "best_resid": 0.0014040847406198453,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1071,
+     "d": null,
+     "best_resid": 0.0004529239146268813,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1134,
+     "d": null,
+     "best_resid": 0.0009533292702197162,
+     "n_assets_held": null
+    },
+    {
+     "iter": 1197,
+     "d": null,
+     "best_resid": 0.0009379241749925152,
+     "n_assets_held": null
+    }
+   ]
+  }
+ },
+ "margintrader": {
+  "P_s0": {
+   "days": 752,
+   "share_days_unchanged": 0.9041278295605859,
+   "last_change_day": 750,
+   "n_change_days": 72,
+   "class": "부분 정적",
+   "n_positions_end": 10
+  },
+  "P_s1": {
+   "days": 752,
+   "share_days_unchanged": 0.9201065246338216,
+   "last_change_day": 750,
+   "n_change_days": 60,
+   "class": "부분 정적",
+   "n_positions_end": 7
+  },
+  "P_s2": {
+   "days": 752,
+   "share_days_unchanged": 0.918774966711052,
+   "last_change_day": 750,
+   "n_change_days": 61,
+   "class": "부분 정적",
+   "n_positions_end": 12
+  },
+  "P_s3": {
+   "days": 752,
+   "share_days_unchanged": 0.914780292942743,
+   "last_change_day": 750,
+   "n_change_days": 64,
+   "class": "부분 정적",
+   "n_positions_end": 13
+  },
+  "P_s4": {
+   "days": 752,
+   "share_days_unchanged": 0.9227696404793608,
+   "last_change_day": 750,
+   "n_change_days": 58,
+   "class": "부분 정적",
+   "n_positions_end": 9
+  }
+ },
+ "ensemble_target_class": "정적 아님",
+ "margintrader_target_class": "부분 정적"
+}
