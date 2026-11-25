@@ -94,3 +94,12 @@ F2 비고:
   - **남는 대안 설명.** 의도적인 5종목 실험인데 논문에서 생략했을 수 있다. 또는 표·그림에 다른 실행(29종목 실행 폴더도 있음)이 섞였을 수 있다. 공개된 표가 어느 실행에서 나왔는지는 확인하지 않았다.
   - 재현 판정이 아니다. 정적·탐색적 관찰로만 보고한다.
 - 논문용 문구(심사 권장안): "In the authors' public code, the script producing the KDD curve restricts the universe to five tickers (AAPL, BA, CRM, UNH, V), whereas the baseline scripts use the Dow Jones 30 and the paper describes a Dow Jones 30 universe. Over the same trading window, a zero-cost equal-weight portfolio of these five stocks yields an annualized return of 37.0% and a Sharpe ratio of 2.01 (risk-free rate 2%, as in the authors' evaluation code), comparable to the reported KDD values (38.74%, 2.03). These five stocks rank among the top seven of the 29 constituents by trading-period return; the selection rationale is not stated. We report this as an exploratory static observation; it does not constitute a reproduction outcome, and we did not verify which run produced the published table."
+
+### P24-07 — F4 준비 중 정적 관찰(2026-11-25, 사용자 결정 "A: 저자 실행(5종목) 기준으로 진행" 뒤, 실행 전)
+저장소의 유일한 코드 커밋은 `93c273f`(2024-02-17)다. 저장소는 arXiv v1(2024-05)보다 먼저 만들어졌다. 그 뒤 커밋은 README 두 개뿐이다.
+- **공개된 수정 SB3 파일에서 증류가 꺼져 있다.** `draw/algo/policies.py`(그리고 같은 내용의 `policies 2.py`)의 `Actor.__init__`에서 Markowitz 비중으로 actor를 미리 학습하는 블록(109–262행: 데이터 읽기, 50 epoch MSE 학습, `self.mu = model_fresh`)이 **전부 주석 처리**되어 있다. 실행되는 줄은 SB3 기본 `self.mu = nn.Sequential(*actor_net)`이다. 따라서 공개 코드를 그대로 돌리면 KDD 스크립트는 5종목 FinRL DDPG(기본 초기화)가 된다.
+- KDD 곡선을 낸 실행(`final/2023-11-21_19-19-07`) 때 이 블록이 켜져 있었는지는 저장소로 알 수 없다. 켜져 있어도 actor 구조가 같으므로 저장된 `agent_ddpg.zip`으로는 구분되지 않는다. 그 실행의 표준출력(증류 epoch 출력)은 저장되지 않았다.
+- **주석 블록을 켜면 생기는 문제(정적, 탐색적).** 사전 학습 입력은 날짜·종목 원핫·종가를 무작위 초기화된 `HuFeatureExtractor`(학습되지 않음, 옵티마이저에 없음)에 통과시킨 51차원 값이다. RL에서 actor가 받는 51차원 상태(현금·가격·보유·지표)와 크기만 같고 의미는 다르다.
+- **입력 파일.** KDD 스크립트는 `/Users/ganghu/Desktop/pythonProject1/raw_data.csv`(비중 열 `weight` 포함)를 읽는다. 이 파일은 저장소에 없다. 대신 그 실행 폴더에 스크립트가 분할 뒤 저장한 `train_data.csv`·`trade_data.csv`(5종목)와 학습된 모델 `model/agent_ddpg.zip`이 있다. 스크립트는 분할 뒤 이 CSV를 다시 읽어 학습하므로, 증류가 꺼진 공개 경로에는 `weight` 열이 필요 없다.
+- `profilo management/knowledgement_drill_ddpg.py`는 같은 스크립트인데 5종목 필터가 주석 처리되어 있다(29종목).
+- 열람 기록: F4 준비 중 실행 폴더의 `result/progress.csv`(학습 중 actor·critic 손실, 학습 보상) 첫 줄 몇 개를 열었다. 학습 구간 로그이고 거래 구간 성과는 아니다. 저자 결과 곡선(`originate_ddpg.csv`, `richard*.csv`)은 열지 않았다.
