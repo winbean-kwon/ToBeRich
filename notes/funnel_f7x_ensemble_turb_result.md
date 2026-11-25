@@ -28,7 +28,7 @@
 
 **고정 해석 문장(5절 그대로)**
 1. "기간별 문턱 덮어쓰기를 없애고 코드의 첫 값 140을 전 기간에 쓰면 Sharpe가 0.22만큼 낮아졌다(95% 구간 [−0.44, −0.003])." 문턱 선택에 대한 민감도로만 쓴다.
-2. "저자의 출판 후 분위수 규칙으로 바꾸면, 5회씩의 실행으로는 Sharpe 차이를 구분하지 못했다(차이 −0.22, 95% 구간 [−0.57, +0.14])."
+2. "저자의 출판 후 분위수 규칙으로 바꾸면, 5회씩의 실행으로는 Sharpe 차이를 구분하지 못했다(차이 −0.22, 95% 구간 [−0.57, +0.14]). T의 실행 간 분산이 커서(SD 0.29) 약 0.5 미만의 차이는 이 설계로 배제하지 못한다."
 3. "이 코드에서 난류 규칙을 끄면 Sharpe가 0.74만큼 낮아졌다(95% 구간 [−0.95, −0.52])." 난류 규칙의 기여 크기로만 쓴다.
 
 ## 3. 보조(4.1, 판정 아님)
@@ -40,14 +40,22 @@
 | O | 17.3% | 3.6% | 20.6% | 0.27 | −41.1% | 17 |
 | R | 34.7% | 7.1% | 7.6% | 0.94 | −7.5% | 378 |
 
-## 4. 냉정한 해석
-- **주 대비는 경계선에서 "차이 있음"이다.** 구간 상한이 −0.003으로 0에 매우 가깝다. 사전 MDE(약 0.24)와 차이(0.22)가 비슷하다. "문턱 덮어쓰기가 Sharpe를 크게 바꾼다"라고 쓸 근거는 약하다. 정확한 표현은 "덮어쓰기를 없앤 쪽이 5회 평균으로 0.22 낮았고, 구간은 0을 겨우 배제했다"이다.
-- **C의 Sharpe가 낮아진 이유는 수익 감소가 아니라 변동성 증가다(서술).**
-  - C는 누적수익이 P보다 높다(42.9% 대 38.3%).
-  - 대신 현금 보유일이 375일에서 138일로 줄면서 변동성이 7.7%에서 11.2%로, MDD가 −7.7%에서 −15.6%로 커졌다.
-  - P의 높은 Sharpe는 현금 보유일이 많아 변동성이 낮은 데서 온다.
-- **난류 규칙은 이 코드 Sharpe의 대부분을 받친다.** 규칙을 끄면(O) Sharpe가 1.01에서 0.27로 떨어지고 MDD가 −41%가 된다. 시험 구간에 2020년 3월 폭락이 들어 있다.
-- **보고값과의 관계:** C·T·O 중 어느 것도 보고값 1.30에 가까워지지 않았다. 셋 다 우리 P(1.01)보다 낮다. 보고값과 우리 값 차이의 원인은 이 실험으로 설명되지 않는다.
+## 4. 냉정한 해석(반박 심사 반영)
+- **주 대비는 약한 근거다.** 범주는 사전 판정대로 "차이 있음(낮음)"이다.
+  - 구간 상한이 −0.003이다.
+  - C나 P에서 한 회만 빼면 10개 조합 중 7개에서 구간이 0을 포함한다(심사 재계산).
+  - 차이(0.22)가 사전 MDE(약 0.24)보다 작다.
+  - 탐색적으로 P에 R 2회를 합치면 [−0.413, +0.009]다.
+- **보조 지표(서술, 경로 분리 아님).** 보조표 값은 실행별 지표의 평균이다.
+  - C는 수익 0인 날이 375일에서 138일로 줄었다.
+  - 변동성(+3.6%p, [3.1, 4.1])과 MDD(−8.0%p, [−11.7, −4.2])는 모든 실행에서 컸다.
+  - 누적수익 차이(+4.6%p, [−8.9, +18.2])는 구분되지 않았다.
+  - 이것은 Sharpe 감소와 일관된 기술일 뿐이다. 문턱은 검증 환경의 모델 선택에도 들어가므로 어느 경로인지 분리하지 못한다.
+- **O 대비는 고정 문장 그대로만 쓴다:** "이 코드에서 난류 규칙을 끄면 Sharpe가 0.74 낮아졌다(95% 구간 [−0.95, −0.52])." 기여 비율("대부분")은 주장하지 않는다. O는 절제라서 모델 선택과 경로가 함께 바뀐다. 시험 구간에 2020년 3월 폭락이 있다는 점도 함께 적는다.
+- **보고값과의 관계:** C·T·O 중 어느 것도 보고값 1.30에 가까워지지 않았다. 보고값과 우리 값 차이의 원인은 이 실험으로 설명되지 않는다.
+- **선행 기록(심사):** 원 논문 SSRN 판 부록 목차에 "문턱 120 대 140의 Sharpe t-검정으로 최적 문턱 결정"과 "VIX를 쓰고 난류 지수가 없는 앙상블"이 있다. 저자가 문턱을 Sharpe로 조정한 기록이다. 수치와 C(140)와의 관계는 본문을 읽고 확인해야 한다(미확인). 제3자가 하드코딩 문턱의 민감도를 독립 측정한 사례는 찾지 못했다.
+
+**논문 문단(심사 권장안):** "Replacing the period-specific turbulence thresholds in the released code (140, lowered to 100 and 90 in later trading periods) with the code's initial value of 140 throughout lowered the ensemble's Sharpe ratio by 0.22 on average over five runs per condition (Welch 95% CI [−0.44, −0.003]). This interval barely excludes zero, and the difference is below the minimum detectable effect of the design (≈0.24), so we treat it as weak evidence of sensitivity to the threshold choice. Under the constant threshold, the number of zero-return days fell from 375 to 138 of 1,097, and annualized volatility (+3.6 pp) and maximum drawdown were larger in every run, whereas cumulative return did not differ distinguishably. Because the threshold also enters the validation environment used for model selection, these differences cannot be attributed to a single mechanism. Using the authors' later quantile-based rule did not yield a distinguishable difference (−0.22, [−0.57, 0.14]), although differences below roughly 0.5 cannot be excluded given its higher run-to-run variance. Disabling the turbulence rule entirely lowered the Sharpe ratio by 0.74 ([−0.95, −0.52]). None of these variants approached the reported Sharpe ratio of 1.30."
 
 ## 5. 쓰지 않는 것(사전 등록 5·0절)
 - "재현됐다/재현 실패", "누설이 확인됐다", "주된 원인", "문턱이 성과를 부풀렸다"는 쓰지 않는다. C − P가 "낮음"이어도 원인을 분리한 것이 아니기 때문이다.
@@ -55,7 +63,7 @@
 
 ## 6. 한계
 - P는 2026-11-11~12에 돌았고, C·T·O는 11-24~25에 돌았다. 동시 대조가 아니다. R 2회가 P 범위 안이라는 것은 점검일 뿐이다.
-- 조건당 5회다. 주 대비는 구간 경계가 0에 붙어 있어, 시드가 조금만 달라도 범주가 바뀔 수 있다.
+- 조건당 5회다. 주 대비는 한 회만 빼도 10개 조합 중 7개에서 범주가 "구분 안 됨"으로 바뀐다.
 - 난류 지수는 코드대로 가격 수준으로 계산했다. 논문 정의(수익률)와 다르다.
 - T 규칙은 시험 구간이 끝난 뒤에 만들어졌다.
 - 다중성 보정은 하지 않았다(주 대비 1개).
