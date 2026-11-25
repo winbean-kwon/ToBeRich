@@ -137,3 +137,14 @@
   - 2405.05449의 선행 재현이나 비판은 찾지 못했다(SOTAVerified unverified).
 - **주장하지 않는 것:** 증류의 효과(어느 방향이든), 저자의 의도·선택 편향, 포화 원인.
 - **논문 문구(심사 권장안):** "Re-evaluating the released checkpoint reproduces the authors' stored account-value curve exactly; on the trading period its deterministic actions are saturated at ±1 with a fixed sign per asset, so after the initial purchases (96 UNH and 1 AAPL, determined by the environment's order-filling and cash constraint) the portfolio is held unchanged, and the curve coincides with this buy-and-hold position. Retraining the released code with five seeds yields an averaged-curve Sharpe ratio (1.81) within our pre-specified tolerance of the reported 2.03, but no seed exceeds an equal-weight daily-rebalanced portfolio of the same five assets (Sharpe 2.00, 0.1% cost)."
+
+## 7. 추가 탐색: 저자 KDD 곡선 richard1~3이 매수 후 보유인가(2026-11-25, 탐색적, 열람 전 규칙 고정)
+- **질문:** 논문 KDD 값은 richard, richard1~4 다섯 곡선의 날짜별 평균이다. richard와 richard4(같은 파일)는 UNH 96주·AAPL 1주 보유로 확인했다. 나머지 richard1~3도 5종목 정수 주식 매수 후 보유 곡선인가?
+- **자료:** 저장소 @93c273f `draw/richard1.csv`~`richard3.csv` (각 22 KB). 이 절을 커밋하기 전에는 내용을 열지 않는다(파일 머리줄 형식만 확인).
+- **규칙(`replication/p2407_bh_fit.py`):**
+  - 시작일 d = 1..30마다 V_t = c + Σ n_i·close_{i,t} (t ≥ d)를 최소제곱으로 맞춘다.
+  - n_i를 정수로 반올림하고, c를 다시 맞춘 뒤 최대 절대 잔차를 잰다.
+  - n_i ≥ 0이고 잔차가 0.01달러 이하인 가장 작은 d를 보고한다.
+  - 분류: d ≤ 5 → "사실상 매수 후 보유(처음 며칠 매수)", 5 < d ≤ 30 → "초반 거래 후 보유", 없음 → "매수 후 보유 아님(5종목 기준)".
+  - 대조: richard.csv(= 저자 originate_ddpg.csv)가 d = 1, UNH 96·AAPL 1로 나와야 한다. 아니면 이 절의 결과는 쓰지 않는다.
+- **한계(미리 적음):** 5종목 기준이다. 곡선이 29종목 실행에서 나왔다면 "아님"으로 나올 수 있고, 그 경우 원인을 가리지 않는다. 사후 분석이므로 논문에는 관찰로만 쓴다.
