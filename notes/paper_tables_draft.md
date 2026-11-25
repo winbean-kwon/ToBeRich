@@ -1,4 +1,4 @@
-# Paper tables — draft (2026-11-14)
+# Paper tables — draft (2026-11-14, Table 3 추가 2026-11-25)
 
 > Working note (Korean header for the repo; table text is in paper English).
 > 상태: 초안. 출처는 `notes/lit/f1/funnel_table.csv`(funnel_table.py 출력)와 `replication/reproduction_synthesis.csv`. F1 재확인은 반영했다(2026-11-24, 54편 사람 확인 완료, `notes/lit/f1/f1_recheck_log.md`). **잠정:** 대장 A절(보고값 원문 대조) 결과에 따라 Table 2 수치가 바뀔 수 있다. 재현율을 한 수치로 합치지 않는다(프로토콜 0장). 표 본문에는 과정 기록(커밋·시도 횟수·감사 경위)을 넣지 않는다.
@@ -27,7 +27,7 @@ Each paper is counted once, at the first stage it did not pass. Stages follow th
 
 ᵃ A copy of the repository exists elsewhere; the official link is dead.
 ᵇ A human check of all papers that did not pass F1 located official code for 4 of 44 (95% Wilson interval 0.04–0.21; 2 of 44 when only first- or corresponding-author accounts are accepted); a subsequent search of first- and last-author GitHub accounts located one more (5 of 44, 0.05–0.24). In every case the paper contained no link, and the repository was identifiable only through an author's personal GitHub account. Author accounts were not searched exhaustively for the remaining papers, so this count is a lower bound on missed code.
-ᶜ These papers were examined outside the fixed execution order. One exited at F3 (dataset link not public, news source unspecified), one at F4 (legacy exchange API no longer serves data), one at F6 (evaluation period not reported), one passed the static stages without an execution attempt, and one reached an exploratory F7 comparison against values read from a figure.
+ᶜ These papers were examined outside the fixed execution order. One exited at F3 (dataset link not public, news source unspecified), one at F4 (legacy exchange API no longer serves data), one at F6 (evaluation period not reported), and two reached an exploratory F7 comparison (Table 3).
 
 Notes for the text (not table content):
 - F1 check (methods/limitations): one human rater, not blind to the original LLM-assisted judgments; disagreements were resolved by inspecting the cited repository or sentence, with an LLM proposing the evidence and the rater confirming it. Report the rater's original judgments as well (random sample of F1 passes: 7 of 10 initially judged as not found; all 7 had an open official repository on inspection). Second rater on 15 papers: pending.
@@ -65,3 +65,21 @@ Notes for the text (not table content):
 - The FinRL family verdict is *partially reproduced* (two of four algorithms reproduced; family rule ≥ 3 for reproduced).
 - MARS: the bundled checkpoint (single deterministic run) lies within the band (29.68); it is not used as general evidence because its selection procedure is undocumented.
 - DeepAries 10-epoch variant: 6.38, not reproduced; not an independent result (five seeds identical to the 1-epoch runs).
+
+---
+
+## Table 3. Exploratory reproduction comparisons (papers whose official code was located at the F1 check)
+
+These comparisons lie outside the fixed execution order. For each paper the comparison target, tolerance band and decision rules were fixed before any of our results were inspected. R1: our aggregate lies within the band (half the gap between the reported value and the named comparator). R2 is paper-specific and stated in the column. The two R2 rules differ, so the Table 2 verdict labels are not applied.
+
+| Paper | Target | Reported | Tolerance | Ours | R1 | R2 rule | R2 | Pre-specified reading |
+|---|---|---:|---:|---:|:-:|---|:-:|---|
+| FRONTIER (Pretorius & van Zyl, 2022) | Mean Pareto-frontier excess return at the equal-weight excess risk of 14.78% (%) | 11.79ᵃ | ±1.01 | 11.71 | ✓ | Frontier dominates equal weight (≥ 4/5 seeds) | ✓ (5/5) | Matches the published figure |
+| Markowitz Meets Bellman (KDD), five-ticker run | Sharpe of the date-wise mean of run curves | 2.03 | ±0.525 | 1.81 | ✓ | Per-seed Sharpe above equal weight of the same five stocks (2.00, 0.1% cost) in ≥ 4/5 seeds | ✗ (0/5) | Reported value indistinguishable from holding the same five stocks |
+
+ᵃ Read from the published figure.
+
+Notes for the text (not table content):
+- FRONTIER: the frontier is formed from 504 parameter pairs evaluated on the test period, as in the paper; the match is faithful to the published procedure but is not out-of-sample evidence of superiority over equal weight. Equal weight is a weak benchmark (long-only minimum variance has a higher Sharpe ratio). Our curve lies 0.1–0.5 percentage points below the figure at most risk levels.
+- Markowitz Meets Bellman: the released code has the knowledge-distillation component disabled, so no statement is made about distillation. Re-evaluating the released checkpoint reproduces the authors' stored curve exactly; its actions are saturated at ±1 with a fixed sign per asset, and the curve equals a buy-and-hold position. All five stored run outputs averaged into the reported curve are integer-share buy-and-hold positions bought at the first day's close; their average reproduces the reported metrics exactly, and its Sharpe ratio (2.03) exceeds that of every constituent (1.61–1.81) because the averaged holdings are more diversified. Full wording: `notes/funnel_f7x_p2407_prereg.md` sections 6 and 7.1. Five-ticker restriction: the paper describes a Dow Jones 30 universe; the script producing the reported curve uses five tickers.
+- Neither comparison has a previously published independent reproduction that we could find.
