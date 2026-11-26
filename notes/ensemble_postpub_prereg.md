@@ -46,3 +46,8 @@
 
 ## 7. 산출물
 `replication/ensemble_postpub_data.py`(데이터·겹침 대조), `replication/ensemble_postpub_run.py`(실행), `replication/ensemble_postpub_judge.py`(판정), 결과 `replication/ensemble_postpub/`, 노트 `notes/ensemble_postpub_result.md`.
+
+## 8. 데이터 관문 기록 (2026-11-26, 성과 산출 전)
+- yfinance: WBA 시세 없음(`YFTzMissingError: possibly delisted`, 2025-08 비공개 전환으로 상장 폐지). 나머지 29종목은 받음. 사전 규칙상 관문 실패.
+- 사용자 결정(성과를 보기 전): WBA만 다른 무료 원천에서 받는 수정판으로 진행을 시도. 시도한 원천: Stooq 일별 CSV(자동 접근에 JavaScript 작업 증명 검증 요구 → 우회하지 않음), Nasdaq 공개 API("Symbol not exists"). 자동으로 받을 수 있는 원천 없음.
+- 남은 선택: (가) 사용자가 브라우저로 Stooq `wba.us` 일별 CSV를 받아 주면, WBA만 그 파일로 채우고 같은 겹침 대조 관문(2016–2020, 번들 대비 상관 ≥ 0.99, 차이 중앙값 ≤ 0.001)을 적용한다(Stooq 종가는 분할 조정, 배당 미조정인지 대조로 확인). 종료일 = WBA 마지막 거래일과 2장 규칙 중 이른 날. (나) 미실행으로 보고.
