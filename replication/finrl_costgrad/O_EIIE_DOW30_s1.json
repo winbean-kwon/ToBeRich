@@ -1,0 +1,39 @@
+{
+ "tag": "O_EIIE_DOW30_s1",
+ "cond": "O",
+ "arch": "EIIE",
+ "market": "DOW30",
+ "seed": 1,
+ "fee": 0.0025,
+ "alpha_eff": 0.9918659329920305,
+ "gap0": 0.0063098541926592585,
+ "turnover": 6.218742716104495e-05,
+ "years": {
+  "2020": {
+   "turnover": 0.00018649369969960837,
+   "log_growth": 0.003302665192329391,
+   "bench_ew_log_growth": 0.34640833735466003,
+   "excess": -0.3431056721623306,
+   "mean_exposure": 0.0018021071901415835,
+   "online_log_growth": 0.5815890269362731
+  },
+  "2021": {
+   "turnover": 3.997157099860613e-10,
+   "log_growth": 0.0,
+   "bench_ew_log_growth": 0.14863114058971405,
+   "excess": -0.14863114058971405,
+   "mean_exposure": 0.0,
+   "online_log_growth": 0.0
+  },
+  "2022": {
+   "turnover": 6.81820678164556e-08,
+   "log_growth": -4.6875010990108094e-07,
+   "bench_ew_log_growth": -0.023711949586868286,
+   "excess": 0.023711480836758385,
+   "mean_exposure": 8.629329168974463e-07,
+   "online_log_growth": 1.2890541916702409e-05
+  }
+ },
+ "train_seconds": 1260,
+ "total_seconds": 1354
+}

@@ -1,0 +1,39 @@
+{
+ "tag": "O_EIIE_BR10_s0",
+ "cond": "O",
+ "arch": "EIIE",
+ "market": "BR10",
+ "seed": 0,
+ "fee": 0.0025,
+ "alpha_eff": 0.999806374091136,
+ "gap0": 0.0001936281332746148,
+ "turnover": 0.019495669672464522,
+ "years": {
+  "2020": {
+   "turnover": 0.022468963619133437,
+   "log_growth": 0.5354014917370963,
+   "bench_ew_log_growth": 0.5361981391906738,
+   "excess": -0.0007966474535775481,
+   "mean_exposure": 0.9981611365096107,
+   "online_log_growth": 0.5353799950941621
+  },
+  "2021": {
+   "turnover": 0.017781337278748525,
+   "log_growth": -0.0436839146858064,
+   "bench_ew_log_growth": -0.043797608464956284,
+   "excess": 0.00011369377914988155,
+   "mean_exposure": 0.9981611315533282,
+   "online_log_growth": -0.0437120717209394
+  },
+  "2022": {
+   "turnover": 0.018236708119511603,
+   "log_growth": 0.13047040398144646,
+   "bench_ew_log_growth": 0.13067975640296936,
+   "excess": -0.0002093524215228959,
+   "mean_exposure": 0.9981611462734873,
+   "online_log_growth": 0.13046430132691175
+  }
+ },
+ "train_seconds": 612,
+ "total_seconds": 662
+}
