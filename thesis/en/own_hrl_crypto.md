@@ -14,7 +14,7 @@ The Korean-equity experiments of Chapter 3 used daily bars. A study of intraday 
 
 ## 4.2 Data and state representation
 
-**Universe and bars.** The universe consists of 44 USDT spot pairs on Binance, chosen from an initial set of 50 after excluding pairs with less than six months of history. Five-minute bars from January 2021 to mid-July 2026 were collected; the portfolio is rebalanced every 30 minutes (six bars). The pairs were chosen by their trading volume at the time of data collection, not at each historical date. Chapter 5 shows that this matters: a simple one-week momentum rule earns large returns on this universe but does not beat equal weight in any year on a universe chosen with information available at the time.
+**Universe and bars.** The universe consists of 44 USDT spot pairs on Binance, chosen from an initial set of 50 after excluding pairs with less than six months of history. Five-minute bars from January 2021 to mid-July 2026 were collected; the portfolio is rebalanced every 30 minutes (six bars). The pairs were chosen by their trading volume at the time of data collection, not at each historical date, which can introduce survivorship bias; Chapter 5 reports a check of this.
 
 **Periods.** Unless stated otherwise, policies are trained on calendar year 2025 and tested on the first half of 2026 (9,319 rebalancing steps). The fourth quarter of 2025 (4,416 steps) serves as the validation period. In the main pool this quarter is also part of the training period; Chapter 5 reports a retraining that removes this overlap. The period from mid-July to late October 2026 was not used for any decision in this chapter and is used once, in Chapter 5, as an unseen period.
 
