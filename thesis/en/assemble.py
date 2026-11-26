@@ -165,6 +165,7 @@ def to_new(s):
 
 
 repro_text = to_new(renumber("\n\n".join(p.strip() for p in repro)))
+repro_text = repro_text.replace("§", "")   # references already in the chronological numbering (written as §5.5) skip the mapping
 ch6, rest = repro_text.split("@@CH7@@")
 ch7, lim = rest.split("@@CH8@@")
 
