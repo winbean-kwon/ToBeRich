@@ -47,6 +47,10 @@ F1 was the stage at which most papers exited, and its initial judgments were mad
 
 [Insert Table 1 from `notes/paper_tables_draft.md`.]
 
+![Figure 1](figures/fig1_funnel.png)
+
+**Figure 1.** Reproduction funnel: number of papers by the first stage at which they exited, stacked by sample (the four methods selected in advance are not included). Totals are printed at the end of each bar; Table 1 gives the same counts.
+
 Of the 52 S56 papers, 4 were not eligible (F0). Thirty-one exited at F1 — 25 with no official code found (authors not contacted), 2 with a dead link, 2 with third-party code only and 2 with full text unavailable — and a further 5 had official code located only at the F1 check. Of the papers that passed F1 within the fixed order, 3 exited at F3, 1 at F4 (not executable) and 2 at F5 (over budget); 4 passed F4 (one of them also F5) without an F7 attempt because the two F7 places were filled, and 2 reached an F7 verdict.
 
 In S-Q, 9 of 12 papers exited at F1 with no official code found; of the remaining three, one was not executable, one was not tested because its inputs would have to be constructed from sources the code does not collect, and one passed F4. Among the five supplementary papers, which were included because code was known to exist, one was not eligible (F0), one had a dead official link with a copy elsewhere, two exited at F2 (incomplete code) and one was not executable.

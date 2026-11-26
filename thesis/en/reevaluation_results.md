@@ -33,6 +33,10 @@ Under the eligibility rule of Section 3.5, only the four FinRL algorithms were r
 | DDPG | +0.36 (indet.) | +0.74 (adv.) | −1.46 (indet.) | Indeterminate; small difference |
 | TD3 | +0.88 (indet.) | +0.48 (adv.) | −3.15 (indet.) | Indeterminate |
 
+![Figure 2](figures/fig2_finrl_delta.png)
+
+**Figure 2.** FinRL under the unified protocol: Δ for each of five seeds (dots) and the seed median (vertical bar), by algorithm and test window, against daily-rebalanced equal weight at 0.1% cost. The label at the right of each row is the window classification (advantage or disadvantage when at least four of five seeds share the sign of Δ; indeterminate otherwise).
+
 None of the four algorithms retained an advantage over equal weight; two lost it and two were indeterminate. The baseline itself grew at 30.99, 16.33 and 3.31% per year (log) in W0, W1 and W2. The classifications of A2C and PPO did not change under a higher cost (0.2%), under the original training code, or with monthly-rebalanced or buy-and-hold equal-weight baselines.
 
 ## Z.3 Why the outcomes look as they do (exploratory)

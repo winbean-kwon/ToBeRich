@@ -245,6 +245,10 @@ Each paper is counted once, at the first stage it did not pass. Stages follow th
 ᶜ These papers were examined outside the fixed execution order. One exited at F3 (dataset link not public, news source unspecified), one at F4 (legacy exchange API no longer serves data), one at F6 (evaluation period not reported), and two reached an exploratory F7 comparison (Table 3).
 ᵈ The two F7 places were filled in the fixed order before these papers; one of them also passed F5 (3.9 h per seed).
 
+![Figure 1](figures/fig1_funnel.png)
+
+**Figure 1.** Reproduction funnel: number of papers by the first stage at which they exited, stacked by sample (the four methods selected in advance are not included). Totals are printed at the end of each bar; Table 1 gives the same counts.
+
 Of the 52 S56 papers, 4 were not eligible (F0). Thirty-one exited at F1 — 25 with no official code found (authors not contacted), 2 with a dead link, 2 with third-party code only and 2 with full text unavailable — and a further 5 had official code located only at the F1 check. Of the papers that passed F1 within the fixed order, 3 exited at F3, 1 at F4 (not executable) and 2 at F5 (over budget); 4 passed F4 (one of them also F5) without an F7 attempt because the two F7 places were filled, and 2 reached an F7 verdict.
 
 In S-Q, 9 of 12 papers exited at F1 with no official code found; of the remaining three, one was not executable, one was not tested because its inputs would have to be constructed from sources the code does not collect, and one passed F4. Among the five supplementary papers, which were included because code was known to exist, one was not eligible (F0), one had a dead official link with a copy elsewhere, two exited at F2 (incomplete code) and one was not executable.
@@ -356,6 +360,10 @@ Under the eligibility rule of Section 3.5, only the four FinRL algorithms were r
 | PPO | −11.43 (disadv.) | −11.02 (disadv.) | −14.38 (disadv.) | Lost |
 | DDPG | +0.36 (indet.) | +0.74 (adv.) | −1.46 (indet.) | Indeterminate; small difference |
 | TD3 | +0.88 (indet.) | +0.48 (adv.) | −3.15 (indet.) | Indeterminate |
+
+![Figure 2](figures/fig2_finrl_delta.png)
+
+**Figure 2.** FinRL under the unified protocol: Δ for each of five seeds (dots) and the seed median (vertical bar), by algorithm and test window, against daily-rebalanced equal weight at 0.1% cost. The label at the right of each row is the window classification (advantage or disadvantage when at least four of five seeds share the sign of Δ; indeterminate otherwise).
 
 None of the four algorithms retained an advantage over equal weight; two lost it and two were indeterminate. The baseline itself grew at 30.99, 16.33 and 3.31% per year (log) in W0, W1 and W2. The classifications of A2C and PPO did not change under a higher cost (0.2%), under the original training code, or with monthly-rebalanced or buy-and-hold equal-weight baselines.
 
