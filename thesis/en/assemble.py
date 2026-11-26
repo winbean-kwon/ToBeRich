@@ -183,7 +183,7 @@ parts = [
 ]
 
 
-RENAME = {"Xiong 2018": "Liu et al. 2018"}
+RENAME = {"Xiong 2018": "Liu et al. 2018", "Wang 2021 HRPM": "Wang et al. 2021a", "Wang 2021 DeepTrader": "Wang et al. 2021b", "Bailey 2016/2017 PBO": "Bailey et al. 2017", "Ledoit & Wolf 2004b": "Ledoit & Wolf 2004"}
 TITLES = {
     "HARLF …": "HARLF: Hierarchical reinforcement learning and lightweight LLM-driven sentiment integration for financial portfolio optimization",
     "FinRL-Meta: Market environments and benchmarks …": "FinRL-Meta: Market environments and benchmarks for data-driven financial reinforcement learning.",
@@ -199,10 +199,14 @@ def references(body):
     """Entries from notes/references_verified_2026-11-25.md sections 1-3 whose first surname occurs in the text."""
     src = (ROOT / "notes" / "references_verified_2026-11-25.md").read_text(encoding="utf-8")
     src = src.split("## 4.")[0]
+    add = (ROOT / "notes" / "references_verified_addendum_2026-11-26.md").read_text(encoding="utf-8")
+    src += "\n" + add.split("## 내용 메모")[0]
     rows = []
     for line in src.splitlines():
         c = [x.strip() for x in line.strip().strip("|").split("|")]
         if len(c) < 3 or c[0] in ("키", "---") or set(c[0]) <= set("-"):
+            continue
+        if c[0] == "Ledoit & Wolf 2004a":  # not cited; the GAPS code uses the identity-target estimator (2004b)
             continue
         key0 = RENAME.get(c[0], c[0])
         name = re.split(r"[ ,&]", key0)[0]
@@ -216,7 +220,7 @@ def references(body):
             bib = re.sub(r"\bRL\b", "reinforcement learning", bib)
             bib = re.sub(r"\bML\b", "machine learning", bib)
             bib = re.sub(r"\bAI\b", "artificial intelligence", bib)
-            key = re.sub(r"\s+(PPO|A2C/A3C|DDPG|TD3|SB3|Ensemble|RAT|FinRL library|FinRL|PRUDEX|DeepAries|MARS|Margin Trader|WaveCorr|EIIE|PPN|EarnMore|HARLF|FinRL-Meta)$", "", c[0])
+            key = re.sub(r"\s+(PPO|A2C/A3C|DDPG|TD3|SB3|Ensemble|RAT|FinRL library|FinRL|PRUDEX|DeepAries|MARS|Margin Trader|WaveCorr|EIIE|PPN|EarnMore|HARLF|FinRL-Meta|EarnHFT|FreQuant|DeepClair|LSRE-CAAN|MoEDRLPM|Chronos|MTGNN|iTransformer|PatchTST|StockMixer|RevIN|LoRA|Mamba|LightGBM|tslearn|CAPS|DQN|options|PBO)$", "", c[0])
             key = RENAME.get(c[0], key)
             rows.append(f"- {key}. {bib}. {re.sub(r'[(（].*[가-힣].*[)）]', '', c[2]).strip()}")
     extra = ["- André & Coqueret 2020. André, Coqueret. Dirichlet policies for reinforced factor portfolios. arXiv 2011.05381",
@@ -228,6 +232,8 @@ def references(body):
 
 
 body = "\n\n".join(p.strip() for p in parts) + "\n"
+body = "\n".join(l for l in body.splitlines() if not l.startswith("> Working note"))
+body = re.sub(r"\n{3,}", "\n\n", body)
 text = body + "\n" + references(body) + "\n"
 text = text.replace("(Section 3.2 of the methods)", "(Section 6.3)")
 OUT.write_text(text, encoding="utf-8")
