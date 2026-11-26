@@ -36,3 +36,4 @@ EarnHFT-style hierarchical RL crypto thesis; original returns claim failed (star
 
 
 **2026-11-26 갱신:** 영어 초안 완성 — 장별 파일 `thesis/en/*.md`가 원본, `python3 thesis/en/assemble.py`로 `THESIS_EN_DRAFT.md` 생성(통합본 직접 편집 금지). WaveCorr 탐색적 F7x 사전 판정 재현(SR 1.754, 단 코드가 매 에폭 시험 APV 기록·검증 연도 학습 포함 → 시험 정보와 독립 주장 불가). Pawar 2024(2405.01604) 인용 금지(해당 서술 없음). 서버 실행 없음. 최신 HANDOFF_2026-11-26.md. 사용자 대기: 통독, 제목, 5장 포함 여부, 제출 형식, G3 날짜, 유료 PDF.
+- 11-26 오후: 통합본 전체 심사 반영(2df465a), 그림 1·2(40ac633, thesis/en/figures/make_figures.py). 남은 [check] 10개는 사용자 확인·제출 직전. 다음 = 사용자 결정(제출 형식·5장·제목)·통독 의견 반영.
