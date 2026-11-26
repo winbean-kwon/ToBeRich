@@ -1,0 +1,13 @@
+{
+  "loss_positive_rel_diff": 0.02561689354479313,
+  "loss_defect_rel_diff": 2.573616711742943e-06,
+  "reward_positive_max_diff": 0.020202707317519455,
+  "reward_defect_max_diff": 0.0,
+  "expected": {
+    "loss_positive": true,
+    "loss_defect": true,
+    "reward_positive": true,
+    "reward_defect": true
+  },
+  "all_ok": true
+}
