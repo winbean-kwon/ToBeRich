@@ -39,26 +39,27 @@ Notes for the text (not table content):
 
 ## Table 2. Reproduction verdicts against reported values
 
-R1: our aggregate falls within the tolerance band (half the gap between the reported value and a comparator from the same table fixed in advance per target, usually the market index named in the paper's claim). R2: the paper's comparative claim holds in our runs. Verdict: both → reproduced; one → partially reproduced; neither → not reproduced.
+R1: our aggregate falls within the tolerance band (half the gap between the reported value and a comparator from the same table fixed in advance per target, usually the market index named in the paper's claim; for AlphaMix+, which reports no comparator, ±2σ/√n from the reported standard deviation). R2: the paper's comparative claim holds in our runs. Verdict: both → reproduced; one → partially reproduced; neither → not reproduced.
 
 | Paper (target) | Metric | Reported | Tolerance | Ours | Runs in band | R1 | R2 | Verdict |
 |---|---|---:|---:|---:|---:|:-:|:-:|---|
-| DeepAries (T1) | CAGR (%) | 7.90 | ±0.87 | 5.04ᵇ | 2/10 | ✗ | ✗ | Not reproduced |
-| AlphaMix+ (T2), US 2021 | TR (%) | 20.7 | ±1.61 | 18.47 | 1/5 | ✗ | ✗ᶜ | Not reproducedᶜ |
-| AlphaMix+ (T2), US 2020 | TR (%) | 12.7 | ±1.52 | 9.42 | 1/5 | ✗ | ✗ᶜ | |
-| AlphaMix+ (T2), US 2019 | TR (%) | 25.1 | ±1.27 | 26.09 | 3/5 | ✓ | ✗ᶜ | |
+| DeepAries (T1) | CAGR (%) | 7.90 | ±0.87 | 5.04ᵃ | 2/10 | ✗ | ✗ | Not reproduced |
+| AlphaMix+ (T2), US 2021 | TR (%) | 20.7 | ±1.61 | 18.47 | 1/5 | ✗ | ✗ᵇ | Not reproducedᵇ |
+| AlphaMix+ (T2), US 2020 | TR (%) | 12.7 | ±1.52 | 9.42 | 1/5 | ✗ | ✗ᵇ | |
+| AlphaMix+ (T2), US 2019 | TR (%) | 25.1 | ±1.27 | 26.09 | 3/5 | ✓ | ✗ᵇ | |
 | FinRL (T3), A2C | Ann. return (%) | 42.57 | ±4.87 | 35.36 | 0/5 | ✗ | ✓ | Partially reproduced |
 | FinRL (T3), PPO | Ann. return (%) | 36.17 | ±1.67 | 36.41 | 3/5 | ✓ | ✓ | Reproduced |
-| FinRL (T3), DDPG | Ann. return (%) | 36.01 | ±1.59 | 37.60 | 2/5 | ✗ᵈ | ✓ | Partially reproduced |
+| FinRL (T3), DDPG | Ann. return (%) | 36.01 | ±1.59 | 37.60 | 2/5 | ✗ᶜ | ✓ | Partially reproduced |
 | FinRL (T3), TD3 | Ann. return (%) | 39.38 | ±3.27 | 37.99 | 3/5 | ✓ | ✓ | Reproduced |
 | MARS (T4), code at publication | CR (%) | 29.50 | ±7.07 | 15.26 | 1/10 | ✗ | ✗ | Not reproduced |
-| MARS (T4), later author revision | CR (%) | 29.50 | ±7.07 | 26.41 | 7/10 | ✓ | ✓ | Reproduced |
+| MARS (T4), later author revision | CR (%) | 29.50 | ±7.07 | 26.41 | 7/10 | ✓ | ✓ | Reproducedᵈ (reported alongside) |
 | Ensemble strategy (funnel) | Sharpe | 1.30 | ±0.415 | 1.01 | 4/5 | ✓ | ✗ | Partially reproduced |
 | RAT (funnel) | fAPV | 156.53 | ±68.42 | 378.35 | 0/5 | ✗ (above) | ✓ | Partially reproduced |
 
-ᵇ Seed selected by the paper's rule (lowest validation loss among 10 seeds).
-ᶜ AlphaMix+ is judged over three test years (R1 and R2 each need ≥ 2 of 3). The verdict depends on two choices the paper leaves unspecified: which training epoch is reported, and whether the market-average baseline is rebalanced. Under validation-based epoch selection the verdict becomes *reproduced*; under a buy-and-hold market average it becomes *partially reproduced*.
-ᵈ Outside the band by less than 0.01 percentage points.
+ᵃ Seed selected by the paper's rule (lowest validation loss among 10 seeds).
+ᵇ AlphaMix+ is judged over three test years (R1 and R2 each need ≥ 2 of 3). The verdict depends on two choices the paper leaves unspecified: which training epoch is reported, and whether the market-average baseline is rebalanced. Under validation-based epoch selection the verdict becomes *reproduced*; under a buy-and-hold market average it becomes *partially reproduced*.
+ᶜ Outside the band by less than 0.01 percentage points.
+ᵈ Not the pre-specified MARS verdict. The result depends on the evaluation window, which was inferred from the index row of the paper's table (partially reproduced under the alternative 251-day window), and the revision widened the range of episodes from which a checkpoint is selected.
 
 Aggregation: DeepAries uses the paper's seed-selection rule; AlphaMix+ and RAT the seed mean; FinRL the seed median; MARS the median over 10 seeds; Ensemble the mean of five runs. FinRL uses 28 of the paper's 30 stocks.
 

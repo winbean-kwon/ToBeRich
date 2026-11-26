@@ -25,3 +25,14 @@ EarnHFT-style hierarchical RL crypto thesis; original returns claim failed (star
 - 2026-11-02 반박 심사: 919be84판 **실행 보류**(notes/review_prereg_stat_power.md) — DeepAries 간격 서술 오류(시드별 보유기간 → expand() 사용), O2 보조 통계 기존 공개 미기재, MDE≤δ 범주는 power approach → 비우월성 상한(10-30 계획의 'TOST 제외'와 충돌, 사용자 결정 필요), δ=원 논문 우위 3.17%p 고정, 보정 점검·알고리즘 단위 집계 보완. 다음 = v2 개정 → 재심사 → run.py.
 
 **2026-11-05 갱신:** T4 MARS 본 실행이 맥 launchd로 진행 중이다(판정 전 결과 열람 금지). 재현 깔때기 프로토콜 확정, 고정 순서 EarnMore→PPN→RAT→Ensemble. 최신 상태는 HANDOFF_2026-11-05.md.
+
+**2026-11-10 갱신:** T4 MARS O1 판정 완료(9e0d81b, notes/mars_t4_o1_result.md): 주 L **미재현**(중앙 CR 15.26·SR 1.43, DJI 수준), N 병기 재현(창 의존), C R1 통과. launchd 해제. F7: RAT(서버 GTX 1650, P1~4 완료, P5 중) → P5 직후 Ensemble F7 5회(서버 CPU, tmux ens_f7 순서 스크립트, prereg 5eaa146) → RAT R 재개. li2019·xiong2018은 F4만(1에폭). F1 수동 목록 사전 확인 완료(abe3d4a, HARLF 링크 사망). 맥→서버 `ssh tb` 키 인증 됨. 원격 명령은 PowerShell 따옴표가 깨지므로 `ssh tb "wsl -e bash -s" <<'EOF'`로 보낸다. 서버 원격 쓰기·실행은 자동 분류기가 막을 수 있음 → 사용자에게 명령 전달.
+
+**2026-11-13 갱신:** 실행 층 끝. F7 Ensemble **부분 재현**(Sharpe 평균 1.008, R2 1/5; 3474c8e), RAT **부분 재현**(fAPV 평균 378 > 폭 상한, 위쪽; 94565c7). F4 통과 li2019·xiong2018·Margin Trader·HARLF, 실행 불가 EIIE·ADRL·SmartFolio, SCR 미시험(사용자 결정). 다음 = CI·MDE 사전 등록 v2 → 논문용 표 → 영어 집필(11/25~). 최신 HANDOFF_2026-11-13.md. 원격 명령은 `cat <<'EOF' | ssh tb "wsl -e bash -l -s"`가 안정적. tmux `has-session -t name`은 접두 일치 — `=name`으로 쓸 것. 다른 Claude 세션이 같은 브랜치에 병행 커밋하므로 작업 전 `git fetch`·ff.
+
+**2026-11-24 갱신:** F1 재확인 최종(층1 4/44, 층2 0/10, 54편 사람 확인; e635a4f). 찾음 4편 깔때기 반영(F1 종료 46→42) 및 탐색적 후속. 최신 HANDOFF_2026-11-24.md. 서버 F7x Ensemble 실행기는 남은 tmux 서버 명령줄(f7_all.sh) 때문에 FRONTIER 오감지로 대기 — 재시작에 프로세스 종료가 필요한데 자동 권한 검사가 거부함(사용자 승인 필요, 마감 11-27 00:00). 사용자는 판정 시 확인 위치(논문 vs 저자 README)를 헷갈리기 쉬움 → 확인 목록에 "어디를 열지"를 구체적으로 적을 것.
+
+**2026-11-25 갱신:** P24-07 F7x 끝(R0 비트 일치, R1 통과, R2 미통과; 저자 KDD 곡선 5개 모두 첫날 정수 매수 후 보유, 평균이 Table 1과 정확히 일치). 퇴화 정책 기준선·매수 순서 시험(notes/degenerate_policy_baseline_prereg.md): FinRL DDPG·TD3 고정 비중은 학습 중 생김, PPO 학습 전후 차이 ≤4e−7, P24-07 포화는 학습 전에도 70~87%이고 학습이 만든 건 부호 고정, 배분은 env 동점 순서·현금 한도(순열별 Sharpe 1.24~1.96). F7x Ensemble 난류 판정 끝(C−P −0.22 [−0.44,−0.003] 약한 근거, O−P −0.74). 영문 결과 초안 thesis/en/reevaluation_results.md. 사용자 결정 대기: WaveCorr F5 정의 오류 정정 여부(시드 10회를 1시드로 셈, 1시드 3.9h면 통과), 매수 후 보유 적합 검사 확장. Colab 결제는 비추천(세션 24h 한계).
+
+
+**2026-11-26 갱신:** 영어 초안 완성 — 장별 파일 `thesis/en/*.md`가 원본, `python3 thesis/en/assemble.py`로 `THESIS_EN_DRAFT.md` 생성(통합본 직접 편집 금지). WaveCorr 탐색적 F7x 사전 판정 재현(SR 1.754, 단 코드가 매 에폭 시험 APV 기록·검증 연도 학습 포함 → 시험 정보와 독립 주장 불가). Pawar 2024(2405.01604) 인용 금지(해당 서술 없음). 서버 실행 없음. 최신 HANDOFF_2026-11-26.md. 사용자 대기: 통독, 제목, 5장 포함 여부, 제출 형식, G3 날짜, 유료 PDF.

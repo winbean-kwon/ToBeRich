@@ -1,4 +1,4 @@
-- [Project state 2026-11-05](project-state-2026-10-26.md) — MARS 본 실행 중(결과 열람 금지), 재현 깔때기 진행; read HANDOFF_2026-11-05.md first
+- [Project state 2026-11-26](project-state-2026-10-26.md) — 영어 초안 완성·assemble.py 조립, WaveCorr 탐색적 재현; read HANDOFF_2026-11-26.md first
 - [마감·목표](thesis-deadline-goal.md) — 12월 중순 마감, 퀄리티 되면 2027 본 트랙/TMLR까지
 - [Pre-registration rule](pre-registration-rule.md) — fix criteria before running; no cherry-picking; don't edit paper/ directly
 - [Live bot setup](live-bot-setup.md) — server/dashboard/Tailscale details, Mac IP not whitelisted
@@ -6,3 +6,4 @@
 - [부풀리지 말 것·독립 검토](no-inflation-independent-review.md) — 주장·계획은 보고 전 반박 에이전트로 검증
 - [재현 중심, 비용은 보조](focus-reproduction-not-cost.md) — 후보 선정·해석 축은 보고 수치 재현 여부
 - [논문 영어 제출](thesis-english.md) — 졸업논문은 영어로 제출, 초안도 영어로
+- [서버 C: 여유 부족](server-c-drive-tight.md) — WSL vhdx·스왑·pagefile이 C:에, 큰 WSL 작업 전 디스크·메모리 확인

@@ -16,7 +16,7 @@ The unit of analysis is the paper. Papers sharing a code lineage are counted sep
 
 ## X.2 Stages
 
-Each paper passes through a fixed sequence of stages and is counted once, at the first stage it does not pass (Table 1). The stages were fixed before any stage judgment was made.
+Each paper passes through a fixed sequence of stages and is counted once, at the first stage it does not pass; the outcomes are reported in Table 1. The stages were fixed before any stage judgment was made.
 
 | Stage | Question | Pass criterion |
 |---|---|---|
@@ -33,9 +33,9 @@ F6 is placed before F3 because it is a static judgment. Papers that pass F0–F3
 
 ## X.3 Checking the F1 judgments
 
-F1 was the stage at which most papers exited, and its initial judgments were made with LLM assistance. We therefore re-checked them under a pre-registered procedure.
+F1 was the stage at which most papers exited, and its initial judgments were made with the assistance of a large language model. We therefore re-checked them under a pre-registered procedure.
 
-**Design.** One human rater re-judged every paper that had not passed F1 (44 papers, excluding two whose full text could not be obtained) and a random sample of 10 of the 27 papers that had passed. For each paper the rater searched the full text for code-related terms, the venue's supplementary material, the first and corresponding authors' GitHub accounts and home pages, and the Hugging Face paper page, and assigned one of six labels (found; third-party only; link dead; available on request; none; full text unavailable). The rater had seen the original judgments, so the check is not blind. Where the rater's label disagreed with the original judgment, the disagreement was resolved by inspecting the cited repository or sentence; the rater's confirmed label is final.
+**Design.** One human rater re-judged every paper that had not passed F1 (44 papers, excluding two whose full text could not be obtained) and a random sample of 10 of the 27 papers that had passed F1 at the time of the check (before the five papers below were found). For each paper the rater searched the full text for code-related terms, the venue's supplementary material, the first and corresponding authors' GitHub accounts and home pages, and the Hugging Face paper page, and assigned one of six labels (found; third-party only; link dead; available on request; none; full text unavailable). The rater had seen the original judgments, so the check is not blind. Where the rater's label disagreed with the original judgment, the disagreement was resolved by inspecting the cited repository or sentence; the rater's confirmed label is final.
 
 **Results.** Among the 44 papers that had not passed F1, official code was located for 4 (9.1%; 95% Wilson interval 4–21%). If only first- or corresponding-author accounts are accepted, the count is 2 of 44. In all four cases the paper itself contained no link, and the repository could be identified only through an author's personal GitHub account. None of the 10 sampled passes was overturned (0/10; 95% interval 0–28%). Binary agreement over the 54 checked papers was 0.926 (Cohen's κ 0.787; because the sample is stratified, this is not a population agreement rate). Before disagreements were resolved, the rater's own initial labels differed more: the rater had found code for 2 of the 44 papers and had labelled 7 of the 10 sampled passes as having no official code; on inspection, all 7 had an open official repository, mostly on an author's GitHub account that the rater had not checked (agreement 0.833, κ 0.315). The final labels above therefore rely on the resolution step.
 
