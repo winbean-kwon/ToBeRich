@@ -18,7 +18,7 @@ A repository was treated as official if the paper or a repository owned by the a
 
 Four methods were studied in depth: DeepAries (T1; Kim et al., 2025), AlphaMix+ from PRUDEX-Compass (T2; Sun et al., 2023), the FinRL portfolio-allocation agents A2C, PPO, DDPG and TD3 (T3; Liu et al., 2021), and MARS (T4; Chen et al., 2026). T1–T3 were fixed before the funnel protocol; a replacement order was fixed in advance for T2 in case it could not be run within an eight-hour debugging limit using permitted modifications only, but it ran without replacement. T4 was added later under its own pre-registration. Each repository was used at a fixed commit, and the bundled or first-downloaded data snapshot was frozen and not downloaded again.
 
-**Permitted modifications.** We modified the official code only by (i) compatibility shims that restore deprecated library interfaces with the same meaning, (ii) date and split arguments, or truncating the input data where no argument exists, (iii) replacing the cost function, only in the unified protocol (Section 3.4), and (iv) logging. Algorithms, rewards, observations and hyperparameters were not changed. Every change is listed in the supplementary material.
+**Permitted modifications.** We modified the official code only by (i) compatibility shims that restore deprecated library interfaces with the same meaning, (ii) date and split arguments, or truncating the input data where no argument exists, (iii) replacing the cost function, only in the unified protocol (Section 3.4), and (iv) logging. Algorithms, rewards, observations and hyperparameters were not changed. For MARS, its own pre-registration also permitted an execution wrapper setting the seed, output directory and device, disabling logging during training, and behaviour-preserving acceleration accepted only after an equality test against the original code. Every change is listed in the supplementary material.
 
 ## 3.3 Reproduction runs and verdicts (O1)
 
@@ -31,7 +31,7 @@ Each target was run under the paper's own procedure; settings not stated in the 
 | T3 FinRL | 5 per algorithm | Median (not stated in the paper) |
 | T4 MARS | 10 | Median |
 
-The verdict criteria R1 (value within a tolerance band) and R2 (the paper's comparative claim holds in a pre-specified number of runs) are defined in Section Y.1. The band half-width is half the distance between the reported value and the comparator named in the paper's comparative claim (for T1, T3 and T4, the market index reported in the same table). The DeepAries drawdown band (±5.0 percentage points) was set without a comparator because none was reported. For T2, which reports no comparator for the compared quantity, the band was ±2σ/√n from the reported standard deviation σ over n runs in each of three test years, and R1 required at least two of three years; R2 required the seed-mean total return to exceed the daily-rebalanced market average in at least two of three years. For T3, each algorithm received its own verdict; the paper counted as reproduced if at least three of four algorithms were reproduced, partially reproduced if one or two were, and not reproduced otherwise.
+The verdict criteria R1 (value within a tolerance band) and R2 (the paper's comparative claim holds in a pre-specified number of runs) are defined in Section Y.1. For T1, T3 and T4, the comparator defining the band is the market index reported in the same table. The DeepAries drawdown band (±5.0 percentage points) was set without a comparator because none was reported. For T2, which reports no comparator for the compared quantity, the band was ±2σ/√n from the reported standard deviation σ over n runs in each of three test years, and R1 required at least two of three years; R2 required the seed-mean total return to exceed the daily-rebalanced market average in at least two of three years. For T3, each algorithm received its own verdict; the paper counted as reproduced if at least three of four algorithms were reproduced, partially reproduced if one or two were, and not reproduced otherwise.
 
 ## 3.4 Unified evaluation protocol (O2)
 
@@ -105,4 +105,4 @@ The diagnostics in Sections Z.3, Z.5 and Z.6 were motivated by earlier results a
 
 ## 6.7 Contact with authors
 
-[check: state whether the authors of DeepAries and PRUDEX-Compass were contacted, on which dates, and whether they replied; until confirmed, write only that the verdicts do not incorporate author input.]
+We contacted the authors of DeepAries and PRUDEX-Compass (AlphaMix+), and of one further paper, by e-mail with questions about settings not stated in the papers [check: dates sent]. No reply had been received by [check: date]. The verdicts therefore do not incorporate author input.

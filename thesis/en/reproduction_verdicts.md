@@ -11,7 +11,7 @@ For each target we fixed, before running anything, the reported value to be comp
 - **R1 (value).** Our aggregate lies within a tolerance band around the reported value. The half-width of the band is half the gap between the reported value and a comparator taken from the same table and fixed in advance for each target: usually the market index against which the paper states its advantage, or the strongest reported baseline where the claim is made against learned baselines. A result therefore counts as reproduced only if it is closer to the reported value than to the comparator.
 - **R2 (claim).** The paper's comparative claim — typically that the method outperforms its strongest reported baseline — holds in our runs, with a minimum number of runs specified per target.
 
-A target is *reproduced* if both criteria hold, *partially reproduced* if exactly one holds, and *not reproduced* if neither holds. Aggregation follows the paper where it is stated (for example, a seed-selection rule) and is otherwise fixed in advance (mean or median over seeds). We used the authors' public code at the version closest to publication, modifying it only to run on our hardware, to log outputs, or to fix errors that prevent execution, and we report every such change.
+A target is *reproduced* if both criteria hold, *partially reproduced* if exactly one holds, and *not reproduced* if neither holds. Aggregation follows the paper where it is stated (for example, a seed-selection rule) and is otherwise fixed in advance (mean or median over seeds). We used the authors' public code at the version closest to publication, modifying it only within the pre-specified set of permitted changes (Section 3.2 of the methods), and we report every such change.
 
 ## Y.2 Results
 
@@ -41,6 +41,6 @@ Three further papers were run outside the fixed order, under the same kind of pr
 
 ## Y.4 What the verdicts do and do not show
 
-- At the paper level, with the code at publication and the definitions fixed in advance, no paper was fully reproduced: three were partially reproduced (FinRL, the ensemble strategy and the Relation-Aware Transformer) and three were not reproduced (DeepAries, AlphaMix+ and MARS). Within FinRL, two of four algorithms were reproduced, and MARS was reproduced with a later revision of the authors' code. [check against Table 2 before submission.]
+- At the paper level, with the code at publication and the definitions fixed in advance, no paper was fully reproduced: three were partially reproduced (FinRL, the ensemble strategy and the Relation-Aware Transformer) and three were not reproduced (DeepAries, AlphaMix+ and MARS). Within FinRL, two of four algorithms were reproduced, and MARS was reproduced with a later revision of the authors' code.
 - We do not aggregate these into a single reproduction rate: the six papers are not a random sample, four were chosen before the protocol, and verdicts for two (AlphaMix+, MARS) change with choices the papers leave unspecified or with the code version.
 - A failed verdict does not show that a paper's numbers are wrong. Our runs differ from the authors' in hardware, library versions and nondeterminism, and in several cases the paper does not specify the procedure that produced the reported value.

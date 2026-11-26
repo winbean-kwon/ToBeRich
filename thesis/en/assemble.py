@@ -105,7 +105,7 @@ parts = [
     "### 3.2.3 Checking the code-availability judgments", x3_design.strip(),
     "## 3.3 Targets for in-depth reproduction", sec(meth, "3.2"),
     "## 3.4 Reproduction runs and verdicts (O1)", sec(ver, "Y.1") + "\n\n" + sec(meth, "3.3")
-        + "\n\n[check: trim the band definition, which now appears in both paragraphs.]",
+,
     "## 3.5 Unified evaluation protocol (O2)", sec(meth, "3.4"),
     "## 3.6 Checking the implemented transaction cost", sec(meth, "3.5"),
     "## 3.7 Statistical analysis", sec(meth, "3.6"),
@@ -139,9 +139,21 @@ parts += [
     "## 6.8 Runs, seeds and power", sec(meth, "6.4"),
     "## 6.9 Protocol choices", sec(meth, "6.5"),
     "## 6.10 Exploratory findings", sec(meth, "6.6"),
-    "## 6.11 Contact with authors", limitations_contact,
+    "## 6.11 Contact with authors", sec(meth, "6.7"),
     "# Chapter 7. Conclusion", sections(dc, "#")["Chapter 7. Conclusion"],
 ]
+
+
+RENAME = {"Xiong 2018": "Liu et al. 2018"}
+TITLES = {
+    "HARLF …": "HARLF: Hierarchical reinforcement learning and lightweight LLM-driven sentiment integration for financial portfolio optimization",
+    "FinRL-Meta: Market environments and benchmarks …": "FinRL-Meta: Market environments and benchmarks for data-driven financial reinforcement learning.",
+    "The generalization of 'Student's' problem …": "The generalization of 'Student's' problem when several different population variances are involved.",
+    "HAC covariance matrix estimation": "Heteroskedasticity and autocorrelation consistent covariance matrix estimation",
+    "deep RL(ICLR 2016)": "deep RL. ICLR 2016",
+    "A systematic literature review …": "A systematic literature review … [check: full title]",
+    "State of the art: Reproducibility in AI": "State of the art: Reproducibility in artificial intelligence",
+}
 
 
 def references(body):
@@ -153,22 +165,32 @@ def references(body):
         c = [x.strip() for x in line.strip().strip("|").split("|")]
         if len(c) < 3 or c[0] in ("키", "---") or set(c[0]) <= set("-"):
             continue
-        name = re.split(r"[ ,&]", c[0])[0]
-        if name and re.search(r"\b" + re.escape(name) + r"\b", body):
+        key0 = RENAME.get(c[0], c[0])
+        name = re.split(r"[ ,&]", key0)[0]
+        yr = re.findall(r"(\d{4})", key0)
+        if name and yr and re.search(r"\b" + re.escape(name) + r"\b[^;()]{0,40}?[ (]" + yr[-1], body):
             bib = re.sub(r"\s*\(\d+인\)", "", c[1])
             bib = bib.replace(" 외", " et al.").replace("(석사논문)", " (master's thesis)").replace(" 프리프린트", " preprint")
             bib = re.sub(r"\(사전 등록 노트 기준\)", "", bib)
+            for a, b in TITLES.items():
+                bib = bib.replace(a, b)
+            bib = re.sub(r"\bRL\b", "reinforcement learning", bib)
+            bib = re.sub(r"\bML\b", "machine learning", bib)
+            bib = re.sub(r"\bAI\b", "artificial intelligence", bib)
             key = re.sub(r"\s+(PPO|A2C/A3C|DDPG|TD3|SB3|Ensemble|RAT|FinRL library|FinRL|PRUDEX|DeepAries|MARS|Margin Trader|WaveCorr|EIIE|PPN|EarnMore|HARLF|FinRL-Meta)$", "", c[0])
+            key = RENAME.get(c[0], key)
             rows.append(f"- {key}. {bib}. {re.sub(r'[(（].*[가-힣].*[)）]', '', c[2]).strip()}")
-    extra = ["- André, E. and Coqueret, G. Dirichlet policies for reinforced factor portfolios. arXiv 2011.05381 [check: verify bibliographic entry]",
-             "- Aarnio (2025), master's thesis, University of Turku [check: verify bibliographic entry and content]",
-             "- Realistic market impact modeling for RL trading environments. arXiv 2603.29086 [check: verify bibliographic entry]"]
-    return "# References\n\n> Generated from `notes/references_verified_2026-11-25.md` (bibliographic existence checked); convert to the required citation style before submission. [check: titles are abbreviated in the source notes (\"RL\", \"…\") — restore full titles; matching is by surname, so remove uncited entries (e.g. Li 2019) and add Liu et al. 2018, arXiv 1811.07522, cited in Section 2.3.]\n\n" + "\n".join(sorted(set(rows)) + extra)
+    extra = ["- André & Coqueret 2020. André, Coqueret. Dirichlet policies for reinforced factor portfolios. arXiv 2011.05381",
+             "- Abbade & Costa 2026. Abbade, Costa. Realistic market impact modeling for reinforcement learning trading environments. arXiv 2603.29086",
+             "- Aarnio 2025. Master's thesis, University of Turku [check: verify bibliographic entry and content]"]
+    rows = [re.sub(r"(\d{4}\. )([a-z])", lambda m: m.group(1) + m.group(2).upper(), r, count=1).replace("artificial intelligence Review", "Artificial Intelligence Review").replace("et al..", "et al.").replace("..", ".")
+            for r in rows]
+    return "# References\n\n> Generated from `notes/references_verified_2026-11-25.md` (bibliographic existence checked); convert to the required citation style before submission. [check: verify each title against the source; entries are matched to the text by surname and year.]\n\n" + "\n".join(sorted(set(rows)) + extra)
 
 
 body = "\n\n".join(p.strip() for p in parts) + "\n"
 text = renumber(body + "\n" + references(body) + "\n")
-text = text.replace("[check: align with Section 6.7 on author contact]", "[check: align with Section 6.11]")
+text = text.replace("(Section 3.2 of the methods)", "(Section 3.3)")
 OUT.write_text(text, encoding="utf-8")
 left = sorted(set(re.findall(r"\b[XYZ]\.\d", text)))
 print(OUT.name, len(text.split()), "words;", text.count("[check"), "[check] items; leftover labels:", left)
