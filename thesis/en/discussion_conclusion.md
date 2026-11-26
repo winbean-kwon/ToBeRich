@@ -54,7 +54,7 @@ These items do not by themselves make a method better or worse; they determine w
 
 ## 8.5 Limitations of the author's own work
 
-This section concerns Chapters 3–5; the limitations of the reproduction study follow in Sections 8.6–8.12.
+This section concerns Chapters 3–5; the limitations of the reproduction study follow in Sections 8.6–8.13.
 
 **Exploratory status.** Except for the tests identified as pre-registered in Chapter 5, the work of Chapters 3–5 was carried out before pre-registration was adopted. Several design choices were made after seeing test-period results: the damping rate of the early designs, the sparse action and the number of assets selected; eight execution-time overlays were also compared on the test period, the best reaching +28.43%, and none was carried forward. The candidate set from which the final agent was selected was reached that way. One set of hyperparameters was used for all agents without tuning.
 
