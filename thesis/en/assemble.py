@@ -63,7 +63,7 @@ def table(n):
 
 def renumber(s):
     s = s.replace("Table Z0", "Table 4").replace("Table Z1", "Table 5").replace("Table Z2", "Table 6").replace("Table Z3", "Table 7")
-    s = s.replace("Sections Z.3, Z.5 and Z.6", "Sections 5.3, 5.5 and 5.6")
+    s = s.replace("Sections Z.3, Z.5, Z.6 and Z.7", "Sections 5.3, 5.5, 5.6 and 5.7")
     s = re.sub(r"\bZ\.(\d)", r"5.\1", s)
     for a, b in {"Y.1": "3.4", "Y.2": "4.3", "Y.3": "4.4", "Y.4": "4.5",
                  "X.1": "3.2.1", "X.2": "3.2.2", "X.3": "3.2.3", "X.4": "4.1", "X.5": "6.6"}.items():
@@ -124,6 +124,7 @@ for i, t in enumerate(["Do the implementations charge the configured transaction
                        "Effect sizes and detectable differences",
                        "A policy that holds what it buys on the first day (exploratory)",
                        "Sensitivity of the ensemble strategy to its turbulence threshold (exploratory)",
+                       "Equal weight for the other judged methods (exploratory)",
                        "Summary of the re-evaluation"], 1):
     repro += [f"## 5.{i} {t}", sec(ree, f"Z.{i}")]
 repro += [
@@ -140,7 +141,7 @@ repro += [
 
 SEC_MAP = {**{f"3.{i}": f"6.{i}" for i in range(1, 10)},
            **{f"4.{i}": f"6.{i + 9}" for i in range(1, 6)},
-           **{f"5.{i}": f"7.{i}" for i in range(1, 8)},
+           **{f"5.{i}": f"7.{i}" for i in range(1, 9)},
            "6.1": "8.2", "6.2": "8.3", "6.3": "8.4",
            **{f"6.{i}": f"8.{i + 2}" for i in range(4, 12)}}
 CH_MAP = {"3": "6", "4": "6", "5": "7", "6": "8", "7": "9"}
