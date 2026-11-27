@@ -31,7 +31,11 @@ def margin_trader(md):
     for s in range(5):
         rd = pathlib.Path(glob.glob(str(md / f"runs/P_s{s}/results/*/a2c"))[0])
         tr = pd.read_csv(rd / "trade_result.csv")
-        assert tr["a2c"].notna().all(), "a2c 결측"
+        # trade_result.csv는 a2c 가치와 DJI를 outer 병합한 것: DJI에만 있는 날(마지막 2023-04-28, 종목 데이터 없음)은 a2c가 비어 있다.
+        # pyfolio Sharpe는 a2c 가치 계열 자체(결측 행 없음)로 계산되므로 a2c 결측 행만 뺀다(끝에만 있어야 함, assert).
+        na = tr["a2c"].isna().to_numpy()
+        assert not na[: len(na) - int(na[::-1].argmin() if not na.all() else len(na))].any(), "a2c 결측이 끝 이외에 있음"
+        tr = tr[~na]
         d = list(tr["date"].astype(str))
         if dates is None:
             dates = d
