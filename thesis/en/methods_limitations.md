@@ -82,7 +82,7 @@ The verdicts state whether the released code, run under definitions fixed in adv
 
 ## 6.2 Sample and selection
 
-The methods studied in depth are those with official code that we could run. This is a selected group with shared code lineages: the AlphaMix+ environment derives from the FinRL portfolio environment, and the ensemble strategy, Margin Trader and Markowitz Meets Bellman build on FinRL environments. The funnel samples were not drawn by a systematic search (Section X.5), and the exploratory reproductions were chosen after earlier results were known; in particular, of the five papers that passed the execution stages without receiving a verdict, two (Margin Trader and WaveCorr) were run further, WaveCorr after a correction to its compute-stage judgment. No rate of reproduction is computed from these papers.
+The methods studied in depth are those with official code that we could run. This is a selected group with shared code lineages: the AlphaMix+ environment derives from the FinRL portfolio environment, and the ensemble strategy, Margin Trader and Markowitz Meets Bellman build on FinRL environments. The funnel samples were not drawn by a systematic search (Section X.5), and the exploratory reproductions were chosen after earlier results were known; in particular, of the five papers that passed the execution stages without receiving a verdict, two (Margin Trader and WaveCorr) were run further. No rate of reproduction is computed from these papers.
 
 ## 6.3 Data and universes
 
