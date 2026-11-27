@@ -1,0 +1,116 @@
+{
+ "A_alphamix_dj30": {
+  "S2021": {
+   "n_seeds": 5,
+   "n_epochs": 10,
+   "paper": 20.7,
+   "tol": 1.61,
+   "i_val_best": 18.718,
+   "ii_test_best": 20.79,
+   "iii_fixed_epoch_by_test_mean": 20.044,
+   "iv_last_epoch": 18.467,
+   "v_all_epoch_mean": 18.186,
+   "R1": {
+    "i_val_best": false,
+    "ii_test_best": true,
+    "iii_fixed_epoch_by_test_mean": true,
+    "iv_last_epoch": false,
+    "v_all_epoch_mean": false
+   },
+   "ii_minus_i": 2.073,
+   "iii_minus_i": 1.327
+  },
+  "S2020": {
+   "n_seeds": 5,
+   "n_epochs": 10,
+   "paper": 12.7,
+   "tol": 1.52,
+   "i_val_best": 12.434,
+   "ii_test_best": 12.973,
+   "iii_fixed_epoch_by_test_mean": 12.867,
+   "iv_last_epoch": 9.419,
+   "v_all_epoch_mean": 10.557,
+   "R1": {
+    "i_val_best": true,
+    "ii_test_best": true,
+    "iii_fixed_epoch_by_test_mean": true,
+    "iv_last_epoch": false,
+    "v_all_epoch_mean": false
+   },
+   "ii_minus_i": 0.539,
+   "iii_minus_i": 0.433
+  },
+  "S2019": {
+   "n_seeds": 5,
+   "n_epochs": 10,
+   "paper": 25.1,
+   "tol": 1.27,
+   "i_val_best": 25.445,
+   "ii_test_best": 27.101,
+   "iii_fixed_epoch_by_test_mean": 26.092,
+   "iv_last_epoch": 26.089,
+   "v_all_epoch_mean": 25.177,
+   "R1": {
+    "i_val_best": true,
+    "ii_test_best": false,
+    "iii_fixed_epoch_by_test_mean": true,
+    "iv_last_epoch": true,
+    "v_all_epoch_mean": true
+   },
+   "ii_minus_i": 1.656,
+   "iii_minus_i": 0.647
+  }
+ },
+ "B_ensemble_vs_rule": {
+  "rule_sharpe": 1.185,
+  "runs": [
+   {
+    "run": "E1",
+    "sharpe_minus_rule": -0.01,
+    "ci95": [
+     -0.649,
+     0.675
+    ]
+   },
+   {
+    "run": "E2",
+    "sharpe_minus_rule": -0.169,
+    "ci95": [
+     -0.749,
+     0.416
+    ]
+   },
+   {
+    "run": "E3",
+    "sharpe_minus_rule": -0.173,
+    "ci95": [
+     -0.693,
+     0.349
+    ]
+   },
+   {
+    "run": "E4",
+    "sharpe_minus_rule": -0.193,
+    "ci95": [
+     -0.664,
+     0.314
+    ]
+   },
+   {
+    "run": "E5",
+    "sharpe_minus_rule": -0.34,
+    "ci95": [
+     -0.909,
+     0.207
+    ]
+   }
+  ],
+  "mean_series": {
+   "sharpe_minus_rule": -0.121,
+   "ci95": [
+    -0.58,
+    0.356
+   ]
+  }
+ }
+}
