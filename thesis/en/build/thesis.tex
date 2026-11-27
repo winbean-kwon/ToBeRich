@@ -3040,8 +3040,14 @@ gradient is zero by construction; our pre-specified numerical test was
 inconclusive for this case because of rounding in single precision at a
 very small gradient norm. The check establishes only whether the
 training signal responds to the cost, not whether training makes use of
-it or how it affects performance. A separate experiment that restores
-the cost gradient in the FinRL EIIE loss is reported in Section 5.5.
+it or how it affects performance. In MARS, which responds to the cost,
+the reward adds a return expressed as a fraction and subtracts the cost
+in dollars on a capital of one million; on its training data the cost
+term exceeded the return term in 94--95\% of steps under equal-weight
+targets and under the authors' released checkpoint, by a median factor
+of about 200 and 40 respectively (exploratory, without training). A
+separate experiment that restores the cost gradient in the FinRL EIIE
+loss is reported in Section 5.5.
 
 \section{FinRL under the unified
 protocol}\label{finrl-under-the-unified-protocol}
