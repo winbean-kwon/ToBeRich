@@ -2741,7 +2741,14 @@ epoch is reported and whether the market-average baseline is rebalanced.
 Selecting the epoch by validation performance would make the verdict
 \emph{reproduced}, and a buy-and-hold market average would make it
 \emph{partially reproduced}. Verdict under the pre-specified
-definitions: not reproduced.
+definitions: not reproduced. In an exploratory recomputation under
+several post-hoc rules for choosing the epoch, fixing the epoch that
+maximizes the seed-mean test return placed the seed-mean total return
+inside the tolerance band in all three years, whereas validation-based
+rules missed 2021. Because several rules were compared, every epoch
+falls inside the 2019 band, and only one epoch falls inside the 2021
+band, this agreement is compatible with test-based selection of the
+reported epoch but does not show that such selection was used.
 
 \textbf{FinRL (T3).} Each of the four algorithms was judged separately
 on annualized return, using 28 of the paper's 30 stocks. PPO and TD3
@@ -3396,7 +3403,12 @@ verdicts.
 \end{itemize}
 
 These comparisons involve five or ten runs and a single test period
-each, and no test was applied.
+each. For the ensemble strategy, paired circular block bootstrap
+intervals (20-day blocks) for the difference in Sharpe ratio between
+each run and equal weight with the turbulence rule all contained zero
+(point estimates −0.01 to −0.34), so over this period the learned policy
+was not distinguishable from the rule alone; the period and the
+thresholds were not held out.
 
 \section{Summary of the
 re-evaluation}\label{summary-of-the-re-evaluation}

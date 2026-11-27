@@ -101,7 +101,7 @@ The unified protocol was applied only to FinRL, the one pre-selected method that
 - **MARS.** With the code as of publication, two of ten seeds exceeded equal weight in Sharpe ratio and three of ten in cumulative return; most did not exceed it. With the authors' later revision, reported alongside, seven and eight of ten did.
 - **Ensemble strategy.** All five runs exceeded equal weight in Sharpe ratio (mean 1.01 against 0.44). The difference was concentrated in the first months of 2020: before 2020, equal weight had a Sharpe ratio of 1.02 against a mean of about 1.07 for the runs, and between 19 February and 12 May 2020 equal weight lost 17.9% while each run lost less than 0.5%, consistent with the strategy's move to cash when its turbulence index exceeded the threshold. With the turbulence rule disabled (Section Z.6), its Sharpe ratio was below that of equal weight. Conversely, equal weight with the same turbulence rule and thresholds and no RL policy reached a Sharpe ratio of 1.19 over the same period, at least as high as each of the five runs (1.18 at most); the thresholds were set by the original authors from the same period, so this comparison is not out of sample.
 
-These comparisons involve five or ten runs and a single test period each, and no test was applied.
+These comparisons involve five or ten runs and a single test period each. For the ensemble strategy, paired circular block bootstrap intervals (20-day blocks) for the difference in Sharpe ratio between each run and equal weight with the turbulence rule all contained zero (point estimates −0.01 to −0.34), so over this period the learned policy was not distinguishable from the rule alone; the period and the thresholds were not held out.
 
 ## Z.8 Summary of the re-evaluation
 
