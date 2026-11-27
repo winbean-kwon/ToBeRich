@@ -2918,6 +2918,34 @@ show}\label{what-the-verdicts-do-and-do-not-show}
   leave unspecified or with the code version.
 \end{itemize}
 
+\section{Static reading for leakage (pre-registered,
+descriptive)}\label{static-reading-for-leakage-pre-registered-descriptive}
+
+We read the public code of the six judged targets and the four
+exploratory reproductions against eight pre-specified leakage items:
+normalization statistics computed over a span that includes test data,
+features computed with data after the decision time, overlap of
+training, validation and test periods, model or epoch selection on
+test-period performance, logging of test metrics during training, a
+universe chosen with information from after the test start, misaligned
+targets, and any other look-ahead. Each code was recorded as yes, no,
+not applicable or undetermined, with file and line evidence. The reading
+was static, performed by a single rater who was not blind to our other
+results, and no effect on performance was measured. Paths found include
+checkpoint selection on test-period portfolio value (Relation-Aware
+Transformer), training on the paper's validation years together with
+logging of test performance at every epoch (WaveCorr), volatility and
+volume estimates that include the same day's open-to-close range in the
+state used to choose that day's weights (FRONTIER), and, in an author
+notebook for a market we did not evaluate (SZ50), selection of the model
+configuration by test-period return (AlphaMix+); for the DJ30 data we
+evaluated, no rule for choosing the epoch is given. Several paths are
+confined to the first rows of training, such as a missing-value fill in
+the AlphaMix+ environment that is not grouped by asset, or are not
+triggered in the configuration we ran. Universes were fixed with later
+information in most targets. The table is descriptive: it implies no
+verdict on any paper and no estimate of prevalence.
+
 \chapter{Re-evaluation of official
 code}\label{chapter-7.-re-evaluation-of-official-code}
 
@@ -3354,7 +3382,11 @@ verdicts.
   lost less than 0.5\%, consistent with the strategy's move to cash when
   its turbulence index exceeded the threshold. With the turbulence rule
   disabled (Section 7.6), its Sharpe ratio was below that of equal
-  weight.
+  weight. Conversely, equal weight with the same turbulence rule and
+  thresholds and no RL policy reached a Sharpe ratio of 1.19 over the
+  same period, at least as high as each of the five runs (1.18 at most);
+  the thresholds were set by the original authors from the same period,
+  so this comparison is not out of sample.
 \end{itemize}
 
 These comparisons involve five or ten runs and a single test period
@@ -3751,8 +3783,9 @@ funnel}\label{limitations-specific-to-the-funnel}
 \section{Data and universes}\label{data-and-universes}
 
 Several targets use asset lists fixed after the test period: DeepAries
-uses constituents from the 2020s from 2000 onward (26 of the 27 listed
-assets are present in the data), the AlphaMix+ list includes later index
+applies, from 2000 onward, a list of 27 Dow constituents matching the
+index before its change of 31 August 2020 (26 of the 27 listed assets
+are present in the data), the AlphaMix+ list includes later index
 members, and the released code of Markowitz Meets Bellman restricts the
 universe to five tickers, whereas the paper describes 30. Because our
 primary baselines use the same assets, relative comparisons are not

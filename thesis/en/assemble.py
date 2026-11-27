@@ -116,6 +116,7 @@ repro = [
     "## 4.3 Reproduction verdicts", sec(ver, "Y.2").replace("[Insert Table 2 from `notes/paper_tables_draft.md`.]", table(2)),
     "## 4.4 Exploratory verdicts outside the fixed order", sec(ver, "Y.3") + "\n\n" + table(3),
     "## 4.5 What the verdicts do and do not show", sec(ver, "Y.4"),
+    "## 4.6 Static reading for leakage (pre-registered, descriptive)", sec(ver, "Y.5"),
     "@@CH7@@",
 ]
 for i, t in enumerate(["Do the implementations charge the configured transaction cost?",
@@ -140,7 +141,7 @@ repro += [
 ]
 
 SEC_MAP = {**{f"3.{i}": f"6.{i}" for i in range(1, 10)},
-           **{f"4.{i}": f"6.{i + 9}" for i in range(1, 6)},
+           **{f"4.{i}": f"6.{i + 9}" for i in range(1, 7)},
            **{f"5.{i}": f"7.{i}" for i in range(1, 9)},
            "6.1": "8.2", "6.2": "8.3", "6.3": "8.4",
            **{f"6.{i}": f"8.{i + 2}" for i in range(4, 12)}}

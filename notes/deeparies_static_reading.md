@@ -24,7 +24,7 @@
 - **보상 형성에 사후 정보:** 학습 보상에 `optimal_horizon_index = argmax_h (w·r_h)`(실현된 미래 수익으로 고른 최적 구간)와 일치하면 ×1.2, 아니면 ×0.8. 논문 식 (2)에 명시. 학습 신호에만 쓰이고 백테스트에는 없음 → 미래 정보 누출 아님(특권 보상).
 - **라벨 시점:** 입력 = [idx, idx+seq_len) 날짜(마지막 날 제외), 수익 = close_{d+h}/close_d − 1 (d = idx+seq_len). 누출 없음(오히려 하루 지연).
 - **수익 기준:** `close`(yfinance `auto_adjust=False` → 분할 조정, 배당 미포함). 비교 지수 ^DJI도 가격지수라 같은 기준.
-- **종목 집합:** `complete_dj30_tickers.csv` 27종목 — 2020년대 구성 종목 목록을 2000년부터 적용(사후 선정). WBA(2024-02 편출), INTC(2024-11 편출) 포함, AMZN·CRM·AMGN·HON·V·NVDA·SHW 등 미포함. `num_stocks=20` 상위 k 선택.
+- **종목 집합:** `complete_dj30_tickers.csv` 27종목 — 2020-08-31 변경 이전 다우 구성(30종목 중 V·DOW·RTX 제외 27종목) 목록을 2000년부터 적용(사후 선정; 2026-11-27 누설 체크리스트 심사로 정정 — 이전 서술 '2020년대 구성'은 틀림). WBA(2024-02 편출), INTC(2024-11 편출) 포함, AMZN·CRM·AMGN·HON·V·NVDA·SHW 등 미포함. `num_stocks=20` 상위 k 선택.
 - **모델 선택:** 논문 "10 independent trials ... report the test results corresponding to the run with the lowest validation loss". 검증 손실 = 가치 손실 + β·예측 손실(수익 아님). 학습 중 `vali()`가 테스트 세트도 평가해 로그에 남기나 선택에는 쓰지 않음.
 - **분할:** 논문은 "provided in our interactive demo"라 했으나 데모(deep-aries.github.io)에는 "Evaluation begins on January 1, 2021"만 있음. 코드 기본: 학습 < 2020-12-31, 검증 ~2021-12-31, 테스트 ≥ 2021-12-31 ~ 데이터 끝(2025-02 추정). 공개 체크포인트는 학습 < 2023-10-01, 테스트 2024 → **논문 Table 1과 다른 분할**.
 - **학습 epoch:** 논문 미기재, 코드 기본 `--train_epochs 1`, early stopping patience 3.
