@@ -1,0 +1,193 @@
+{
+ "meta": {
+  "label": "exploratory, descriptive; says nothing about performance",
+  "mars_L_head": "25616069c953c7d2eeb0bd66cfa3f12dff508b75",
+  "mars_N_head": "6ca205134a6b3251b995e908c4e7da6ffb38afd4",
+  "mars_L_tracked_changes": "",
+  "mars_N_tracked_changes": "",
+  "o1_checkpoints_found": [],
+  "policy_c_status": "not run: no checkpoint files under data/mars_t4/L/seed_*/",
+  "seeds": {
+   "dirichlet": 20261127,
+   "uniform": 20261128
+  },
+  "data": "training_data.csv bundled in each repo, 2018-01-02..2022-12-30, 50 stocks"
+ },
+ "results": [
+  {
+   "version": "L",
+   "policy": "equal",
+   "seconds": 9.04841685295105,
+   "check_max_rel_err": 2.6542823494679624e-11,
+   "check_pass": true,
+   "final_pv": 1988428.3942533538,
+   "summary": {
+    "n_steps": 1258,
+    "ratio_cost_over_return_median": 194.5779049287819,
+    "ratio_cost_over_return_p90": 2563.461225179865,
+    "ratio_cost_over_return_median_costpos_steps": 227.34603798582506,
+    "share_cost_gt_return": 0.93879173290938,
+    "share_cost_gt_return_plus_risk": 0.8855325914149443,
+    "share_cost_positive": 0.93879173290938,
+    "median_abs_return": 0.005448025487521768,
+    "median_cost_dollars": 1.0090432796496032,
+    "median_cost_dollars_costpos_steps": 1.1011493949918076,
+    "median_risk_penalty": 0.13706592347642804,
+    "median_abs_reward": 1.1782121386511606,
+    "share_unsafe": 0.0,
+    "unit_consistent_counterfactual_ratio_median": 0.0001328791929399003,
+    "unit_consistent_counterfactual_ratio_p90": 0.0015182932050594308
+   }
+  },
+  {
+   "version": "L",
+   "policy": "dirichlet",
+   "seconds": 10.766664266586304,
+   "check_max_rel_err": 5.988940469051364e-13,
+   "check_pass": true,
+   "final_pv": 952338.7453068937,
+   "summary": {
+    "n_steps": 1258,
+    "ratio_cost_over_return_median": 110955.36621214889,
+    "ratio_cost_over_return_p90": 679440.2275043754,
+    "ratio_cost_over_return_median_costpos_steps": 110955.36621214889,
+    "share_cost_gt_return": 1.0,
+    "share_cost_gt_return_plus_risk": 1.0,
+    "share_cost_positive": 1.0,
+    "median_abs_return": 0.004815267600443984,
+    "median_cost_dollars": 522.8439870929687,
+    "median_cost_dollars_costpos_steps": 522.8439870929687,
+    "median_risk_penalty": 0.13749102561456128,
+    "median_abs_reward": 523.1705491060318,
+    "share_unsafe": 0.0,
+    "unit_consistent_counterfactual_ratio_median": 0.1053742534160981,
+    "unit_consistent_counterfactual_ratio_p90": 0.6275267285361005
+   }
+  },
+  {
+   "version": "L",
+   "policy": "uniform",
+   "seconds": 9.40867018699646,
+   "check_max_rel_err": 1.676568245525465e-12,
+   "check_pass": true,
+   "final_pv": 1171550.9453524265,
+   "summary": {
+    "n_steps": 1258,
+    "ratio_cost_over_return_median": 66792.0696823821,
+    "ratio_cost_over_return_p90": 400773.3751464196,
+    "ratio_cost_over_return_median_costpos_steps": 66792.0696823821,
+    "share_cost_gt_return": 1.0,
+    "share_cost_gt_return_plus_risk": 1.0,
+    "share_cost_positive": 1.0,
+    "median_abs_return": 0.005031160766861498,
+    "median_cost_dollars": 331.98135208797385,
+    "median_cost_dollars_costpos_steps": 331.98135208797385,
+    "median_risk_penalty": 0.14637879368947226,
+    "median_abs_reward": 332.2218668651001,
+    "share_unsafe": 0.0,
+    "unit_consistent_counterfactual_ratio_median": 0.05608508298100688,
+    "unit_consistent_counterfactual_ratio_p90": 0.3433970663551153
+   }
+  },
+  {
+   "version": "N",
+   "policy": "equal",
+   "seconds": 8.944719791412354,
+   "check_max_rel_err": 2.6542823494679624e-11,
+   "check_pass": true,
+   "final_pv": 1988428.3942533538,
+   "summary": {
+    "n_steps": 1258,
+    "ratio_cost_over_return_median": 194.5779049287819,
+    "ratio_cost_over_return_p90": 2563.461225179865,
+    "ratio_cost_over_return_median_costpos_steps": 227.34603798582506,
+    "share_cost_gt_return": 0.93879173290938,
+    "share_cost_gt_return_plus_risk": 0.8855325914149443,
+    "share_cost_positive": 0.93879173290938,
+    "median_abs_return": 0.005448025487521768,
+    "median_cost_dollars": 1.0090432796496032,
+    "median_cost_dollars_costpos_steps": 1.1011493949918076,
+    "median_risk_penalty": 0.13706592347642804,
+    "median_abs_reward": 1.1782121386511606,
+    "share_unsafe": 0.0,
+    "unit_consistent_counterfactual_ratio_median": 0.0001328791929399003,
+    "unit_consistent_counterfactual_ratio_p90": 0.0015182932050594308
+   }
+  },
+  {
+   "version": "N",
+   "policy": "dirichlet",
+   "seconds": 9.333234310150146,
+   "check_max_rel_err": 5.988940469051364e-13,
+   "check_pass": true,
+   "final_pv": 952338.7453068937,
+   "summary": {
+    "n_steps": 1258,
+    "ratio_cost_over_return_median": 110955.36621214889,
+    "ratio_cost_over_return_p90": 679440.2275043754,
+    "ratio_cost_over_return_median_costpos_steps": 110955.36621214889,
+    "share_cost_gt_return": 1.0,
+    "share_cost_gt_return_plus_risk": 1.0,
+    "share_cost_positive": 1.0,
+    "median_abs_return": 0.004815267600443984,
+    "median_cost_dollars": 522.8439870929687,
+    "median_cost_dollars_costpos_steps": 522.8439870929687,
+    "median_risk_penalty": 0.13749102561456128,
+    "median_abs_reward": 523.1705491060318,
+    "share_unsafe": 0.0,
+    "unit_consistent_counterfactual_ratio_median": 0.1053742534160981,
+    "unit_consistent_counterfactual_ratio_p90": 0.6275267285361005
+   }
+  },
+  {
+   "version": "N",
+   "policy": "uniform",
+   "seconds": 9.184499263763428,
+   "check_max_rel_err": 1.676568245525465e-12,
+   "check_pass": true,
+   "final_pv": 1171550.9453524265,
+   "summary": {
+    "n_steps": 1258,
+    "ratio_cost_over_return_median": 66792.0696823821,
+    "ratio_cost_over_return_p90": 400773.3751464196,
+    "ratio_cost_over_return_median_costpos_steps": 66792.0696823821,
+    "share_cost_gt_return": 1.0,
+    "share_cost_gt_return_plus_risk": 1.0,
+    "share_cost_positive": 1.0,
+    "median_abs_return": 0.005031160766861498,
+    "median_cost_dollars": 331.98135208797385,
+    "median_cost_dollars_costpos_steps": 331.98135208797385,
+    "median_risk_penalty": 0.14637879368947226,
+    "median_abs_reward": 332.2218668651001,
+    "share_unsafe": 0.0,
+    "unit_consistent_counterfactual_ratio_median": 0.05608508298100688,
+    "unit_consistent_counterfactual_ratio_p90": 0.3433970663551153
+   }
+  },
+  {
+   "version": "N",
+   "policy": "checkpoint_author_N",
+   "seconds": 12.540302038192749,
+   "check_max_rel_err": 2.82190676708864e-12,
+   "check_pass": true,
+   "final_pv": 1893654.6965143615,
+   "summary": {
+    "n_steps": 1258,
+    "ratio_cost_over_return_median": 41.20768744227147,
+    "ratio_cost_over_return_p90": 395.2495058242044,
+    "ratio_cost_over_return_median_costpos_steps": 45.641786888691584,
+    "share_cost_gt_return": 0.9475357710651828,
+    "share_cost_gt_return_plus_risk": 0.6343402225755167,
+    "share_cost_positive": 0.9475357710651828,
+    "median_abs_return": 0.007589162482802392,
+    "median_cost_dollars": 0.3369619216900901,
+    "median_cost_dollars_costpos_steps": 0.358568035124339,
+    "median_risk_penalty": 0.2065277777603757,
+    "median_abs_reward": 20.56144501559404,
+    "share_unsafe": 1.0,
+    "unit_consistent_counterfactual_ratio_median": 2.7123203310944934e-05,
+    "unit_consistent_counterfactual_ratio_p90": 0.0002428432553103526
+   }
+  }
+ ]
+}
