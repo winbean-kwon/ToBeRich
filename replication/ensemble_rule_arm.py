@@ -79,5 +79,5 @@ out = {"turbulence_check_vs_bundle": turb_check, "cash_days": days_cash, "rows":
        "ew_sharpe": round(ews, 3), "ew_sharpe_pre2020": round(ej.metrics(list(ewv[:cut]))["sharpe"], 3),
        "ensemble_runs": runs, "ensemble_above_rule": sum(r["sharpe"] > rule for r in runs),
        "rule_cum": round(v[-1] - 1, 4), "rule_mdd": round(ej.metrics(list(v))["mdd"], 4)}
-(ROOT / "replication" / "ensemble_rule_arm.json").write_text(json.dumps(out, indent=1))
-print(json.dumps(out, indent=1))
+(ROOT / "replication" / "ensemble_rule_arm.json").write_text(json.dumps(out, indent=1, default=float))
+print(json.dumps(out, indent=1, default=float))
