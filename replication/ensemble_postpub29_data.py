@@ -64,6 +64,7 @@ for t in TICS:
     y = new[(new.tic == t) & (new.datadate >= 20160104) & (new.datadate <= 20200707)].set_index("datadate").adjcp
     j = x.index.intersection(y.index)
     rx, ry = x.loc[j].pct_change().dropna(), y.loc[j].pct_change().dropna()
+    rx, ry = rx.drop([d for d in {"DD": [20190402, 20190603], "RTX": [20200403]}.get(t, []) if d in rx.index]), ry.drop([d for d in {"DD": [20190402, 20190603], "RTX": [20200403]}.get(t, []) if d in ry.index])  # 수정 v2: 분사일 3일 제외
     corr = float(np.corrcoef(rx, ry)[0, 1]); med = float(np.median(np.abs(rx - ry)))
     ov[t] = {"n": len(j), "n_bundle": len(x), "상관": round(corr, 5), "차이 중앙값": round(med, 6),
              "통과": bool(corr >= 0.99 and med <= 0.001)}
