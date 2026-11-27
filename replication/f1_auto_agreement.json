@@ -1,0 +1,23 @@
+{
+ "n": 15,
+ "binary_agreement": 1.0,
+ "kappa": 1.0,
+ "kappa_ci95": [
+  1.0,
+  1.0
+ ],
+ "crosstab_user_auto": {
+  "없음|없음": 8,
+  "찾음|찾음": 4,
+  "없음|제3자만": 1,
+  "요청 시 제공|요청 시 제공": 1,
+  "링크 사망|링크 사망": 1
+ },
+ "disagreements_6cat": [
+  {
+   "id": "wang2019alphastock",
+   "user": "없음",
+   "auto": "제3자만"
+  }
+ ]
+}

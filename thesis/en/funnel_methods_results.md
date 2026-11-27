@@ -61,5 +61,5 @@ Two S56 papers reached F7 under the fixed order — the ensemble strategy (ICAIF
 
 - S56 was assembled without a recorded search, and S-Q was run after S56 was known. Proportions describe these samples only.
 - "No official code found" includes the limits of our search; authors were not contacted. The F1 check shows that this category contains at least 5 of 44 papers whose code exists.
-- The F1 check was carried out by a single rater who was not blind to the original judgments.
+- The F1 check was carried out by a single rater who was not blind to the original judgments. No second human rater was available. As a partial substitute, a pre-specified random sample of 15 papers was re-searched by an automated agent (a language model in a fresh context that saw only the papers and the judging procedure); its binary judgment (official code found or not) agreed with the human rater on all 15 papers, and its six-category judgment on 14. The agent is not an independent human rater, models of the same family were used elsewhere in this study, and 15 papers give little precision.
 - Execution outcomes (F4, F5) depend on our hardware, software environment and time budget. Ordering by repository size may bias untested papers toward larger repositories, and older frameworks may be disadvantaged.
