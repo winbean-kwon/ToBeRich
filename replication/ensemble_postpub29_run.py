@@ -31,7 +31,8 @@ N_RUNS = 5
 CAP = 6 * 3600
 MAX_ATTEMPTS = 3
 
-for f in (WORK / 'out' / 'env_ok', WORK / 'out' / 'gate_ok.txt', pathlib.Path(PY37), DATA):
+# 서버 ~/f4work/ensemble/out에는 env_ok 표시 파일이 없다(설치 기록·gate_ok.txt·p37은 있음) — gate_ok·p37·데이터만 확인한다.
+for f in (WORK / 'out' / 'gate_ok.txt', pathlib.Path(PY37), DATA):
     if not f.exists():
         raise SystemExit(f'환경·데이터 없음: {f}')
 sha = subprocess.run(['sha256sum', 'run_DRL.py', 'model/models.py', 'env/EnvMultipleStock_trade.py',
