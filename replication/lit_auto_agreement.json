@@ -1,0 +1,64 @@
+{
+ "n": 15,
+ "stateful": {
+  "agreement": 0.933,
+  "kappa": 0.857,
+  "orig_true": 9,
+  "auto_true": 10,
+  "disagree": [
+   {
+    "id": "W21_FinRL",
+    "orig": false,
+    "auto": true
+   }
+  ]
+ },
+ "init_in_paper": {
+  "agreement": 0.933,
+  "kappa": 0.865,
+  "orig_true": 7,
+  "auto_true": 6,
+  "disagree": [
+   {
+    "id": "W21_FinRL",
+    "orig": true,
+    "auto": false
+   }
+  ]
+ },
+ "eval_warmup": {
+  "agreement": 1.0,
+  "kappa": null,
+  "orig_true": 0,
+  "auto_true": 0,
+  "disagree": []
+ },
+ "test_initial_holding": {
+  "agreement": 0.8,
+  "crosstab_orig_auto": {
+   "cash|cash": 5,
+   "unspecified|unspecified": 6,
+   "cash|unspecified": 1,
+   "equal|unspecified": 2,
+   "equal|equal": 1
+  },
+  "disagree": [
+   {
+    "id": "W21_DeepTrader",
+    "orig": "cash (code only; paper unspecified)",
+    "auto": "unspecified"
+   },
+   {
+    "id": "W21_FinRL",
+    "orig": "equal (code bookkeeping only; irrelevant without cost)",
+    "auto": "unspecified"
+   },
+   {
+    "id": "P24-02",
+    "orig": "equal weight (code only; paper says only 'set the initial action a0')",
+    "auto": "unspecified"
+   }
+  ]
+ },
+ "init_sensitivity_auto_true": 0
+}
