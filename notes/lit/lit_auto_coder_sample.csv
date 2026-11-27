@@ -1,0 +1,16 @@
+id,title,first_author,year,venue,doi_or_arxiv
+P23-03,Deep Reinforcement Learning for Optimal Portfolio Allocation: A Comparative Study with Mean-Variance Optimization,Srijan Sood,2023,FinPlan'23 Workshop @ ICAPS 2023 (arXiv posted 2026),arXiv:2602.17098
+Y26-01,Regime-Aware Portfolio Management via Retrieval-Augmented LLM-Guided Expert Switching,Ahmad Asadi,2026,arXiv preprint,arXiv:2608.28252
+W21_DeepTrader,DeepTrader: A Deep Reinforcement Learning Approach for Risk-Return Balanced Portfolio Management with Market Conditions Embedding,Zhicheng Wang,2021,AAAI 2021,doi:10.1609/aaai.v35i1.16144
+W21_HRPM,Commission Fee is not Enough: A Hierarchical Reinforced Framework for Portfolio Management,Rundong Wang,2021,AAAI 2021,doi:10.1609/aaai.v35i1.16142; arXiv:2012.12620
+Y25-08,SAMP-HDRL: Segmented Allocation with Momentum-Adjusted Utility for Multi-agent Portfolio Management via Hierarchical Deep Reinforcement Learning,Xiaotian Ren,2025,arXiv preprint,arXiv:2512.22895
+P24-06,Deep Reinforcement Learning and Mean-Variance Strategies for Responsible Portfolio Optimization,Fernando Acero,2024,AAAI 2024 Workshop on AI in Finance,arXiv:2403.16667
+P24-07,Markowitz Meets Bellman: Knowledge-distilled Reinforcement Learning for Portfolio Management,Gang Hu,2024,arXiv preprint,arXiv:2405.05449
+W21_GuanLiu_XDRL,Explainable Deep Reinforcement Learning for Portfolio Management: An Empirical Approach,Mao Guan,2021,ICAIF 2021,arXiv:2111.03995
+W22_PPN,Cost-Sensitive Portfolio Selection via Deep Reinforcement Learning,Yifan Zhang,2022,IEEE TKDE 34(1) (early access 2020),doi:10.1109/TKDE.2020.2979700; arXiv:2003.03051
+W21_DeepPocket,Deep Graph Convolutional Reinforcement Learning for Financial Portfolio Management - DeepPocket,Farzan Soleymani,2021,Expert Systems with Applications 182,doi:10.1016/j.eswa.2021.115127; arXiv:2105.08664
+W21_FinRL,FinRL: Deep Reinforcement Learning Framework to Automate Trading in Quantitative Finance,Xiao-Yang Liu,2021,ICAIF 2021,doi:10.1145/3490354.3494366; arXiv:2111.09395
+P24-02,Developing A Multi-Agent and Self-Adaptive Framework with Deep Reinforcement Learning for Dynamic Portfolio Risk Management (MASA),Zhenglong Li,2024,AAMAS 2024,arXiv:2402.00515
+park2020dqn,An intelligent financial portfolio trading strategy using deep Q-learning,Hyungjun Park,2020,Expert Systems with Applications 158,10.1016/j.eswa.2020.113573; arXiv:1907.03665
+Y25-03,MARS: A Meta-Adaptive Reinforcement Learning Framework for Risk-Aware Multi-Agent Portfolio Management,Jiayi Chen,2025,AAAI 2026 Main Track (accepted per arXiv comment),arXiv:2508.01173
+yu2019modelbased,Model-based Deep Reinforcement Learning for Dynamic Portfolio Optimization,Pengqian Yu,2019,arXiv preprint,arXiv:1901.08740
