@@ -1,0 +1,42 @@
+{
+ "turbulence_check_vs_bundle": {
+  "max_abs_diff": 121.47814428572818,
+  "corr": NaN
+ },
+ "cash_days": 420,
+ "rows": 1097,
+ "rule_sharpe": 1.185,
+ "rule_sharpe_pre2020": 1.344,
+ "ew_sharpe": 0.436,
+ "ew_sharpe_pre2020": 1.021,
+ "ensemble_runs": [
+  {
+   "run": "E1",
+   "sharpe": 1.176,
+   "sharpe_pre2020": 1.242
+  },
+  {
+   "run": "E2",
+   "sharpe": 1.017,
+   "sharpe_pre2020": 1.078
+  },
+  {
+   "run": "E3",
+   "sharpe": 1.012,
+   "sharpe_pre2020": 1.078
+  },
+  {
+   "run": "E4",
+   "sharpe": 0.992,
+   "sharpe_pre2020": 1.049
+  },
+  {
+   "run": "E5",
+   "sharpe": 0.845,
+   "sharpe_pre2020": 0.895
+  }
+ ],
+ "ensemble_above_rule": 0.0,
+ "rule_cum": 0.569,
+ "rule_mdd": -0.0781
+}
