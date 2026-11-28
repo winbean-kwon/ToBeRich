@@ -1,0 +1,41 @@
+{
+ "tag": "O1_EI3_DOW30_s0",
+ "cond": "O1",
+ "arch": "EI3",
+ "market": "DOW30",
+ "seed": 0,
+ "fee": 0.01,
+ "placebo_lambda": null,
+ "alpha_eff": 0.9998766543128639,
+ "gap0": 0.00012314342593526816,
+ "turnover": 0.016473887332283877,
+ "mean_exposure": 0.9751994672832639,
+ "years": {
+  "2020": {
+   "turnover": 0.01909252533707583,
+   "log_growth": 0.35500830586874804,
+   "bench_ew_log_growth": 0.32661911845207214,
+   "excess": 0.0283891874166759,
+   "mean_exposure": 0.9776778248793417,
+   "online_log_growth": 0.6469195700871626
+  },
+  "2021": {
+   "turnover": 0.013866371294455742,
+   "log_growth": 0.1436522592914491,
+   "bench_ew_log_growth": 0.13599342107772827,
+   "excess": 0.00765883821372082,
+   "mean_exposure": 0.9738656765785977,
+   "online_log_growth": 0.1444865653763391
+  },
+  "2022": {
+   "turnover": 0.01646276536532006,
+   "log_growth": -0.042208371763893984,
+   "bench_ew_log_growth": -0.04000117629766464,
+   "excess": -0.002207195466229342,
+   "mean_exposure": 0.974054900391852,
+   "online_log_growth": -0.0507460757179484
+  }
+ },
+ "train_seconds": 2346,
+ "total_seconds": 2510
+}

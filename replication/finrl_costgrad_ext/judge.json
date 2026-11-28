@@ -1,0 +1,73 @@
+{
+ "H-G1'": {
+  "count": 0,
+  "of": 12,
+  "verdict": "커지지 않았다",
+  "alpha_G1_lt_0_5": 0
+ },
+ "H-G2'": {
+  "count": 1,
+  "of": 12,
+  "verdict": "줄지 않았다"
+ },
+ "H-P": {
+  "count_P_exposure_lt_0_5": 0,
+  "of": 12,
+  "base_O": 5,
+  "base_G": 1,
+  "verdict": "위약도 같은 변화를 낸다 — 퇴화 감소는 비용 항에 특정되지 않는다",
+  "exposure_definition": "mean over 2020/2021/2022 of the yearly mean test exposure (online off, cash start)"
+ },
+ "descriptive": {
+  "O": {
+   "turnover_median": 0.015478080706708041,
+   "turnover_mean": 0.01432377909970424,
+   "exposure_mean": 0.607201899824557,
+   "exposure_lt_05": 5,
+   "excess3_median": 0.04375110529761053,
+   "excess3_mean": 0.05053170098947255,
+   "alpha_min": 0.9851090431805782,
+   "alpha_max": 1.0
+  },
+  "G": {
+   "turnover_median": 0.020717559707374343,
+   "turnover_mean": 0.019729228999180063,
+   "exposure_mean": 0.9110513888481294,
+   "exposure_lt_05": 1,
+   "excess3_median": 0.5684969191645116,
+   "excess3_mean": 0.5860505177552411,
+   "alpha_min": 0.9998911439926357,
+   "alpha_max": 0.9999999984162264
+  },
+  "O1": {
+   "turnover_median": 0.015996109839072063,
+   "turnover_mean": 0.01415507765900819,
+   "exposure_mean": 0.5870442538375024,
+   "exposure_lt_05": 5,
+   "excess3_median": 0.01689670524328791,
+   "excess3_mean": 0.1816221561316451,
+   "alpha_min": 0.9888495822804402,
+   "alpha_max": 0.9999981946526384
+  },
+  "G1": {
+   "turnover_median": 0.02813175555341041,
+   "turnover_mean": 0.02969633433404284,
+   "exposure_mean": 0.9997032268284581,
+   "exposure_lt_05": 0,
+   "excess3_median": 0.5112700475458625,
+   "excess3_mean": 0.5241790083822008,
+   "alpha_min": 0.999988676693627,
+   "alpha_max": 0.9999999981526972
+  },
+  "P": {
+   "turnover_median": 0.016594797858542787,
+   "turnover_mean": 0.016541490983349862,
+   "exposure_mean": 0.9388611230547063,
+   "exposure_lt_05": 0,
+   "excess3_median": -0.01162689181637782,
+   "excess3_mean": -0.020104512220969636,
+   "alpha_min": 0.9975586520104383,
+   "alpha_max": 0.9999011256714172
+  }
+ }
+}
