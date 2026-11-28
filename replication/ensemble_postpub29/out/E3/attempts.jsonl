@@ -1,0 +1,1 @@
+{"attempt": 1, "rc": 0, "killed": false, "seconds": 5460.074177026749, "ok": true, "n_account_files": 20, "events_tail": ["ddpg_end", "trade_start", "trade_end", "main_end"]}

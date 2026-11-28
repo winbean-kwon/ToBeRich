@@ -1,0 +1,2 @@
+{"stop": 1, "t": 1795756291.0, "seconds": 680.0, "cause": "C: < 3 GB (disk rule, Windows pagefile growth)", "counted_as_attempt": false, "amendment": "v3"}
+{"stop": 2, "t": 1795757646.7, "seconds": 1260.1, "cause": "C: < 3 GB (disk rule, Windows pagefile growth)", "counted_as_attempt": false, "amendment": "v3"}
