@@ -1,0 +1,83 @@
+{
+ "lr": 0.03,
+ "threshold": 1e-06,
+ "data_md5": "e595fc39b7f398104dbb212c5b0bfa3f",
+ "rule": "passes iff for all 6 both the float64 mu-gradient and the parameter-gradient relative difference (c=0.01 vs 0) of G1 exceed 1e-6",
+ "G1_min": 0.013520305231879477,
+ "O1_max": 1.1729378532517508e-16,
+ "rows": [
+  {
+   "arch": "EIIE",
+   "market": "BR10",
+   "seed": 0,
+   "lr": 0.03,
+   "n_batch": 100,
+   "G1_rel_grad_mu_f64": 0.013657205443917363,
+   "G1_rel_grad_param": 4.590660156601976,
+   "O1_rel_grad_mu_f64": 1.1729378532517508e-16,
+   "O1_rel_grad_param": 0.0,
+   "trf_graph_vs_env_maxabs_1pct": 5.504021516333779e-08
+  },
+  {
+   "arch": "EIIE",
+   "market": "BR10",
+   "seed": 1,
+   "lr": 0.03,
+   "n_batch": 100,
+   "G1_rel_grad_mu_f64": 0.013697397996437554,
+   "G1_rel_grad_param": 2.364017612350525,
+   "O1_rel_grad_mu_f64": 1.0576167027840486e-16,
+   "O1_rel_grad_param": 0.0,
+   "trf_graph_vs_env_maxabs_1pct": 5.400918623443829e-08
+  },
+  {
+   "arch": "EIIE",
+   "market": "BR10",
+   "seed": 2,
+   "lr": 0.03,
+   "n_batch": 100,
+   "G1_rel_grad_mu_f64": 0.013697350611864823,
+   "G1_rel_grad_param": 3.2844449095807478,
+   "O1_rel_grad_mu_f64": 1.0550720747930678e-16,
+   "O1_rel_grad_param": 0.0,
+   "trf_graph_vs_env_maxabs_1pct": 5.6225901157169744e-08
+  },
+  {
+   "arch": "EI3",
+   "market": "BR10",
+   "seed": 0,
+   "lr": 0.03,
+   "n_batch": 100,
+   "G1_rel_grad_mu_f64": 0.01369675259582207,
+   "G1_rel_grad_param": 1.0302335635069868,
+   "O1_rel_grad_mu_f64": 1.1517552201611149e-16,
+   "O1_rel_grad_param": 0.0,
+   "trf_graph_vs_env_maxabs_1pct": 5.604606279074886e-08
+  },
+  {
+   "arch": "EI3",
+   "market": "BR10",
+   "seed": 1,
+   "lr": 0.03,
+   "n_batch": 100,
+   "G1_rel_grad_mu_f64": 0.013520305231879477,
+   "G1_rel_grad_param": 1.5564453699864014,
+   "O1_rel_grad_mu_f64": 1.163687864197469e-16,
+   "O1_rel_grad_param": 0.0,
+   "trf_graph_vs_env_maxabs_1pct": 5.5058068437752183e-08
+  },
+  {
+   "arch": "EI3",
+   "market": "BR10",
+   "seed": 2,
+   "lr": 0.03,
+   "n_batch": 100,
+   "G1_rel_grad_mu_f64": 0.013616331723414091,
+   "G1_rel_grad_param": 1.207606989580372,
+   "O1_rel_grad_mu_f64": 1.1636176755567542e-16,
+   "O1_rel_grad_param": 0.0,
+   "trf_graph_vs_env_maxabs_1pct": 5.474634223734398e-08
+  }
+ ],
+ "pass": true
+}

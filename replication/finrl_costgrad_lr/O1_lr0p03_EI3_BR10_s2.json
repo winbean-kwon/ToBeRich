@@ -1,0 +1,46 @@
+{
+ "tag": "O1_lr0p03_EI3_BR10_s2",
+ "cond": "O1_lr0p03",
+ "arch": "EI3",
+ "market": "BR10",
+ "seed": 2,
+ "fee": 0.01,
+ "placebo_lambda": null,
+ "alpha_eff": 0.9999391394434924,
+ "gap0": 6.085317727411166e-05,
+ "turnover": 0.022779837109244538,
+ "mean_exposure": 0.9978341618913449,
+ "years": {
+  "2020": {
+   "turnover": 0.01885369464853835,
+   "log_growth": 1.2742923953312062,
+   "bench_ew_log_growth": 0.5101295113563538,
+   "excess": 0.7641628839748524,
+   "mean_exposure": 0.9995905998725305,
+   "online_log_growth": 1.2761253413082978
+  },
+  "2021": {
+   "turnover": 0.0245351864800311,
+   "log_growth": 0.25888520271749,
+   "bench_ew_log_growth": -0.06273382902145386,
+   "excess": 0.32161903173894385,
+   "mean_exposure": 0.9979469631899025,
+   "online_log_growth": 0.26449984307227103
+  },
+  "2022": {
+   "turnover": 0.024950630199164152,
+   "log_growth": 0.03259741520092824,
+   "bench_ew_log_growth": 0.11064266413450241,
+   "excess": -0.07804524893357417,
+   "mean_exposure": 0.9959649226116016,
+   "online_log_growth": 0.010076405826176768
+  }
+ },
+ "train_seconds": 519,
+ "total_seconds": 564,
+ "episodes": 40,
+ "lr": 0.03,
+ "base_cond": "O1",
+ "data_md5": "e595fc39b7f398104dbb212c5b0bfa3f",
+ "diverged": false
+}

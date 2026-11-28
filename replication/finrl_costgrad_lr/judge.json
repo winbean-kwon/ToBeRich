@@ -1,0 +1,153 @@
+{
+ "note": "diverged pairs are excluded; thresholds stay >=5 / <=1 of 6 (not rescaled)",
+ "lr0p001": {
+  "lr": 0.001,
+  "n_pairs": 6,
+  "n_valid": 6,
+  "diverged_runs": [],
+  "H-G1R": {
+   "count": 0,
+   "of": 6,
+   "verdict": "커지지 않았다"
+  },
+  "H-G2R": {
+   "count": 0,
+   "of": 6,
+   "verdict": "줄지 않았다"
+  },
+  "aux_turnover_exposure_ge_0_9": {
+   "n_pairs": 3,
+   "count_turnover_G1_lt_0_9_O1": 0,
+   "ratio_G1_over_O1": [
+    1.0495949218959644,
+    1.1978261499100147,
+    0.9668054123172585
+   ],
+   "pairs": [
+    "EIIE_s0",
+    "EIIE_s2",
+    "EI3_s2"
+   ],
+   "note": "descriptive only (not a verdict): pairs with exposure >= 0.9 in both conditions"
+  },
+  "descriptive": {
+   "O1": {
+    "alpha_median": 0.9997865585526549,
+    "alpha_min": 0.9976337980891259,
+    "alpha_max": 0.9999841335273238,
+    "turnover_median": 0.013973627343794159,
+    "turnover_mean": 0.013307112104583095,
+    "exposure_mean": 0.699991107987327,
+    "exposure_lt_05": 2,
+    "excess3_median": 0.8313155283380065,
+    "excess3_mean": 0.6193345647281397
+   },
+   "G1": {
+    "alpha_median": 0.999990359338044,
+    "alpha_min": 0.9992406773927165,
+    "alpha_max": 0.9999983317970507,
+    "turnover_median": 0.021878639832085534,
+    "turnover_mean": 0.02199134779367119,
+    "exposure_mean": 0.9971290788217569,
+    "exposure_lt_05": 0,
+    "excess3_median": 0.5231705301820471,
+    "excess3_mean": 0.4651323947469721
+   }
+  },
+  "comparison_lr0_01_same_pairs": {
+   "hg1_count_lr0_01": 0,
+   "hg2_count_lr0_01": 1,
+   "of": 6,
+   "alpha_median_lr0_01": {
+    "O1": 0.9998467165562624,
+    "G1": 0.9999952371185602
+   },
+   "turnover_median_lr0_01": {
+    "O1": 0.01932634123995569,
+    "G1": 0.026062045779523053
+   },
+   "exposure_mean_lr0_01": {
+    "O1": 0.6768911494370206,
+    "G1": 0.9995444852241215
+   },
+   "note": "same rules applied to the extension O1/G1 BR10 runs (lr 0.01, 40 episodes); descriptive"
+  }
+ },
+ "lr0p03": {
+  "lr": 0.03,
+  "n_pairs": 6,
+  "n_valid": 6,
+  "diverged_runs": [],
+  "H-G1R": {
+   "count": 0,
+   "of": 6,
+   "verdict": "커지지 않았다"
+  },
+  "H-G2R": {
+   "count": 1,
+   "of": 6,
+   "verdict": "줄지 않았다"
+  },
+  "aux_turnover_exposure_ge_0_9": {
+   "n_pairs": 5,
+   "count_turnover_G1_lt_0_9_O1": 1,
+   "ratio_G1_over_O1": [
+    1.0062011600538825,
+    1.56905520477678,
+    1.0053127637996877,
+    0.2805390061835341,
+    1.11807331520742
+   ],
+   "pairs": [
+    "EIIE_s0",
+    "EIIE_s1",
+    "EIIE_s2",
+    "EI3_s0",
+    "EI3_s2"
+   ],
+   "note": "descriptive only (not a verdict): pairs with exposure >= 0.9 in both conditions"
+  },
+  "descriptive": {
+   "O1": {
+    "alpha_median": 0.998580145598195,
+    "alpha_min": 0.9941860885825702,
+    "alpha_max": 1.0,
+    "turnover_median": 0.019434064099423387,
+    "turnover_mean": 0.03169689550352938,
+    "exposure_mean": 0.9662523733089059,
+    "exposure_lt_05": 0,
+    "excess3_median": -0.0019382051690687192,
+    "excess3_mean": -0.062111819870681116
+   },
+   "G1": {
+    "alpha_median": 0.9999972339632676,
+    "alpha_min": 0.9999194545359706,
+    "alpha_max": 0.9999997617280938,
+    "turnover_median": 0.025342177014160458,
+    "turnover_mean": 0.024407698655625146,
+    "exposure_mean": 0.9997205042156531,
+    "exposure_lt_05": 0,
+    "excess3_median": 0.7045656930031754,
+    "excess3_mean": 0.5442743022410975
+   }
+  },
+  "comparison_lr0_01_same_pairs": {
+   "hg1_count_lr0_01": 0,
+   "hg2_count_lr0_01": 1,
+   "of": 6,
+   "alpha_median_lr0_01": {
+    "O1": 0.9998467165562624,
+    "G1": 0.9999952371185602
+   },
+   "turnover_median_lr0_01": {
+    "O1": 0.01932634123995569,
+    "G1": 0.026062045779523053
+   },
+   "exposure_mean_lr0_01": {
+    "O1": 0.6768911494370206,
+    "G1": 0.9995444852241215
+   },
+   "note": "same rules applied to the extension O1/G1 BR10 runs (lr 0.01, 40 episodes); descriptive"
+  }
+ }
+}
