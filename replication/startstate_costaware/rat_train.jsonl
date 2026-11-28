@@ -1,0 +1,4 @@
+{"ev": "attempt_start", "idx": 1, "attempt": 1, "cap": 43200.0, "t": "2026-11-28 09:55:46"}
+{"ev": "attempt_end", "idx": 1, "attempt": 1, "disk_stop": true, "seconds": 70, "note": "watcher df 1,861,936 KB < 2 GB at 09:56:56 (recovered to 5.6 GB at 09:57:56); orchestrator pkill rc 143; not counted (amendment 036e3fd)", "t": "2026-11-28 09:56:56"}
+{"ev": "attempt_start", "idx": 1, "attempt": 1, "cap": 43200.0, "t": "2026-11-28 09:58:49"}
+{"ev": "attempt_end", "idx": 1, "attempt": 1, "disk_stop": true, "seconds": 68, "note": "watcher df 1,975,724 KB < 2 GB at 09:59:57 (second start); pagefile allocated 14449 -> 16119 MB, C: free 5.84 -> 3.8 GB; RAT retraining abandoned (not retried a third time)", "t": "2026-11-28 09:59:57"}

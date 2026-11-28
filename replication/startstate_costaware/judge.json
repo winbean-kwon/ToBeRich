@@ -1,0 +1,42 @@
+{
+ "prereg": "notes/startstate_costaware_prereg.md (e9211dc, 036e3fd)",
+ "RAT": {},
+ "WaveCorr": {
+  "n_models": 5,
+  "models": [
+   {
+    "seed": 1112,
+    "alpha": 0.9999514326334289,
+    "dSR": 0.0
+   },
+   {
+    "seed": 1113,
+    "alpha": 0.9999914892002799,
+    "dSR": 0.0
+   },
+   {
+    "seed": 1114,
+    "alpha": 0.9999984033886382,
+    "dSR": 0.0
+   },
+   {
+    "seed": 1115,
+    "alpha": 0.9999310461169832,
+    "dSR": 0.0
+   },
+   {
+    "seed": 1116,
+    "alpha": 0.999958307734772,
+    "dSR": 0.0
+   }
+  ],
+  "H-I": {
+   "n_alpha_lt_0.5": 0,
+   "verdict": "학습하지 않았다"
+  },
+  "H-S": {
+   "median_abs_dSR": 0.0,
+   "verdict": "실질적 영향 아님"
+  }
+ }
+}
