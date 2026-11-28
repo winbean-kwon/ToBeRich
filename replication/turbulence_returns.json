@@ -1,0 +1,68 @@
+{
+ "prereg": "notes/turbulence_returns_prereg.md (62e1f41)",
+ "tau": {
+  "q90": 40.296,
+  "q95": 53.532
+ },
+ "A_2016_2020": {
+  "rows": 1097,
+  "start": 20160104,
+  "end": 20200512,
+  "ew": 0.436,
+  "ensemble_runs": [
+   1.176,
+   1.017,
+   1.012,
+   0.992,
+   0.845
+  ],
+  "rule_returns_q90": {
+   "sharpe": 0.429,
+   "cash_days": 243,
+   "ensemble_runs_above": 5.0
+  },
+  "rule_returns_q95": {
+   "sharpe": 0.343,
+   "cash_days": 164,
+   "ensemble_runs_above": 5.0
+  },
+  "rule_code_price_level": 1.185
+ },
+ "B_2020_2025": {
+  "rows": 1260,
+  "start": 20201006,
+  "end": 20251010,
+  "ew": 0.846,
+  "ensemble_runs": [
+   -0.16,
+   -0.025,
+   -0.029,
+   0.159,
+   -0.029
+  ],
+  "rule_returns_q90": {
+   "sharpe": -0.127,
+   "cash_days": 356,
+   "ensemble_runs_above": 4.0
+  },
+  "rule_returns_q95": {
+   "sharpe": 0.304,
+   "cash_days": 206,
+   "ensemble_runs_above": 0.0
+  },
+  "judge_result_keys_for_reference": [
+   "사전 등록",
+   "기간",
+   "행 수",
+   "사이클 수",
+   "END",
+   "n_completed",
+   "runs",
+   "EW",
+   "EW+난류",
+   "EW+난류 140 고정(탐색적)",
+   "DJIA",
+   "난류 지수(시험 구간)"
+  ]
+ }
+}
