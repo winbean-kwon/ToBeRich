@@ -1,0 +1,54 @@
+{
+ "prereg": "notes/turbulence_pricelevel_q_prereg.md",
+ "tau": {
+  "q90": 100.19,
+  "q95": 112.47
+ },
+ "A": {
+  "ew": 0.436,
+  "index_median": 98.61,
+  "q90": {
+   "sharpe": 0.617,
+   "cash_days": 529,
+   "cash_entries": 45
+  },
+  "q95": {
+   "sharpe": 0.88,
+   "cash_days": 368,
+   "cash_entries": 50
+  }
+ },
+ "tau_B_29stocks": {
+  "q90": 95.68,
+  "q95": 107.89
+ },
+ "B": {
+  "ew": 0.846,
+  "index_median": 116.36,
+  "q90": {
+   "sharpe": -0.473,
+   "cash_days": 923,
+   "cash_entries": 55
+  },
+  "q95": {
+   "sharpe": -0.245,
+   "cash_days": 684,
+   "cash_entries": 76
+  }
+ },
+ "B_aux_own_tau": {
+  "ew": 0.846,
+  "index_median": 116.36,
+  "q90": {
+   "sharpe": -0.292,
+   "cash_days": 1012,
+   "cash_entries": 53
+  },
+  "q95": {
+   "sharpe": -0.288,
+   "cash_days": 774,
+   "cash_entries": 71
+  }
+ },
+ "verdict_A": "우위는 코드의 문턱 일정에 의존한다"
+}
