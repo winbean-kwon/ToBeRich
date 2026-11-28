@@ -2826,9 +2826,15 @@ not counted with the verdicts above.
 \item
   \textbf{Margin Trader (Gu et al., 2023).} The authors' script runs
   only A2C, so we compared against the paper's A2C long--short row
-  (Sharpe 0.793). The mean Sharpe over five seeds was 0.148 (SD 0.153);
-  no seed reached the band, and no seed exceeded the index (0.790).
-  Neither criterion holds.
+  (Sharpe 0.793). With the price columns assigned correctly in our data
+  loading, the mean Sharpe ratio over five seeds was 0.26 (SD 0.13; mean
+  annual return 3.6\% against a reported 18.5\%); no seed reached the
+  band, and no seed exceeded the index (0.790), whose Sharpe ratio in
+  our data matched the reported value. Neither criterion holds. A
+  daily-rebalanced, long-only equal-weight portfolio of the same 28
+  stocks, charged the environment's cost rate, had a Sharpe ratio of
+  0.92 over the same period and exceeded every run; since Margin Trader
+  uses margin and short positions, this benchmark is long-only.
 \item
   \textbf{FRONTIER (Pretorius and van Zyl, 2022).} The paper reports the
   method's performance only as a Pareto frontier in a figure. At an
@@ -3332,28 +3338,21 @@ same five stocks (2.00). The released code does not include the
 knowledge-distillation component that the paper proposes, so these
 results say nothing about that component.
 
-\textbf{Other share-based environments.} To see whether this pattern
-recurs, we applied a static-holding check to the two other reproduction
-targets whose environments hold share quantities (both exploratory,
-after the result above was known). For the ensemble strategy, whose
-stored outputs contain only account values, we fitted each 63-day
-trading cycle with fixed non-negative holdings plus cash from one of its
-first five days onward; no cycle in any of the five runs was fitted to
-within a relative residual of 1e-9 (median best residual 1.3--2.0e-3),
-indicating small trades within every cycle. This tolerance distinguishes
-only exactly fixed holdings; we did not judge whether the policies are
-economically close to buy-and-hold, and because the model is replaced
-every 63 days, holding over the whole test period is excluded by design.
-For Margin Trader, whose stored outputs include holdings, holdings were
-unchanged from the previous day on 90--92\% of trading days but changed
-on 58--72 of about 751 days, 25 of which fall on multiples of 30 days,
-the period of the forced margin adjustment that we infer from the
-environment code; we did not separate these from trades requested by the
-policy. The pre-specified label for this pattern, `partially static'
-(unchanged on at least half of the days), is weakly discriminating and
-is used only as a label. Neither target therefore showed the first-day
-buy-and-hold pattern observed for Markowitz Meets Bellman. We did not
-examine its cause or how general it is.
+\textbf{Another share-based environment.} To see whether this pattern
+recurs, we applied a static-holding check to the ensemble strategy,
+another reproduction target whose environment holds share quantities
+(exploratory, after the result above was known). For the ensemble
+strategy, whose stored outputs contain only account values, we fitted
+each 63-day trading cycle with fixed non-negative holdings plus cash
+from one of its first five days onward; no cycle in any of the five runs
+was fitted to within a relative residual of 1e-9 (median best residual
+1.3--2.0e-3), indicating small trades within every cycle. This tolerance
+distinguishes only exactly fixed holdings; we did not judge whether the
+policies are economically close to buy-and-hold, and because the model
+is replaced every 63 days, holding over the whole test period is
+excluded by design. The ensemble strategy therefore did not show the
+first-day buy-and-hold pattern observed for Markowitz Meets Bellman. We
+did not examine its cause or how general it is.
 
 \section{Sensitivity of the ensemble strategy to its turbulence
 threshold
@@ -3665,10 +3664,10 @@ visible through simple diagnostics: the share of actions at the boundary
 of the action space, day-to-day changes in target weights, comparison
 with untrained policies initialized with the same seed, and a test for
 unchanged holdings. The first-day buy-and-hold pattern was not found in
-two other share-based environments, and the other diagnostics were not
-applied there. We do not claim that degeneracy is common; we note only
-that, where it occurred, it was not visible in the reported summary
-metrics.
+the ensemble strategy, another share-based environment, and the other
+diagnostics were not applied there. We do not claim that degeneracy is
+common; we note only that, where it occurred, it was not visible in the
+reported summary metrics.
 
 \section{Relation to prior work}\label{relation-to-prior-work}
 
@@ -3966,13 +3965,13 @@ five runs.
 The diagnostics in Sections 7.3, 7.5, 7.6 and 7.7 were motivated by
 earlier results and should be read as descriptions of particular code
 under particular settings. The buy-and-hold behaviour of Markowitz Meets
-Bellman was not observed in two other share-based environments, and we
-did not examine its cause or generality. The authors' later turbulence
-rule for the ensemble strategy was published after the end of the test
-period. Reference values for FRONTIER were read from a figure. Some
-released repositories omit components that the papers propose (for
-example, knowledge distillation in Markowitz Meets Bellman), so those
-components were not evaluated.
+Bellman was not observed in the ensemble strategy, another share-based
+environment, and we did not examine its cause or generality. The
+authors' later turbulence rule for the ensemble strategy was published
+after the end of the test period. Reference values for FRONTIER were
+read from a figure. Some released repositories omit components that the
+papers propose (for example, knowledge distillation in Markowitz Meets
+Bellman), so those components were not evaluated.
 
 \section{Contact with authors}\label{contact-with-authors}
 

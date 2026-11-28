@@ -103,7 +103,7 @@ Most targets were run with five or ten seeds. The four-of-five rule used for win
 
 ## 6.6 Exploratory findings
 
-The diagnostics in Sections Z.3, Z.5, Z.6 and Z.7 were motivated by earlier results and should be read as descriptions of particular code under particular settings. The buy-and-hold behaviour of Markowitz Meets Bellman was not observed in two other share-based environments, and we did not examine its cause or generality. The authors' later turbulence rule for the ensemble strategy was published after the end of the test period. Reference values for FRONTIER were read from a figure. Some released repositories omit components that the papers propose (for example, knowledge distillation in Markowitz Meets Bellman), so those components were not evaluated.
+The diagnostics in Sections Z.3, Z.5, Z.6 and Z.7 were motivated by earlier results and should be read as descriptions of particular code under particular settings. The buy-and-hold behaviour of Markowitz Meets Bellman was not observed in the ensemble strategy, another share-based environment, and we did not examine its cause or generality. The authors' later turbulence rule for the ensemble strategy was published after the end of the test period. Reference values for FRONTIER were read from a figure. Some released repositories omit components that the papers propose (for example, knowledge distillation in Markowitz Meets Bellman), so those components were not evaluated.
 
 ## 6.7 Contact with authors
 
