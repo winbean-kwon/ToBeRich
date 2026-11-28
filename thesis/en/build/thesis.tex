@@ -110,9 +110,12 @@ policies whose summary metrics did not reveal this. Where the source of
 an apparent advantage could be traced, in the author's system, the FinRL
 agents and one exploratory reproduction, it lay mainly in fixed
 allocations, exposure and the evaluation's initial holding rather than
-in period-by-period decisions. These results do not show that reported
-numbers are wrong or that RL cannot outperform equal weight; the system
-is one development line and the published methods a selected group.
+in period-by-period decisions (largely from exploratory diagnostics);
+the ensemble strategy's advantage over equal weight was matched by equal
+weight under the same turbulence rule (exploratory). These results do
+not show that reported numbers are wrong or that RL cannot outperform
+equal weight; the system is one development line and the published
+methods a selected group.
 
 \tableofcontents
 
@@ -314,7 +317,12 @@ choice the paper leaves unspecified (the reported training epoch and the
 definition of the market average for AlphaMix+) or with the code version
 and evaluation window (a later revision of the MARS repository by its
 authors met both criteria under one of two plausible evaluation windows;
-this is reported alongside, not as the MARS verdict).
+this is reported alongside, not as the MARS verdict). Of four
+exploratory reproductions outside the fixed order, two met both criteria
+(FRONTIER, against values read from a figure, and WaveCorr, with
+released hyperparameters that differ from the paper's), Markowitz Meets
+Bellman met the value criterion only, in its five-ticker version, and
+Margin Trader met neither.
 
 \textbf{Costs.} Of three official environments checked, two did not
 charge the transaction cost they were configured with, and the third
@@ -324,7 +332,10 @@ of thirteen implementations from eight code lineages, the training
 signal did not respond to the configured cost in four; in one of these
 the cost was charged in evaluation but not in training, so a mismatch
 between training and evaluation did not recur across lineages under the
-pre-specified rule.
+pre-specified rule. In FinRL's EIIE and EI3 implementations, whose loss
+gives the cost no gradient, restoring the gradient did not induce
+inertia at fees of 0.25\% or 1\% or with three times the training
+(pre-registered; one implementation).
 
 \textbf{Robustness.} Under the unified protocol, none of the four FinRL
 algorithms retained an advantage over equal weight. Two lost it ---
@@ -344,25 +355,31 @@ rather than the 30 described and omits the proposed distillation
 component, the stored runs behind the reported curve were positions
 bought on the first day and held unchanged; retraining met the value
 criterion, but no seed exceeded an equal-weight portfolio of the same
-five stocks. In an exploratory comparison of three further judged
-methods with equal weight, DeepAries was mixed, MARS as published mostly
-did not exceed it, and the ensemble strategy exceeded it in all runs,
-with the difference concentrated in a period when its turbulence rule
-moved it to cash.
+five stocks; with all 29 constituents in the authors' data file, neither
+criterion was met (Sharpe ratio 1.31). In an exploratory comparison of
+three further judged methods with equal weight, DeepAries was mixed,
+MARS as published mostly did not exceed it, and the ensemble strategy
+exceeded it in all runs, with the difference concentrated in a period
+when its turbulence rule moved it to cash; equal weight with the same
+rule and no RL policy reached a Sharpe ratio of 1.19, at least as high
+as every run, and in the five years after the paper's data no run
+exceeded equal weight or equal weight with the same rule.
 
 \textbf{Taken together.} Where the source of an apparent advantage over
 simple allocation could be traced (the author's system, the FinRL agents
 and one exploratory paper), it lay mainly in fixed or near-fixed
 allocations, in exposure and in the evaluation's initial holding rather
-than in period-by-period decisions, and where an advantage was lost once
-costs were charged, turnover explained most of the loss (exploratory);
-for the ensemble strategy the source of its gap to the reported value
-was not identified, and its advantage over equal weight was concentrated
-in a period when its turbulence rule moved it to cash (exploratory); for
-the Relation-Aware Transformer the source was not identified. The two
-parts differ in kind: the first is one developer's system, the second a
-selected group of published methods, and neither supports a claim about
-RL portfolio methods in general.
+than in period-by-period decisions, and under the unified protocol most
+of the A2C and PPO deficit corresponded to the turnover cost of
+stochastic prediction (exploratory); for the ensemble strategy the
+source of its gap to the reported value was not identified, and its
+advantage over equal weight was concentrated in a period when its
+turbulence rule moved it to cash and was matched by the same rule
+applied to equal weight (exploratory); for the Relation-Aware
+Transformer the source was not identified. The two parts differ in kind:
+the first is one developer's system, the second a selected group of
+published methods, and neither supports a claim about RL portfolio
+methods in general.
 
 \section{Contributions}\label{contributions}
 
@@ -387,8 +404,9 @@ contribution.
   by an automated re-coding of 15, none used a warm-up before evaluation
   or reported sensitivity to the initial holding. The same test applied
   to the published EIIE and EI3 implementations of FinRL's
-  portfolio-optimization environment found no learned inertia and no
-  material effect.
+  portfolio-optimization environment, and to WaveCorr, whose training
+  signal responds to the cost, found no learned inertia and no material
+  effect; the Relation-Aware Transformer could not be measured.
 \item
   A reproduction funnel over 69 RL portfolio papers with fixed stages
   and a human-checked code-availability stage, which separates papers
@@ -652,8 +670,8 @@ boundaries of the action space and that Bernoulli (bang-bang) policies
 perform competitively on standard benchmarks.
 
 Fixed-weight and near-equal-weight policies, such as those we observe
-(Chapters 3 and 7), are therefore not new as phenomena. What we add is
-that they are observed in the official code of two published methods
+(Chapters 3, 5 and 7), are therefore not new as phenomena. What we add
+is that they are observed in the official code of two published methods
 (FinRL; and, in an exploratory analysis, Markowitz Meets Bellman,
 including the stored runs behind its reported result), that the range of
 weights is bounded by the parameterization in the code (in the FinRL
@@ -735,12 +753,14 @@ of RL portfolio papers through fixed stages from eligibility to a
 reproduction verdict, (ii) runs the authors' official code against the
 reported values with criteria fixed in advance, (iii) checks whether the
 official environments charge the costs they are configured with, and
-(iv) re-evaluates reproduced methods against equal weight under a common
-protocol. Each element has precedents --- documentation and
-code-availability audits, re-runs of prediction models, benchmarks of
-generic RL agents against common baselines, and reports of degenerate
-learned allocations. The combination, applied to the official code of
-published RL portfolio methods, is what distinguishes the present study.
+(iv) re-evaluates the one pre-selected method that was at least
+partially reproduced (FinRL) against equal weight under a common
+protocol, with exploratory comparisons with equal weight for three
+further judged methods. Each element has precedents --- documentation
+and code-availability audits, re-runs of prediction models, benchmarks
+of generic RL agents against common baselines, and reports of degenerate
+learned allocations. To our knowledge, this combination has not been
+applied to the official code of published RL portfolio methods.
 
 \chapter{Forecasting and RL allocation on
 equities}\label{chapter-3.-forecasting-and-rl-allocation-on-equities}
@@ -954,11 +974,11 @@ about 96\% of the portfolio in one cluster throughout the test period,
 with almost no variation over time; holding that cluster alone, a choice
 made with knowledge of the test period, gave a Sharpe ratio of 1.185. On
 validation, the directional accuracy of both encoders (0.495 and 0.515)
-was below the share of the majority direction in that period (0.533).
-The corrected agent therefore beat equal weight through a tilt toward
-one group of stocks fixed during training, which an investor could hold
-without RL, and the embeddings appear to carry almost no timing
-information.
+was below the share of the majority direction in that period (0.533). In
+the two runs checked, the corrected agent therefore beat equal weight
+through a tilt toward one group of stocks fixed during training, which
+an investor could hold without RL, and the embeddings appear to carry
+almost no timing information.
 
 \section{A hierarchical variant on
 KOSPI}\label{a-hierarchical-variant-on-kospi}
@@ -1029,15 +1049,15 @@ on 2024--2025, with the corrected accounting.
 Three observations from the equity work recur in the rest of the thesis.
 First, the forecasting signal available to these models was close to
 zero, so any advantage of an RL allocation built on them had to come
-from somewhere other than prediction. Second, the advantages that did
-appear were reproduced by simple fixed allocations: on KOSPI by a static
-cluster tilt, and on U.S. stocks by equal weight itself. Third, results
-could be produced by defects in the pipeline and by overlaps between the
-periods used for building the model and the periods used for testing it,
-and these were found only by inspecting the pipeline after the fact.
-Chapter 4 moved to cryptocurrency, where intraday data and execution
-were available, and Chapter 5 shows that the same observations applied
-there.
+from somewhere other than prediction. Second, the one advantage that did
+appear, on KOSPI, was reproduced by a simple fixed allocation, a static
+cluster tilt; on U.S. stocks the agents finished close to or below equal
+weight. Third, results could be produced by defects in the pipeline and
+by overlaps between the periods used for building the model and the
+periods used for testing it, and these were found only by inspecting the
+pipeline after the fact. Chapter 4 moved to cryptocurrency, where
+intraday data and execution were available, and Chapter 5 shows that the
+same observations applied there.
 
 \chapter{A hierarchical RL allocation system for
 cryptocurrency}\label{chapter-4.-a-hierarchical-rl-allocation-system-for-cryptocurrency}
@@ -1173,11 +1193,12 @@ that, for the final configuration, starting instead from the policy's
 own holdings after a two-week warm-up lowers the test return from
 +8.73\% to +2.86\% (Sharpe 2.60 to 1.03) and the validation return from
 +2.98\% to −0.08\%. Across many shorter windows the start-state effect
-averages close to zero, so it adds variance rather than a consistent
-upward bias, but in the two windows used for selection and testing here
-it raised the results. The figures in this chapter, including the
-validation figures used to choose an agent in Section 4.8, should be
-read with that in mind.
+was positive in fewer than half (41\%) and averaged −0.88 log percentage
+points, so it adds variance rather than a consistent upward bias, but in
+the two windows used for selection and testing here it raised the
+results. The figures in this chapter, including the validation figures
+used to choose an agent in Section 4.8, should be read with that in
+mind.
 
 \section{A single policy and the motivation for a
 hierarchy}\label{a-single-policy-and-the-motivation-for-a-hierarchy}
@@ -1349,7 +1370,7 @@ runs, including with one asset, so collapse is not caused by the move to
 many assets. Collapse also occurred at decision intervals of 4 hours and
 1 day. It did not occur with a pool of factor-based agents and a router
 given informative features, nor in a controlled experiment designed to
-diagnose it in advance (0 of 32 runs), so its cause was not identified.
+diagnose it in advance (0 of 32 cases), so its cause was not identified.
 
 \section{Choosing an agent}\label{choosing-an-agent}
 
@@ -1490,8 +1511,9 @@ low drawdown went with low exposure: in the test period the \(\beta=30\)
 agent held on average about a tenth of the portfolio in risky assets
 (about a fifth in validation), and equal weight held along the same
 exposure path reaches a test Sharpe ratio of 2.00 and a maximum drawdown
-of −4.60\% (Chapter 5). Much of the result is therefore exposure timing
-rather than asset selection.
+of −4.60\% (Chapter 5). Much of the result therefore comes from the
+exposure path, which contains the effect of the evaluation's initial
+holding (Chapter 5), rather than from asset selection.
 
 On the figures of this chapter, the system appeared to beat equal weight
 by a wide margin on a risk-adjusted basis. A policy from this line of
@@ -1539,8 +1561,8 @@ The study of the start-state effect in Section 5.5, the
 decision-interval retraining and the survivorship rule in Section 5.6,
 the unseen-period test in Section 5.7 and most of the tests in Section
 5.8 were pre-registered: their hypotheses and decision rules were fixed
-and committed before the corresponding outputs were produced. Section
-5.9 is an operational record.
+and recorded before the corresponding outputs were produced. Section 5.9
+is an operational record.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -1798,19 +1820,20 @@ applies explicit inertia. Fourteen of these 32 stated the initial
 holding of the evaluation; across all 56 papers, the stated initial
 holdings were cash in eleven and equal weight in six. None of the 56
 used a warm-up before evaluation or reported sensitivity to the initial
-holding. Coding was by one reader. As a partial check, a pre-specified
-random sample of 15 papers was re-coded from the full texts by an
-automated agent that did not see the original coding: it agreed on
-whether the policy has state and whether the initial holding is stated
-in 14 of 15 papers each, and it likewise found no paper with a warm-up
-before evaluation or a sensitivity analysis of the initial holding. The
-agent is not an independent human coder. The size of the reported excess
-returns was not tabulated systematically. Among the papers examined more
-closely, those in the EIIE line on 30-minute cryptocurrency data report
-excess returns far too large to be explained by the start state, while a
-few others report excess returns of one to a few percentage points with
-an arbitrary initial holding, where an effect of this size could be of
-the same order.
+holding. Among the 49 papers that state the length of their test period,
+the median was 394 days. Coding was by one reader. As a partial check, a
+pre-specified random sample of 15 papers was re-coded from the full
+texts by an automated agent that did not see the original coding: it
+agreed on whether the policy has state and whether the initial holding
+is stated in 14 of 15 papers each, and it likewise found no paper with a
+warm-up before evaluation or a sensitivity analysis of the initial
+holding. The agent is not an independent human coder. The size of the
+reported excess returns was not tabulated systematically. Among the
+papers examined more closely, those in the EIIE line on 30-minute
+cryptocurrency data report excess returns far too large to be explained
+by the start state, while a few others report excess returns of one to a
+few percentage points with an arbitrary initial holding, where an effect
+of this size could be of the same order.
 
 \textbf{In published code (pre-registered).} The same question was then
 asked of published code: the EIIE and EI3 implementations of FinRL's
@@ -1831,10 +1854,9 @@ changes equal the cost of one initial rebalancing. Reading the code
 after the verdict showed that its loss contains the transaction cost
 only as a constant factor inside a logarithm, so the cost has no
 gradient with respect to the action and this implementation cannot learn
-to trade less. The start-state effect therefore depends on inertia,
-which these implementations do not acquire; the unified protocol of
-Chapter 7 fixes a cash start for all methods and does not test the
-effect further.
+to trade less. In these implementations the effect was absent,
+consistent with their lack of inertia; the unified protocol of Chapter 7
+fixes a cash start for all methods and does not test the effect further.
 
 To test whether the missing cost gradient explains the lack of learned
 inertia, we modified only the loss so that the transaction-cost factor
@@ -1888,8 +1910,7 @@ before the test period left the reported Sharpe ratio unchanged
 enter through a single coefficient shared across assets, which training
 set close to zero. The result concerns one implementation at a fee of
 0.05\%; a second, the Relation-Aware Transformer, could not be measured
-because its trained models had not been kept and retraining exceeded the
-server's disk limit.
+within the available computing resources.
 
 \section{Further checks}\label{further-checks}
 
@@ -1925,7 +1946,7 @@ cost-free return (+3.54\%, Section 4.5).
 
 \textbf{Survivorship (rule fixed in advance, descriptive).} The 44 pairs
 were chosen by trading volume at the time of collection. To see how much
-this choice could favor a simple rule, a fixed rule was committed before
+this choice could favor a simple rule, a fixed rule was recorded before
 it was run: each Monday, hold in equal weight the quarter of assets with
 the highest return over the previous seven days, with the same fee, and
 compare with weekly-rebalanced equal weight on the same universe. It was
@@ -1962,14 +1983,11 @@ policy above. (The exploratory experiments of Sections 5.6 and 5.8 on
 the 13-asset universe use data to the end of the available series, which
 for three of the assets extends into August 2026; they concern different
 policies.) It was evaluated once, with the following rules fixed in the
-evaluation notebook and registered before the data were processed.
-Before evaluation, the required consistency check of features and
-embeddings over the overlapping fortnight failed with the encoder file
-first used, which had been saved again after the main experiments; the
-evaluation was run with the encoder file used throughout Chapter 4 and
-in the live account, for which the check passed. The file was replaced
-before any performance output of the held-out period was produced; this
-is a recorded deviation from the procedure as first written.
+evaluation notebook and registered before the data were processed. A
+pre-specified consistency check initially failed because of a re-saved
+encoder file; the file used throughout Chapter 4, for which the check
+passed, was substituted before any held-out output was produced (a
+recorded deviation).
 
 \begin{itemize}
 \tightlist
@@ -2018,8 +2036,8 @@ policies, and the procedure was first calibrated on synthetic policies
 with known properties. The pre-registered requirements were that the
 null be rejected at close to the nominal rate when a layer has no effect
 (validity) and that an effect in one layer not produce rejections in
-another (separation). The design of the null was revised twice after
-failures, each revision registered before it was run. In the final
+another (separation). The null design was revised after failed
+calibrations, each revision registered before it was run. In the final
 version, the timing layer met the validity requirement (rejection rates
 0.03 and 0.02 for three- and six-month windows), but over three months
 the asset-choice layer rejected a true null at a rate of 0.13, and
@@ -2053,17 +2071,17 @@ reproduce it.
 A related experiment with factor-based agents (seven-day momentum, low
 volatility, equal weight and cash) on the point-in-time universe, and a
 router given the agents' recent performance and market features, had its
-criteria written into the script before it was run, but criteria and
-results were committed together, so its registration cannot be verified.
-The criterion was a mean Sharpe ratio over five seeds above both the
-best single agent chosen on validation and a rule that switches to the
-agent with the best recent 30 days, in both validation and test, with no
-agent chosen more than 90\% of the time. The router avoided collapse
-(the most frequent agent was chosen 40--46\% of the time) but its mean
-Sharpe ratio was below that of the fixed low-volatility agent in both
-periods, although two of five seeds exceeded it in the test period, so
-it failed. Its test period had been partly seen when the factors were
-chosen.
+criteria written into the script before it was run, but the criteria
+were not recorded separately before the results, so their registration
+cannot be verified. The criterion was a mean Sharpe ratio over five
+seeds above both the best single agent chosen on validation and a rule
+that switches to the agent with the best recent 30 days, in both
+validation and test, with no agent chosen more than 90\% of the time.
+The router avoided collapse (the most frequent agent was chosen 40--46\%
+of the time) but its mean Sharpe ratio was below that of the fixed
+low-volatility agent in both periods, although two of five seeds
+exceeded it in the test period, so it failed. Its test period had been
+partly seen when the factors were chosen.
 
 \section{The live account}\label{the-live-account}
 
@@ -2089,26 +2107,27 @@ allocation impossible to follow.
 
 \section{What this led to}\label{what-this-led-to}
 
-By the end of these checks, every element of the result of Chapter 4 had
+By the end of these checks, most elements of the result of Chapter 4 had
 a reading other than a learned advantage: the chosen seed was favorable,
 the selection was within sampling noise, most of the test result was
 reproduced by equal weight held along the policy's small and slowly
-decaying exposure, about two thirds of the reported log growth came from
-the evaluation's initial holding, an effect that overlaps with that
-exposure path, and in the one period that played no part in development
-the advantage did not hold. These problems need not be specific to
-cryptocurrency or to hierarchical RL. In the survey of Section 5.5, most
-papers used a policy with state, none examined the initial holding, and
-test periods had a median length of about one year, 394 days across the
-49 papers that report it, only about twice the half-year over which this
-chapter found Sharpe ratios indistinguishable from zero. Whether the
-cost models and results of published methods hold up when their code is
-run is not something a reading of the papers can establish. This raised
-the question to which the rest of the thesis is devoted: when published
-RL portfolio methods are run from their own official code, are their
-reported results reproduced, and do their advantages over simple
-allocation survive a common, fair evaluation? Chapters 6 and 7 describe
-how that question was studied and report the answers.
+decaying exposure, and about two thirds of the reported log growth came
+from the evaluation's initial holding, an effect that overlaps with that
+exposure path. The residual attributed to asset choice (Section 5.4) did
+not carry into the one period that played no part in development, where
+the advantage over the same exposure did not hold. These problems need
+not be specific to cryptocurrency or to hierarchical RL. In the survey
+of Section 5.5, most papers used a policy with state, none examined the
+initial holding, and the median test period, about one year, was only
+about twice the half-year over which this chapter found Sharpe ratios
+indistinguishable from zero. Whether the cost models and results of
+published methods hold up when their code is run is not something a
+reading of the papers can establish. This raised the question to which
+the rest of the thesis is devoted: when published RL portfolio methods
+are run from their own official code, are their reported results
+reproduced, and do their advantages over simple allocation survive a
+common, fair evaluation? Chapters 6 and 7 describe how that question was
+studied and report the answers.
 
 \chapter{The reproduction study: design, funnel and
 verdicts}\label{chapter-6.-the-reproduction-study-design-funnel-and-verdicts}
@@ -2500,13 +2519,12 @@ are labelled exploratory.
   For share-based environments, we tested whether policies held their
   positions fixed: for Markowitz Meets Bellman, whether each stored
   account-value curve equals integer-share holdings bought on the first
-  day (maximum absolute residual 0.01 USD); for the ensemble strategy,
-  whose outputs contain only account values, whether each trading cycle
-  is fitted by fixed non-negative holdings plus cash (least squares,
-  maximum relative residual 10⁻⁹); and for Margin Trader, by comparing
-  stored holdings day by day. We also permuted the order of asset
-  columns while keeping the policy's input and output fixed to isolate
-  the environment's order filling.
+  day (maximum absolute residual 0.01 USD); and for the ensemble
+  strategy, whose outputs contain only account values, whether each
+  trading cycle is fitted by fixed non-negative holdings plus cash
+  (least squares, maximum relative residual 10⁻⁹). We also permuted the
+  order of asset columns while keeping the policy's input and output
+  fixed to isolate the environment's order filling.
 \item
   \textbf{Counterfactual code changes} alter one documented element of
   the released code (for example, a hard-coded threshold) and compare
@@ -2828,23 +2846,28 @@ version used in the paper, none of which we could isolate.
 order}\label{exploratory-verdicts-outside-the-fixed-order}
 
 Four further papers were run outside the fixed order, under the same
-kind of pre-registered criteria. They are reported separately and are
-not counted with the verdicts above.
+kind of pre-registered criteria. Margin Trader and WaveCorr passed the
+execution stages within the fixed order but did not receive one of the
+two verdict places; FRONTIER and Markowitz Meets Bellman are among the
+papers whose code was located only at the check of the code-availability
+judgments (Section 6.11). They are reported separately and are not
+counted with the verdicts above.
 
 \begin{itemize}
 \tightlist
 \item
   \textbf{Margin Trader (Gu et al., 2023).} The authors' script runs
   only A2C, so we compared against the paper's A2C long--short row
-  (Sharpe 0.793). With the price columns assigned correctly in our data
-  loading, the mean Sharpe ratio over five seeds was 0.26 (SD 0.13; mean
-  annual return 3.6\% against a reported 18.5\%); no seed reached the
-  band, and no seed exceeded the index (0.790), whose Sharpe ratio in
-  our data matched the reported value. Neither criterion holds. A
-  daily-rebalanced, long-only equal-weight portfolio of the same 28
-  stocks, charged the environment's cost rate, had a Sharpe ratio of
-  0.92 over the same period and exceeded every run; since Margin Trader
-  uses margin and short positions, this benchmark is long-only.
+  (Sharpe 0.793). Price columns were mapped to open, high, low and close
+  as the environment expects. The mean Sharpe ratio over five seeds was
+  0.26 (SD 0.13; mean annual return 3.6\% against a reported 18.5\%); no
+  seed reached the band, and no seed exceeded the index (0.790), whose
+  Sharpe ratio in our data matched the reported value. Neither criterion
+  holds. A daily-rebalanced, long-only equal-weight portfolio of the
+  same 28 stocks, charged the environment's cost rate, had a Sharpe
+  ratio of 0.92 over the same period and exceeded every run; since
+  Margin Trader uses margin and short positions, this benchmark is
+  long-only.
 \item
   \textbf{FRONTIER (Pretorius and van Zyl, 2022).} The paper reports the
   method's performance only as a Pareto frontier in a figure. At an
@@ -3102,22 +3125,27 @@ training nor in evaluation, and in one (MASA, a method in our main
 sample) the cost is deducted from the evaluated portfolio value but not
 from the training reward. The pre-specified criterion for a
 training--evaluation mismatch recurring across at least two lineages was
-therefore not met. Of the two reference cases, the original EIIE
-implementation of Jiang et al.~(2017) passes the cost into its loss
-gradient. In the EIIE loss of FinRL's portfolio-optimization
-environment, the cost factor enters as a per-sample constant inside the
-logarithm, so its contribution to the gradient is zero by construction;
-our pre-specified numerical test was inconclusive for this case because
-of rounding in single precision at a very small gradient norm. The check
-establishes only whether the training signal responds to the cost, not
-whether training makes use of it or how it affects performance. In MARS,
-which responds to the cost, the reward adds a return expressed as a
-fraction and subtracts the cost in dollars on a capital of one million;
-on its training data the cost term exceeded the return term in 94--95\%
-of steps under equal-weight targets and under the authors' released
-checkpoint, by a median factor of about 200 and 40 respectively
-(exploratory, without training). A separate experiment that restores the
-cost gradient in the FinRL EIIE loss is reported in Section 5.5.
+therefore not met. EarnMore was treated as an independent lineage, and
+Margin Trader and Markowitz Meets Bellman were grouped with the ensemble
+strategy's FinRL stock-trading environments, after the results were
+known; under either assignment the mismatch occurs in one lineage, so
+the outcome of the criterion does not change. Of the two reference
+cases, the original EIIE implementation of Jiang et al.~(2017) passes
+the cost into its loss gradient. In the EIIE loss of FinRL's
+portfolio-optimization environment, the cost factor enters as a
+per-sample constant inside the logarithm, so its contribution to the
+gradient is zero by construction; our pre-specified numerical test was
+inconclusive for this case because of rounding in single precision at a
+very small gradient norm. The check establishes only whether the
+training signal responds to the cost, not whether training makes use of
+it or how it affects performance. In MARS, which responds to the cost,
+the reward adds a return expressed as a fraction and subtracts the cost
+in dollars on a capital of one million; on its training data the cost
+term exceeded the return term in 94--95\% of steps under equal-weight
+targets and under the authors' released checkpoint, by a median factor
+of about 200 and 40 respectively (exploratory, without training). A
+separate experiment that restores the cost gradient in the FinRL EIIE
+loss is reported in Section 5.5.
 
 \section{FinRL under the unified
 protocol}\label{finrl-under-the-unified-protocol}
@@ -3494,8 +3522,9 @@ original test period (0.88 with the 95\% quantile), between equal weight
 and the code's rule, and values well below equal weight after
 publication, when the growing price-level index kept the portfolio in
 cash on most days. The rule's advantage in the original period therefore
-rested on both the price-level index and the thresholds set for that
-period, in proportions that the choice of quantile changes.
+depended on both the price-level index and the thresholds set for that
+period (exploratory; the two are not separated), in proportions that the
+choice of quantile changes.
 
 \section{Summary of the
 re-evaluation}\label{summary-of-the-re-evaluation}
@@ -3524,7 +3553,8 @@ re-evaluation}\label{summary-of-the-re-evaluation}
   Markowitz Meets Bellman the authors' stored outputs behind the
   reported curve were first-day buy-and-hold positions whose composition
   was set by the environment's order filling. This buy-and-hold pattern
-  was not found in two other targets with share-based environments.
+  was not found in the ensemble strategy, the one other share-based
+  environment checked.
 \item
   There was weak evidence that the ensemble strategy's Sharpe ratio is
   sensitive to its hard-coded turbulence threshold; in this code,
@@ -3534,7 +3564,10 @@ re-evaluation}\label{summary-of-the-re-evaluation}
   In an exploratory comparison with equal weight, DeepAries was mixed,
   MARS as published mostly did not exceed it, and the ensemble strategy
   exceeded it in all runs, with the difference concentrated in a period
-  when its turbulence rule moved it to cash.
+  when its turbulence rule moved it to cash; equal weight with the same
+  rule and no RL policy reached a Sharpe ratio of 1.19, at least as high
+  as every run, and in the five years after the paper's data no run
+  exceeded equal weight or equal weight with the same rule.
 \end{itemize}
 
 \chapter{Discussion and
@@ -3566,9 +3599,13 @@ its untrained initialization; in an exploratory reproduction, the stored
 runs behind a reported curve were first-day buy-and-hold positions. For
 the ensemble strategy, the source of its gap to the reported value was
 not identified, and its advantage over equal weight was concentrated in
-a period when its turbulence rule moved it to cash (exploratory, Section
-7.7); for the Relation-Aware Transformer the source was not identified;
-the other three verdicts found no reported advantage to explain.
+a period when its turbulence rule moved it to cash, equal weight with
+the same rule and no RL policy reached a Sharpe ratio of 1.19, at least
+as high as every run, and in the five years after the paper's data no
+run exceeded equal weight or equal weight with the same rule
+(exploratory, Section 7.7); for the Relation-Aware Transformer the
+source was not identified; the other three verdicts found no reported
+advantage to explain.
 
 \textbf{Summary metrics did not reveal these properties.} In the cases
 above, the cumulative return and Sharpe ratio that a paper or a
@@ -3585,11 +3622,10 @@ the author's system, the evaluation's initial holding moved the test
 return from +8.73\% to +2.86\%, and the pre-registered study of this
 effect found that its size grows with the policy's inertia and its sign
 follows the market's first days. In two of three official environments
-examined, the configured transaction cost was not charged. In both
-parts, choices made in the evaluation code, rather than in the method,
-changed results by amounts comparable to the advantages being reported:
-from +8.73\% to +2.86\% for the author's system, and from a charged cost
-to no cost at all in two environments, whatever rate was configured.
+examined, the configured transaction cost was not charged. In the
+author's system, a choice made in the evaluation rather than in the
+method changed the test return by an amount comparable to the advantage
+being reported, from +8.73\% to +2.86\%.
 
 \textbf{Where the two parts differ.} The author's system was a single
 development line with design choices made partly on test data, and its
@@ -3618,9 +3654,11 @@ average for AlphaMix+, and the code version and the evaluation window
 for MARS, whose authors' later revision met both criteria under one of
 the two windows. In the exploratory reproduction of Markowitz Meets
 Bellman (Hu and Gu, 2024), the released script uses five stocks, whereas
-the paper describes thirty. We report both readings where a choice is
-open; we could not determine which reading the authors used, and we do
-not attribute the failed verdicts to these choices.
+the paper describes thirty; with the 29 constituents in the authors'
+data file, the averaged Sharpe ratio (1.31) fell below the tolerance
+band (exploratory). We report both readings where a choice is open; we
+could not determine which reading the authors used, and we do not
+attribute the failed verdicts to these choices.
 
 \textbf{Deviations in both directions.} The Relation-Aware Transformer
 reached a final portfolio value far above the reported one while its
@@ -3716,8 +3754,10 @@ failure. Sensitivity of backtests to their start date (Anderson et al.,
 what the pre-registered study adds is a test, for RL policies with
 inertia, of how the evaluation's initial holding interacts with the
 policy's damping and the market's first days. In the published EIIE and
-EI3 implementations of FinRL's portfolio-optimization environment, which
-did not learn inertia, the effect was not material.
+EI3 implementations of FinRL's portfolio-optimization environment and in
+WaveCorr, whose training signal responds to the cost, the policies did
+not learn inertia and the effect was not material; the Relation-Aware
+Transformer could not be measured.
 
 \section{Information and checks that would have allowed direct
 verdicts}\label{information-and-checks-that-would-have-allowed-direct-verdicts}
@@ -3933,9 +3973,9 @@ depends on block length. Counterfactual experiments used five runs per
 condition; the primary turbulence-threshold contrast changes category if
 one run is removed from either condition in most cases, and was below
 the design's minimum detectable effect. The reference and counterfactual
-runs of the ensemble strategy were not run concurrently; two later
-repeats of the reference condition fell within the range of the original
-five runs.
+runs of the ensemble strategy were not run concurrently; additional runs
+of the reference condition fell within the range of the original five
+runs.
 
 \section{Protocol choices}\label{protocol-choices}
 
@@ -4027,7 +4067,9 @@ configured with, and the third used a different formula with a
 negligible effect at the paper's fee. In a pre-registered check of
 thirteen implementations, the training signal did not respond to the
 configured cost in four, and a mismatch between training and evaluation
-was found in one.
+was found in one. In FinRL's EIIE and EI3 implementations, restoring the
+missing cost gradient did not induce inertia at fees of 0.25\% or 1\% or
+with three times the training (pre-registered; one implementation).
 
 For the one method eligible for re-evaluation under the pre-specified
 rule, the four FinRL agents retained no advantage over equal weight
@@ -4044,25 +4086,27 @@ outside the fixed order, two met both criteria --- FRONTIER, against
 values read from a figure, and WaveCorr, whose public code reproduced
 its reported Sharpe ratio, although with released hyperparameters that
 differ from the paper's and without a held-out validation stage --- one,
-Markowitz Meets Bellman (Hu and Gu, 2024), met the value criterion only,
-and one met neither (Margin Trader). In an exploratory comparison with
-equal weight, the ensemble strategy exceeded it in all runs, but the
-difference was concentrated in the period when its turbulence rule moved
-it to cash, equal weight with the same rule and no RL policy did at
-least as well as every run, and in an exploratory extension to the five
-years after the paper's data no run exceeded equal weight.
+Markowitz Meets Bellman (Hu and Gu, 2024), met the value criterion only
+in its five-ticker version and neither criterion with all 29
+constituents, and one met neither (Margin Trader). In an exploratory
+comparison with equal weight, the ensemble strategy exceeded it in all
+runs, but the difference was concentrated in the period when its
+turbulence rule moved it to cash, equal weight with the same rule and no
+RL policy did at least as well as every run, and in an exploratory
+extension to the five years after the paper's data no run exceeded equal
+weight or equal weight with the same rule.
 
 Across both parts, the advantages whose source could be traced lay
 mainly in fixed or near-fixed allocations, exposure and the evaluation's
 initial holding rather than in decisions made period by period, and
-where an advantage was lost once costs were charged, turnover explained
-most of the loss (exploratory). Simple checks, mostly comparisons with
-portfolios that need no learning, were what revealed this. These results
-do not show that any paper's numbers are wrong or that RL cannot
-outperform equal weight. The author's system is one development line;
-the published methods studied are a selected group, several sharing a
-code lineage; and all exploratory findings are specific to the code and
-settings examined.
+under the unified protocol most of the A2C and PPO deficit corresponded
+to the turnover cost of stochastic prediction (exploratory). Simple
+checks, mostly comparisons with portfolios that need no learning, were
+what revealed this. These results do not show that any paper's numbers
+are wrong or that RL cannot outperform equal weight. The author's system
+is one development line; the published methods studied are a selected
+group, several sharing a code lineage; and all exploratory findings are
+specific to the code and settings examined.
 
 Further work could extend the reproduction to the papers that passed the
 execution stages but were not given a verdict, add a second independent
