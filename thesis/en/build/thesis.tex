@@ -2925,8 +2925,8 @@ counted with the verdicts above.
   baselines were not rerun on the same stocks.
 \end{itemize}
 
-\textbf{Table 6.3. Exploratory reproduction comparisons (papers whose
-official code was located at the F1 check)}
+\textbf{Table 6.3. Exploratory reproduction comparisons outside the
+fixed order}
 
 These comparisons lie outside the fixed execution order. For each paper
 the comparison target, tolerance band and decision rules were fixed
@@ -2984,12 +2984,21 @@ over five seeds & 1.73 & ±0.295 & 1.75 & ✓ & Per-seed Sharpe above the
 strongest reported benchmark (CS-PPN, 1.14) in ≥ 4/5 seeds & ✓ (5/5) &
 Public code yields the reported figure under its own metric
 definitionsᵇ \\
+Margin Trader (Gu et al., 2023), A2C long--short & Mean Sharpe over five
+seeds & 0.793 & ±0.0545 & 0.26 & ✗ & Per-seed Sharpe above the index
+(0.790) in ≥ 4/5 seeds & ✗ (0/5) & Not reproducedᶜ \\
 \end{longtable}
 }
 
 ᵃ Read from the published figure. ᵇ The code trains on the paper's
 validation years and records the test-period value at every epoch; the
-released hyperparameters differ from those listed in the paper.
+released hyperparameters differ from those listed in the paper. ᶜ A
+daily-rebalanced, long-only equal-weight portfolio of the same 28 stocks
+at the environment's cost rate had a Sharpe ratio of 0.92.
+
+Origin of rows: FRONTIER and Markowitz Meets Bellman had official code
+located at the F1 check; WaveCorr and Margin Trader passed the
+fixed-order stages but had no place in the judged set.
 
 \section{What the verdicts do and do not
 show}\label{what-the-verdicts-do-and-do-not-show}

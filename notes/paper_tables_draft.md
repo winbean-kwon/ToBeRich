@@ -70,7 +70,7 @@ Notes for the text (not table content):
 
 ---
 
-## Table 3. Exploratory reproduction comparisons (papers whose official code was located at the F1 check)
+## Table 3. Exploratory reproduction comparisons outside the fixed order
 
 These comparisons lie outside the fixed execution order. For each paper the comparison target, tolerance band and decision rules were fixed before any of our results were inspected. R1: our aggregate lies within the band (half the gap between the reported value and the named comparator). R2 is paper-specific and stated in the column. The R2 rules differ, so the Table 2 verdict labels are not applied.
 
@@ -79,9 +79,13 @@ These comparisons lie outside the fixed execution order. For each paper the comp
 | FRONTIER (Pretorius & van Zyl, 2022) | Mean Pareto-frontier excess return at the equal-weight excess risk of 14.78% (%) | 11.79ᵃ | ±1.01 | 11.71 | ✓ | Frontier dominates equal weight (≥ 4/5 seeds) | ✓ (5/5) | Matches the published figure |
 | Markowitz Meets Bellman (Hu and Gu, 2024; method "KDD"), five-ticker run | Sharpe of the date-wise mean of run curves | 2.03 | ±0.525 | 1.81 | ✓ | Per-seed Sharpe above equal weight of the same five stocks (2.00, 0.1% cost) in ≥ 4/5 seeds | ✗ (0/5) | Reported value indistinguishable from holding the same five stocks |
 | WaveCorr (Marzban et al., 2021), Canadian dataset | Mean test Sharpe over five seeds | 1.73 | ±0.295 | 1.75 | ✓ | Per-seed Sharpe above the strongest reported benchmark (CS-PPN, 1.14) in ≥ 4/5 seeds | ✓ (5/5) | Public code yields the reported figure under its own metric definitionsᵇ |
+| Margin Trader (Gu et al., 2023), A2C long–short | Mean Sharpe over five seeds | 0.793 | ±0.0545 | 0.26 | ✗ | Per-seed Sharpe above the index (0.790) in ≥ 4/5 seeds | ✗ (0/5) | Not reproducedᶜ |
 
 ᵃ Read from the published figure.
 ᵇ The code trains on the paper's validation years and records the test-period value at every epoch; the released hyperparameters differ from those listed in the paper.
+ᶜ A daily-rebalanced, long-only equal-weight portfolio of the same 28 stocks at the environment's cost rate had a Sharpe ratio of 0.92.
+
+Origin of rows: FRONTIER and Markowitz Meets Bellman had official code located at the F1 check; WaveCorr and Margin Trader passed the fixed-order stages but had no place in the judged set.
 
 Notes for the text (not table content):
 - FRONTIER: the frontier is formed from 504 parameter pairs evaluated on the test period, as in the paper; the match is faithful to the published procedure but is not out-of-sample evidence of superiority over equal weight. Equal weight is a weak benchmark (long-only minimum variance has a higher Sharpe ratio). Our curve lies 0.1–0.5 percentage points below the figure at most risk levels.
