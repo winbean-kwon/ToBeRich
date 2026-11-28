@@ -1,0 +1,64 @@
+{
+ "H-G1L": {
+  "count": 0,
+  "of": 6,
+  "verdict": "커지지 않았다"
+ },
+ "H-G2L": {
+  "count": 0,
+  "of": 6,
+  "verdict": "줄지 않았다"
+ },
+ "descriptive": {
+  "O1L": {
+   "alpha_median": 0.9999748116454289,
+   "alpha_min": 0.9759796508343972,
+   "alpha_max": 0.9999891633643709,
+   "turnover_median": 0.012706956757761508,
+   "turnover_mean": 0.012582328600919937,
+   "exposure_mean": 0.5903453365717293,
+   "exposure_lt_05": 3,
+   "excess3_median": 0.37476111155270375,
+   "excess3_mean": 0.413876715696915
+  },
+  "G1L": {
+   "alpha_median": 0.9999991814438587,
+   "alpha_min": 0.9999979403643595,
+   "alpha_max": 0.9999995707298264,
+   "turnover_median": 0.027655697786018014,
+   "turnover_mean": 0.02827810639783651,
+   "exposure_mean": 0.9999459912931431,
+   "exposure_lt_05": 0,
+   "excess3_median": 0.7556075772407822,
+   "excess3_mean": 0.6617452192833916
+  },
+  "O1": {
+   "alpha_median": 0.9998467165562624,
+   "alpha_min": 0.9888495822804402,
+   "alpha_max": 0.999960031011653,
+   "turnover_median": 0.01932634123995569,
+   "turnover_mean": 0.019942028384749292,
+   "exposure_mean": 0.6768911494370206,
+   "exposure_lt_05": 2,
+   "excess3_median": 0.6877599606226286,
+   "excess3_mean": 0.5434461769657903
+  },
+  "G1": {
+   "alpha_median": 0.9999952371185602,
+   "alpha_min": 0.999988676693627,
+   "alpha_max": 0.9999997212540488,
+   "turnover_median": 0.026062045779523053,
+   "turnover_mean": 0.02545018307088938,
+   "exposure_mean": 0.9995444852241215,
+   "exposure_lt_05": 0,
+   "excess3_median": 0.7279844418112955,
+   "excess3_mean": 0.656332546386754
+  }
+ },
+ "comparison_40ep_same_pairs": {
+  "hg1_count_40ep": 0,
+  "hg2_count_40ep": 1,
+  "of": 6,
+  "note": "same rules applied to extension O1/G1 BR10 (40 episodes); descriptive"
+ }
+}
