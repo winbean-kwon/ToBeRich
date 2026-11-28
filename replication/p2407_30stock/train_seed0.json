@@ -1,0 +1,17 @@
+{
+ "mode": "train",
+ "seed": 0,
+ "threads": 3,
+ "gates": {
+  "G1_raw_blob": "904e6f40c2ea20c9ab2ae2099536f8a875775a27",
+  "G1": true,
+  "G2_max_rel": 5.893189888849865e-16,
+  "G2": true,
+  "n_tickers_raw": 29
+ },
+ "seconds": 510.9602587223053,
+ "exception": null,
+ "account_csv_exists": true,
+ "account_csv_lines": 672,
+ "model_saved": true
+}
