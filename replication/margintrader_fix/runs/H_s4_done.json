@@ -1,0 +1,53 @@
+{
+ "name": "H_s4",
+ "cond": "H",
+ "commit": "7b7fa9e",
+ "seed": 4,
+ "attempt": 1,
+ "diff": [
+  "-seed = 0\n",
+  "+seed = 4\n"
+ ],
+ "start": "2026-11-28 10:37:44",
+ "rc": 0,
+ "capped": false,
+ "seconds": 234.1,
+ "marker_exists": true,
+ "data": {
+  "sha256": "980ecf8ce2013919bc0f85c9311375dd73e2cfa9ea08e6c3e4d76faf827fccd0",
+  "rows": 100912,
+  "n_tic": 28,
+  "tics": [
+   "AAPL",
+   "AMGN",
+   "AXP",
+   "BA",
+   "CAT",
+   "CRM",
+   "CSCO",
+   "CVX",
+   "DIS",
+   "GS",
+   "HD",
+   "HON",
+   "IBM",
+   "INTC",
+   "JNJ",
+   "JPM",
+   "KO",
+   "MCD",
+   "MMM",
+   "MRK",
+   "MSFT",
+   "NKE",
+   "PG",
+   "TRV",
+   "UNH",
+   "V",
+   "VZ",
+   "WMT"
+  ]
+ },
+ "status": "완료",
+ "result_dir": "/home/ksbda/f4work/mt/runs_fix/H_s4/results/20261128-10h37/a2c"
+}

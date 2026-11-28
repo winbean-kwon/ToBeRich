@@ -1,0 +1,15 @@
+{
+ "sha256": "980ecf8ce2013919bc0f85c9311375dd73e2cfa9ea08e6c3e4d76faf827fccd0",
+ "rows": 100912,
+ "aapl_rel_diff": {
+  "Open": 0.0,
+  "High": 0.0,
+  "Low": 0.0
+ },
+ "violations": {
+  "high_lt_open": 0,
+  "low_gt_open": 0,
+  "high_lt_low": 0
+ },
+ "gate2_amended_pass": true
+}
