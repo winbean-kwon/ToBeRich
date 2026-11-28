@@ -1894,8 +1894,15 @@ of six original policies drifted mostly to cash. Because turnover is
 measured on asset weights, the lower turnover of those original policies
 partly reflects their small exposure, so the turnover comparison is
 informative mainly for the fully invested pairs, where the modification
-did not reduce turnover either. Learning rate and other hyperparameters
-were not varied, and convergence was not checked.
+did not reduce turnover either. In a further pre-registered test on the
+same six pairs at the 1\% fee and 40 episodes, setting the learning rate
+to 0.001 or 0.03 instead of 0.01 lowered α\_eff by more than 0.05 in no
+pair and reduced turnover by more than 10\% in no pair at 0.001 and in
+one pair at 0.03, in which the original policy had unusually high
+turnover. Because α\_eff lay between 0.99 and 1 in every run under both
+losses, these tests can show only that no inertia emerged, not that the
+two losses yield the same α\_eff; other hyperparameters were not varied,
+and convergence was not checked.
 
 The same question was asked, in a pre-registered test, of a published
 implementation whose training signal does respond to transaction costs
