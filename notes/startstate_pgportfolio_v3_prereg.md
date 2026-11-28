@@ -7,3 +7,7 @@
 ## 한계(추가)
 - 학습 구간이 기본(약 22개월)의 절반이다. 관성이 학습되지 않았다면 그것이 짧은 학습 때문일 수 있다는 점을 함께 적는다. 반대로 관성이 학습되었다면 짧은 학습에서도 나타난 것이다.
 - 코드 기본과 다른 기간이므로 논문 수치 재현이 아니다.
+
+## 정정(실행 전, 2026-11-28 16:05 KST — G1 v3 통과 뒤, G2 중, 성과 지표 보기 전)
+- 승인된 설치(`pip install --no-deps --target ~/f4work/pgss/pylib Pillow pandas==0.25.3`; Pillow 9.5.0, pandas 0.25.3, 58.5 MB)는 했다. 그러나 pandas 0.25.0부터 `pd.Panel`이 제거되어 원 코드 `globaldatamatrix.py` 72행이 `TypeError: Panel() takes no arguments`로 멈췄다(G2 첫 시도, 데이터 매트릭스 생성 단계). 버전 지정 오류다.
+- 정정: 추가 설치나 네트워크 작업 없이, 서버에 이미 있는 pandas 0.24.2(`~/f4work/p37` site-packages)를 심볼릭 링크로 `~/f4work/pgss/pylib_pd`에 두고 `PYTHONPATH=pylib_pd:pylib`(pandas 0.24.2, Pillow 9.5.0, TF 1.15.4, numpy 1.16.4)로 실행한다. `~/f4work/p37`와 `adrl/p37`은 고치지 않는다. 측정·판정·기간·자원 규칙은 바뀌지 않는다.
